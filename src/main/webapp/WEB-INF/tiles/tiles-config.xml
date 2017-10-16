@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="login" template="/WEB-INF/views/template/login_layout.jsp">
+        <put-attribute name="taglib" value="/WEB-INF/views/common/layouts/taglib.jsp"/>
+        <put-attribute name="commonjs" value="/WEB-INF/views/common/layouts/commonjs.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/login.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/common/layouts/footer.jsp"/>
+        <put-attribute name="popup" value="/WEB-INF/views/common/popup/popup.jsp"/>
+    </definition>
+    <!--슈퍼어드민/화면 default-->
+    <definition name="adminDefault" template="/WEB-INF/views/template/admin_layout.jsp">
+        <put-attribute name="taglib" value="/WEB-INF/views/common/layouts/taglib.jsp"/>
+        <put-attribute name="commonjs" value="/WEB-INF/views/common/layouts/commonjs.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/views/admin/common/layouts/header.jsp"/>
+        <put-attribute name="top" value="/WEB-INF/views/common/layouts/top.jsp"/>
+        <put-attribute name="popup" value="/WEB-INF/views/common/popup/popup.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/admin/serviceInstance/serviceInstanceList.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/common/layouts/footer.jsp"/>
+    </definition>
+    <!--슈퍼어드민/형상관리 인스턴스 리스트-->
+    <definition name="/admin/serviceInstance/*" extends="adminDefault">
+        <put-attribute name="body" value="/WEB-INF/views/admin/serviceInstance/{1}.jsp"/>
+    </definition>
+    <!--슈퍼어드민/인스턴스별 레파지토리리스트-->
+    <definition name="/admin/repository/*" extends="adminDefault">
+        <put-attribute name="body" value="/WEB-INF/views/admin/repository/{1}.jsp"/>
+    </definition>
+    <!--슈퍼어드민/인스턴스별 사용자리스트-->
+    <definition name="/admin/user/*" extends="adminDefault">
+        <put-attribute name="body" value="/WEB-INF/views/admin/user/{1}.jsp"/>
+    </definition>
+    <!--사용자/화면 default-->
+    <definition name="userDefault" template="/WEB-INF/views/template/user_layout.jsp">
+        <put-attribute name="taglib" value="/WEB-INF/views/common/layouts/taglib.jsp"/>
+        <put-attribute name="commonjs" value="/WEB-INF/views/common/layouts/commonjs.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/views/common/layouts/header.jsp"/>
+        <put-attribute name="top" value="/WEB-INF/views/common/layouts/top.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/repository/repositoryView.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/common/layouts/footer.jsp"/>
+        <put-attribute name="popup" value="/WEB-INF/views/common/popup/popup.jsp"/>
+    </definition>
+    <!--사용자/인스턴스별 -->
+    <definition name="/user/repository/*" extends="userDefault">
+        <put-attribute name="body" value="/WEB-INF/views/user/repository/{1}.jsp"/>
+    </definition>
+    <!--사용자/인스턴스별 -->
+    <definition name="/user/user/*" extends="userDefault">
+        <put-attribute name="body" value="/WEB-INF/views/user/user/{1}.jsp"/>
+    </definition>
+    <!--사용자/인스턴스별 -->
+    <definition name="/user/permissions/*" extends="userDefault">
+        <put-attribute name="body" value="/WEB-INF/views/user/permissions/{1}.jsp"/>
+    </definition>
+    <!--Error/화면 default-->
+    <definition name="/error/*" template="/WEB-INF/views/template/error_layout.jsp">
+        <put-attribute name="taglib" value="/WEB-INF/views/common/layouts/taglib.jsp"/>
+        <put-attribute name="commonjs" value="/WEB-INF/views/common/layouts/commonjs.jsp"/>
+        <put-attribute name="top" value="/WEB-INF/views/common/layouts/top.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/error/{1}.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/common/layouts/footer.jsp"/>
+        <put-attribute name="popup" value="/WEB-INF/views/common/popup/popup.jsp"/>
+    </definition>
+    <!--사용자/인스턴스별 -->
+    <definition name="/user/*" template="/WEB-INF/views/template/error_layout.jsp">
+        <put-attribute name="taglib" value="/WEB-INF/views/common/layouts/taglib.jsp"/>
+        <put-attribute name="commonjs" value="/WEB-INF/views/common/layouts/commonjs.jsp"/>
+        <put-attribute name="top" value="/WEB-INF/views/common/layouts/top.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/{1}.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/common/layouts/footer.jsp"/>
+        <put-attribute name="popup" value="/WEB-INF/views/common/popup/popup.jsp"/>
+    </definition>
+</tiles-definitions>

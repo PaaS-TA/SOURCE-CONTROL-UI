@@ -1,0 +1,114 @@
+@charset "utf-8";
+
+.modal-dialog {
+    position: relative;
+    padding-right:0px;
+    /*width: 400px;*/
+    /*min-width: 400px;*/
+    /*margin: 10% auto;*/
+}
+
+.modal-footer {
+    width: auto;
+    overflow: hidden;
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #ebedee;
+}
+
+* {
+    -webkit-box-sizing: unset;
+}
+
+pre {
+    display: block;
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    color: inherit;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+.processtype01 > ol {
+    margin-top: 20px;
+}
+
+.processtype01 > ol:first-child {
+    margin-top: 0;
+}
+
+#modalSpinner .loader {
+    width: 125px;
+    height: 125px;
+    max-width: 125px;
+    max-height: 125px;
+    border-top: 16px solid blue;
+    border-left: 16px solid pink;
+    border-bottom: 16px solid red;
+    border-right: 16px solid green;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+#modalSpinner .row {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    position: absolute;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.portlet.box.custom-progress > .portlet-title, .portlet.custom-progress, .portlet > .portlet-body.custom-progress {
+    background-color: #13bef6;
+}
+
+.portlet.box.custom-progress > .portlet-title > .caption, .portlet.box.custom-progress > .portlet-title > .caption > i {
+    color: #fff;
+    font-weight: 600;
+}
+
+.portlet.box.custom-progress {
+    border-top: 0;
+}
+
+.processtype01 > ol > li {
+    letter-spacing: normal;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 32px 0 0;
+    background: url("../images/process02_arrow.png") 97% 50% no-repeat;
+    position: relative;
+    zoom: 1;
+    cursor: default;
+    user-select: none;
+}
+
+.portlet {
+    overflow: hidden;
+    width: 328px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
+    cursor: default;
+    user-select: none;
+}

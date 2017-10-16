@@ -1,0 +1,24 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<div id="container" >
+    <!-- login :s -->
+    <div id="loginWrap" class="loginbox">
+        <div class="header" >
+            <h1 style="line-height: 100px;"><img alt="PaaS-TA 형상관리" src="/resources/images/logo.png"><span class>  형상관리</span>ERROR</h1>
+        </div>
+        <div class="input_wrap clear_fix">
+            <div class="input_inner">
+                <c:if test="${not empty error}">
+                    <div><span class="alert-danger">${error}<br>
+                            ${exception.message}<br>
+                        <br>
+                        <br>
+                    </span></div>
+                </c:if>
+                <p><label class="hidden">type : ${type}</label></p>
+                <p><label class="hidden">status-code : ${status}</label></p>
+            </div>
+            <button type="submit" class="btn_login" onclick="window.open('about:blank','_self').self.close();">화면 닫기</button>
+
+        </div>
+    </div>
+</div>
