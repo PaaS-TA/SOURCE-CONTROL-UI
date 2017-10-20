@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -50,8 +49,7 @@ public class LoginController extends CommonController {
 
     @RequestMapping(value = {"/c2NtYWRtaW46/"}, method = RequestMethod.GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
-                                  @RequestParam(value = "logout", required = false) String logout,
-                                  Locale locale, HttpServletRequest request) {
+                                  @RequestParam(value = "logout", required = false) String logout) {
 
         ModelAndView model = new ModelAndView();
         if (error != null) {
@@ -109,11 +107,6 @@ public class LoginController extends CommonController {
                 }
                 else{
                     return new ModelAndView("redirect:/user/serviceInstantList");
-                    /**
-                    model.setViewName("login");
-                    model.addObject("error", "Dashboard Url로 접속하세요.");
-                    return  model;
-                     */
                 }
             }
             /**
@@ -138,7 +131,7 @@ public class LoginController extends CommonController {
     }
     @RequestMapping(value = {"/logout"})
     @ResponseBody
-    public AntPathRequestMatcher logout (HttpServletRequest request, HttpSession session) {
+    public AntPathRequestMatcher logout (HttpSession session) {
         session.invalidate();
         //TODO
         return new AntPathRequestMatcher("/login");
