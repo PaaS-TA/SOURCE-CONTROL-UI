@@ -37,20 +37,27 @@ public class Common {
 	 */
 	public static Boolean empty(Object obj) {
 
-		if (obj instanceof String)
+		if (obj instanceof String) {
 			return obj == null || "".equals(obj.toString().trim());
-		if (obj instanceof List)
+		}
+		if (obj instanceof List) {
 			return obj == null || ((List) obj).isEmpty();
-		if (obj instanceof Map)
+		}
+		if (obj instanceof Map) {
 			return obj == null || ((Map) obj).isEmpty();
-		if (obj instanceof Object[])
+		}
+		if (obj instanceof Object[]) {
 			return obj == null || Array.getLength(obj) == 0;
-		if (obj instanceof HttpSession)
+		}
+		if (obj instanceof HttpSession) {
 			return obj == null || ((HttpSession) obj).getAttributeNames().hasMoreElements();
-		if (obj instanceof LinkedHashMap)
+		}
+		if (obj instanceof LinkedHashMap) {
 			return obj == null || ((LinkedHashMap) obj).isEmpty();
-		if (obj instanceof Map)
+		}
+		if (obj instanceof Map) {
 			return obj == null || ((Map) obj).isEmpty();
+		}
 		return obj == null;
 	}
 
@@ -72,9 +79,10 @@ public class Common {
 	 */
 
 	public static Object NotNullrtnByobj(Object obj, Object rtn) {
-        if (empty(obj))
-            return rtn;
-        else return obj;
+        if (empty(obj)) {
+			return rtn;
+		}
+        return obj;
 	}
 
 	/**
