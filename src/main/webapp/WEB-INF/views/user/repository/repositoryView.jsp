@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <!-- contaniner :s -->
     <div id="container">
@@ -281,7 +282,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             searchList();
-        })
+        });
 
 
         $("#btn_repoCreate").click (function() {
@@ -294,7 +295,7 @@
             console.log("조회");
         });
         $( "#search_keyword" ).keyup(function( event ) {
-            if ( event.which == 13 ) {
+            if ( event.which === 13 ) {
                 searchList();
             }
         });
@@ -309,7 +310,7 @@
                 "reposort":"lastModified",
                 "repoName" : $("#search_keyword").val()};
             procCallAjax('get', url, param, callback);
-        }
+        };
         $.fn.selectDesign = function(){
             var t = $(this);
             var div = t.children("div");
@@ -332,7 +333,7 @@
                 strong.html(txt);
                 div.click();
             });
-        }
+        };
         $(".select1").selectDesign();
         $(".select2").selectDesign();
         $(".select3").selectDesign();

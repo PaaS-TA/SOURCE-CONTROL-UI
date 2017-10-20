@@ -166,139 +166,6 @@
             </div>
         </div>
         <!--//메인 탭 콘텐츠01 :e -->
-        <!-- 메인 탭 콘텐츠02 :s -->
-        <div class="main_tab01 mTs" style="display:none;">
-            <div class="tab_content">
-                <!-- 레파지토리 목록 :s -->
-                <ul class="product_list">
-                    <c:forEach items="${public_repositories}" var="repositories" varStatus="status">
-                        <li>
-                            <dl>
-                                <dt><a href="/user/repositoryDetail/${repositories.id}">${repositories.name}</a></dt>
-                                <dd>
-                                    <ul>
-                                        <li class="sbj_txt"><a href="#">${repositories.description}</a></li>
-                                        <li class="stateArea"><i class="ico_update"></i>마지막 업데이트 : ${repositories.lastModified}<span class="pr10"></span> <i class="ico_create"></i>생성일 : ${repositories.creationDate}</li>
-                                    </ul>
-                                </dd>
-                                <c:choose>
-                                    <c:when test="${repositories.type eq 'git'}">
-                                        <dd class="thmb_img"><img src="/resources/images/img_git.png" alt="GIT 이미지" border="0"></dd>
-                                    </c:when>
-                                    <c:when test="${repositories.type eq 'svn'}">
-                                        <dd class="thmb_img"><img src="/resources/images/img_svn.png" alt="SVN 이미지" border="0"></dd>
-                                    </c:when>
-                                </c:choose>
-                                <dd class="icon_wrap">
-                                    <ul class="ico_lst">
-                                        <li class="ico_area">
-                                            <c:forEach items="${repositories.permissions}" var="permissions" varStatus="sts">
-                                                <c:if test="${permissions.name eq userid}">
-                                                    <c:choose>
-                                                        <c:when test="${permissions.type eq 'OWNER'}">
-                                                            <img src="/resources/images/process_ico_own.png" alt="소유자 이미지" border="0"><p class="tit">소유자</p>
-                                                        </c:when>
-                                                        <c:when test="${permissions.type eq 'WRITE'}">
-                                                            <a href="#"><img src="/resources/images/process_ico_modify.png" alt="수정권한 이미지" border="0">
-                                                                <p class="tit">수정권한</p></a>
-                                                        </c:when>
-                                                        <c:when test="${permissions.type eq 'READ'}">
-                                                            <a href="#"><img src="/resources/images/process_ico_contribute.png" alt="보기권한 이미지" border="0">
-                                                                <p class="tit">보기권한</p></a>
-                                                        </c:when>
-                                                    </c:choose>
-                                                </c:if>
-                                            </c:forEach>
-                                        </li>
-                                        <li class="ico_area">
-                                            <c:choose>
-                                                <c:when test="${repositories.public_}">
-                                                    <img src="/resources/images/process_ico_public.png" alt="공개 이미지" border="0"><p class="tit">공개</p>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <img src="/resources/images/process_ico_private.png" alt="비공개 이미지" border="0"><p class="tit">비공개</p>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                        </li>
-                    </c:forEach>
-                </ul>
-                <!--//레파지토리 목록 :e -->
-            </div>
-        </div>
-        <!--//메인 탭 콘텐츠02 :e -->
-        <!-- 메인 탭 콘텐츠03 :s -->
-        <div class="main_tab02 mTs" style="display:none;">
-            <div class="tab_content">
-                <!-- 레파지토리 목록 :s -->
-                <ul class="product_list">
-                    <c:forEach items="${private_repositories}" var="repositories" varStatus="status">
-                        <li>
-                            <dl>//권한이있을때 표출
-
-                                <dt><a href="/user/repositoryDetail/${repositories.id}">${repositories.name}</a></dt>
-                                //권한이 없을때 표출
-                                <dt>${repositories.name}</dt>
-
-                                <dd>
-                                    <ul>
-                                        <li class="sbj_txt"><a href="#">${repositories.description}</a></li>
-                                        <li class="stateArea"><i class="ico_update"></i>마지막 업데이트 : ${repositories.lastModified}<span class="pr10"></span> <i class="ico_create"></i>생성일 : ${repositories.creationDate}</li>
-                                    </ul>
-                                </dd>
-                                <c:choose>
-                                    <c:when test="${repositories.type eq 'git'}">
-                                        <dd class="thmb_img"><img src="/resources/images/img_git.png" alt="GIT 이미지" border="0"></dd>
-                                    </c:when>
-                                    <c:when test="${repositories.type eq 'svn'}">
-                                        <dd class="thmb_img"><img src="/resources/images/img_svn.png" alt="SVN 이미지" border="0"></dd>
-                                    </c:when>
-                                </c:choose>
-                                <dd class="icon_wrap">
-                                    <ul class="ico_lst">
-                                        <li class="ico_area">
-                                            <c:forEach items="${repositories.permissions}" var="permissions" varStatus="sts">
-                                                <c:if test="${permissions.name eq userid}">
-                                                    <c:choose>
-                                                        <c:when test="${permissions.type eq 'OWNER'}">
-                                                            <img src="/resources/images/process_ico_own.png" alt="소유자 이미지" border="0"><p class="tit">소유자</p>
-                                                        </c:when>
-                                                        <c:when test="${permissions.type eq 'WRITE'}">
-                                                            <a href="#"><img src="/resources/images/process_ico_modify.png" alt="수정권한 이미지" border="0">
-                                                                <p class="tit">수정권한</p></a>
-                                                        </c:when>
-                                                        <c:when test="${permissions.type eq 'READ'}">
-                                                            <a href="#"><img src="/resources/images/process_ico_contribute.png" alt="보기권한 이미지" border="0">
-                                                                <p class="tit">보기권한</p></a>
-                                                        </c:when>
-                                                    </c:choose>
-                                                </c:if>
-                                            </c:forEach>
-                                        </li>
-                                        <li class="ico_area">
-                                            <c:choose>
-                                                <c:when test="${repositories.public_}">
-                                                    <img src="/resources/images/process_ico_public.png" alt="공개 이미지" border="0"><p class="tit">공개</p>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <img src="/resources/images/process_ico_private.png" alt="비공개 이미지" border="0"><p class="tit">비공개</p>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                        </li>
-                    </c:forEach>
-                </ul>
-                <!--//레파지토리 목록 :e -->
-            </div>
-        </div>
-        <!--//메인 탭 콘텐츠03 :e -->
-    </div>
     <!--//contents :e -->
 </div>
 <!--//contaniner :e -->
@@ -384,7 +251,7 @@
 //        procPopupConfirm("승인", "승인메세지", "승인버튼메세지");
         // BIND :: repoSearch_keyword
         $( "#repoSearch_keyword" ).keyup(function( event ) {
-            if (event.which == 13) {
+            if (event.which === 13) {
                 repoSearchList();
             }
         });
@@ -464,7 +331,7 @@
             "sort":"lastModified",
             "reposort": "lastModified"};
         procCallAjax('get', url, param, callbackGetRepositoryList);
-    }
+    };
 
 
     var callbackGetRepositoryList = function(data) {

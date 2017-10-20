@@ -71,7 +71,7 @@
         } else {
             $(".togglemenu").hide();
             $(".wintoggle").removeClass("active");
-            $(this).addClass("active")
+            $(this).addClass("active");
             $(this).next().slideDown();
         }
         return false;
@@ -103,7 +103,7 @@
             strong.html(txt);
             div.click();
         });
-    }
+    };
 
     $(".select1").selectDesign();
     $(".select2").selectDesign();
@@ -121,18 +121,18 @@
         url = url+requestUrl;
         console.log("requestUrl::::::::"+requestUrl);
         procCallAjax('get', url, null, callbackSearch);
-    }
+    };
 
     $(document).ready(function () {
         searchList(1,pageSize);
-    })
+    });
 
     $("#btn_search").click (function() {
         removeRepositoryList();
         searchList(1,pageSize);
     });
     $( "#search_keyword" ).keyup(function( event ) {
-        if ( event.which == 13 ) {
+        if ( event.which === 13 ) {
             //데이터 삭제
             removeRepositoryList();
             searchList(1,pageSize);
@@ -142,7 +142,7 @@
     var callbackSearch = function(data) {
 
         $("#RP_cnt").text(data.pageInfo.endCnt+' / '+ data.pageInfo.totalCnt + '건');
-        if(data.repositories==null || data.repositories.length==0){
+        if(data.repositories===null || data.repositories.length===0){
             initialList();
         }else{
             var repositories = data.repositories;
@@ -154,7 +154,7 @@
                     + '  <dl>'
                     + '    <dt>';
                     for (var j = 0; j < repositories[i].permissions.length; j++) {
-                        if (repositories[i].permissions[j].name == name && repositories[i].permissions[j].type == 'OWNER') {
+                        if (repositories[i].permissions[j].name === name && repositories[i].permissions[j].type === 'OWNER') {
                             +  + repositories[i].permissions[j].name
                         }
                         varHtml += repositories[i].name;
@@ -164,15 +164,15 @@
                 + ' <dd>'
                 + '    <ul>'
                 + '       <li class="sbj_txt">' ;
-                if(repositories[i].description==null){
+                if(repositories[i].description===null){
                     varHtml = varHtml+'';
                 }else{
                     varHtml = varHtml+repositories[i].description;
                 }
                 varHtml = varHtml + '</li>'
                 + '       <li class="stateArea">'
-                + '           <i class="ico_update"></i>마지막 업데이트: '
-                if(repositories[i].lastModified==0){
+                + '           <i class="ico_update"></i>마지막 업데이트: ';
+                if(repositories[i].lastModified===0){
                     varHtml = varHtml+"";
                 }else{
                     varHtml = varHtml+new Date(repositories[i].lastModified);
@@ -182,10 +182,10 @@
                 + '           <i class="ico_create"></i>생성일 : ' +  new Date(repositories[i].creationDate) + '</li>'
                 + '   </ul>'
                 + '</dd>';
-                if (repositories[i].type == 'git') {
+                if (repositories[i].type === 'git') {
                     varHtml += '<dd class="thmb_img"><img src="/resources/images/img_git.png" alt="GIT 이미지" border="0"></dd>';
                 }
-                if (repositories[i].type == 'svn') {
+                if (repositories[i].type === 'svn') {
                     varHtml += '<dd class="thmb_img"><img src="/resources/images/img_svn.png" alt="SVN 이미지" border="0"></dd>';
                 }
                 varHtml += '<dd class="icon_wrap">'
@@ -207,20 +207,20 @@
 
             }
         }
-        if(data.pageInfo.totalCnt == data.pageInfo.endCnt){
+        if(data.pageInfo.totalCnt === data.pageInfo.endCnt){
             $("#moreListButtonArea").hide();
         }
 
-    }
+    };
 
     var initialList = function(){
         $("#RP_cnt").text(0);
         var varHtml ='<li id="initRepoList" name="initRepoList"> <dl>조회된 데이터가 없습니다.</dl>            </li>';
 
-    }
+    };
     var removeRepositoryList = function(){
         $("#repositoryList").children().remove();
-    }
+    };
     $("#btnMore").click(function () {
         //page 추가
         var start =  $("#repositoryList").children().length+1;
@@ -237,7 +237,7 @@
         }else{
             $(".togglemenu").hide();
             $(".wintoggle").removeClass("active");
-            $(this).addClass("active")
+            $(this).addClass("active");
             $(this).next().slideDown();
         }
         return false;

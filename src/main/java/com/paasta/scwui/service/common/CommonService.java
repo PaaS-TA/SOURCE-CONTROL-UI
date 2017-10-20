@@ -1,4 +1,4 @@
-package com.paasta.scwui.service.user;
+package com.paasta.scwui.service.common;
 
 import com.paasta.scwui.common.util.PropertiesUtil;
 import com.paasta.scwui.common.util.RestClientUtil;
@@ -12,10 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CommonService {
     protected Logger logger = LoggerFactory.getLogger(super.getClass());
 
+    @Autowired
+    public RestClientUtil restClientUtil;
 
     @Autowired
-    RestClientUtil restClientUtil;
-
-    @Autowired
-    PropertiesUtil propertiesUtil;
+    public PropertiesUtil propertiesUtil;
 }

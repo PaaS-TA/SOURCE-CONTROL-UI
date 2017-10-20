@@ -21,6 +21,7 @@ import java.util.*;
 /**
  * Created by lena on 2017-06-27.
  */
+@SuppressWarnings("unchecked")
 @Controller
 @RequestMapping(value = "")
 public class AdminRepositoryController extends CommonController {
@@ -80,7 +81,7 @@ public class AdminRepositoryController extends CommonController {
         Map pageInfo = (Map)response.getBody().get("pageInfo");
 
         ObjectMapper objectMapper = new ObjectMapper();
-        List<Repository> repositories = new ArrayList<Repository>();
+        List<Repository> repositories = new ArrayList<>();
         repositoryList.forEach(e -> repositories.add(objectMapper.convertValue(e, Repository.class)));
 
         rtnMap.put("repositories", repositories);

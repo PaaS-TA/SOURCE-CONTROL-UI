@@ -202,7 +202,7 @@
         $("#SrchPermissionUserList").parent().removeClass("active");
         $("#SrchPermissionUserList").parent().addClass("active");
         return false;
-    }
+    };
 
     function putPermissionCancel() {
         $('#permissionCreate').css('display', 'none');

@@ -51,7 +51,7 @@
                 checkbox.checked = false;
         }
         saveLogin(checkbox);
-    }
+    };
     //쿠키에 저장하기, 삭제하기
 
     function setCookie( name, expiredays ) {

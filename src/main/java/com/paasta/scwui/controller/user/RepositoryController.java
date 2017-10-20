@@ -34,8 +34,12 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping(value = {"/user"})
 public class RepositoryController extends CommonController {
 
-    @Autowired
     RepositoryService repositoryService;
+
+    @Autowired
+    public RepositoryController(RepositoryService repositoryService) {
+        this.repositoryService = repositoryService;
+    }
 
     /*
     *  레파지토리 신규 생성 등록 페이지 ::: move
@@ -138,7 +142,7 @@ public class RepositoryController extends CommonController {
         Map map = Common.convertMapByRequest(request);
         // Source Control Api Server 호출 - repository 목록 조회
         List<Repository> repositories = repositoryService.getUserRepositories(instanceid, userid, map);
-        List<Repository> public_repositories = repositories.stream().filter(Repository -> Repository.isPublic_()).collect(toList());
+        List<Repository> public_repositories = repositories.stream().filter(Repository::isPublic_).collect(toList());
         List<Repository> private_repositories = repositories.stream().filter(Repository -> !Repository.isPublic_()).collect(toList());
         ((DashboardAuthenticationDetails) getAuthentication().getDetails()).setPasswordSet(true);
         ModelAndView mv = new ModelAndView();
@@ -214,9 +218,7 @@ public class RepositoryController extends CommonController {
             List<Changeset> changesetPagingResult = repositoryService.getChangesets(repositoryId).getChangesets();
             List<com.paasta.scwui.model.Changeset> rtnChangeset = new ArrayList<>();
 
-            changesetPagingResult.forEach(changeset -> {
-                rtnChangeset.add(new com.paasta.scwui.model.Changeset(changeset));
-            });
+            changesetPagingResult.forEach(changeset -> rtnChangeset.add(new com.paasta.scwui.model.Changeset(changeset)));
 
             modelAndView.addObject("tags", tags);
             modelAndView.addObject("branches", branches);
@@ -253,12 +255,31 @@ public class RepositoryController extends CommonController {
             List<sonia.scm.repository.FileObject> lstFiles = browserResult.getFiles();
             browserResult.setNewFiles(lstFiles);
 
-
             map.put("browserResult", browserResult);
             map.put("path", path);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return map;
+    }
+
+
+    /**
+     * Repository changesets Inquery
+     *
+     * curl 'http://localhost:9091/repositories/{id}/contents?path=.gitignore&_dc=1506392871640' -i -X GET \
+     * @apiParam {String} id repository 아이디
+     */
+    @GetMapping("/repositoryDetail/{repositoryId}/content/")
+    @ResponseBody
+//    @Produces({ MediaType.APPLICATION_OCTET_STREAM })
+    public Map getContents(@PathVariable("repositoryId") String id
+            , @RequestParam(value = "revision", required = false, defaultValue = "") String revision
+            , @RequestParam(value = "path") String path) throws NotSupportedFeatuerException, IOException{
+        // REX-TEST
+        Object obj = repositoryService.getContent(id, revision, path);
+        Map map = new HashMap();
+        map.put("data", obj);
         return map;
     }
 }

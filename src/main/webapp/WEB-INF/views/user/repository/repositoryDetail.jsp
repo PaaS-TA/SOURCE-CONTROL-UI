@@ -39,7 +39,7 @@
         <!-- sub탭 콘텐츠01 :s -->
         <div class="sub_tab_cont00">
             <div class="tab_content">
-                <%@ include file="/WEB-INF/views/user/repository/repositoryBrowse.jsp" %>
+                <%@ include file="/WEB-INF/views/user/repository/repositoryBrowseList.jsp" %>
             </div>
         </div>
         <!--//sub탭 콘텐츠01 :e -->
@@ -108,55 +108,14 @@
     <a href="#" title="top"><img src="/resources/images/a_top.gif"></a>
 </div>
 <!--//Top 가기 :e -->f
-<!--select 스크립트-->
-<%--<script>
-
-    $.fn.selectDesign = function () {
-        var t = $(this);
-        var div = t.children("div");
-        var strong = div.children("strong");
-        var ul = t.children("ul");
-        var li = ul.children("li");
-        var button = ul.children("button");
-        var door = false;
-
-        div.click(function () {
-            if (door) {
-                ul.hide();
-            } else {
-                ul.show();
-            }
-            door = !door;
-        });
-
-        ul.mouseleave(function () {
-             ul.hide();
-             door = false;
-        });
-
-        li.click(function () {
-            var txt = $(this).text();
-            var val = $(this).val();
-            strong.text(txt);
-            strong.val(val);
-            ul.hide();
-        });
-    }
-
-    $(".select1").selectDesign();
-    $(".select2").selectDesign();
-    $(".select3").selectDesign();
-    $(".select4").selectDesign();
-</script>--%>
-
 <script>
     var detail_Sub_tab = function (num) {
         console.log("detail_Sub_tab ::: num ::: " + num);
         sub_tab(num);
-        if (num == 1) {
+        if (num === 1) {
 
         }
-    }
+    };
 
     $("#branchWord").keyup(function (event) {
         if (event.key = 13) {
@@ -174,7 +133,7 @@
 
     var branch_search = function (data) {
         console("branch_search");
-    }
+    };
 
     function rtnDate(date) {
         new Date(date);

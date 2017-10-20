@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Setter
 @Getter
-//@PropertySource("classpath:scwui.properties")//active profiles 설정후 변경
+//@Configuration
+//@PropertySource("file:application.properties")//active profiles 설정후 변경
 public class PropertiesUtil {
 
     /**
@@ -109,4 +110,36 @@ public class PropertiesUtil {
      * The Api Permission user
      */
     @Value("${api.permission.user}") String api_permission_user;
+    /**
+     * The Api content repository
+     */
+    @Value("${api.repository.id.content.path.revision}") String  apiRepositoryIdContentPathRevision;
+
+    @Override
+    public String toString() {
+        return "PropertiesUtil{" +
+                "base_url='" + base_url + '\'' +
+                ", api_repo='" + api_repo + '\'' +
+                ", api_repo_id='" + api_repo_id + '\'' +
+                ", api_repo_type_name='" + api_repo_type_name + '\'' +
+                ", api_repo_name='" + api_repo_name + '\'' +
+                ", api_repo_dashboard_admin='" + api_repo_dashboard_admin + '\'' +
+                ", api_repo_dashboard='" + api_repo_dashboard + '\'' +
+                ", api_repo_branches='" + api_repo_branches + '\'' +
+                ", api_repo_tags='" + api_repo_tags + '\'' +
+                ", api_repo_browse='" + api_repo_browse + '\'' +
+                ", api_repo_changesets='" + api_repo_changesets + '\'' +
+                ", api_serviceInstances='" + api_serviceInstances + '\'' +
+                ", api_users='" + api_users + '\'' +
+                ", api_login='" + api_login + '\'' +
+                ", api_permission='" + api_permission + '\'' +
+                ", api_permission_admin='" + api_permission_admin + '\'' +
+                ", api_permission_search_repositoryId='" + api_permission_search_repositoryId + '\'' +
+                ", api_auth='" + api_auth + '\'' +
+                ", api_users_user='" + api_users_user + '\'' +
+                ", api_permission_search_instanceId='" + api_permission_search_instanceId + '\'' +
+                ", api_permission_user='" + api_permission_user + '\'' +
+                ", apiRepositoryIdContentPathRevision='" + apiRepositoryIdContentPathRevision + '\'' +
+                '}';
+    }
 }

@@ -9,10 +9,9 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,8 +24,12 @@ public class RestClientUtil {
     /**
      * The Properties util.
      */
-    @Autowired
     PropertiesUtil propertiesUtil;
+
+    @Autowired
+    public RestClientUtil(PropertiesUtil propertiesUtil) {
+        this.propertiesUtil = propertiesUtil;
+    }
 
     /**
      * Call rest api response entity.
@@ -54,9 +57,6 @@ public class RestClientUtil {
             //JsonNode error = JsonUtils.convertStringToJson(e.getResponseBodyAsString());
             he.printStackTrace();
             throw new ScWebUIexceptionException(he.getStatusCode()+he.getMessage());
-        } catch (RestClientResponseException e) {
-            e.printStackTrace();
-            throw new ScWebUIexceptionException(e.getMessage());
         } catch (RestClientException e) {
             e.printStackTrace();
             throw new ScWebUIexceptionException(e.getMessage());
@@ -105,9 +105,9 @@ public class RestClientUtil {
         HttpHeaders headers = new HttpHeaders();
 //        headers.set("Authorization", propertiesUtil.getBasicAuth());
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
-        HttpEntity<Object> entity = new HttpEntity<Object>(param, headers);
+        HttpEntity<Object> entity = new HttpEntity<>(param, headers);
 
         return entity;
     }
@@ -121,7 +121,7 @@ public class RestClientUtil {
     public HttpEntity<Object> restCommonHeaderNotJson(Object param) {
 
         HttpHeaders headers = new HttpHeaders();
-        HttpEntity<Object> entity = new HttpEntity<Object>(param, headers);
+        HttpEntity<Object> entity = new HttpEntity<>(param, headers);
 
         return entity;
     }

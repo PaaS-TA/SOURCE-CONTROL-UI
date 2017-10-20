@@ -3,8 +3,8 @@ package com.paasta.scwui.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Setter
 @Getter
@@ -15,11 +15,7 @@ public class BrowserResult extends sonia.scm.repository.BrowserResult {
 
     public void setNewFiles(List<sonia.scm.repository.FileObject> list)
     {
-        List<FileObject> newList = new ArrayList();
-        for(int i =0; i< list.size();i++){
-            FileObject fileObject = new FileObject(list.get(i));
-            newList.add(fileObject);
-        }
+        @SuppressWarnings("unchecked") List<FileObject> newList = list.stream().map(FileObject::new).collect(Collectors.toList());
         this.newFiles = newList;
 
     }

@@ -23,7 +23,6 @@ import java.util.Map;
 public class CommonController {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
-
     @Autowired
     UserServiceInstanceService instanceUseService;
 

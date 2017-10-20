@@ -53,7 +53,7 @@
 
         var passwordNotConfirmedAlert = $("#passwordNotConfirmedAlert");
 
-        if (confimPassword == "" | confimPassword == null | confimPassword != $("#newPasswordInput").val()) {
+        if (confimPassword === "" || confimPassword === null || confimPassword !== $("#newPasswordInput").val()) {
             result = false;
             passwordNotConfirmedAlert.show();
         } else {

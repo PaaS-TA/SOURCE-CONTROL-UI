@@ -120,7 +120,7 @@
         function validEmail(email) {
             var r = new RegExp ("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$");
     //        var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
-            return (email.match(r) == null) ? true : false;
+            return (email.match(r) === null) ? true : false;
         }
 
         function checkEmail(email){
@@ -135,7 +135,7 @@
 
         var passwordNotConfirmedAlert = $("#passwordNotConfirmedAlert");
 
-        if (confimPassword != $("#newPasswordInput").val()) {
+        if (confimPassword !== $("#newPasswordInput").val()) {
             result = false;
             passwordNotConfirmedAlert.show();
         } else {

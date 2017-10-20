@@ -84,6 +84,7 @@ public class DashboardAuthenticationDetailsSource
         this.apiUrl = apiUrl;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public DashboardAuthenticationDetails buildDetails(HttpServletRequest request) {
 

@@ -122,7 +122,7 @@
             strong.val(val);
             ul.hide();
         });
-    }
+    };
 
     $(".select1").selectDesign();
     $(".select2").selectDesign();
@@ -142,7 +142,7 @@
      */
 
     $("#search_keyword2").keyup(function (event) {
-        if (event.which == 13) {
+        if (event.which === 13) {
             searchPermissions();
         }
     });
@@ -151,12 +151,12 @@
         $("#permissionsList").children().remove();
         page = 0;
         morePermissions();
-    }
+    };
 
     var getUser = function () {
         $("#permissionsList").children().remove();
         searchPermissions();
-    }
+    };
 
     var morePermissions = function () {
         var url = "/user/instanceUser/";
@@ -185,11 +185,11 @@
         var param = "?page=" + page + "&size=" + size + "&createYn=" + param1 + "&active=" + param2 + "&searchUserId=" + $("#search_keyword2").val();
         url = url + param;
         procCallAjax('get', url, param, permissionCallback);
-    }
+    };
 
     var permissionCallback = function (data) {
         $("#RPPermissionsCnt").text(data.rtnMap.numberOfElements + ' / ' + data.rtnMap.totalElements + '건');
-        if (data.rtnMap == null || data.rtnMap.content.length == 0) {
+        if (data.rtnMap === null || data.rtnMap.content.length === 0) {
             initialPermissionList();
         } else {
             var permissions = data.rtnMap.content;
@@ -197,7 +197,7 @@
             for (var i = 0; i < permissions.length; i++) {
                 var varPermissionHtml = '<li><a href="/user/instanceUserModify/'+permissions[i].userId+'.json\"  class="home"><dl> <dt>' + permissions[i].userId + '<dd> <ul>'
                     + '<li class="sbj_txt">';
-                if (permissions[i].userName == '') {
+                if (permissions[i].userName === '') {
                     varPermissionHtml = varPermissionHtml+'-';
                 }else {
                     varPermissionHtml = varPermissionHtml + permissions[i].userName;
@@ -206,11 +206,11 @@
                     + '<li class="stateArea"><i class="ico_create"></i>생성일 :' + permissions[i].userCreatedDate + '<span class="pr10"></span>'
                     + '<i class="ico_modify"></i>수정일 : ' + permissions[i].userModifiedDate + '</li>'
                     + '</ul>  </dd> <dd class="icon_wrap"> <ul class="ico_lst">';
-                if (permissions[i].userCreateYn == 'Y') {
+                if (permissions[i].userCreateYn === 'Y') {
                     varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_admin.png" alt="관리자 이미지" border="0">'
                         + ' <p class="tit">관리자</p> </li>';
                 }
-                if (permissions[i].userCreateYn == 'N') {
+                if (permissions[i].userCreateYn === 'N') {
                     varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_contribute.png" alt="읽기 이미지" border="0">'
                         + ' <p class="tit">사용자</p> </li>';
                 }
@@ -227,10 +227,10 @@
             }
         }
 
-        if (data.rtnLis == null || data.rtnList.last == 'true') {
+        if (data.rtnLis === null || data.rtnList.last === 'true') {
             $("#morePermissionsListButtonArea").hide();
         }
-    }
+    };
     var initialPermissionList = function(){
         var varPermissionHtml ='<li id="initRepoList" name="initRepoList"> <dl>조회된 데이터가 없습니다.</dl>            </li>';
         $('#permissionsList').append(varPermissionHtml);

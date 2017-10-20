@@ -96,7 +96,7 @@
                 strong.html(txt);
                 div.click();
             });
-        }
+        };
 
         $(".select1").selectDesign();
         $(".select2").selectDesign();
@@ -195,7 +195,7 @@
         });
 
         $( "#search_keyword" ).keyup(function( event ) {
-            if (event.which == 13) {
+            if (event.which === 13) {
                 gCheckMore = false;
                 gPage = 0;
                 search();

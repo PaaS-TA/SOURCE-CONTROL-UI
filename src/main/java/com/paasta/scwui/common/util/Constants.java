@@ -1,8 +1,5 @@
 package com.paasta.scwui.common.util;
 
-import org.omg.CORBA.Environment;
-import org.springframework.beans.factory.annotation.Autowired;
-
 /**
  *
  * @author ijlee
@@ -10,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @since 5 /10/2017
  */
 public class Constants {
-    @Autowired
-    Environment enviroment;
 
     public static final String RESULT_STATUS_SUCCESS = "SUCCESS";
     public static final String RESULT_STATUS_FAIL = "FAIL";

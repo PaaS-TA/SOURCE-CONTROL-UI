@@ -85,21 +85,21 @@ public class Common {
 
 	public static String requestParamByMap(Map map){
 		logger.debug("logger: method:requestParamByMap: " );
-		String requestUrl = "";
+		StringBuilder requestUrl = new StringBuilder();
 
 		if(!empty(map)){
 			List<String> lstKey = new ArrayList(map .keySet());
 			List<Object[]> lstValue = new ArrayList(map .values());
 			for(int i = 0 ; i < lstKey.size(); i++){
 				if(i !=0) {
-					requestUrl += "&";
+					requestUrl.append("&");
 				}
-				logger.debug("map:key::"+lstKey.get(i) + ":: value: " +lstValue.get(i));
-				requestUrl += lstKey.get(i) + "=" + lstValue.get(i);
+				logger.debug("map:key::"+lstKey.get(i) + ":: value: " + Arrays.toString(lstValue.get(i)));
+				requestUrl.append(lstKey.get(i)).append("=").append(lstValue.get(i));
 			}
 		}
 		logger.debug("logger: requestUrl:: " +requestUrl);
-		return requestUrl;
+		return requestUrl.toString();
 
 	}
 	public static Map convertMapByRequest(HttpServletRequest request){

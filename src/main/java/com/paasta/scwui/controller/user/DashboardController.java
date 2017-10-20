@@ -22,8 +22,14 @@ import javax.servlet.http.HttpSession;
 public class DashboardController extends CommonController {
 
 
-    @Autowired
     UserService userService;
+
+    @Autowired
+    DashboardController(UserService userService) {
+        super();
+        this.userService = userService;
+    }
+
     /*
      *  레파지토리 목록 조회 ::: move
      *

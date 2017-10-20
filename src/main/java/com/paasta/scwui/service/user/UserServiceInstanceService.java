@@ -2,6 +2,7 @@ package com.paasta.scwui.service.user;
 
 import com.paasta.scwui.model.InstanceUser;
 import com.paasta.scwui.model.ServiceInstanceList;
+import com.paasta.scwui.service.common.CommonService;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserServiceInstanceService extends CommonService{
+public class UserServiceInstanceService extends CommonService {
 
     public List getAll(String name) throws Exception {
 

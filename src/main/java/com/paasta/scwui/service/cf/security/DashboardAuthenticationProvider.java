@@ -7,6 +7,7 @@ import com.paasta.scwui.service.user.UserService;
 import com.paasta.scwui.service.user.UserServiceInstanceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -30,6 +31,7 @@ public class DashboardAuthenticationProvider implements AuthenticationProvider {
     private final UserServiceInstanceService instanceUseService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @Autowired
     public DashboardAuthenticationProvider( UserService userService, UserServiceInstanceService instanceUseService) {
         logger.debug("DashboardAuthenticationProvider start");
         this.userService = userService;
@@ -85,7 +87,7 @@ public class DashboardAuthenticationProvider implements AuthenticationProvider {
                 requestInstanceUser.put("acitve",true);
                 ResponseEntity rtnInstanceUser = userService.createInstanceUser(requestInstanceUser);
                 if (200 == rtnInstanceUser.getStatusCodeValue()) {
-                    instanceUse= instanceUseService.getAll(dashboardAuthenticationDetails.getManagingServicesInstance(), name);;
+                    instanceUse= instanceUseService.getAll(dashboardAuthenticationDetails.getManagingServicesInstance(), name);
                 }
             }
             //사용자가 없을 경우 생성하는 자동으로 사용자 추가하는 로직 추가함

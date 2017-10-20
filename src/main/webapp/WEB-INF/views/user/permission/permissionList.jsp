@@ -87,7 +87,7 @@
             strong.val(val);
             ul.hide();
         });
-    }
+    };
 
     $(".select3").selectDesign();
     $(".select4").selectDesign();
@@ -103,7 +103,7 @@
      */
 
     $("#search_keyword2").keyup(function (event) {
-        if (event.which == 13) {
+        if (event.which === 13) {
             searchPermissions();
         }
     });
@@ -140,12 +140,12 @@
         var param = "?page=" + page + "&size=" + size + "&type1=" + param1 + "&type2=" + param2 + "&searchUserName=" + $("#search_keyword2").val();
         url = url + param;
         procCallAjax('get', url, param, permissionCallback);
-    }
+    };
 
     var permissionCallback = function (data) {
         $("#detailPermissionCntMain").text(data.rtnList.totalElements);
         $("#RPPermissionsCnt").text(data.rtnList.numberOfElements + ' / ' + data.rtnList.totalElements + '건');
-        if (data.rtnList == null || data.rtnList.content.length == 0) {
+        if (data.rtnList === null || data.rtnList.content.length === 0) {
             initialPermissionList();
         } else {
             var permissions = data.rtnList.content;
@@ -156,15 +156,15 @@
                     + '<li class="stateArea"><i class="ico_create"></i>생성일 :' + permissions[i].creationDate + '<span class="pr10"></span>'
                     + '<i class="ico_modify"></i>수정일 : ' + permissions[i].lastModified + '</li>'
                     + '</ul>  </dd> <dd class="icon_wrap"> <ul class="ico_lst">';
-                if (permissions[i].permission.permission == 'OWNER') {
+                if (permissions[i].permission.permission === 'OWNER') {
                     varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_modify.png" alt="수정 이미지" border="0">'
                         + ' <p class="tit">소유자</p> </li>';
                 }
-                if (permissions[i].permission.permission == 'READ') {
+                if (permissions[i].permission.permission === 'READ') {
                     varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_contribute.png" alt="읽기 이미지" border="0">'
                         + ' <p class="tit">보기</p> </li>';
                 }
-                if (permissions[i].permission.permission == 'WRITE') {
+                if (permissions[i].permission.permission === 'WRITE') {
                     varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_modify.png" alt="쓰기 이미지" border="0">'
                         + ' <p class="tit">쓰기</p> </li>';
                 }
@@ -181,19 +181,19 @@
                 varPermissionHtml = varPermissionHtml + '  </ul> </dd> </dl> </li>';
                 $('#permissionsList').append(varPermissionHtml);
             }
-            if (data.rtnList == null || data.rtnList.last) {
+            if (data.rtnList === null || data.rtnList.last) {
                 $('#morePermissionsListButtonArea').css('display', 'none');
             }else{
                 $('#morePermissionsListButtonArea').css('display', 'block');
             }
         }
-    }
+    };
     var initialPermissionList = function(){
         var varPermissionHtml ='<li id="initRepoList" name="initRepoList"> <dl>조회된 데이터가 없습니다.</dl>            </li>';
         $('#permissionsList').append(varPermissionHtml);
         $('#morePermissionsListButtonArea').css('display', 'none');
 
-    }
+    };
     function putPermission(){
         $('#permissionCreate').css('display', 'block');
         $('#tabPermissionlist').css('display', 'none');

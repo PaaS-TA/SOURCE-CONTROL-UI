@@ -3,7 +3,6 @@ package com.paasta.scwui.controller.user;
 import com.paasta.scwui.common.util.Common;
 import com.paasta.scwui.controller.common.CommonController;
 import com.paasta.scwui.service.cf.security.DashboardAuthenticationDetails;
-import com.paasta.scwui.service.user.PermissionService;
 import com.paasta.scwui.service.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by lena on 2017-06-29.
@@ -26,12 +26,12 @@ public class UserController extends CommonController{
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Autowired
     UserService userService;
 
     @Autowired
-    PermissionService permissionService;
-
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping(value = "/userMyInfoModify")
     @ResponseBody
@@ -48,10 +48,10 @@ public class UserController extends CommonController{
     }
 
     @PutMapping(value = "/userMyInfoModify/{name}")
-    //{"name":"ijlee@bluedigm.com","displayName":"test123","mail":"test2@aaa.aa.aa","admin":false,"active":true,"type":"xml","password":"1234556"}
     @ResponseBody
-    public Map putUserInfo(@RequestBody Map map) throws Exception {
+    public Map putUserInfo(@PathVariable("name") String name,@RequestBody Map map) throws Exception {
         DashboardAuthenticationDetails user = getDetail();
+        logger.debug("name :::+"+ name);
         String userid = Common.empty(user.getName())?"":user.getName();
         map.put("name",userid);
         Map map1 = (Map) userService.modifyUser(userid, map).getBody();

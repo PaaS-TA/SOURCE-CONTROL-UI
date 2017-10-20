@@ -15,13 +15,18 @@ import java.util.List;
 @RequestMapping(value = "/user")
 public class UserServiceInstanceController extends CommonController{
 
-    @Autowired
     UserServiceInstanceService userServiceInstanceService;
+
+    @Autowired
+    public UserServiceInstanceController(UserServiceInstanceService userServiceInstanceService) {
+        this.userServiceInstanceService = userServiceInstanceService;
+    }
 
     @RequestMapping("/serviceInstantList")
     public ModelAndView getServiceInstantList() throws Exception {
         DashboardAuthenticationDetails user = getDetail();
-        String instanceid = Common.empty(user.getInstanceId())?"":user.getInstanceId();
+        String instanceId = Common.empty(user.getInstanceId())?"":user.getInstanceId();
+        logger.debug("instanceId:::"+instanceId);
         String name = Common.empty(user.getName())?"":user.getName();
         ModelAndView modelAndView = new ModelAndView();
         List list = userServiceInstanceService.getAll(name);

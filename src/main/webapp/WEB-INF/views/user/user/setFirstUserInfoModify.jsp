@@ -95,7 +95,7 @@ $(".wintoggle").click(function(){
   }else{
   	$(".togglemenu").hide();
     $(".wintoggle").removeClass("active");
-  	$(this).addClass("active")
+  	$(this).addClass("active");
   	$(this).next().slideDown();
   }
   return false;
@@ -127,7 +127,7 @@ $.fn.selectDesign = function(){
         strong.html(txt);
         div.click();
     });
-}
+};
 
 $(".select1").selectDesign();
 $(".select2").selectDesign();
@@ -156,7 +156,7 @@ $(".select3").selectDesign();
         function validEmail(email) {
     //        var r = new RegExp ("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$");
             var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
-            return (email.match(r) == null) ? true : false;
+            return (email.match(r) === null) ? true : false;
         }
 
         function checkEmail(email){
@@ -171,7 +171,7 @@ $(".select3").selectDesign();
 
         var passwordNotConfirmedAlert = $("#passwordNotConfirmedAlert");
 
-        if (confimPassword != $("#newPasswordInput").val()) {
+        if (confimPassword !== $("#newPasswordInput").val()) {
             result = false;
             passwordNotConfirmedAlert.show();
         } else {
@@ -208,7 +208,7 @@ $(".select3").selectDesign();
                         ,"password":$("#password").val()
                         };
         procCallAjax('put', url, param, modifyCallback);
-    }
+    };
 
 
     function modifyCallback(data){

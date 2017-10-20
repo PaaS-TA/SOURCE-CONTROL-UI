@@ -143,10 +143,10 @@
          $("#page").val(page);
          $("#size").val(pageSize);
          $("#frm_search").submit();
-     }
+     };
     var callback = function() {
 
-    }
+    };
     $(document).ready(function () {
     });
 
@@ -154,7 +154,7 @@
         searchList();
     });
     $("#search_keyword").keyup(function (event) {
-        if (event.which == 13) {
+        if (event.which === 13) {
             searchList();
         }
     });
@@ -164,26 +164,26 @@
             $("#moreListButtonArea").hide();
         }
         $("#RP_cnt").text('총 ' + (data.number * data.size + data.numberOfElements)+' / ' + data.totalElements + ' 건');
-        if (data.totalElements == 0) {
+        if (data.totalElements === 0) {
             initialList();
         }
         else {
             initData(data);
         }
-    }
+    };
 
     var searchCallback = function (data) {
         console.log('searchCallback start');
         if (data.last){
             $("#moreListButtonArea").hide();
         }
-        if (data.totalElements == 0) {
+        if (data.totalElements === 0) {
             initialList();
         }else{
             $("#RP_cnt").text('총 ' + (data.number * data.size + data.numberOfElements)+' / ' + data.totalElements + ' 건');
             initData(data);
         }
-    }
+    };
     var initData = function(data){
         var repositories = data.content;
         for (var i= 0; i < repositories.length; i++) {
@@ -206,7 +206,7 @@
                     + '<i class="ico_create"></i>추가일 : ' + user[j].creationDate + '/'
                     + '<span class="pr8"></span> <i class="ico_modify"></i>수정일 :' + new Date(user[j].lastModified)<%--<fmt:formatDate value="${dateObject2}" pattern="yyyy MM dd HH:mm"></fmt:formatDate></li>--%>
                     + '</ul>        </dd>       <dd class="icon_wrap">       <ul class="ico_lst">    <li class="ico_area">';
-                if (permissions[j].type == 'OWNER') {
+                if (permissions[j].type === 'OWNER') {
                     varHtml = varHtml + '<img src="/resources/images/process_ico_own.png" alt="소유자 이미지" border="0">'
                         + '<p class="tit">소유자</p>';
                 } else {
@@ -214,7 +214,7 @@
                         + '<p class="tit">일반</p>';
                 }
                 varHtml = varHtml + '</li>  <li class="ico_area">';
-                if (user[j].active == 'true') {
+                if (user[j].active === 'true') {
                     varHtml = varHtml + '<img src="/resources/images/process_ico_ownership.png" alt="사용 이미지" border="0">                        <p class="tit">사용</p>';
                 } else {
                     varHtml = varHtml +'<img src="/resources/images/process_ico_stop.png" alt="정지 이미지" border="0">                            <p class="tit">정지</p>';

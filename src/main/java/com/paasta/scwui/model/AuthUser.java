@@ -154,7 +154,7 @@ public class AuthUser implements UserDetails, CredentialsContainer {
         Assert.notNull(authorities, "Cannot pass a null GrantedAuthority collection");
         // Ensure array iteration order is predictable (as per UserDetails.getAuthorities() contract and SEC-717)
         SortedSet<GrantedAuthority> sortedAuthorities =
-                new TreeSet<GrantedAuthority>(new AuthorityComparator());
+                new TreeSet<>(new AuthorityComparator());
 
         for (GrantedAuthority grantedAuthority : authorities) {
             Assert.notNull(grantedAuthority, "GrantedAuthority list cannot contain any null elements");
@@ -196,10 +196,7 @@ public class AuthUser implements UserDetails, CredentialsContainer {
      */
     @Override
     public boolean equals(Object rhs) {
-        if (rhs instanceof User) {
-            return username.equals(((User) rhs).getName());
-        }
-        return false;
+        return rhs instanceof User && username.equals(((User) rhs).getName());
     }
 
     /**

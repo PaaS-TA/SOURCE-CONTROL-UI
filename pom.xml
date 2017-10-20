@@ -2,22 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.paasta</groupId>
     <artifactId>paastasourcecontrolwebui</artifactId>
     <version>0.1</version>
     <packaging>war</packaging>
-
     <name>paastasourcecontrolwebui</name>
     <description>source control web UI</description>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -29,7 +25,6 @@
         <!--<cf.service.suid.file>${project.build.outputDirectory}/serviceInstanceUid.txt</cf.service.suid.file>-->
     </properties>
     <repositories>
-
         <repository>
             <id>maven.scm-manager.org</id>
             <name>scm-manager release repository</name>
@@ -42,7 +37,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -144,6 +138,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

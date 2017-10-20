@@ -31,8 +31,13 @@ import java.util.Map;
 @RequestMapping(value = {""})
 public class LoginController extends CommonController {
 
-    @Autowired
+    final
     AdminLoginService adminLoginService;
+
+    @Autowired
+    public LoginController(AdminLoginService adminLoginService) {
+        this.adminLoginService = adminLoginService;
+    }
 
     @RequestMapping(value="/login",method = RequestMethod.PUT)
     public ModelAndView repositoryListForAdmin() {

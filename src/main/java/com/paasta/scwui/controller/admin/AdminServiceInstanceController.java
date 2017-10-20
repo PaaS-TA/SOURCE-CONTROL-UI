@@ -20,8 +20,12 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping(value = "/admin")
 public class AdminServiceInstanceController extends CommonController {
 
+    private final AdminServiceInstanceService adminServiceInstanceService;
+
     @Autowired
-    AdminServiceInstanceService adminServiceInstanceService;
+    public AdminServiceInstanceController(AdminServiceInstanceService adminServiceInstanceService) {
+        this.adminServiceInstanceService = adminServiceInstanceService;
+    }
 
     // http://localhost:8080/admin/serviceInstantList
     @RequestMapping("/serviceInstantList")

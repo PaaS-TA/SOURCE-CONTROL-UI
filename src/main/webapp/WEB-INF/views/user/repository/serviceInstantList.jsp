@@ -108,7 +108,7 @@
                 strong.html(txt);
                 div.click();
             });
-        }
+        };
 
         $(".select1").selectDesign();
         $(".select2").selectDesign();

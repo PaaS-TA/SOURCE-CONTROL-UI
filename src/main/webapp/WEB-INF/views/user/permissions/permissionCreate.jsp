@@ -190,7 +190,7 @@
         });
         //search
         $("#searchInstRepoUserId").keyup(function (event) {
-            if (event.which == 13) {
+            if (13 === event.which) {
                 searchInstRepoUserId();
             }
         });
@@ -218,20 +218,20 @@
     }
 
     function validEmail(email) {
-        if(email==null || email =="") return false;
+        if(null === email || email ==="") return false;
         var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
-        return (email.match(r) == null) ? true : false;
+        return (email.match(r) === null) ? true : false;
     }
 
     //[1-3]password
     function password_validation_check(confimPassword) {
         var result = true;
         var passwordNotConfirmedAlert = $("#passwordNotConfirmedAlert");
-        if (confimPassword == "" || $("#newPasswordInput").val() == "" || $("#newPasswordInput").val() == null || confimPassword == null) {
+        if (confimPassword === "" || $("#newPasswordInput").val() === "" || $("#newPasswordInput").val() === null || confimPassword === null) {
             passwordNotConfirmedAlert.hide();
             return true;
         }
-        if (confimPassword != $("#newPasswordInput").val()) {
+        if (confimPassword !== $("#newPasswordInput").val()) {
             passwordNotConfirmedAlert.show();
             return false;
         } else {
@@ -244,8 +244,8 @@
     function searchInstRepoUserId() {
         $('#SrchPermissionUserList').children().remove();
         var searchId =$("#searchInstRepoUserId").val();
-        if(searchId =="" || searchId ==null){
-            popupAlertClick("검색어는 한자이상 입력하세요.")
+        if(searchId ==="" || searchId ===null){
+            popupAlertClick("검색어는 한자이상 입력하세요.");
             return;
         }
         var url = "/user/permission/search/instanceId/" + $("#searchInstRepoUserId").val();
@@ -256,14 +256,14 @@
     //searchCALLBACK
     function searchInstRepoUserIdCallBack(data) {
         $("#SrchPermissionUser").text(data.rtnList.length);
-        if (data.rtnList == null || data.rtnList.length == 0) {
+        if (data.rtnList === null || data.rtnList.length === 0) {
             var varHeadHtml = '<li>조회된 사용자가 없습니다.</li>';
             $('#SrchPermissionUserList').append(varHeadHtml);
         } else {
             var rtnList = data.rtnList;
             for (var i = 0; i < rtnList.length; i++) {
                 var varHeadHtml = '<li style="height: 25px"><span style="display:block; width: 300px;">'+rtnList[i].userId+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                if (rtnList[i].userPermissionNo != "") {
+                if (rtnList[i].userPermissionNo !== "") {
                     varHeadHtml = varHeadHtml + '<button  type="button" class="btn btn-default" onclick="deletePermission(\''+ rtnList[i].no +'\')\">'
                         + '<span class="glyphicon glyphicon-minus"></span></button>';
                 } else {
@@ -291,28 +291,28 @@
                 ,"password":$("#confirmPasswordInput").val()
                 ,"type":"xml"
                 ,"acitve":true
-            }
+            };
         procCallAjax("post", url, reqParam, instanceCreateUserCallBack);
     };
 
 
     //CALLBACK
     var instanceCreateUserCallBack = function (data) {
-        if(data.message !=null){
+        if(data.message !==null){
             popupAlertClick(data.message);
             return;
         }
-        if(data.error !=null){
+        if(data.error !==null){
             popupAlertClick("사용자 추가가 실패되었습니다.");
             return;
         }
         console.log("::[2]Callback inviteUser ::");
 
-        if(data.rtnUser.name!=null){
+        if(data.rtnUser.name!==null){
             var name = data.rtnUser.name;
             procPopupAlert("["+name+"]사용자 생성이 완료되었습니다.",'$("#permissionList").submit()','return;');
         }
-    }
+    };
 
     $("#buttonCreateOnclick").text("생성");
     $("#buttonCreateOnclick").click(function (event) {

@@ -22,10 +22,16 @@ import java.util.Map;
 @RequestMapping(value = {"/user"})
 public class PermissionController extends CommonController{
 
-    @Autowired
+    final
     PermissionService permissionService;
-    @Autowired
+    final
     RepositoryService repositoryService;
+
+    @Autowired
+    public PermissionController(PermissionService permissionService, RepositoryService repositoryService) {
+        this.permissionService = permissionService;
+        this.repositoryService = repositoryService;
+    }
 
     /**
      * ex)http://localhost:9092/user/permission/1

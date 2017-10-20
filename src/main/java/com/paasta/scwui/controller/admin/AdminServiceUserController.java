@@ -19,8 +19,12 @@ import java.util.Map;
 @RequestMapping(value = {"/admin/user"})
 public class AdminServiceUserController extends CommonController {
 
-    @Autowired
     AdminUserService adminUserService;
+
+    @Autowired
+    private AdminServiceUserController(AdminUserService adminUserService) {
+        this.adminUserService = adminUserService;
+    }
 
     @RequestMapping(value = "/{instanceId}", method = RequestMethod.GET)
     @ResponseBody

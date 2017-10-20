@@ -1,5 +1,8 @@
 package com.paasta.scwui.service.user;
 
+import com.paasta.scwui.common.util.PropertiesUtil;
+import com.paasta.scwui.common.util.RestClientUtil;
+import com.paasta.scwui.service.common.CommonService;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -12,7 +15,7 @@ import java.util.Map;
  * Created by lena on 2017-06-27.
  */
 @Service
-public class UserService extends CommonService{
+public class UserService extends CommonService {
 
     public ResponseEntity getUser(String name){
         String url = propertiesUtil.getApi_users_user();
