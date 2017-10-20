@@ -85,6 +85,7 @@
                          <%--#수정작업필요--%>
                             <c:forEach items="${repositories.permissions}" var="permissions" varStatus="sts">
                                 <c:out value="${userid}"/>
+                                <%--<c:choose>--%>
                                 <%--[1-1]--%>
                                 <c:if test="${permissions.name eq name}">
                                  <%--//권한이 있을때 표출--%>
@@ -96,6 +97,7 @@
                                  <%--권한이 없을때 표출--%>
                                  <dt>${repositories.name}</dt>
                              </c:if>
+                             <%--</c:choose>--%>
                         <%--#수정작업필요--%>
 
                                 <dd>

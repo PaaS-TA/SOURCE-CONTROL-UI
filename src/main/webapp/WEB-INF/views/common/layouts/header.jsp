@@ -145,24 +145,7 @@ var repositoryId = "<%=session.getAttribute("repositoryId")%>";
         });
 
     });
-  /* 사용안함
-    <!-- validation -->
-    function password_validation_check(confimPassword) {
-        var result = true;
 
-        var passwordNotConfirmedAlert = $("#passwordNotConfirmedAlert");
-
-        if (confimPassword != $("#newPasswordInput").val()) {
-            result = false;
-            passwordNotConfirmedAlert.show();
-        } else {
-            result = true;
-            passwordNotConfirmedAlert.hide();
-        }
-
-        return result;
-    }
-*/
     <!-- 레파지토리 전체리스트가져오기 -->
     var hearderRepoList = function(){
         var url = "/user/repositoryMore/";
@@ -172,7 +155,6 @@ var repositoryId = "<%=session.getAttribute("repositoryId")%>";
             "reposort":"lastModified"};
         procCallAjax('get', url, param, headerRepoCallBack);
     }
-
 
     var headerRepoCallBack = function (data) {
         $("#RP_cnt").text(data.repositories.length);
