@@ -82,26 +82,21 @@
                         <li id ="repositoryList">
                             <dl>
 
-                             <%--#수정작업필요--%>
-                                <c:forEach items="${repositories.permissions}" var="permissions" varStatus="sts">
-                                    <c: mm if test="${permissions.name eq name}">
-                                     ${sts.count=sts.end}
-                                     <c:choose>
-                                      <%--[1-1]--%><%--//권한이 있을때 표출--%>
-                                     <c:when test="${permissions.name eq name}">
-                                         <dt><a href="/user/repositoryDetail/${repositories.id}">${repositories.name}</a></dt>
-                                    </c:when>
-                                     <%--[1-2]--%><%--권한이 없을때 표출--%>
-                                         <c:otherwise >
-                                         <dt>${repositories.name}</dt>
-                                         </c:otherwise>
-                                     </c:choose>
-                                        <%--</c:if>--%>
-                                        <%--<c:if test="${permissions.name ne name}">--%>
-                                        <%--<dt>${repositories.name}</dt>--%>
-                                        <%--</c:if>--%>
-                                 </c:forEach>
-                             <%--#수정작업필요--%>
+                         <%--#수정작업필요--%>
+                            <c:forEach items="${repositories.permissions}" var="permissions" varStatus="sts">
+                                <c:out value="${userid}"/>
+                                <%--[1-1]--%>
+                                <c:if test="${permissions.name eq name}">
+                                 <%--//권한이 있을때 표출--%>
+                                 <dt><a href="/user/repositoryDetail/${repositories.id}">${repositories.name}</a></dt>
+                                </c:if>
+                            </c:forEach>
+                                 <%--[1-2]--%>
+                             <c:if test="${permissions.name eq name}">
+                                 <%--권한이 없을때 표출--%>
+                                 <dt>${repositories.name}</dt>
+                             </c:if>
+                        <%--#수정작업필요--%>
 
                                 <dd>
                                     <ul>
