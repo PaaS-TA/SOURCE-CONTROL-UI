@@ -1,7 +1,10 @@
 package com.paasta.scwui.common.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import javax.xml.crypto.Data;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,7 +15,7 @@ import java.util.Locale;
  */
 @Component
 public class DateUtil {
-
+    private static Logger logger = LoggerFactory.getLogger(Common.class);
     public static String currentDateTime() {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm", Locale.KOREA);
@@ -40,9 +43,6 @@ public class DateUtil {
                 return sDateTime;
             }
             Date date = formatter.parse(sDateTime);
-
-            System.out.println(date);
-
             return convertFormatter.format(date);
 
         } catch (ParseException e) {
