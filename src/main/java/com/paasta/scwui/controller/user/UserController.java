@@ -35,7 +35,7 @@ public class UserController extends CommonController{
 
     @GetMapping(value = "/userMyInfoModify")
     @ResponseBody
-    public ModelAndView getUserInfo() throws Exception {
+    public ModelAndView getUserInfo() {
         String name = getDetail().getName();
         Map map = (Map) userService.getUser(name).getBody();
         ModelAndView modelAndView = new ModelAndView();
@@ -49,7 +49,7 @@ public class UserController extends CommonController{
 
     @PutMapping(value = "/userMyInfoModify/{name}")
     @ResponseBody
-    public Map putUserInfo(@PathVariable("name") String name,@RequestBody Map map) throws Exception {
+    public Map putUserInfo(@PathVariable("name") String name,@RequestBody Map map)  {
         DashboardAuthenticationDetails user = getDetail();
         logger.debug("name :::+"+ name);
         String userid = Common.empty(user.getName())?"":user.getName();
@@ -61,7 +61,7 @@ public class UserController extends CommonController{
     /*  레파지토리 사용자 추가*/
     @RequestMapping(value ={"/addUser.do"}, method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity CreateUser(@RequestBody Map map) throws Exception {
+    public ResponseEntity CreateUser(@RequestBody Map map) {
         //common Common.convertMapByLinkedHashMap(map)
         ResponseEntity responseEntity = userService.createUser(map);
         return responseEntity;
@@ -70,7 +70,7 @@ public class UserController extends CommonController{
     /*  인스턴스 사용자 추가*/
     @RequestMapping(value ={"/instanceAddUser.do"}, method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity instanceCreateUser(@RequestBody Map map) throws Exception {
+    public ResponseEntity instanceCreateUser(@RequestBody Map map) {
         //common Common.convertMapByLinkedHashMap(map)
         DashboardAuthenticationDetails user = getDetail();
         String instanceid = Common.empty(user.getInstanceId())?"":user.getInstanceId();
@@ -89,7 +89,7 @@ public class UserController extends CommonController{
     /*  인스턴스 사용자 수정*/
     @RequestMapping(value ={"/instanceModifyUser.do"}, method = RequestMethod.PUT)
     @ResponseBody
-    public Map instanceModifyUser(@RequestBody Map map) throws Exception {
+    public Map instanceModifyUser(@RequestBody Map map) {
         String userid = (String) map.getOrDefault("name","");
         map.put("name",userid);
         Map map1 = (Map) userService.modifyUser(userid, map).getBody();
@@ -101,7 +101,7 @@ public class UserController extends CommonController{
      * @throws Exception
      */
     @GetMapping("/create/")
-    public ModelAndView serviceInstanceCreateUser() throws Exception {
+    public ModelAndView serviceInstanceCreateUser() {
         DashboardAuthenticationDetails user = getDetail();
         String instanceid = Common.empty(user.getInstanceId())?"":user.getInstanceId();
         ModelAndView modelAndView = new ModelAndView();
@@ -113,7 +113,7 @@ public class UserController extends CommonController{
      * @throws Exception
      */
     @GetMapping("/permissionList/")
-    public ModelAndView serviceInstanceUserList() throws Exception {
+    public ModelAndView serviceInstanceUserList() {
         DashboardAuthenticationDetails user = getDetail();
         String instanceid = Common.empty(user.getInstanceId())?"":user.getInstanceId();
 
@@ -124,7 +124,7 @@ public class UserController extends CommonController{
 
     @GetMapping(value = "/setFirstUserInfoModify/")
     @ResponseBody
-    public ModelAndView setFirstUserInfoModify() throws Exception {
+    public ModelAndView setFirstUserInfoModify() {
         String name = getDetail().getId();
         Map map = (Map) userService.getUser(name).getBody();
         ModelAndView modelAndView = new ModelAndView();
@@ -138,7 +138,7 @@ public class UserController extends CommonController{
 
     @GetMapping(value = "/instanceUserModify/{name}")
     @ResponseBody
-    public ModelAndView getUserInfo(@PathVariable("name") String name) throws Exception {
+    public ModelAndView getUserInfo(@PathVariable("name") String name)  {
         Map map = (Map) userService.getUser(name).getBody();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("message",map.getOrDefault("message",""));
@@ -155,7 +155,7 @@ public class UserController extends CommonController{
      * @throws Exception
      */
     @DeleteMapping("/instanceUserDelete.do/{name}")
-    public Map serviceInstanceDeleteUser(@PathVariable("name") String name) throws Exception {
+    public Map serviceInstanceDeleteUser(@PathVariable("name") String name) {
         DashboardAuthenticationDetails user = getDetail();
         String instanceid = Common.empty(user.getInstanceId())?"":user.getInstanceId();
         Map map = (Map) userService.deleteInstanceUser(instanceid, name).getBody();
@@ -163,7 +163,7 @@ public class UserController extends CommonController{
     }
     @GetMapping(value = "/userMyModifyPassword")
     @ResponseBody
-    public ModelAndView userMyModifyPassword() throws Exception {
+    public ModelAndView userMyModifyPassword()  {
         String name = getDetail().getName();
         Map map = (Map) userService.getUser(name).getBody();
         ModelAndView modelAndView = new ModelAndView();

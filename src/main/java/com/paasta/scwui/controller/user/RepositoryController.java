@@ -58,8 +58,7 @@ public class RepositoryController extends CommonController {
     * */
     @RequestMapping(value = {"/createRepository.do"}, method = RequestMethod.POST)
     @ResponseBody
-//    public ResponseEntity setCreateRepository(@RequestBody sonia.scm.repository.Repository repository) throws Exception {
-    public ResponseEntity setCreateRepository(@RequestBody Repository repository) throws Exception {
+    public ResponseEntity setCreateRepository(@RequestBody Repository repository) {
         Map map = new HashMap();
         DashboardAuthenticationDetails user = getDetail();
         String instanceid = Common.empty(user.getInstanceId()) ? "" : user.getInstanceId();
