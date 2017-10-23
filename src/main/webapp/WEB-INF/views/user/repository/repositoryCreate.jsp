@@ -98,7 +98,7 @@
 
     // CALLBACK
     var callbackCreateRepository = function (data) {
-        if(data.error!==null){
+        if(null!=data.error){
             popupAlertClick(data.error);
             return;
         }
