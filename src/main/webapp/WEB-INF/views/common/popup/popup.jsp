@@ -14,12 +14,13 @@
             <div class="modal-footer">
                 <div class="fr">
                     <button type="button" class="button btn_pop" id="commonPopupConfirmButtonText" data-dismiss="modal">확인</button>
-                    <button type="button" class="button btn_pop" data-dismiss="modal">취소 </button>
+                    <button type="button" class="button btn_pop" data-dismiss="modal">취소</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <%--POPUP ALERT :: BEGIN--%>
 <div class="modal fade" id="modalAlert" role="dialog"  style="display: none;">
     <div class="modal-dialog">
@@ -51,6 +52,5 @@
 <%--SPINNER :: END--%>
 <script>
     $(document).ready(function () {
-
     });
 </script>
