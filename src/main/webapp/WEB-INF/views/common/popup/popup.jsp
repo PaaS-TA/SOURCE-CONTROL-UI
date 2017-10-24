@@ -54,3 +54,4 @@
     $(document).ready(function () {
     });
 </script>
+<script type="text/javascript" src="/resources/js/bootstrap.js"></script>
