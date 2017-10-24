@@ -69,10 +69,18 @@
 
         $("#confirmPasswordInput").keyup(function () {
             password_validation_check($(this).val());
+
         });
+        $("#confirmPasswordInput").keyup(function (event) {
+            if (event.which === 13) {
+                popupConfirmClick("비밀번호 최초등록","비밀번호를 등록하시겠습니까?",'modify()',"등록");
+            }
+        });
+
         $("#newPasswordInput").keyup(function () {
             password_validation_check($("#confirmPasswordInput").val());
         });
+
 
         $("#btn_login").click(function () {
 
