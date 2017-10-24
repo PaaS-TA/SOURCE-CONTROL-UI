@@ -6,7 +6,7 @@
     <div class="location">
         <div class="fl">
             <ul>
-                <li><a href="/user/repository" class="home">홈으로</a></li>
+                <li><a href="/user/repository/" class="home">홈으로</a></li>
                 <li><a href="/user/repository/" title="${title}">${title}</a></li><!--마지막 경로-->
             </ul>
         </div>
