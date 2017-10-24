@@ -7,7 +7,7 @@
     <div class="location">
         <ul>
             <li><a href="/user/repository/" class="home">홈으로</a></li>
-            <li><a href="/user/repository/" title="레파지토리 목록"> 레파지토리 목록 </a></li>
+            <li><a href="/user/repository/" title="레파지토리 목록"> 레파지토리 목H록 </a></li>
             <!--마지막 경로-->
             <li><a href="#" title="레파지토리 상세보기"> 레파지토리 상세보기 (${repositorydetails.name})</a></li><!--마지막 경로-->
         </ul>
