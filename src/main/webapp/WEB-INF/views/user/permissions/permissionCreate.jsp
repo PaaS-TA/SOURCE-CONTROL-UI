@@ -340,5 +340,4 @@
         history.go(-1);
     }
 </script>
-<script type="text/javascript" src="<c:url value='/resources/js/bootstrap.js' />"></script>
 <!--//select 스크립트-->
