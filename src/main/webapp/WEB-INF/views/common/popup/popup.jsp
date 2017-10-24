@@ -20,7 +20,6 @@
         </div>
     </div>
 </div>
-
 <%--POPUP ALERT :: BEGIN--%>
 <div class="modal fade" id="modalAlert" role="dialog"  style="display: none;">
     <div class="modal-dialog">
@@ -41,7 +40,6 @@
     </div>
 </div>
 <%--POPUP ALERT :: END--%>
-
 <%--SPINNER :: BEGIN--%>
 <div class="modal fade" id="modalSpinner" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static"  style="display: none;">
     <div class="container">
@@ -55,6 +53,4 @@
     $(document).ready(function () {
 
     });
-
-
 </script>
