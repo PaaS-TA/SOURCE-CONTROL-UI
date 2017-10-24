@@ -78,7 +78,7 @@ var postProcCallAjax = function (reqUrl, param, callback) {
 
     var reqData = {};
 
-    if (param !== null) {
+    if (param != null) {
         reqData = JSON.stringify(param);
     }
     console.log(reqData);
@@ -111,7 +111,7 @@ var putProcCallAjax = function (reqUrl, param, callback) {
 
     var reqData = {};
 
-    if (param !== null) {
+    if (param != null) {
         reqData = JSON.stringify(param);
         console.log("reqData::::" + reqData);
     }
@@ -142,17 +142,17 @@ var putProcCallAjax = function (reqUrl, param, callback) {
 
 //get 을 할때 procCallAjax('get', '/admin/serviceInstantList'?검색명,.param {"이름":"입력이름"}, callback)
 var procCallAjax = function (callRequest, reqUrl, param, callback) {
-    if (callRequest === 'get') {
+    if (callRequest == 'get') {
         getProcCallAjax(reqUrl, param, callback);
     }
-    if (callRequest === 'post') {
+    if (callRequest == 'post') {
         postProcCallAjax(reqUrl, param, callback);
     }
-    if (callRequest === 'put') {
+    if (callRequest == 'put') {
 
         putProcCallAjax(reqUrl, param, callback);
     }
-    if (callRequest === 'delete') {
+    if (callRequest == 'delete') {
         delProcCallAjax(reqUrl, callback);
     }
 };
@@ -160,26 +160,26 @@ var procCallAjax = function (callRequest, reqUrl, param, callback) {
 
 // MOVE PAGE
 var procMovePage = function (pageUrl) {
-    if (pageUrl === null || pageUrl.length < 1) {
+    if (pageUrl == null || pageUrl.length < 1) {
         return false;
     }
 
-    if ((!!pageUrl && typeof pageUrl === 'number') && -1 === pageUrl) {
+    if ((!!pageUrl && typeof pageUrl == 'number') && -1 == pageUrl) {
         history.back();
     } else {
-        pageUrl = ("/" === pageUrl) ? "" : pageUrl;
+        pageUrl = ("/" == pageUrl) ? "" : pageUrl;
         location.href = procGetUrl() + pageUrl;
     }
 };
 /**팝업 확인**/
 var popupConfirmClick = function (reqTitle, reqMessage, procFunction, reqButtonText) {
 
-    if (null === reqTitle || reqTitle.length < 1) return false;
-    if (null === reqMessage || reqMessage.length < 1) return false;
-    if (null === procFunction) return false;
+    if (null == reqTitle || reqTitle.length < 1) return false;
+    if (null == reqMessage || reqMessage.length < 1) return false;
+    if (null == procFunction) return false;
 
     var objButtonText = $('#commonPopupConfirmButtonText');
-    var buttonText = (null === reqButtonText || '' === reqButtonText || undefined === reqButtonText) ? reqMessage.split(' ')[0] : reqButtonText;
+    var buttonText = (null == reqButtonText || '' == reqButtonText || undefined == reqButtonText) ? reqMessage.split(' ')[0] : reqButtonText;
 
     $('#commonPopupConfirmTitle').html(reqTitle);
     $('#commonPopupConfirmMessage').html(reqMessage);
@@ -192,7 +192,7 @@ var popupConfirmClick = function (reqTitle, reqMessage, procFunction, reqButtonT
 /**팝업 확인**/
 var popupAlertClick = function (reqMessage) {
 
-    if (null === reqMessage || reqMessage.length < 1) return false;
+    if (null == reqMessage || reqMessage.length < 1) return false;
     $('#commonPopupAlertMessage').html(reqMessage);
     $('#modalAlert').modal('toggle');
 
@@ -205,10 +205,10 @@ var procClosePopup = function () {
 
 /**팝업 열기**/
 var procPopupAlert = function (reqMessage, procFunction, reqClosePopup) {
-    if (null === reqClosePopup || undefined === reqClosePopup) {
+    if (null == reqClosePopup || undefined == reqClosePopup) {
         procClosePopup();
     }
-    if (reqMessage === null || reqMessage.length < 1) return false;
+    if (reqMessage == null || reqMessage.length < 1) return false;
 
     $('#commonPopupAlertMessage').html(reqMessage);
 
@@ -216,7 +216,7 @@ var procPopupAlert = function (reqMessage, procFunction, reqClosePopup) {
 
     objModalAlert.modal('show');
     objModalAlert.on('hide.bs.modal', function () {
-        if (null !== procFunction && undefined !== procFunction && reqMessage.length > 0) {
+        if (null != procFunction && undefined != procFunction && reqMessage.length > 0) {
             setTimeout(function () {
                 eval(procFunction);
             }, 3);
