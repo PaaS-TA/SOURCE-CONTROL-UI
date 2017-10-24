@@ -76,7 +76,7 @@
         </ul>
         <!--//레파지토리 목록(이미지없는) :e -->
         <!-- 더보기 버튼 :s -->
-        <div class="table_more" id="morePermissionsListButtonArea"  name = "morePermissionsListButtonArea"  style="display: block;">
+        <div class="table_more" id="morePermissionsListButtonArea" style="display: inline;">
             <div class="btn_more" id="btnMore" name="btnMore">more</div>
         </div>
     </div>
@@ -188,11 +188,13 @@
     };
 
     var permissionCallback = function (data) {
-        $("#RPPermissionsCnt").text(data.rtnMap.numberOfElements + ' / ' + data.rtnMap.totalElements + '건');
-        if (data.rtnMap === null || data.rtnMap.content.length === 0) {
+        var rtnMap = data.rtnMap;
+        var num = rtnMap.number * rtnMap.size + rtnMap.numberOfElements
+        $("#RPPermissionsCnt").text(num + ' / ' + rtnMap.totalElements + '건');
+        if (rtnMap === null || rtnMap.content.length === 0) {
             initialPermissionList();
         } else {
-            var permissions = data.rtnMap.content;
+            var permissions = rtnMap.content;
 
             for (var i = 0; i < permissions.length; i++) {
                 var varPermissionHtml = '<li><a href="/user/instanceUserModify/'+permissions[i].userId+'.json\"  class="home"><dl> <dt>' + permissions[i].userId + '<dd> <ul>'
@@ -227,7 +229,7 @@
             }
         }
 
-        if (data.rtnMap === null || data.rtnMap.last === true) {
+        if (rtnMap === null || rtnMap.last === true) {
             $("#morePermissionsListButtonArea").hide();
         }
     };
