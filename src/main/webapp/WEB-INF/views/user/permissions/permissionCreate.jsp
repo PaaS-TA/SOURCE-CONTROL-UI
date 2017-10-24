@@ -298,17 +298,17 @@
 
     //CALLBACK
     var instanceCreateUserCallBack = function (data) {
-        if(data.message !==null){
+        if(data.message !=null){
             popupAlertClick(data.message);
             return;
         }
-        if(data.error !==null){
+        if(data.error !=null){
             popupAlertClick("사용자 추가가 실패되었습니다.");
             return;
         }
         console.log("::[2]Callback inviteUser ::");
 
-        if(data.rtnUser.name!==null){
+        if(data.rtnUser.name!=null){
             var name = data.rtnUser.name;
             procPopupAlert("["+name+"]사용자 생성이 완료되었습니다.",'$("#permissionList").submit()','return;');
         }
@@ -340,5 +340,4 @@
         history.go(-1);
     }
 </script>
-<script type="text/javascript" src="<c:url value='/resources/js/bootstrap.js' />"></script>
 <!--//select 스크립트-->

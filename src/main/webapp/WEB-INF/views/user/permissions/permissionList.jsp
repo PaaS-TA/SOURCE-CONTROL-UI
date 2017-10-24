@@ -76,9 +76,9 @@
         </ul>
         <!--//레파지토리 목록(이미지없는) :e -->
         <!-- 더보기 버튼 :s -->
-        <%--<div class="table_more" id="morePermissionsListButtonArea" style="display: block;">--%>
-            <%--<div class="btn_more" id="btnMore" name="btnMore">more</div>--%>
-        <%--</div>--%>
+        <div class="table_more" id="morePermissionsListButtonArea"  name = "morePermissionsListButtonArea"  style="display: block;">
+            <div class="btn_more" id="btnMore" name="btnMore">more</div>
+        </div>
     </div>
     <!--//contents :e -->
 </div>
@@ -227,7 +227,7 @@
             }
         }
 
-        if (data.rtnLis === null || data.rtnList.last === 'true') {
+        if (data.rtnMap === null || data.rtnMap.last === true) {
             $("#morePermissionsListButtonArea").hide();
         }
     };
