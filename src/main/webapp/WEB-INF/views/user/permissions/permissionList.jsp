@@ -2,10 +2,10 @@
 =================================================================
 * 시 스 템 명 : 소스컨트롤러 웹 UI
 * 업 무 명 : 사용자 인스턴스 참여자 목록
-* 프로그램명permissionList.jsp.jsp.jsp(참여자 목록 리스트)
-* 프로그램 개요 : 참여자 목록 리스트 화면
+* 프로그램명 : permissionList.jsp(참여자 목록 리스트)
+* 프로그램 개요 : 사용자 목록 리스트 화면
 * 작 성 자 : 이인정
-* 작 성 일 : 2018.07.10
+* 작 성 일 : 2017.07.10
 * 화면 ID: UI-FDSC-8000
 * 화면설계 ID: UI-SBSC-8000
 =================================================================
@@ -23,7 +23,7 @@
         <div class="fl">
             <ul>
                 <li><a href="/user/repository/" class="home">홈으로</a></li>
-                <li><a href="/user/permissionList/" title="사용자 목록"> 사용자 목록</a></li>
+                <li><a href="/user/permissionList/" title="사용자 목록">사용자 목록</a></li>
                 <!--마지막 경로-->
             </ul>
         </div>
@@ -76,9 +76,9 @@
         </ul>
         <!--//레파지토리 목록(이미지없는) :e -->
         <!-- 더보기 버튼 :s -->
-        <div class="table_more" id="morePermissionsListButtonArea" style="display: block;">
-            <div class="btn_more" id="btnMore" name="btnMore">more</div>
-        </div>
+        <%--<div class="table_more" id="morePermissionsListButtonArea" style="display: block;">--%>
+            <%--<div class="btn_more" id="btnMore" name="btnMore">more</div>--%>
+        <%--</div>--%>
     </div>
     <!--//contents :e -->
 </div>
