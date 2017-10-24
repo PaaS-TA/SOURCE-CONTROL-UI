@@ -62,12 +62,9 @@
         <!--버튼 영역-->
     </div>
     <!--//contents :e -->
-    <!--footer :s -->
-    <%@ include file="/WEB-INF/views/common/layouts/footer.jsp" %> <!--//footer :e -->
 </div>
 <!--//contaniner :e -->
-<form id="form1" method ='get' action ="/user/repository/">
-</form>
+<form id="form1" method ='get' action ="/user/repository/"></form>
 
 <script type="text/javascript">
     /* 레파지토리 생성
