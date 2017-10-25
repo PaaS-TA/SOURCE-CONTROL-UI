@@ -94,6 +94,10 @@
             <div class="tab_subcontent" id="permissionCreate" style="display:none;">
                 <%@ include file="/WEB-INF/views/user/permission/invitePermission.jsp" %>
             </div>
+            <div class="tab_content" id="permissionUpdate" style="display:none">
+                <!-- 셀렉트(검색, 보기 선택, 사용자여부 선택, 레파지토리 클론) :s -->
+                <%@ include file="/WEB-INF/views/user/permission/detailPermission.jsp" %>
+            </div>
         </div>
         <!--//sub탭 콘텐츠03 :e -->
     </div>
