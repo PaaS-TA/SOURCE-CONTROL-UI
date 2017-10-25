@@ -174,4 +174,10 @@ public class UserController extends CommonController{
         modelAndView.setViewName("/user/userMyModifyPassword");
         return modelAndView;
     }
+
+    @GetMapping(value = "/getInstanceUser/{name}")
+    @ResponseBody
+    public Map getInstanceUserInfo(@PathVariable("name") String name)  {
+        return (Map) userService.getUser(name).getBody();
+    }
 }

@@ -151,7 +151,7 @@
             var permissions = data.rtnList.content;
             for (var i = 0; i < permissions.length; i++) {
                 var varPermissionHtml ='<li> <dl> <dt>' + permissions[i].name + '<dd> <ul>'
-                    + '<li class="sbj_txt" onclick="detailPermission()">' + permissions[i].displayName + '</li>'
+                    + '<li class="sbj_txt" onclick="detailPermission(\''+permissions[i].name+'\')">' + permissions[i].displayName + '</li>'
                     + '<li class="stateArea"><i class="ico_create"></i>생성일 :' + permissions[i].creationDate + '<span class="pr10"></span>'
                     + '<i class="ico_modify"></i>수정일 : ' + permissions[i].lastModified + '</li>'
                     + '</ul>  </dd> <dd class="icon_wrap"> <ul class="ico_lst">'
@@ -197,8 +197,19 @@
         $('#tabPermissionlist').css('display', 'none');
 
     }
-    function detailPermission(no){
+    function detailPermission(name){
+
         $('#permissionUpdate').css('display', 'block');
         $('#tabPermissionlist').css('display', 'none');
+        getPermissionDetail(name);
+    }
+
+    function getPermissionDetail(name){
+
+        procCallAjax('get','/user/getInstanceUser/'+name+'.json',null,detaicallback);
+    }
+    function detaicallback(data,param) {
+
+        alert(data.ScUser.userId);
     }
 </script>
