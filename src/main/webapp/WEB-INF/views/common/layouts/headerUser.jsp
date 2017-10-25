@@ -104,7 +104,7 @@
         }else{
             popupAlertClick("사용자 추가가 실패되었습니다.");
         }
-    }
+    };
 
 
     // BIND

@@ -102,7 +102,6 @@ public class DashboardAuthenticationProvider implements AuthenticationProvider {
             }
 
             if (instanceUse.size() >0){
-                // TODO 사용자의 Dashboard 권한을 조회하여 권한을 부여한다. Authorities
                 instanceUse.forEach(e -> lstInstanceUser.add(objectMapper.convertValue(e, InstanceUser.class)));
                 lstInstanceUser.forEach(e -> {
                         role.add(new SimpleGrantedAuthority("ROLE_"+e.getRepoRole().toUpperCase()));

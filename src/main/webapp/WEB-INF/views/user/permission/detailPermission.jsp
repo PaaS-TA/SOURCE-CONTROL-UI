@@ -165,7 +165,7 @@
         $("#SrchPermissionUserList").parent().removeClass("active");
         $("#SrchPermissionUserList").parent().addClass("active");
         return false;
-    }
+    };
     function putPermissionCancel() {
         $('#permissionCreate').css('display', 'none');
         $('#tabPermissionlist').css('display', 'block');
@@ -182,14 +182,6 @@
         popupAlertClick("참여자가 삭제되었습니다.");
         putPermissionCancel();
     }
-
-    function initalInvitePermissionForm(){
-        $('#tbl_form02').hide();
-        $('#tbl_form03').hide();
-        $("#searchInstRepoUserId").val("");
-    }
-
-    $(".select7").selectDesign();
 
 </script>
 <script type="text/javascript" src="<c:url value='/resources/js/bootstrap.js' />"></script>

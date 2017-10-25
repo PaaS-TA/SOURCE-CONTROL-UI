@@ -8,6 +8,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="shortcut icon" type="image/x-icon" href="<c:url value='/resources/images/favicon.ico'/>">
         <title>슈퍼어드민 로그인페이지</title>
         <%-- 공통 tag lib --%>
         <tiles:insertAttribute name="taglib"/>

@@ -69,10 +69,10 @@ $(".togglemenu")
         }else{
             $(".togglemenu").hide();
             $(".wintoggle").removeClass("active");
-            $(".wintoggle").addClass("active")
+            $(".wintoggle").addClass("active");
             $(".wintoggle").next().slideDown();
         }
-    })
+    });
 $(".wintoggle").click(function(){
     if( $(this).hasClass("active") ){
         $(this).removeClass("active");
@@ -126,7 +126,7 @@ var repositoryId = "<%=session.getAttribute("repositoryId")%>";
 
     $("#btnTopMenuCancel").on("click", function () {
         $('#topMenuRepositoryName').val('');
-        $("#ulToggleMenu").addClass("active")
+        $("#ulToggleMenu").addClass("active");
         $("#ulToggleMenu").removeClass("active");
         $("#ulToggleMenu").hide();
     });
@@ -154,7 +154,7 @@ var repositoryId = "<%=session.getAttribute("repositoryId")%>";
             "sort":"lastModified",
             "reposort":"lastModified"};
         procCallAjax('get', url, param, headerRepoCallBack);
-    }
+    };
 
     var headerRepoCallBack = function (data) {
         $("#RP_cnt").text(data.repositories.length);

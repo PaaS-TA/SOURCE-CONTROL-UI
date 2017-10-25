@@ -38,7 +38,7 @@
         }else{
             $(".togglemenu").hide();
             $(".wintoggle").removeClass("active");
-            $(this).addClass("active")
+            $(this).addClass("active");
             $(this).next().slideDown();
         }
         return false;
@@ -52,7 +52,7 @@
             }else{
                 $(".togglemenu").hide();
                 $(".wintoggle").removeClass("active");
-                $(".wintoggle").addClass("active")
+                $(".wintoggle").addClass("active");
                 $(".wintoggle").next().slideDown();
             }
         })

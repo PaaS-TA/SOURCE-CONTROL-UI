@@ -57,7 +57,6 @@ public class AdminRepositoryController extends CommonController {
         map.put("username", username);
         ModelAndView modelAndView = new ModelAndView();
 //        modelAndView.addObject("repositories", repositories);
-        //TODO -- user Info 에서 추출하도록 변경
         modelAndView.addObject("userid", username);
         modelAndView.addObject("title", "레파지토리목록");
         modelAndView.setViewName("/admin/repository/repositoryList");
@@ -86,7 +85,6 @@ public class AdminRepositoryController extends CommonController {
 
         rtnMap.put("repositories", repositories);
         rtnMap.put("pageInfo", pageInfo.size());
-        //TODO -- user Info 에서 추출하도록 변경
         rtnMap.put("repoName", map.getOrDefault("repoName",""));
         return rtnMap;
     }

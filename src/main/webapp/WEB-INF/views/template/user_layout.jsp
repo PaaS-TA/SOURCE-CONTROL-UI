@@ -7,8 +7,9 @@
 <tiles:insertAttribute name="taglib"/>
 <%-- 공통 javaScript --%>
 <tiles:insertAttribute name="commonjs"/>
-<div id="wrap">
+
 <body>
+<div id="wrap">
 <%-- header :s  --%>
 <tiles:insertAttribute name="header"/>
     <div>
@@ -17,8 +18,10 @@
     <div>
         <tiles:insertAttribute name="footer"/>
     </div>
-</body>
-</div>
 <%-- popup --%>
 <tiles:insertAttribute name="popup"/>
+</div>
+</body>
+
+
 </html>

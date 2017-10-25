@@ -166,7 +166,7 @@
             }
         }
         $("#SrchPermissionUserList").show();
-        initalInvitePermissionForm();
+        callBackInitalInvitePermissionForm();
     }
 
     $("#buttonCreateOnclick3").text("초대");
@@ -211,10 +211,8 @@
         //참여자 추가 검색한 결과 삭제
         $('#SrchPermissionUserList').children().remove();
         $('#SrchPermissionUserList').hide();
-        $("#SrchPermissionUser").text(0);
+        $("#PemissionName").text('');
 
-        //popupAlertClick("레파지토리 생성을 취소하시겠습니까?");
-        //initalInvitePermissionForm();
         searchPermissions();
     }
     function deletePermissionCallback(data) {
@@ -222,16 +220,18 @@
         putPermissionCancel();
     }
 
-    function initalInvitePermissionForm(){
+    function callBackInitalInvitePermissionForm(){
         $('#tbl_form02').hide();
         $('#tbl_form03').hide();
         $("#searchInstRepoUserId").val("");
     }
 
-    $(".select7").selectDesign();
+    function initalInvitePermissionForm(){
+        callBackInitalInvitePermissionForm();
+        $('#SrchPermissionUserList').children().remove();
+        $("#SrchPermissionUser").text(0);
+    }
 
 </script>
-
-<script type="text/javascript" src="<c:url value='/resources/js/bootstrap.js' />"></script>
 <!--//select 스크립트-->
 

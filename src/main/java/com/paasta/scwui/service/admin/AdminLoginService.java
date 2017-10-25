@@ -1,7 +1,5 @@
 package com.paasta.scwui.service.admin;
 
-import com.paasta.scwui.common.util.PropertiesUtil;
-import com.paasta.scwui.common.util.RestClientUtil;
 import com.paasta.scwui.model.User;
 import com.paasta.scwui.service.common.CommonService;
 import org.springframework.http.HttpEntity;
@@ -24,7 +22,7 @@ public class AdminLoginService extends CommonService {
 
         try {
             ResponseEntity<Map> response = restClientUtil.callRestApi(HttpMethod.POST, url, entity, Map.class);
-            map = (Map) response.getBody();
+            map = response.getBody();
             map.put("user",  map);
 
         }catch(Exception exception){

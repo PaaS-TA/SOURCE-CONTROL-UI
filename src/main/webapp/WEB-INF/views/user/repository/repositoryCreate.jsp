@@ -47,7 +47,7 @@
 
             <tr>
                 <th>레파지토리 설명 (<span class="f12">선택</span>)</th>
-                <td><textarea type="text" name="description" id="description"  colos="20" rows="5"></textarea></td>
+                <td><textarea type="text" name="description" id="description"  colos="20" rows="5" style=""></textarea></td>
             </tr>
             </tbody>
         </table>

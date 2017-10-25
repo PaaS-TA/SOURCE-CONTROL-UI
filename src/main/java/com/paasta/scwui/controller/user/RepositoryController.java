@@ -141,6 +141,8 @@ public class RepositoryController extends CommonController {
         Map map = Common.convertMapByRequest(request);
         // Source Control Api Server 호출 - repository 목록 조회
         List<Repository> repositories = repositoryService.getUserRepositories(instanceid, userid, map);
+
+
         List<Repository> public_repositories = repositories.stream().filter(Repository::isPublic_).collect(toList());
         List<Repository> private_repositories = repositories.stream().filter(Repository -> !Repository.isPublic_()).collect(toList());
         ((DashboardAuthenticationDetails) getAuthentication().getDetails()).setPasswordSet(true);

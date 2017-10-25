@@ -96,7 +96,7 @@
         $("#buttonCreateOnclick").text("참여자 추가");
     });
     $("#buttonCreateOnclick").click(function (event) {
-        putPermission();
+        putPermissionInitial();
     });
     /**
      * 참여자 정보 탭 javascript 시작
@@ -194,10 +194,11 @@
         $('#morePermissionsListButtonArea').css('display', 'none');
 
     };
-    function putPermission(){
+    function putPermissionInitial(){
         $('#permissionCreate').css('display', 'block');
         $('#tabPermissionlist').css('display', 'none');
-
+        $("#PemissionName").val('');
+        initalInvitePermissionForm();
     }
     function detailPermission(no){
 

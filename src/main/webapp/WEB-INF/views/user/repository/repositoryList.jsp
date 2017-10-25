@@ -32,19 +32,14 @@
                     <input type="hidden" id="reposort" name="reposort"
                            value="<c:out value='${reposort}' default='' />"/>
                     <div class="keyword_search">
-                        <input type="text" name="repoName" id="repoSearch_keyword" style="-ms-ime-mode: active;"
-                               value="<c:out value='${repoName}' default=''/>" placeholder="레파지토리 명 검색"
-                               autocomplete="on"/>
+                        <input type="text" name="repoName" id="repoSearch_keyword" style="-ms-ime-mode: active;" value="<c:out value='${repoName}' default=''/>" placeholder="레파지토리 명 검색" autocomplete="on"/>
                         <button type="button" class="btn_search" name="btn_repoSearch" id="btn_repoSearch"/>
                     </div>
                     <div class="selectbox select1 ml5" style="width:135px;">
                         <div>
-                            <c:if test="${type1==''}"><strong id="repoListType">형상관리 전체</strong><span
-                                    class="bul"></span></c:if>
-                            <c:if test="${type1=='git'}"><strong id="repoListType">Git</strong><span
-                                    class="bul"></span></c:if>
-                            <c:if test="${type1=='svn'}"><strong id="repoListType">SVN</strong><span
-                                    class="bul"></span></c:if>
+                            <c:if test="${type1==''}"><strong id="repoListType">형상관리 전체</strong><span class="bul"></span></c:if>
+                            <c:if test="${type1=='git'}"><strong id="repoListType">Git</strong><span class="bul"></span></c:if>
+                            <c:if test="${type1=='svn'}"><strong id="repoListType">SVN</strong><span class="bul"></span></c:if>
                         </div>
                         <ul class="select-list" onclick="repoSearchList()">
                             <li>형상관리 전체</li>
@@ -54,30 +49,20 @@
                     </div>
                     <div class="selectbox select2 ml5" style="width:135px;">
                         <div>
-                            <c:if test="${type2==''}"><strong id="repoListPermission">전체 레파지토리</strong><span
-                                    class="bul"></span></c:if>
-                            <c:if test="${type2=='READ_WRITE_OWNER'}"><strong id="repoListPermission">참여
-                                레파지토리</strong><span class="bul"></span></c:if>
+                            <c:if test="${type2==''}"><strong id="repoListPermission">전체 레파지토리</strong><span class="bul"></span></c:if>
+                            <c:if test="${type2=='READ_WRITE_OWNER'}"><strong id="repoListPermission">참여 레파지토리</strong><span class="bul"></span></c:if>
                         </div>
                         <ul class="select-list" onclick="repoSearchList()">
-                            <li class="selected" value="" id="allRepository" name="repo_role" class="selectSortType">전체
-                                레파지토리
-                            </li>
-                            <li value="READ_WRITE_OWNER" id="read_Repository" name="repo_role" class="selectSortType">참여
-                                레파지토리
-                            </li>
+                            <li class="selected" value="" id="allRepository" name ="repo_role" class="selectSortType">전체 레파지토리</li>
+                            <li value="READ_WRITE_OWNER" id="read_Repository" name ="repo_role" class="selectSortType">참여 레파지토리</li>
                         </ul>
                     </div>
                     <div class="selectbox select5 ml5" style="width:135px;">
                         <div>
-                            <c:if test="${reposort=='lastModified_true' || reposort==''}"><strong id="repoListreposort">최신
-                                업데이트 순</strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='lastModified_false'}"><strong id="repoListreposort">오래된 업데이트
-                                순</strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='creationDate_true'}"><strong id="repoListreposort">최신 생성일
-                                순</strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='creationDate_false'}"><strong id="repoListreposort">오래된 생성일
-                                순</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='lastModified_true' || reposort==''}"><strong id="repoListreposort">최신 업데이트 순</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='lastModified_false'}"><strong id="repoListreposort">오래된 업데이트 순</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='creationDate_true'}"><strong id="repoListreposort">최신 생성일 순</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='creationDate_false'}"><strong id="repoListreposort">오래된 생성일 순</strong><span class="bul"></span></c:if>
                         </div>
                         <ul class="select-list" onclick="repoSearchList()">
                             <li id="lastModified_desc" class="selectSortType">최신 업데이트 순</li>
@@ -126,8 +111,7 @@
                                 </dd>
                                 <c:choose>
                                     <c:when test="${repositories.type eq 'git'}">
-                                        <dd class="thmb_img"><img src="/resources/images/img_git.png" alt="GIT 이미지"
-                                                                  border="0"></dd>
+                                        <dd class="thmb_img"><img src="/resources/images/img_git.png" alt="GIT 이미지" border="0"></dd>
                                     </c:when>
                                     <c:when test="${repositories.type eq 'svn'}">
                                         <dd class="thmb_img"><img src="/resources/images/img_svn.png" alt="SVN 이미지"
@@ -163,18 +147,18 @@
                                                 </c:if>
                                             </c:forEach>
                                         </li>
-                                            <%--
-                                            <li class="ico_area">
-                                                <c:choose>
-                                                    <c:when test="${repositories.public_}">
-                                                        <img src="/resources/images/process_ico_public.png" alt="공개 이미지" border="0"><p class="tit">공개</p>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <img src="/resources/images/process_ico_private.png" alt="비공개 이미지" border="0"><p class="tit">비공개</p>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </li>
-                                            --%>
+                                        <%--
+                                        <li class="ico_area">
+                                            <c:choose>
+                                                <c:when test="${repositories.public_}">
+                                                    <img src="/resources/images/process_ico_public.png" alt="공개 이미지" border="0"><p class="tit">공개</p>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="/resources/images/process_ico_private.png" alt="비공개 이미지" border="0"><p class="tit">비공개</p>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </li>
+                                        --%>
                                     </ul>
                                 </dd>
                             </dl>

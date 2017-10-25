@@ -13,12 +13,16 @@ import sonia.scm.repository.ChangesetPagingResult;
 import sonia.scm.repository.Tags;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
 /**
- * Created by lena on 2017-06-27.
+ * Created by injeong Lee on 2017-06-27.
+ *
  */
 @Service
 public class RepositoryService extends CommonService {
@@ -38,7 +42,7 @@ public class RepositoryService extends CommonService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return response.getBody();
+        return response != null ? response.getBody() : null;
     }
 
     /*
@@ -49,8 +53,7 @@ public class RepositoryService extends CommonService {
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(repository);
         String url = propertiesUtil.getApi_repo_id().replace("{id}", id);
         logger.debug("########## Service Confirm ##########");
-        ResponseEntity response = restClientUtil.callRestApi(HttpMethod.PUT, url, entity, String.class);
-        return response;
+        return restClientUtil.callRestApi(HttpMethod.PUT, url, entity, String.class);
     }
 
 
@@ -82,9 +85,8 @@ public class RepositoryService extends CommonService {
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
         ResponseEntity<Repository> response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, Repository.class);
         logger.debug("response.getStatusCode():" + "response.getStatusCode():");
-        Repository repository = response.getBody();
 
-        return repository;
+        return response.getBody();
 
     }
 
@@ -142,7 +144,7 @@ public class RepositoryService extends CommonService {
 
             ResponseEntity<Branches> responseEntity = restClientUtil.callRestApi(HttpMethod.GET, url, entity, Branches.class);
 
-            Branches branches = (Branches) responseEntity.getBody();
+            Branches branches = responseEntity.getBody();
 
             return branches;
         } catch (Exception e) {
@@ -159,7 +161,7 @@ public class RepositoryService extends CommonService {
 
         ResponseEntity<Tags> response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, Tags.class);
 
-        Tags tags = (Tags) response.getBody();
+        Tags tags = response.getBody();
 
         return tags;
 
@@ -172,7 +174,7 @@ public class RepositoryService extends CommonService {
 
         ResponseEntity<BrowserResult> response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, BrowserResult.class);
 
-        BrowserResult browserResult = (BrowserResult) response.getBody();
+        BrowserResult browserResult = response.getBody();
 
         return browserResult;
 
@@ -186,7 +188,7 @@ public class RepositoryService extends CommonService {
 
             ResponseEntity<ChangesetPagingResult> responseEntity = restClientUtil.callRestApi(HttpMethod.GET, url, entity, ChangesetPagingResult.class);
 
-            ChangesetPagingResult changesets = (ChangesetPagingResult) responseEntity.getBody();
+            ChangesetPagingResult changesets = responseEntity.getBody();
             return changesets;
         } catch (Exception e) {
             e.printStackTrace();
@@ -206,8 +208,7 @@ public class RepositoryService extends CommonService {
         try {
             HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
             String url = propertiesUtil.getApi_repo_id().replace("{id}", id);
-            ResponseEntity responseEntity = restClientUtil.callRestApi(HttpMethod.DELETE, url, entity, String.class);
-            return responseEntity;
+            return restClientUtil.callRestApi(HttpMethod.DELETE, url, entity, String.class);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.FORBIDDEN);
@@ -235,7 +236,7 @@ public class RepositoryService extends CommonService {
         url = url + param;
         logger.debug("url:::" + url);
         ResponseEntity<BrowserResult> response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, BrowserResult.class);
-        BrowserResult repositories = (BrowserResult) response.getBody();
+        BrowserResult repositories = response.getBody();
 //        List<sonia.scm.repository.FileObject> lstFile = repositories.getFiles();
 //        repositories.setNewFiles(lstFile);
         logger.debug(repositories.toString());
