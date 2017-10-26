@@ -30,9 +30,10 @@
     <tr class=""><!--사용자검색 상세내용-->
         <td class="controlbox">
             <dl>
-                <dd><span class="sm_tit">아이디 :</span><span id="viewId"></span><br></dd>
-                <dd><span class="sm_tit">이름 :</span><span id="viewName"></span><br></dd>
-                <dd><span class="sm_tit">이메일 :</span><span id="viewEmail"></span><br></dd>
+                <input type="hidden" id="viewUser">
+                <dd><span class="sm_tit">아이디 :</span><span id="viewId" name="viewId"></span><br></dd>
+                <dd><span class="sm_tit">이름 :</span><span id="viewName" name="viewName"></span><br></dd>
+                <dd><span class="sm_tit">이메일 :</span><span id="viewEmail" name="viewEmail"></span><br></dd>
             </dl>
         </td>
     </tr>
@@ -62,8 +63,7 @@
     <tr>
         <th class="last">설명 (선택)</th>
         <td>
-            <textarea type="text" colos="20" rows="5" id ="UserPermissionName" name="UserPermissionName" placeholder=""></textarea>
-            <p class="desc" style="color:#fb5666;display: none" id="createPemissionNameAlert">사용자 정보에 보여지는 설명은 영문만 허용됩니다.</p>
+            <textarea type="text" colos="20" rows="5" id ="userPermissionName"placeholder=""></textarea>
         </td>
     </tr>
     </tbody>
@@ -71,7 +71,6 @@
 <!--//공통 Form 테이블 :e -->
 <!--기본버튼(Right 정렬) :s -->
 <div class="fl">
-    <%--<jsp:include page="../common/buttonCreateOnclick.jsp"></jsp:include>--%>
     <button type="button" class="button btn_default" id="btnDPDelete" name="btnDPDelete" title="참여자 삭제">참여자 삭제</button>
 </div>
 <div class="fr">
@@ -81,52 +80,48 @@
 <!--//기본버튼(Right 정렬) :e -->
 <script type="text/javascript">
 
-    //GET Data
+    //GET data
     function detailInformation(data,param) {
         $("#viewId").html(data.ScUser.userId);
         $("#viewName").html(data.ScUser.userName);
         $("#viewEmail").html(data.ScUser.userMail);
-        //alert(JSON.stringify(data));
     }
 
     //BIND :: buttonCreateOnclick[DELETE]
-    //    $("#buttonCreateOnclick").text("참여자 삭제");
-    //    $("#buttonCreateOnclick").click(function (event) {
     $("#btnDPDelete").on("click", function() {
-        popupConfirmClick("삭제","참여자 정보를 삭제 하시겠습니까?", 'userDetailUpdateDelete()',"삭제");
+        popupConfirmClick("삭제","참여자 정보를 삭제 하시겠습니까?", "userDetailUpdateDelete()","삭제");
     });
 
     var userDetailUpdateDelete = function (no) {
-        //var url = "/user/permission/"+no;
-        var url = "/user/permission/" + no;
+        var url = "/user/permission/" + $("#viewUser").val();
         procCallAjax('delete', url, null, userDetailUpdateDeleteCallback);
     };
 
-    function userDetailUpdateDeleteCallback(data) {
+    function userDetailUpdateDeleteCallback() {
        procPopupAlert("참여자 삭제가 완료되었습니다.",'$("#permissionList").submit()','return;');
     }
 
     //BIND :: buttonCreateOnclick[UPDATAE]
     $("#buttonCreateOnclick2").text("수정");
     $("#buttonCreateOnclick2").click(function (event) {
-        popupConfirmClick("수정","참여자 정보를 수정 하시겠습니까?", 'UserDetailUpdate()',"수정");
+        popupConfirmClick("수정","참여자 정보를 수정 하시겠습니까?", 'userDetailUpdate()',"수정");
     });
 
-    var UserDetailUpdate = function () {
+    var userDetailUpdate = function () {
         var url = "/user/permission/"+$("#viewId").val();
         var st = $(":input:radio[name=type]:checked").val();
         var param = {
-            "user":$("#viewId").val(),
-            "name":$("#viewName").val(),
-            "email":$("#viewEmail").val(),
-            permission: st,
-            description : document.getElementById('UserPermissionName').value
+             "userId":$("#viewId").val()
+            ,"userName":$("#viewName").val()
+            ,"userMail":$("#viewEmail").val()
+            ,"permission": st
+            ,"description" :$("#userPermissionName").val()
         };
-        procCallAjax('put', url, param, UserDetailUpdateCallback);
+;        procCallAjax('put', url, param, userDetailUpdateCallback);
         console.log("::::Confirm::::" +JSON.stringify(param));
     }
 
-    function UserDetailUpdateCallback(data) {
+    function userDetailUpdateCallback(data) {
         if(data.status==200){
             procPopupAlert($("#viewId").html()+"사용자 수정이 완료되었습니다.",'putPermissionCancel()','return');
         }
