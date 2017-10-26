@@ -33,9 +33,9 @@
     <tr class=""><!--사용자검색 상세내용-->
         <td class="f_title">
             <dl>
-                <dd><span class="sm_tit">아이디 :</span><span id="insertId"></span><br></dd>
-                <dd><span class="sm_tit">이름 :</span><span id="insertName"></span><br></dd>
-                <dd><span class="sm_tit">이메일 :</span><span id="insertEmail"></span><br></dd>
+                <dd><span class="sm_tit">아이디 :</span><span id="viewId"></span><br></dd>
+                <dd><span class="sm_tit">이름 :</span><span id="viewName"></span><br></dd>
+                <dd><span class="sm_tit">이메일 :</span><span id="viewEmail"></span><br></dd>
             </dl>
         </td>
     </tr>
@@ -66,7 +66,7 @@
     <tr>
         <th class="last">설명 (선택)</th>
         <td>
-            <textarea type="text" colos="20" rows="5" id = "PemissionName" name = "PemissionName" placeholder=""></textarea>
+            <textarea type="text" colos="20" rows="5" id = "UserPemissionName" name = "UserPemissionName" placeholder=""></textarea>
             <p class="desc" style="color:#fb5666;display: none" id="createPemissionNameAlert">사용자 정보에 보여지는 설명은 영문만 허용됩니다.</p>
         </td>
     </tr>
@@ -75,45 +75,61 @@
 <!--//공통 Form 테이블 :e -->
 <!--기본버튼(Right 정렬) :s -->
 <div class="fl">
-    <button type="button" class="button btn_default" title="참여자 삭제">참여자 삭제</button>
+    <%--<jsp:include page="../common/buttonCreateOnclick.jsp"></jsp:include>--%>
+    <button type="button" class="button btn_default" id= "btnDPDelete" name = "btnDPDelete" title="참여자 삭제">참여자 삭제</button>
 </div>
 <div class="fr">
-    <%--<button type="button" class="button btn_default" title="수정">수정</button>--%>
     <jsp:include page="../common/buttonCreateOnclick2.jsp"></jsp:include>
+    <%--<button type="button" class="button btn_default" title="수정">수정</button>--%>
     <button type="button" class="button btn_cancel" title="취소"  onclick="putPermissionCancel()">취소</button>
 </div>
 <!--//기본버튼(Right 정렬) :e -->
 <script type="text/javascript">
 
-    $(document).ready(function () {
+    //GET Data
+    function detailInformation(data,param) {
+        $("#viewId").html(data.ScUser.userId);
+        $("#viewName").html(data.ScUser.userName);
+        $("#viewEmail").html(data.ScUser.userMail);
+        //alert(JSON.stringify(data));
+    }
+
+    //BIND :: buttonCreateOnclick[DELETE]
+    //    $("#buttonCreateOnclick").text("참여자 삭제");
+    //    $("#buttonCreateOnclick").click(function (event) {
+    $("#btnDPDelete").on("click", function() {
+        popupConfirmClick("삭제","참여자 정보를 삭제 하시겠습니까?", 'UserDetailUpdateDelete()',"삭제");
     });
 
+    var UserDetailUpdateDelete = function () {
+        var url = "/user/permission/"+$("#viewId").val();
+        procCallAjax('delete', url, null, UserDetailUpdateDeleteCallback);
+    };
+
+    function UserDetailUpdateDeleteCallback(data) {
+       procPopupAlert("참여자 삭제가 완료되었습니다.",'$("#permissionList").submit()','return;');
+    }
+
+    //BIND :: buttonCreateOnclick[UPDATAE]
     $("#buttonCreateOnclick2").text("수정");
     $("#buttonCreateOnclick2").click(function (event) {
-        popupConfirmClick("수정","사용자 정보를 수정 하시겠습니까?", 'modify()',"수정");
+        popupConfirmClick("수정","참여자 정보를 수정 하시겠습니까?", 'UserDetailUpdate()',"수정");
     });
 
-    var modify = function () {
+    var UserDetailUpdate = function () {
         var url = "/user/permission/"+$("#repositoryId").val();
         var st = $(":input:radio[name=type]:checked").val();
         var param = {
-            userId: $("#insertId").text(),
             permission: st,
-            description : document.getElementById('PemissionName').value
+            description : document.getElementById('UserPemissionName').value
         };
-        procCallAjax('put', url, param, userIdCallBack);
-
+        procCallAjax('put', url, param, UserDetailUpdateCallback);
     }
 
-//    function invitePermissionCallback(data) {
-//        if(data.status==200){
-//            procPopupAlert($("#insertId").text()+" 수정되었습니다.",'putPermissionCancel()','return');
-//        }
-//    }
-
-    function userIdCallBack(data) {
-        alert(data.ScUser.userId);
-        
+    function UserDetailUpdateCallback(data) {
+        if(data.status==200){
+            procPopupAlert($("#viewId").html()+" 사용자 수정이 완료되었습니다.",'putPermissionCancel()','return');
+        }
     }
 
     //BIND
@@ -122,6 +138,8 @@
         $('#permissionUpdate').css('display', 'none');
         $('#tabPermissionlist').css('display', 'block');
     }
+
+
 </script>
 <!--//select 스크립트-->
 

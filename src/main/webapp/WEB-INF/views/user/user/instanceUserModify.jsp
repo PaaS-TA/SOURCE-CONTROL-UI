@@ -206,8 +206,8 @@
                         ,"desc":$("#description").val()
 
                         };
-        procCallAjax('put', url, param, modifyCallback);
-    };
+
+    };  procCallAjax('put', url, param, modifyCallback);
 
 
     function modifyCallback(data){

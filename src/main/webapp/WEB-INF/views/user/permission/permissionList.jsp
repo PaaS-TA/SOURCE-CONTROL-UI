@@ -187,7 +187,7 @@
     };
 
     var initialPermissionList = function(){
-        var varPermissionHtml ='<li id="initRepoList" name="initRepoList"> <dl>조회된 데이터가 없습니다.</dl>            </li>';
+        var varPermissionHtml ='<li id="initRepoList" name="initRepoList"><dl>조회된 데이터가 없습니다.</dl></li>';
         $('#permissionsList').append(varPermissionHtml);
         $('#morePermissionsListButtonArea').css('display', 'none');
 
@@ -198,18 +198,14 @@
 
     }
     function detailPermission(name){
-
         $('#permissionUpdate').css('display', 'block');
         $('#tabPermissionlist').css('display', 'none');
         getPermissionDetail(name);
     }
 
+    //BIND :: move to 'detailPermission.jsp'
     function getPermissionDetail(name){
-
-        procCallAjax('get','/user/getInstanceUser/'+name+'.json',null,detaicallback);
+        procCallAjax('get','/user/getInstanceUser/'+name+'.json',null,detailInformation);
     }
-    function detaicallback(data,param) {
 
-        alert(data.ScUser.userId);
-    }
 </script>
