@@ -152,7 +152,7 @@
             for (var i = 0; i < permissions.length; i++) {
                 var varPermissionHtml ='<li> <dl> <dt>' + permissions[i].name + '<dd> <ul>'
                     + '<li class="sbj_txt" onclick="detailPermission(\''+permissions[i].name+'\')">' + permissions[i].displayName + '</li>'
-                    + '<li class="sbj_txt" onclick="(\''+permissions[i].permission.no+'\')">' + permissions[i].permission.no + '</li>'
+                    + '<li class="hidden" onclick="(\''+permissions[i].permission.no+'\')">' + permissions[i].permission.no + '</li>'
                     + '<li class="stateArea"><i class="ico_create"></i>생성일 :' + permissions[i].creationDate + '<span class="pr10"></span>'
                     + '<i class="ico_modify"></i>수정일 : ' + permissions[i].lastModified + '</li>'
                     + '</ul>  </dd> <dd class="icon_wrap"> <ul class="ico_lst">'
@@ -208,9 +208,7 @@
 
     //BIND :: move to 'detailPermission.jsp'
     function getPermissionDetail(name,no){
-        //'no' hidden값
         procCallAjax('get','/user/getInstanceUser/'+name+'.json',null,detailInformation);
-
     }
 
 </script>
