@@ -5,7 +5,7 @@
 * 프로그램명permissionList.jsp.jsp(참여자 목록 리스트)
 * 프로그램 개요 : 참여자 목록 리스트 화면
 * 작 성 자 : 이인정
-* 작 성 일 : 2018.07.10
+* 작 성 일 : 2017.07.10
 * 화면 ID: UI-FDSC-8000
 * 화면설계 ID: UI-SBSC-8000
 =================================================================
@@ -152,9 +152,11 @@
             for (var i = 0; i < permissions.length; i++) {
                 var varPermissionHtml ='<li> <dl> <dt>' + permissions[i].name + '<dd> <ul>'
                     + '<li class="sbj_txt" onclick="detailPermission(\''+permissions[i].name+'\')">' + permissions[i].displayName + '</li>'
+                    + '<li class="sbj_txt" onclick="(\''+permissions[i].permission.no+'\')">' + permissions[i].permission.no + '</li>'
                     + '<li class="stateArea"><i class="ico_create"></i>생성일 :' + permissions[i].creationDate + '<span class="pr10"></span>'
                     + '<i class="ico_modify"></i>수정일 : ' + permissions[i].lastModified + '</li>'
                     + '</ul>  </dd> <dd class="icon_wrap"> <ul class="ico_lst">'
+
                 if (permissions[i].permission.permission === 'OWNER') {
                     varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_modify.png" alt="수정 이미지" border="0">'
                         + ' <p class="tit">소유자</p> </li>';
@@ -192,20 +194,23 @@
         $('#morePermissionsListButtonArea').css('display', 'none');
 
     };
+
     function putPermission(){
         $('#permissionCreate').css('display', 'block');
         $('#tabPermissionlist').css('display', 'none');
-
     }
-    function detailPermission(name){
+
+    function detailPermission(name,no){
         $('#permissionUpdate').css('display', 'block');
         $('#tabPermissionlist').css('display', 'none');
-        getPermissionDetail(name);
+        getPermissionDetail(name,no);
     }
 
     //BIND :: move to 'detailPermission.jsp'
-    function getPermissionDetail(name){
+    function getPermissionDetail(name,no){
+        //'no' hidden값
         procCallAjax('get','/user/getInstanceUser/'+name+'.json',null,detailInformation);
+
     }
 
 </script>
