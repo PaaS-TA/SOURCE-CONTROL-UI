@@ -54,8 +54,8 @@
         <th>권한 (<span class="essential">*필수</span>)</th>
         <td>
             <label>
-                <input type="radio" name="type" value="WRITE" checked="checked">쓰기권한
-                <input type="radio" name="type" value="READ">보기권한
+                <input type="radio" name="type_datail" value="WRITE" checked="checked">쓰기권한
+                <input type="radio" name="type_datail" value="READ">보기권한
             </label>
         </td>
     </tr>
@@ -92,14 +92,17 @@
         popupConfirmClick("삭제","참여자 정보를 삭제 하시겠습니까?", "userDetailUpdateDelete()","삭제");
     });
 
+
     var userDetailUpdateDelete = function (no) {
         var url = "/user/permission/" + $("#viewUser").val();
         procCallAjax('delete', url, null, userDetailUpdateDeleteCallback);
     };
 
+
     function userDetailUpdateDeleteCallback() {
        procPopupAlert("참여자 삭제가 완료되었습니다.",'$("#permissionList").submit()','return;');
     }
+
 
     //BIND :: buttonCreateOnclick[UPDATAE]
     $("#buttonCreateOnclick2").text("수정");
@@ -107,25 +110,23 @@
         popupConfirmClick("수정","참여자 정보를 수정 하시겠습니까?", 'userDetailUpdate()',"수정");
     });
 
+
     var userDetailUpdate = function () {
-        var url = "/user/permission/"+$("#viewId").val();
-        var st = $(":input:radio[name=type]:checked").val();
+        var url = "/user/permission/"+$("#repositoryId").val();
+        var st = $(":input:radio[name=type_datail]:checked").val();
         var param = {
-             "userId":$("#viewId").val()
-            ,"userName":$("#viewName").val()
-            ,"userMail":$("#viewEmail").val()
-            ,"permission": st
-            ,"description" :$("#userPermissionName").val()
+            userId: $("#viewId").text()
+            , permission: st
+            ,description:$("#userPermissionName").val()
         };
-;        procCallAjax('put', url, param, userDetailUpdateCallback);
-        console.log("::::Confirm::::" +JSON.stringify(param));
+        procCallAjax('put', url, param, userDetailUpdateCallback);
+        alert(JSON.stringify(param));
     }
 
     function userDetailUpdateCallback(data) {
-        if(data.status==200){
-            procPopupAlert($("#viewId").html()+"사용자 수정이 완료되었습니다.",'putPermissionCancel()','return');
-        }
+        procPopupAlert("사용자 수정이 완료되었습니다.",'$("#permissionList").submit()','return;');
     }
+
 
     //BIND
     function putPermissionCancel(){
