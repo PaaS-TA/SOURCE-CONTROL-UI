@@ -63,7 +63,7 @@
     <tr>
         <th class="last">설명 (선택)</th>
         <td>
-            <textarea type="text" colos="20" rows="5" id ="userPermissionName"placeholder=""></textarea>
+            <textarea type="text" name="viewDescription" id="viewDescription" colos="20" rows="5"  placeholder="입력한 사용자 설명">${ScUser.userDesc}</textarea>
         </td>
     </tr>
     </tbody>
@@ -80,11 +80,11 @@
 <!--//기본버튼(Right 정렬) :e -->
 <script type="text/javascript">
 
-    //GET data
     function detailInformation(data,param) {
         $("#viewId").html(data.ScUser.userId);
         $("#viewName").html(data.ScUser.userName);
         $("#viewEmail").html(data.ScUser.userMail);
+        $("#viewDescription").html(data.ScUser.userDesc);
     }
 
     //BIND :: buttonCreateOnclick[DELETE]
@@ -100,40 +100,50 @@
 
 
     function userDetailUpdateDeleteCallback() {
-       procPopupAlert("참여자 삭제가 완료되었습니다.",'$("#permissionList").submit()','return;');
-    }
+       procPopupAlert("참여자 삭제가 완료되었습니다.",'putPermissionCancel()','return;');
+    };
 
 
     //BIND :: buttonCreateOnclick[UPDATAE]
     $("#buttonCreateOnclick2").text("수정");
     $("#buttonCreateOnclick2").click(function (event) {
-        popupConfirmClick("수정","참여자 정보를 수정 하시겠습니까?", 'userDetailUpdate()',"수정");
+        popupConfirmClick("수정","참여자 정보를 수정 하시겠습니까?", 'userDetailBeforeUpdateDelete()',"수정");
     });
 
+    //수정을 하기전에 삭제하기
+
+    var userDetailBeforeUpdateDelete = function(){
+        var url = "/user/permission/" +  $("#viewUser").val();
+        procCallAjax('delete', url, null,userDetailUpdate);
+    };
 
     var userDetailUpdate = function () {
+        console.debug("[delete]->[update] procCallAjax Log2");
         var url = "/user/permission/"+$("#repositoryId").val();
         var st = $(":input:radio[name=type_datail]:checked").val();
         var param = {
-            userId: $("#viewId").text()
-            , permission: st
+             userId: $("#viewId").text()
+            ,permission: st
             ,description:$("#userPermissionName").val()
         };
         procCallAjax('put', url, param, userDetailUpdateCallback);
-        alert(JSON.stringify(param));
-    }
+        console.debug("[delete]->[update] procCallAjax Log3");
+    };
+
 
     function userDetailUpdateCallback(data) {
-        procPopupAlert("사용자 수정이 완료되었습니다.",'$("#permissionList").submit()','return;');
-    }
+        procPopupAlert("사용자 수정이 완료되었습니다.",'putPermissionCancel()','return;');
+        console.debug("[delete]->[update] procCallAjax Log4");
+    };
 
 
     //BIND
     function putPermissionCancel(){
+        $('#tabPermissionlist').css('display', 'block');
         $('#permissionCreate').css('display', 'none');
         $('#permissionUpdate').css('display', 'none');
-        $('#tabPermissionlist').css('display', 'block');
-    }
+        searchPermissions();
+    };
 
 </script>
 <!--//select 스크립트-->
