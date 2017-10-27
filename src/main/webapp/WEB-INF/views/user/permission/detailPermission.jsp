@@ -111,7 +111,6 @@
     });
 
     //수정을 하기전에 삭제하기
-
     var userDetailBeforeUpdateDelete = function(){
         var url = "/user/permission/" +  $("#viewUser").val();
         procCallAjax('delete', url, null,userDetailUpdate);
@@ -124,7 +123,7 @@
         var param = {
              userId: $("#viewId").text()
             ,permission: st
-            ,description:$("#userPermissionName").val()
+            ,description:$("#viewDescription").val()
         };
         procCallAjax('put', url, param, userDetailUpdateCallback);
         console.debug("[delete]->[update] procCallAjax Log3");

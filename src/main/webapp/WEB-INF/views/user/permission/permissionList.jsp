@@ -151,7 +151,7 @@
             var permissions = data.rtnList.content;
             for (var i = 0; i < permissions.length; i++) {
                 var varPermissionHtml ='<li> <dl> <dt>' + permissions[i].name + '<dd> <ul>'
-                    + '<li class="sbj_txt" onclick="detailPermission(\''+permissions[i].name+'\',+ \''+permissions[i].permission.no+'\')">' + permissions[i].displayName + '</li>'
+                    + '<li class="sbj_txt" onclick="detailPermission(\''+permissions[i].name+'\',+ \''+permissions[i].permission.no+'\'+ \''+permissions[i].permission.permission+'\')">' + permissions[i].displayName + '</li>'
                     + '<li class="hidden" onclick="(\''+permissions[i].permission.no+'\')">' + permissions[i].permission.no + '</li>'
                     + '<li class="stateArea"><i class="ico_create"></i>생성일 :' + permissions[i].creationDate + '<span class="pr10"></span>'
                     + '<i class="ico_modify"></i>수정일 : ' + permissions[i].lastModified + '</li>'
@@ -200,16 +200,17 @@
         $('#tabPermissionlist').css('display', 'none');
     }
 
-    function detailPermission(name,no){
-        //alert(no);
+    function detailPermission(name,no,permission){
         $("#viewUser").val(no);
         $('#permissionUpdate').css('display', 'block');
         $('#tabPermissionlist').css('display', 'none');
+        $(":input:radio[name=type_datail]:checked");
         getPermissionDetail(name,no);
     }
 
     //BIND :: move to 'detailPermission.jsp'
     function getPermissionDetail(name){
+
         procCallAjax('get','/user/getInstanceUser/'+name+'.json',null,detailInformation);
     }
 
