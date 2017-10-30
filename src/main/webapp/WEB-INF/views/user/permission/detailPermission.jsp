@@ -54,8 +54,10 @@
         <th>권한 (<span class="essential">*필수</span>)</th>
         <td>
             <label>
-                <input type="radio" name="type_datail" value="WRITE" checked="checked">쓰기권한
-                <input type="radio" name="type_datail" value="READ">보기권한
+                <%--<input type="radio" name="viewAuthority" value="WRITE" checked="checked">쓰기권한--%>
+                <%--<input type="radio" name="viewAuthority" value="READ">보기권한--%>
+                <input type="radio" name="viewAuthority" value="WRITE" <c:if test="${ScUser.permission==WRITE}">checked="checked"</c:if>>쓰기권한
+                <input type="radio" name="viewAuthority" value="READ" <c:if test="${ScUser.permission==READ}">checked="checked"</c:if>>보기권한
             </label>
         </td>
     </tr>
@@ -85,10 +87,11 @@
         $("#viewName").html(data.ScUser.userName);
         $("#viewEmail").html(data.ScUser.userMail);
         $("#viewDescription").html(data.ScUser.userDesc);
+        $("#viewAuthority").html(data.ScUser.permission);
     }
 
     //BIND :: buttonCreateOnclick[DELETE]
-    $("#btnDPDelete").on("click", function() {
+    $("#btnDPDelete").on("click", function() {5555
         popupConfirmClick("삭제","참여자 정보를 삭제 하시겠습니까?", "userDetailUpdateDelete()","삭제");
     });
 
@@ -110,7 +113,7 @@
         popupConfirmClick("수정","참여자 정보를 수정 하시겠습니까?", 'userDetailBeforeUpdateDelete()',"수정");
     });
 
-    //수정을 하기전에 삭제하기
+    //수정전 삭제,
     var userDetailBeforeUpdateDelete = function(){
         var url = "/user/permission/" +  $("#viewUser").val();
         procCallAjax('delete', url, null,userDetailUpdate);
@@ -119,11 +122,10 @@
     var userDetailUpdate = function () {
         console.debug("[delete]->[update] procCallAjax Log2");
         var url = "/user/permission/"+$("#repositoryId").val();
-        var st = $(":input:radio[name=type_datail]:checked").val();
         var param = {
-             userId: $("#viewId").text()
-            ,permission: st
-            ,description:$("#viewDescription").val()
+             "userId": $("#viewId").text()
+            ,"permission": $(":input:radio[name=viewAuthority]:checked").val()
+            ,"desc":$("#viewDescription").val()
         };
         procCallAjax('put', url, param, userDetailUpdateCallback);
         console.debug("[delete]->[update] procCallAjax Log3");
@@ -131,6 +133,7 @@
 
 
     function userDetailUpdateCallback(data) {
+        alert(JSON.stringify(data));
         procPopupAlert("사용자 수정이 완료되었습니다.",'putPermissionCancel()','return;');
         console.debug("[delete]->[update] procCallAjax Log4");
     };

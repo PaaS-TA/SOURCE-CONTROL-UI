@@ -151,7 +151,7 @@
             var permissions = data.rtnList.content;
             for (var i = 0; i < permissions.length; i++) {
                 var varPermissionHtml ='<li> <dl> <dt>' + permissions[i].name + '<dd> <ul>'
-                    + '<li class="sbj_txt" onclick="detailPermission(\''+permissions[i].name+'\',+ \''+permissions[i].permission.no+'\'+ \''+permissions[i].permission.permission+'\')">' + permissions[i].displayName + '</li>'
+                    + '<li class="sbj_txt" onclick="detailPermission(\''+permissions[i].name+'\',+ \''+permissions[i].permission.no+'\')">' + permissions[i].displayName + '</li>'
                     + '<li class="hidden" onclick="(\''+permissions[i].permission.no+'\')">' + permissions[i].permission.no + '</li>'
                     + '<li class="stateArea"><i class="ico_create"></i>생성일 :' + permissions[i].creationDate + '<span class="pr10"></span>'
                     + '<i class="ico_modify"></i>수정일 : ' + permissions[i].lastModified + '</li>'
@@ -192,21 +192,23 @@
         var varPermissionHtml ='<li id="initRepoList" name="initRepoList"><dl>조회된 데이터가 없습니다.</dl></li>';
         $('#permissionsList').append(varPermissionHtml);
         $('#morePermissionsListButtonArea').css('display', 'none');
-
     };
+
 
     function putPermission(){
         $('#permissionCreate').css('display', 'block');
         $('#tabPermissionlist').css('display', 'none');
     }
 
-    function detailPermission(name,no,permission){
+
+    function detailPermission(name,no){
         $("#viewUser").val(no);
         $('#permissionUpdate').css('display', 'block');
         $('#tabPermissionlist').css('display', 'none');
-        $(":input:radio[name=type_datail]:checked");
+        $(":input:radio[name=viewAuthority]:checked");
         getPermissionDetail(name,no);
     }
+
 
     //BIND :: move to 'detailPermission.jsp'
     function getPermissionDetail(name){
