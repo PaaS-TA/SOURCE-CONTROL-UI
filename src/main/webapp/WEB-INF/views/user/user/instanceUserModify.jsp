@@ -204,7 +204,6 @@
 //                        ,"password":$("#password2").val()
                         ,"password":$("#confirmPasswordInput").val()
                         ,"desc":$("#description").val()
-
                         };
         procCallAjax('put', url, param, modifyCallback);
     };

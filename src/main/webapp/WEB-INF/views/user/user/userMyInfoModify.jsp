@@ -71,6 +71,7 @@
     <!--//contents :e -->
     <%--</c:if>--%>
 </div>
+<input type="hidden" name="description" id="description" colos="20" rows="5"  placeholder="입력한 사용자 설명" value =${ScUser.userDesc}></input>
 <script>
     //validation_check
     $(document).ready(function () {
@@ -157,6 +158,7 @@
                         ,"active":$("#active").val()
                         ,"type":$("#type").val()
                         ,"password":$("#confirmPasswordInput").val()
+                        ,"desc":$("#description").val()
                         };
         procCallAjax('put', url, param, modifyCallback);
     };

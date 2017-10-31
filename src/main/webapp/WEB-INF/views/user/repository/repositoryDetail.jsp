@@ -31,7 +31,7 @@
                 <li class=""><a href="#;" onClick="sub_tab(1);"><span class="commint"></span>커밋(Commint) <span
                         class="pl10">${ChangesetPagingResult.size()}</span></a></li>
                 <li class=""><a href="#;" onClick="detail_Sub_tab(2);"><span class="contributor"></span>참여자(Contributor)
-                    <span class="pl10" id="detailPermissionCntMain" name="detailPermissionCntMain"><%--${repositorydetails.permissions.size()}--%></span></a></li>
+                    <span class="pl10" id="detailPermissionCntMain" name="detailPermissionCntMain">${repositorydetails.permissions.size()}</span></a></li>
                 <input type="hidden" id="repositoryId" name="repositoryId" value="${repositorydetails.id}"/>
             </ul>
         </div>
@@ -116,8 +116,8 @@
     var detail_Sub_tab = function (num) {
         console.log("detail_Sub_tab ::: num ::: " + num);
         sub_tab(num);
-        if (num === 1) {
-
+        if (num === 2) {
+            searchPermissions();
         }
     };
 

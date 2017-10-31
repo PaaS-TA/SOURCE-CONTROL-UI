@@ -228,8 +228,7 @@ var procPopupAlert = function (reqMessage, procFunction, reqClosePopup) {
  * @param repositoryName
  * @returns {boolean}
  */
-var validRepositoryName;
-validRepositoryName = function (repositoryName) {
+var validRepositoryName = function (repositoryName) {
     var rtnVal = false;
     if(repositoryName == null || repositoryName == "") {
         return false;

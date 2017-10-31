@@ -54,10 +54,9 @@
         <th>권한 (<span class="essential">*필수</span>)</th>
         <td>
             <label>
-                <%--<input type="radio" name="viewAuthority" value="WRITE" checked="checked">쓰기권한--%>
-                <%--<input type="radio" name="viewAuthority" value="READ">보기권한--%>
-                <input type="radio" name="viewAuthority" value="WRITE" <c:if test="${ScUser.permission==WRITE}">checked="checked"</c:if>>쓰기권한
-                <input type="radio" name="viewAuthority" value="READ" <c:if test="${ScUser.permission==READ}">checked="checked"</c:if>>보기권한
+                <input type="radio" name="viewAuthority" value="WRITE">쓰기권한
+                <input type="radio" name="viewAuthority" value="READ">보기권한
+                <input type="radio" name="viewAuthority" value="OWNER">소유자권한
             </label>
         </td>
     </tr>
@@ -73,11 +72,12 @@
 <!--//공통 Form 테이블 :e -->
 <!--기본버튼(Right 정렬) :s -->
 <div class="fl">
-    <button type="button" class="button btn_default" id="btnDPDelete" name="btnDPDelete" title="참여자 삭제">참여자 삭제</button>
+    <jsp:include page="../common/buttonDeleteOnclick.jsp"></jsp:include>
+    <%--<button type="button" class="button btn_default" id="btnDPDelete" name="btnDPDelete" title="참여자 삭제">참여자 삭제</button>--%>
 </div>
 <div class="fr">
     <jsp:include page="../common/buttonCreateOnclick2.jsp"></jsp:include>
-    <button type="button" class="button btn_cancel" title="취소"  onclick="putPermissionCancel()">취소</button>
+    <button type="button" class="button btn_cancel" title="취소"  onclick="detailPermissionCancel()">취소</button>
 </div>
 <!--//기본버튼(Right 정렬) :e -->
 <script type="text/javascript">
@@ -87,11 +87,10 @@
         $("#viewName").html(data.ScUser.userName);
         $("#viewEmail").html(data.ScUser.userMail);
         $("#viewDescription").html(data.ScUser.userDesc);
-        $("#viewAuthority").html(data.ScUser.permission);
     }
 
     //BIND :: buttonCreateOnclick[DELETE]
-    $("#btnDPDelete").on("click", function() {5555
+    $("#btnDPDelete").on("click", function() {
         popupConfirmClick("삭제","참여자 정보를 삭제 하시겠습니까?", "userDetailUpdateDelete()","삭제");
     });
 
@@ -101,9 +100,20 @@
         procCallAjax('delete', url, null, userDetailUpdateDeleteCallback);
     };
 
+    function detailPermissionCancel() {
+        $('#permissionCreate').css('display', 'none');
+        $('#tabPermissionlist').css('display', 'block');
+        $('#permissionUpdate').css('display', 'none');
 
+        //참여자 추가 검색한 결과 삭제
+        $('#SrchPermissionUserList').children().remove();
+        $('#SrchPermissionUserList').hide();
+        $("#PemissionName").text('');
+
+        searchPermissions();
+    }
     function userDetailUpdateDeleteCallback() {
-       procPopupAlert("참여자 삭제가 완료되었습니다.",'putPermissionCancel()','return;');
+       procPopupAlert("참여자 삭제가 완료되었습니다.",'detailPermissionCancel()','return;');
     };
 
 
@@ -133,60 +143,30 @@
 
 
     function userDetailUpdateCallback(data) {
-        alert(JSON.stringify(data));
-        procPopupAlert("사용자 수정이 완료되었습니다.",'putPermissionCancel()','return;');
+//        alert(JSON.stringify(data));
+        procPopupAlert("사용자 수정이 완료되었습니다.",'detailPermissionCancel()','return;');
         console.debug("[delete]->[update] procCallAjax Log4");
     };
 
 
-    //BIND
-    function putPermissionCancel(){
-    function invitePermissionCallback(data) {
-        if(data.status==200){
-            //alert($("#insertId").text()+" 참여자가 추가되었습니다.");
-            popupAlertClick($("#insertId").text()+" 참여자가 추가되었습니다.");
-            // 참여자 리스트 화면으로 화면이동
-            putPermissionCancel();
-//            searchPermissions();
-            //
+    //BIND :: move to 'detailPermission.jsp'
+    function getPermissionDetail(name,permission,no){
+        $('#permissionUpdate').css('display', 'block');
+        $('#permissionCreate').css('display', 'none');
+        $('#tabPermissionlist').css('display', 'none');
+        $("#viewUser").val(no);
+        $('input[name="viewAuthority"]:radio:input[value=\"'+permission+'\"]').attr('checked', 'checked'); // from value
+        $('#viewAuthority').attr('checked', 'checked'); // from id
+        procCallAjax('get','/user/getInstanceUser/'+name+'.json',null,detailInformation);
+
+        $("#buttonDeleteOnclick").text("참여자삭제");
+        $("#buttonDeleteOnclick").click(function (event) {
+            popupConfirmClick("삭제","참여자 정보를 삭제 하시겠습니까?", "userDetailUpdateDelete()","삭제");
+        });
+        if(permission=="OWNER"){
+            $("#buttonDeleteOnclick").hide();
         }
     }
-    function deletePermission(no) {
-        var url = "/user/permission/"+no;
-        procCallAjax('delete', url, null, deletePermissionCallback);
-    }
-    var insertPermission = function (id, name, email) {
-        $("#insertId").text(id);
-        $("#insertName").text(name);
-        $("#insertEmail").text(email);
-        $('#tbl_form02').show();
-        $('#tbl_form03').show();
-        $("#SrchPermissionUserList").hide();
-        $("#SrchPermissionUserList").parent().removeClass("active");
-        $("#SrchPermissionUserList").parent().addClass("active");
-        return false;
-    };
-    function putPermissionCancel() {
-        $('#permissionCreate').css('display', 'none');
-        $('#tabPermissionlist').css('display', 'block');
-        $('#permissionCreate').css('display', 'none');
-        $('#permissionUpdate').css('display', 'none');
-        searchPermissions();
-    };
-
-        //참여자 추가 검색한 결과 삭제
-        $('#SrchPermissionUserList').children().remove();
-        $('#SrchPermissionUserList').hide();
-        $("#SrchPermissionUser").text(0);
-
-        initalInvitePermissionForm();
-    }
-    function deletePermissionCallback(data) {
-        //alert("참여자가 삭제되었습니다.");
-        popupAlertClick("참여자가 삭제되었습니다.");
-        putPermissionCancel();
-    }
-
 </script>
 <!--//select 스크립트-->
 

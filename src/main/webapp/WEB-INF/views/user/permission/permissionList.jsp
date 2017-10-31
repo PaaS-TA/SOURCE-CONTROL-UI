@@ -92,7 +92,6 @@
     $(".select3").selectDesign();
     $(".select4").selectDesign();
     $(document).ready(function () {
-        searchPermissions();
         $("#buttonCreateOnclick").text("참여자 추가");
     });
     $("#buttonCreateOnclick").click(function (event) {
@@ -144,15 +143,18 @@
     };
 
     var permissionCallback = function (data) {
-        $("#detailPermissionCntMain").text(data.rtnList.totalElements);
+//        $("#detailPermissionCntMain").text(data.rtnList.totalElements);
         $("#RPPermissionsCnt").text(data.rtnList.numberOfElements + ' / ' + data.rtnList.totalElements + '건');
         if (data.rtnList === null || data.rtnList.content.length === 0) {
             initialPermissionList();
         } else {
             var permissions = data.rtnList.content;
             for (var i = 0; i < permissions.length; i++) {
-                var varPermissionHtml ='<li> <dl> <dt>' + permissions[i].name + '<dd> <ul>'
-                    + '<li class="sbj_txt" onclick="detailPermission(\''+permissions[i].name+'\',+ \''+permissions[i].permission.no+'\')">' + permissions[i].displayName + '</li>'
+                var varPermissionHtml ='<li onclick="detailPermission(\''
+                    + permissions[i].name+'\','+ '\''
+                    + permissions[i].permission.permission+'\','+ '\''
+                    + permissions[i].permission.no+'\')" ><a href="#"><dl> <dt>' + permissions[i].name + '<dd> <ul>'
+                    + '<li class="sbj_txt">' + permissions[i].displayName + '</li>'
                     + '<li class="hidden" onclick="(\''+permissions[i].permission.no+'\')">' + permissions[i].permission.no + '</li>'
                     + '<li class="stateArea"><i class="ico_create"></i>생성일 :' + permissions[i].creationDate + '<span class="pr10"></span>'
                     + '<i class="ico_modify"></i>수정일 : ' + permissions[i].lastModified + '</li>'
@@ -178,7 +180,7 @@
                         + '<p class="tit">정지</p>   </li>';
                 }
 
-                varPermissionHtml = varPermissionHtml + '  </ul> </dd> </dl> </li>';
+                varPermissionHtml = varPermissionHtml + '  </ul> </dd> </dl></a> </li>';
                 $('#permissionsList').append(varPermissionHtml);
             }
             if (data.rtnList === null || data.rtnList.last) {
@@ -196,28 +198,19 @@
     };
 
 
-    function putPermission(){
+//    function putPermission(){)
     function putPermissionInitial(){
         $('#permissionCreate').css('display', 'block');
         $('#tabPermissionlist').css('display', 'none');
+        $('#permissionUpdate').css('display', 'none');
+
     }
 
 
-    function detailPermission(name,no){
-        $("#viewUser").val(no);
-        $('#permissionUpdate').css('display', 'block');
-        $('#tabPermissionlist').css('display', 'none');
-        $(":input:radio[name=viewAuthority]:checked");
-        getPermissionDetail(name,no);
-        $("#PemissionName").val('');
-        initalInvitePermissionForm();
+    function detailPermission(name,permission,no){
+        getPermissionDetail(name,permission,no);
     }
 
 
-    //BIND :: move to 'detailPermission.jsp'
-    function getPermissionDetail(name){
-
-        procCallAjax('get','/user/getInstanceUser/'+name+'.json',null,detailInformation);
-    }
 
 </script>
