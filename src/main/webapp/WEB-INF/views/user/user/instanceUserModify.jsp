@@ -185,12 +185,12 @@
         if(checkEmail($("#mail"))){
             popupAlertClick("이메일 주소 형식이 올바르지 않습니다.");
             return;
-
+        }
         if(!password_validation_check($("#confirmPasswordInput").val())){
             popupAlertClick("패스워드를 확인하세요.");
             return;
         }
-     }
+
 
         var url = "/user/instanceModifyUser.do";
      //   {"name":"ijlee@bluedigm.com","displayName":"test123","mail":"test2@aaa.aa.aa","admin":false,"active":true,"type":"xml","password":"1234556"}

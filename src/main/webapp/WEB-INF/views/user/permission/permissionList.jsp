@@ -97,6 +97,7 @@
     });
     $("#buttonCreateOnclick").click(function (event) {
         putPermissionInitial();
+        putPermission();
     });
     /**
      * 참여자 정보 탭 javascript 시작
@@ -150,12 +151,13 @@
         } else {
             var permissions = data.rtnList.content;
             for (var i = 0; i < permissions.length; i++) {
-
                 var varPermissionHtml ='<li> <dl> <dt>' + permissions[i].name + '<dd> <ul>'
-                    + '<li class="sbj_txt">' + permissions[i].displayName + '</li>'
+                    + '<li class="sbj_txt" onclick="detailPermission(\''+permissions[i].name+'\',+ \''+permissions[i].permission.no+'\')">' + permissions[i].displayName + '</li>'
+                    + '<li class="hidden" onclick="(\''+permissions[i].permission.no+'\')">' + permissions[i].permission.no + '</li>'
                     + '<li class="stateArea"><i class="ico_create"></i>생성일 :' + permissions[i].creationDate + '<span class="pr10"></span>'
                     + '<i class="ico_modify"></i>수정일 : ' + permissions[i].lastModified + '</li>'
-                    + '</ul>  </dd> <dd class="icon_wrap"> <ul class="ico_lst">';
+                    + '</ul>  </dd> <dd class="icon_wrap"> <ul class="ico_lst">'
+
                 if (permissions[i].permission.permission === 'OWNER') {
                     varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_modify.png" alt="수정 이미지" border="0">'
                         + ' <p class="tit">소유자</p> </li>';
@@ -176,8 +178,6 @@
                         + '<p class="tit">정지</p>   </li>';
                 }
 
-
-
                 varPermissionHtml = varPermissionHtml + '  </ul> </dd> </dl> </li>';
                 $('#permissionsList').append(varPermissionHtml);
             }
@@ -188,19 +188,36 @@
             }
         }
     };
+
     var initialPermissionList = function(){
-        var varPermissionHtml ='<li id="initRepoList" name="initRepoList"> <dl>조회된 데이터가 없습니다.</dl>            </li>';
+        var varPermissionHtml ='<li id="initRepoList" name="initRepoList"><dl>조회된 데이터가 없습니다.</dl></li>';
         $('#permissionsList').append(varPermissionHtml);
         $('#morePermissionsListButtonArea').css('display', 'none');
-
     };
+
+
+    function putPermission(){
     function putPermissionInitial(){
         $('#permissionCreate').css('display', 'block');
         $('#tabPermissionlist').css('display', 'none');
+    }
+
+
+    function detailPermission(name,no){
+        $("#viewUser").val(no);
+        $('#permissionUpdate').css('display', 'block');
+        $('#tabPermissionlist').css('display', 'none');
+        $(":input:radio[name=viewAuthority]:checked");
+        getPermissionDetail(name,no);
         $("#PemissionName").val('');
         initalInvitePermissionForm();
     }
-    function detailPermission(no){
 
+
+    //BIND :: move to 'detailPermission.jsp'
+    function getPermissionDetail(name){
+
+        procCallAjax('get','/user/getInstanceUser/'+name+'.json',null,detailInformation);
     }
+
 </script>

@@ -148,13 +148,12 @@
     });
 
     var searchPermissions = function () {
-        $("#permissionsList").children().remove();
+
         page = 0;
         morePermissions();
     };
 
     var getUser = function () {
-        $("#permissionsList").children().remove();
         searchPermissions();
     };
 
@@ -189,6 +188,9 @@
 
     var permissionCallback = function (data) {
         var rtnMap = data.rtnMap;
+        if(rtnMap.number===0){
+            $("#permissionsList").children().remove();
+        }
         var num = rtnMap.number * rtnMap.size + rtnMap.numberOfElements
         $("#RPPermissionsCnt").text(num + ' / ' + rtnMap.totalElements + '건');
         if (rtnMap === null || rtnMap.content.length === 0) {
