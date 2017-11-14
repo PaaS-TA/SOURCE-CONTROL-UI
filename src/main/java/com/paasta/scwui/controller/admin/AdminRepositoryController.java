@@ -66,12 +66,10 @@ public class AdminRepositoryController extends CommonController {
 
     @ResponseBody
     @RequestMapping("/admin/repository/repositoryList")
-    public Map repositoryListForAdminByParam(@RequestParam Map map, HttpServletRequest request, HttpSession session)
+    public Map repositoryListForAdminByParam(@RequestParam Map map, HttpSession session)
     {
         // Source Control Api Server 호출 - repository 목록 조회
         String instanceid = (String)session.getAttribute("instanceId");
-
-        Common.convertMapByRequest(request,map);
         map.put("username", session.getAttribute("name"));
 
         Map rtnMap = new HashMap();
