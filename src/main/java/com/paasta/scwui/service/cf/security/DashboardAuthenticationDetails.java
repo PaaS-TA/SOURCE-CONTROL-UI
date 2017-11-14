@@ -26,12 +26,12 @@ public class DashboardAuthenticationDetails extends OAuth2AuthenticationDetails 
     private final String id;
     private final String instanceId;
     private String userDesc;
-    private String email;
+    private final String email;
     private boolean active;
     private boolean admin;
     private final String name;
     private List permissions;
-    private boolean isPasswordSet=false;
+    private final boolean isPasswordSet=false;
 
     private final RestTemplate restTemplate;
     protected Logger logger = LoggerFactory.getLogger(getClass());
