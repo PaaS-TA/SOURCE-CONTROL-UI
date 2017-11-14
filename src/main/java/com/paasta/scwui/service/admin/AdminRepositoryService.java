@@ -18,7 +18,7 @@ public class AdminRepositoryService extends CommonService  {
         // 모든 Repository 조회
         // GET : /repositories/admin
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
-        String url = propertiesUtil.getApi_repo_dashboard_admin().replace("{instanceid}", instanceid)+"&";
+        String url = propertiesUtil.getApiRepoDashboardAdmin().replace("{instanceid}", instanceid)+"&";
 
         String request = Common.requestParamByMap(map);
 

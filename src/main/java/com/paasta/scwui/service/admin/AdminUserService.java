@@ -24,7 +24,7 @@ public class AdminUserService extends CommonService {
             // 모든 Repository 조회
             // GET : /repositories/admin
             HttpEntity<Object> entity = restClientUtil.restCommonHeaderNotJson(null);
-            String url = propertiesUtil.getApi_permission_admin();
+            String url = propertiesUtil.getApiPermissionAdmin();
             String addUrl = instanceId + "?" + Common.requestParamByMap(Common.convertMapByRequest(request));
 
             logger.debug("addUrl::" + addUrl + "::url+addUrl::" + url + addUrl);

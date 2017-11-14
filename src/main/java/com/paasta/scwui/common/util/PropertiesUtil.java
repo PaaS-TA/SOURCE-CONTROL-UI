@@ -18,7 +18,7 @@ public class PropertiesUtil {
     /**
      * The Base url.
      */
-    @Value("${api.base.url}") String base_url;
+    @Value("${api.base.url}") String baseUrl;
 
     //====== [Sc Api Server Authentication Resource Api]
 
@@ -27,89 +27,89 @@ public class PropertiesUtil {
     /**
      * The Api Repository.
      */
-    @Value("${api.repo}") String api_repo;
+    @Value("${api.repo}") String apiRepo;
     /**
      * The Api Repository id.
      */
-    @Value("${api.repo.id}") String api_repo_id;
+    @Value("${api.repo.id}") String apiRepoId;
 
     /**
      * The Api Repository name.
      */
-    @Value("${api.repo.type.name}") String api_repo_type_name;
+    @Value("${api.repo.type.name}") String apiRepoTypeName;
 
     /**
      * The Api Repository name.
      */
-    @Value("${api.repo.name}") String api_repo_name;
+    @Value("${api.repo.name}") String apiRepoName;
 
     /**
      * The Api Repository super admin.
      */
-    @Value("${api.repo.dashboard.admin}") String api_repo_dashboard_admin;
+    @Value("${api.repo.dashboard.admin}") String apiRepoDashboardAdmin;
     /**
      * The Api Repository user.
      */
-    @Value("${api.repo.dashboard}") String api_repo_dashboard;
+    @Value("${api.repo.dashboard}") String apiRepoDashboard;
     /**
      * The Api Repository branches.
      */
-    @Value("${api.repository.id.branches}") String api_repo_branches;
+    @Value("${api.repository.id.branches}") String apiRepoBranches;
     /**
      * The Api Repository tags.
      */
-    @Value("${api.repository.id.tags}") String api_repo_tags;
+    @Value("${api.repository.id.tags}") String apiRepoTags;
     /**
      * The Api Repository Browse.
      */
-    @Value("${api.repository.id.browse}") String api_repo_browse;
+    @Value("${api.repository.id.browse}") String apiRepoBrowse;
     /**
      * The Api Repository changesets.
      */
-    @Value("${api.repository.id.changesets}") String api_repo_changesets;
+    @Value("${api.repository.id.changesets}") String apiRepoChangesets;
 
     /**
      * The Api ServiceInstances
      */
-    @Value("${api.serviceInstances}") String api_serviceInstances;
+    @Value("${api.serviceInstances}") String apiServiceInstances;
     /**
      * The Api user
      */
-    @Value("${api.users}") String api_users;
+    @Value("${api.users}") String apiUsers;
     /**
      * The Api login
      */
-    @Value("${api.login}") String api_login;
+    @Value("${api.login}") String apiLogin;
     /**
      * The Api Permission
      */
-    @Value("${api.permission}") String api_permission;
+    @Value("${api.permission}") String apiPermission;
     /**
      * The Api Permission Admin
      */
-    @Value("${api.permission.admin}") String api_permission_admin;
+    @Value("${api.permission.admin}") String apiPermissionAdmin;
     /**
      * The Api Permission Search
      */
-    @Value("${api.permission.search.repositoryId}") String api_permission_search_repositoryId;
+    @Value("${api.permission.search.repositoryId}") String apiPermissionSearchRepositoryId;
     /**
      * The Api auth
      */
-    @Value("${api.auth}") String api_auth;
+    @Value("${api.auth}") String apiAuth;
     /**
      * The Api user
      */
-    @Value("${api.users.user}") String api_users_user;
+    @Value("${api.users.user}") String apiUsersUser;
 
     /**
      * The Api Permission Search InstanceId
      */
-    @Value("${api.permission.search.instanceId}") String api_permission_search_instanceId;
+    @Value("${api.permission.search.instanceId}") String apiPermissionSearchInstanceId;
 
     /**
      * The Api Permission user
      */
-    @Value("${api.permission.user}") String api_permission_user;
+    @Value("${api.permission.user}") String apiPermissionUser;
     /**
      * The Api content repository
      */
@@ -118,27 +118,27 @@ public class PropertiesUtil {
     @Override
     public String toString() {
         return "PropertiesUtil{" +
-                "base_url='" + base_url + '\'' +
-                ", api_repo='" + api_repo + '\'' +
-                ", api_repo_id='" + api_repo_id + '\'' +
-                ", api_repo_type_name='" + api_repo_type_name + '\'' +
-                ", api_repo_name='" + api_repo_name + '\'' +
-                ", api_repo_dashboard_admin='" + api_repo_dashboard_admin + '\'' +
-                ", api_repo_dashboard='" + api_repo_dashboard + '\'' +
-                ", api_repo_branches='" + api_repo_branches + '\'' +
-                ", api_repo_tags='" + api_repo_tags + '\'' +
-                ", api_repo_browse='" + api_repo_browse + '\'' +
-                ", api_repo_changesets='" + api_repo_changesets + '\'' +
-                ", api_serviceInstances='" + api_serviceInstances + '\'' +
-                ", api_users='" + api_users + '\'' +
-                ", api_login='" + api_login + '\'' +
-                ", api_permission='" + api_permission + '\'' +
-                ", api_permission_admin='" + api_permission_admin + '\'' +
-                ", api_permission_search_repositoryId='" + api_permission_search_repositoryId + '\'' +
-                ", api_auth='" + api_auth + '\'' +
-                ", api_users_user='" + api_users_user + '\'' +
-                ", api_permission_search_instanceId='" + api_permission_search_instanceId + '\'' +
-                ", api_permission_user='" + api_permission_user + '\'' +
+                "baseUrl='" + baseUrl + '\'' +
+                ", apiRepo='" + apiRepo + '\'' +
+                ", apiRepoId='" + apiRepoId + '\'' +
+                ", apiRepoTypeName='" + apiRepoTypeName + '\'' +
+                ", apiRepoName='" + apiRepoName + '\'' +
+                ", apiRepoDashboardAdmin='" + apiRepoDashboardAdmin + '\'' +
+                ", apiRepoDashboard='" + apiRepoDashboard + '\'' +
+                ", apiRepoBranches='" + apiRepoBranches + '\'' +
+                ", apiRepoTags='" + apiRepoTags + '\'' +
+                ", apiRepoBrowse='" + apiRepoBrowse + '\'' +
+                ", apiRepoChangesets='" + apiRepoChangesets + '\'' +
+                ", apiServiceInstances='" + apiServiceInstances + '\'' +
+                ", apiUsers='" + apiUsers + '\'' +
+                ", apiLogin='" + apiLogin + '\'' +
+                ", apiPermission='" + apiPermission + '\'' +
+                ", apiPermissionAdmin='" + apiPermissionAdmin + '\'' +
+                ", apiPermissionSearchRepositoryId='" + apiPermissionSearchRepositoryId + '\'' +
+                ", apiAuth='" + apiAuth + '\'' +
+                ", apiUsersUser='" + apiUsersUser + '\'' +
+                ", apiPermissionSearchInstanceId='" + apiPermissionSearchInstanceId + '\'' +
+                ", apiPermissionUser='" + apiPermissionUser + '\'' +
                 ", apiRepositoryIdContentPathRevision='" + apiRepositoryIdContentPathRevision + '\'' +
                 '}';
     }

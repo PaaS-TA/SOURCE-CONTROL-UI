@@ -23,7 +23,7 @@ public class PermissionService extends CommonService {
         // 모든 Repository 조회
         // GET : /repositories/admin
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
-        String url = propertiesUtil.getApi_permission();
+        String url = propertiesUtil.getApiPermission();
 
         ResponseEntity<List> response = restClientUtil.callRestApi(HttpMethod.GET, url + "/" + repoId, entity, List.class);
         logger.debug("response ::: " + response);
@@ -36,7 +36,7 @@ public class PermissionService extends CommonService {
 
     public ResponseEntity getUserDetail(String name) {
 
-        String url = propertiesUtil.getApi_users().replace("{name}", name);
+        String url = propertiesUtil.getApiUsers().replace("{name}", name);
         logger.debug("name >>>>>>>>>>>>" + name);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
         ResponseEntity<ResponseEntity> response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, ResponseEntity.class);
@@ -52,7 +52,7 @@ public class PermissionService extends CommonService {
      */
     public ResponseEntity putPermission(String id, Map map){
         try{
-            String url = propertiesUtil.getApi_permission();
+            String url = propertiesUtil.getApiPermission();
             logger.debug("id >>>>>>>>>>>>" + id);
             List lst = new ArrayList();
             HttpEntity<Object> entity = restClientUtil.restCommonHeaders(map);
@@ -73,7 +73,7 @@ public class PermissionService extends CommonService {
      * @return
      */
     public ResponseEntity getUserBySearchUserIdAndRepositoryId(String searchUserId, String repositoryId){
-        String url = propertiesUtil.getApi_permission_search_repositoryId()+"?searchUserId="+ searchUserId+"&repositoryId="+repositoryId;
+        String url = propertiesUtil.getApiPermissionSearchRepositoryId()+"?searchUserId="+ searchUserId+"&repositoryId="+repositoryId;
         logger.debug("url >>>>>>>>>>>>" + url);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
         ResponseEntity response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, Object.class);
@@ -87,7 +87,7 @@ public class PermissionService extends CommonService {
      * @return
      */
     public ResponseEntity getUserBySearchUserIdAndInstanceId(String searchUserId, String instanceId, String repositoryId){
-        String url = propertiesUtil.getApi_permission_search_instanceId()+searchUserId+"?"+ "instanceId="+instanceId+"&repositoryId="+repositoryId;
+        String url = propertiesUtil.getApiPermissionSearchInstanceId()+searchUserId+"?"+ "instanceId="+instanceId+"&repositoryId="+repositoryId;
         logger.debug("url >>>>>>>>>>>>" + url);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
         ResponseEntity response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, Object.class);
@@ -101,7 +101,7 @@ public class PermissionService extends CommonService {
      */
     public ResponseEntity getUserByInstanceId(String instanceId, Map map){
         String params = Common.requestParamByMap(map);
-        String url = propertiesUtil.getApi_permission_user()+instanceId+ "?"+params;
+        String url = propertiesUtil.getApiPermissionUser()+instanceId+ "?"+params;
         logger.debug("url >>>>>>>>>>>>" + url);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(map);
         ResponseEntity response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, Object.class);
@@ -119,7 +119,7 @@ public class PermissionService extends CommonService {
         // 모든 Repository 조회
         // GET : /repositories/admin
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
-        String url = propertiesUtil.getApi_permission();
+        String url = propertiesUtil.getApiPermission();
 
         ResponseEntity<Object> response = restClientUtil.callRestApi(HttpMethod.DELETE, url + "/" + no, entity, Object.class);
         logger.debug("response ::: " + response);

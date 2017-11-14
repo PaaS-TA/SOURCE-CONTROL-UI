@@ -34,7 +34,7 @@ public class RepositoryService extends CommonService {
     public Repository setCreateRepository(Repository repository) {
 
         HttpEntity<Object> entity = restClientUtil.restCommonHeaderNotJson(repository);
-        String url = propertiesUtil.getApi_repo();
+        String url = propertiesUtil.getApiRepo();
         logger.debug("########## Service Confirm ##########");
         ResponseEntity<Repository> response = null; // ☜
         try {
@@ -51,7 +51,7 @@ public class RepositoryService extends CommonService {
 
     public ResponseEntity setUpdateRepository(String id, Repository repository) {
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(repository);
-        String url = propertiesUtil.getApi_repo_id().replace("{id}", id);
+        String url = propertiesUtil.getApiRepoId().replace("{id}", id);
         logger.debug("########## Service Confirm ##########");
         return restClientUtil.callRestApi(HttpMethod.PUT, url, entity, String.class);
     }
@@ -61,7 +61,7 @@ public class RepositoryService extends CommonService {
 
         // 모든 Repository 조회
         // GET : /repositories/user/{instanceid}?username={user}
-        String url = propertiesUtil.getApi_repo_dashboard().replace("{instanceid}", instanceid);
+        String url = propertiesUtil.getApiRepoDashboard().replace("{instanceid}", instanceid);
         url = url.replace("{user}", userid);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
         ResponseEntity<Map> response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, Map.class);
@@ -81,7 +81,7 @@ public class RepositoryService extends CommonService {
 
         // Repository 상세 조회
         // GET : /repositories/{repositoryId}
-        String url = propertiesUtil.getApi_repo_id().replace("{id}", repositoryId);
+        String url = propertiesUtil.getApiRepoId().replace("{id}", repositoryId);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
         ResponseEntity<Repository> response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, Repository.class);
         logger.debug("response.getStatusCode():" + "response.getStatusCode():");
@@ -101,7 +101,7 @@ public class RepositoryService extends CommonService {
 
         // Repository 상세 조회
         // GET : /repositories/{repositoryId}
-        String url = propertiesUtil.getApi_repo_type_name().replace("{type}", type).replace("{name}", repositoryName);
+        String url = propertiesUtil.getApiRepoTypeName().replace("{type}", type).replace("{name}", repositoryName);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
         ResponseEntity response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, Object.class);
         Map map = (Map) response.getBody();
@@ -114,7 +114,7 @@ public class RepositoryService extends CommonService {
         // 모든 Repository 조회
         // GET : /repositories/user/{instanceid}?username={user}
         String params = Common.requestParamByMap(map);
-        String url = propertiesUtil.getApi_repo_dashboard().replace("{instanceid}", instanceid);
+        String url = propertiesUtil.getApiRepoDashboard().replace("{instanceid}", instanceid);
         url = url.replace("{user}", userid);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
         logger.debug("url+ params:::" + url + params);
@@ -140,7 +140,7 @@ public class RepositoryService extends CommonService {
     public Branches getBranches(String repositoryId) {
         try {
             HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
-            String url = propertiesUtil.getApi_repo_branches().replace("{id}", repositoryId);
+            String url = propertiesUtil.getApiRepoBranches().replace("{id}", repositoryId);
 
             ResponseEntity<Branches> responseEntity = restClientUtil.callRestApi(HttpMethod.GET, url, entity, Branches.class);
 
@@ -157,7 +157,7 @@ public class RepositoryService extends CommonService {
 
     public Tags getTags(String repositoryId) {
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
-        String url = propertiesUtil.getApi_repo_tags().replace("{id}", repositoryId);
+        String url = propertiesUtil.getApiRepoTags().replace("{id}", repositoryId);
 
         ResponseEntity<Tags> response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, Tags.class);
 
@@ -170,7 +170,7 @@ public class RepositoryService extends CommonService {
 
     public BrowserResult getBrowse(String repositoryId) {
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
-        String url = propertiesUtil.getApi_repo_browse().replace("{id}", repositoryId);
+        String url = propertiesUtil.getApiRepoBrowse().replace("{id}", repositoryId);
 
         ResponseEntity<BrowserResult> response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, BrowserResult.class);
 
@@ -184,7 +184,7 @@ public class RepositoryService extends CommonService {
     public ChangesetPagingResult getChangesets(String repositoryId) {
         try {
             HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
-            String url = propertiesUtil.getApi_repo_changesets().replace("{id}", repositoryId);
+            String url = propertiesUtil.getApiRepoChangesets().replace("{id}", repositoryId);
 
             ResponseEntity<ChangesetPagingResult> responseEntity = restClientUtil.callRestApi(HttpMethod.GET, url, entity, ChangesetPagingResult.class);
 
@@ -207,7 +207,7 @@ public class RepositoryService extends CommonService {
     public ResponseEntity deleteByRepositoryId(String id) {
         try {
             HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
-            String url = propertiesUtil.getApi_repo_id().replace("{id}", id);
+            String url = propertiesUtil.getApiRepoId().replace("{id}", id);
             return restClientUtil.callRestApi(HttpMethod.DELETE, url, entity, String.class);
         } catch (Exception e) {
             e.printStackTrace();
@@ -231,7 +231,7 @@ public class RepositoryService extends CommonService {
             throws NotSupportedFeatuerException, IOException {
 
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
-        String url = propertiesUtil.getApi_repo_browse().replace("{id}", id);
+        String url = propertiesUtil.getApiRepoBrowse().replace("{id}", id);
         String param = "?disableLastCommit=" + disableLastCommit + "&disableSubRepositoryDetection=" + disableSubRepositoryDetection + "&path=" + path + "&recursive=" + recursive + "&revision=" + revision;
         url = url + param;
         logger.debug("url:::" + url);

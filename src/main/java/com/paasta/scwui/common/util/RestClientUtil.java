@@ -39,13 +39,13 @@ public class RestClientUtil {
     public <T> ResponseEntity<T> callRestApi(HttpMethod httpMethod, String url, HttpEntity<Object> entity, Class<T> responseType) {
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<T> response = null;
+        ResponseEntity<T> response;
 
-        logger.info("Type : {}, URL : {}, ResponseType : {}", httpMethod, propertiesUtil.base_url+url, responseType);
+        logger.info("Type : {}, URL : {}, ResponseType : {}", httpMethod, propertiesUtil.baseUrl +url, responseType);
 
         try {
 
-            response = restTemplate.exchange(propertiesUtil.base_url+url, httpMethod, entity, responseType);
+            response = restTemplate.exchange(propertiesUtil.baseUrl +url, httpMethod, entity, responseType);
 
         } catch (HttpServerErrorException he) {
             //TODO exception 처리
@@ -53,9 +53,6 @@ public class RestClientUtil {
             he.printStackTrace();
             throw new ScWebUIexceptionException(he.getStatusCode()+he.getMessage());
         } catch (RestClientResponseException e) {
-            e.printStackTrace();
-            throw new ScWebUIexceptionException(e.getMessage());
-        } catch (RestClientException e) {
             e.printStackTrace();
             throw new ScWebUIexceptionException(e.getMessage());
         }
@@ -83,9 +80,9 @@ public class RestClientUtil {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<T>> response = null;
 
-        logger.debug("Type : {}, URL : {}, ResponseType : {}", httpMethod, propertiesUtil.base_url+url, responseType);
+        logger.debug("Type : {}, URL : {}, ResponseType : {}", httpMethod, propertiesUtil.baseUrl+url, responseType);
 
-        response = restTemplate.exchange(propertiesUtil.base_url+url, httpMethod, entity, responseType);
+        response = restTemplate.exchange(propertiesUtil.baseUrl+url, httpMethod, entity, responseType);
 
         //TODO Exception 처리
 

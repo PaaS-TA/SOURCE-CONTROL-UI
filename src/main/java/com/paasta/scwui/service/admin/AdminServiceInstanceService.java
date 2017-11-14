@@ -16,7 +16,7 @@ public class AdminServiceInstanceService extends CommonService {
 
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
 
-        String url = propertiesUtil.getApi_serviceInstances();
+        String url = propertiesUtil.getApiServiceInstances();
 
         ResponseEntity<ServiceInstanceList> response = restClientUtil.callRestApi(HttpMethod.GET, url + queryString, entity, ServiceInstanceList.class);
 

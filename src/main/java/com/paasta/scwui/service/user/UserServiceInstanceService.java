@@ -18,7 +18,7 @@ public class UserServiceInstanceService extends CommonService {
 
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
 
-        String url = propertiesUtil.getApi_serviceInstances();
+        String url = propertiesUtil.getApiServiceInstances();
 
         ParameterizedTypeReference<ServiceInstanceList> responseType = new ParameterizedTypeReference<ServiceInstanceList>() {};
 
@@ -35,7 +35,7 @@ public class UserServiceInstanceService extends CommonService {
 
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
 
-        String url = propertiesUtil.getApi_auth();
+        String url = propertiesUtil.getApiAuth();
 
         ParameterizedTypeReference<ServiceInstanceList> responseType = new ParameterizedTypeReference<ServiceInstanceList>() {};
 
@@ -52,7 +52,7 @@ public class UserServiceInstanceService extends CommonService {
 
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(instanceUser);
 
-        String url = propertiesUtil.getApi_auth();
+        String url = propertiesUtil.getApiAuth();
 
         ResponseEntity<InstanceUser> response = restClientUtil.callRestApi(HttpMethod.POST, url, entity, InstanceUser.class);
 

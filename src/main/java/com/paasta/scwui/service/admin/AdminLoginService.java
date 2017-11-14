@@ -15,7 +15,7 @@ public class AdminLoginService extends CommonService {
 
     @SuppressWarnings("unchecked")
     public Map login(User user){
-        String url = propertiesUtil.getApi_login();
+        String url = propertiesUtil.getApiLogin();
         logger.debug("url >>>>>>>>>>>>"+ url);
         Map map = new HashMap();
         HttpEntity<Object> entity = restClientUtil.restCommonHeaderNotJson(user);

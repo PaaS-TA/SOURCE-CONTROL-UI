@@ -16,7 +16,7 @@ import java.util.Map;
 public class UserService extends CommonService {
 
     public ResponseEntity getUser(String name){
-        String url = propertiesUtil.getApi_users_user();
+        String url = propertiesUtil.getApiUsersUser();
         logger.debug("url >>>>>>>>>>>>"+ url+name);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders("");
         return restClientUtil.callRestApi(HttpMethod.GET, url+name+".json", entity, Object.class);
@@ -24,14 +24,14 @@ public class UserService extends CommonService {
     }
     
     public ResponseEntity createUser(Map map){
-        String url = propertiesUtil.getApi_users();
+        String url = propertiesUtil.getApiUsers();
         logger.debug("url >>>>>>>>>>>>"+ url);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaderNotJson(map);
         return restClientUtil.callRestApi(HttpMethod.POST, url, entity, Map.class);
     }
 
     public ResponseEntity createInstanceUser(Map map) {
-        String url = propertiesUtil.getApi_serviceInstances();
+        String url = propertiesUtil.getApiServiceInstances();
         logger.debug("url >>>>>>>>>>>>"+ url);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaderNotJson(map);
         return restClientUtil.callRestApi(HttpMethod.POST, url, entity, Map.class);
@@ -39,7 +39,7 @@ public class UserService extends CommonService {
 
     public ResponseEntity modifyUser(String name, Map map){
         try {
-            String url = propertiesUtil.getApi_users();
+            String url = propertiesUtil.getApiUsers();
             logger.debug("url >>>>>>>>>>>>" + url);
             HttpEntity<Object> entity = restClientUtil.restCommonHeaders(map);
 
@@ -51,7 +51,7 @@ public class UserService extends CommonService {
     }
 
     public ResponseEntity deleteUser(String name){
-        String url = propertiesUtil.getApi_users();
+        String url = propertiesUtil.getApiUsers();
         logger.debug("url >>>>>>>>>>>>"+ url);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaderNotJson("");
 
@@ -59,7 +59,7 @@ public class UserService extends CommonService {
     }
 
     public ResponseEntity deleteInstanceUser(String instanceid, String name){
-        String url = propertiesUtil.getApi_users();
+        String url = propertiesUtil.getApiUsers();
         logger.debug("url >>>>>>>>>>>>"+ url);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaderNotJson("");
         ResponseEntity rss= restClientUtil.callRestApi(HttpMethod.DELETE, url+name+"/"+instanceid+"/", entity, Map.class);
