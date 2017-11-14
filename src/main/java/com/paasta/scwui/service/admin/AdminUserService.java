@@ -1,13 +1,12 @@
 package com.paasta.scwui.service.admin;
 
 import com.paasta.scwui.common.util.Common;
-import com.paasta.scwui.common.util.PropertiesUtil;
-import com.paasta.scwui.common.util.RestClientUtil;
+import com.paasta.scwui.service.common.CommonService;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.paasta.scwui.service.common.CommonService;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.LinkedHashMap;

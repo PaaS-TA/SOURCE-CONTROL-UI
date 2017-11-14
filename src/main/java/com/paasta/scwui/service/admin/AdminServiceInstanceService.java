@@ -1,13 +1,11 @@
 package com.paasta.scwui.service.admin;
 
-import com.paasta.scwui.common.util.PropertiesUtil;
-import com.paasta.scwui.common.util.RestClientUtil;
 import com.paasta.scwui.model.ServiceInstanceList;
+import com.paasta.scwui.service.common.CommonService;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.paasta.scwui.service.common.CommonService;
 /**
  * Created by user on 2017-06-29.
  */

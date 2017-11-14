@@ -4,8 +4,6 @@ import com.paasta.scwui.common.util.Common;
 import com.paasta.scwui.controller.common.CommonController;
 import com.paasta.scwui.service.cf.security.DashboardAuthenticationDetails;
 import com.paasta.scwui.service.user.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

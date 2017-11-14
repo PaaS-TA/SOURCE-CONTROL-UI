@@ -1,8 +1,6 @@
 package com.paasta.scwui.service.user;
 
 import com.paasta.scwui.common.util.Common;
-import com.paasta.scwui.common.util.PropertiesUtil;
-import com.paasta.scwui.common.util.RestClientUtil;
 import com.paasta.scwui.service.common.CommonService;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;

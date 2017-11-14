@@ -1,6 +1,5 @@
 package com.paasta.scwui.controller.admin;
 
-import com.paasta.scwui.common.util.Common;
 import com.paasta.scwui.controller.common.CommonController;
 import com.paasta.scwui.service.admin.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +18,8 @@ import java.util.Map;
 @RequestMapping(value = {"/admin/user"})
 public class AdminServiceUserController extends CommonController {
 
-    AdminUserService adminUserService;
-
     @Autowired
-    private AdminServiceUserController(AdminUserService adminUserService) {
-        this.adminUserService = adminUserService;
-    }
+    AdminUserService adminUserService;
 
     @RequestMapping(value = "/{instanceId}", method = RequestMethod.GET)
     @ResponseBody
@@ -32,7 +27,6 @@ public class AdminServiceUserController extends CommonController {
                                             , HttpSession session){
 
         Map map = adminUserService.getAdminUsers(instanceId, request);
-        String username = (String) Common.NotNullrtnByobj(session.getAttribute("name"),"");
         session.setAttribute("instanceId", instanceId);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("data",map);
