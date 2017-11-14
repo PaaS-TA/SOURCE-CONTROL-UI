@@ -24,8 +24,6 @@ import java.util.Map;
 @RequestMapping(value = "/user")
 public class UserController extends CommonController{
 
-    protected Logger logger = LoggerFactory.getLogger(getClass());
-
     UserService userService;
 
     @Autowired
@@ -38,11 +36,7 @@ public class UserController extends CommonController{
     public ModelAndView getUserInfo() {
         String name = getDetail().getName();
         Map map = (Map) userService.getUser(name).getBody();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("message",map.getOrDefault("message",""));
-        modelAndView.addObject("status",map.getOrDefault("status",0));
-        modelAndView.addObject("ScUser",map.getOrDefault("ScUser",""));
-        modelAndView.addObject("rtnUser",map.getOrDefault("rtnUser",""));
+        ModelAndView modelAndView = addModel(map);
         modelAndView.setViewName("/user/user/userMyInfoModify");
         return modelAndView;
     }
@@ -62,7 +56,6 @@ public class UserController extends CommonController{
     @RequestMapping(value ={"/addUser.do"}, method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity CreateUser(@RequestBody Map map) {
-        //common Common.convertMapByLinkedHashMap(map)
         ResponseEntity responseEntity = userService.createUser(map);
         return responseEntity;
     }
@@ -104,6 +97,7 @@ public class UserController extends CommonController{
     public ModelAndView serviceInstanceCreateUser() {
         DashboardAuthenticationDetails user = getDetail();
         String instanceid = Common.empty(user.getInstanceId())?"":user.getInstanceId();
+        logger.info("i:::instanceid" + instanceid);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/user/permissions/permissionCreate");
         return modelAndView;
@@ -116,7 +110,7 @@ public class UserController extends CommonController{
     public ModelAndView serviceInstanceUserList() {
         DashboardAuthenticationDetails user = getDetail();
         String instanceid = Common.empty(user.getInstanceId())?"":user.getInstanceId();
-
+        logger.info("i:::instanceid" + instanceid);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/user/permissions/permissionList");
         return modelAndView;
@@ -124,14 +118,14 @@ public class UserController extends CommonController{
 
     @GetMapping(value = "/setFirstUserInfoModify/")
     @ResponseBody
+
     public ModelAndView setFirstUserInfoModify() {
+        DashboardAuthenticationDetails user = getDetail();
+        String instanceid = Common.empty(user.getInstanceId())?"":user.getInstanceId();
+        logger.info("i:::instanceid" + instanceid);
         String name = getDetail().getId();
         Map map = (Map) userService.getUser(name).getBody();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("message",map.getOrDefault("message",""));
-        modelAndView.addObject("status",map.getOrDefault("status",0));
-        modelAndView.addObject("ScUser",map.getOrDefault("ScUser",""));
-        modelAndView.addObject("rtnUser",map.getOrDefault("rtnUser",""));
+        ModelAndView modelAndView = addModel(map);
         modelAndView.setViewName("/user/user/setFirstUserInfoModify");
         return modelAndView;
     }
@@ -140,12 +134,8 @@ public class UserController extends CommonController{
     @ResponseBody
     public ModelAndView getUserInfo(@PathVariable("name") String name)  {
         Map map = (Map) userService.getUser(name).getBody();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("message",map.getOrDefault("message",""));
+        ModelAndView modelAndView = addModel(map);
         modelAndView.addObject("name",name);
-        modelAndView.addObject("status",map.getOrDefault("status",0));
-        modelAndView.addObject("ScUser",map.getOrDefault("ScUser",""));
-        modelAndView.addObject("rtnUser",map.getOrDefault("rtnUser",""));
         modelAndView.setViewName("/user/user/instanceUserModify");
         return modelAndView;
     }
@@ -166,11 +156,7 @@ public class UserController extends CommonController{
     public ModelAndView userMyModifyPassword()  {
         String name = getDetail().getName();
         Map map = (Map) userService.getUser(name).getBody();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("message",map.getOrDefault("message",""));
-        modelAndView.addObject("status",map.getOrDefault("status",0));
-        modelAndView.addObject("ScUser",map.getOrDefault("ScUser",""));
-        modelAndView.addObject("rtnUser",map.getOrDefault("rtnUser",""));
+        ModelAndView modelAndView = addModel(map);
         modelAndView.setViewName("/user/userMyModifyPassword");
         return modelAndView;
     }
@@ -179,5 +165,19 @@ public class UserController extends CommonController{
     @ResponseBody
     public Map getInstanceUserInfo(@PathVariable("name") String name)  {
         return (Map) userService.getUser(name).getBody();
+    }
+
+    /**
+     * 일정한 형식으로 사용자 정보를 리턴해준다.
+     * @param map
+     * @return
+     */
+    private ModelAndView addModel(Map map){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("message",map.getOrDefault("message",""));
+        modelAndView.addObject("status",map.getOrDefault("status",0));
+        modelAndView.addObject("ScUser",map.getOrDefault("ScUser",""));
+        modelAndView.addObject("rtnUser",map.getOrDefault("rtnUser",""));
+        return modelAndView;
     }
 }

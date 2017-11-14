@@ -22,7 +22,7 @@ import java.util.Map;
 @Controller
 public class CommonController {
 
-    protected Logger logger = LoggerFactory.getLogger(getClass());
+    protected Logger logger = LoggerFactory.getLogger(super.getClass());
     @Autowired
     UserServiceInstanceService instanceUseService;
 
