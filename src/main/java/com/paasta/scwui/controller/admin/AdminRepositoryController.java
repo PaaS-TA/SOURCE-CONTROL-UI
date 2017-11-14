@@ -1,7 +1,6 @@
 package com.paasta.scwui.controller.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.paasta.scwui.common.exception.GlobalExceptionHandler;
 import com.paasta.scwui.common.util.Common;
 import com.paasta.scwui.controller.common.CommonController;
 import com.paasta.scwui.model.Repository;
