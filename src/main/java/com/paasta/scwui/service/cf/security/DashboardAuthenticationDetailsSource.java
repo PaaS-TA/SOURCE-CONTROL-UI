@@ -101,12 +101,11 @@ public class DashboardAuthenticationDetailsSource
         } catch (RestClientException e) {
             logger.debug("Error while user full name from [" + userInfoUrl + "].", e);
         }
-        String user_name = uaaUserInfo.get("user_name");
+        String userName = uaaUserInfo.get("user_name");
         String id = uaaUserInfo.get("user_id");
-        String name = uaaUserInfo.get("name");
 
         boolean managingService = isManagingApp(serviceInstanceId);
-        DashboardAuthenticationDetails authenticationDetails = new DashboardAuthenticationDetails(request, managingService, id, user_name,serviceInstanceId, this.restTemplate);
+        DashboardAuthenticationDetails authenticationDetails = new DashboardAuthenticationDetails(request, managingService, id, userName,serviceInstanceId, this.restTemplate);
         authenticationDetails.setManagingServiceInstance(serviceInstanceId);
         logger.debug("DashboardAuthenticationDetails end ::::" +  authenticationDetails);
         return authenticationDetails;

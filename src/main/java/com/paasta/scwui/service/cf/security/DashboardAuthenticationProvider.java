@@ -129,8 +129,11 @@ public class DashboardAuthenticationProvider implements AuthenticationProvider {
             // 로그인한 사람의 권한은 OWNER
             dashboardAuthenticationDetails.setActive(active);
             dashboardAuthenticationDetails.setAdmin(admin);
-            dashboardAuthenticationDetails.setUser_desc(desc);
+            dashboardAuthenticationDetails.setUserDesc(desc);
             dashboardAuthenticationDetails.setEmail(mail);
+            dashboardAuthenticationDetails.setActive(active);
+            dashboardAuthenticationDetails.setAdmin(admin);
+            dashboardAuthenticationDetails.setPermissions(role);
             dashboardAuthenticationDetails.setPasswordSet(password);
             rtnAuthentication = new OAuth2Authentication(((OAuth2Authentication) authentication).getOAuth2Request()
                     , new UsernamePasswordAuthenticationToken(authentication.getPrincipal(), "N/A", role));

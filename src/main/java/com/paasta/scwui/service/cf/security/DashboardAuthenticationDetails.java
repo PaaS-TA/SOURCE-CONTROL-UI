@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.provider.authentication.OAuth2Authent
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Extension of {@link OAuth2AuthenticationDetails} providing extra details about the current
@@ -24,12 +25,12 @@ public class DashboardAuthenticationDetails extends OAuth2AuthenticationDetails 
     private final boolean managingService;
     private final String id;
     private final String instanceId;
-    private String user_desc;
+    private String userDesc;
     private String email;
     private boolean active;
     private boolean admin;
     private final String name;
-    private String[] permissions;
+    private List permissions;
     private boolean isPasswordSet=false;
 
     private final RestTemplate restTemplate;
