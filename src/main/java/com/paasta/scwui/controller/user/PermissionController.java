@@ -135,7 +135,7 @@ public class PermissionController extends CommonController{
     @GetMapping("/instanceUser/")
     @ResponseBody
     public ResponseEntity getPermissionByInstanceId(HttpServletRequest request) {
-        DashboardAuthenticationDetails user = ((DashboardAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails());
+        DashboardAuthenticationDetails user = (DashboardAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
         String rtnInstanceid = user.getInstanceId();
         Map mapByRequest = Common.convertMapByRequest(request);
         ResponseEntity responseEntity = permissionService.getUserByInstanceId(rtnInstanceid, mapByRequest);

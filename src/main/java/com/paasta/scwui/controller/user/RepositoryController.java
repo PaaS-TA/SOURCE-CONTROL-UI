@@ -143,8 +143,8 @@ public class RepositoryController extends CommonController {
         List<Repository> repositories = repositoryService.getUserRepositories(instanceid, userid, map);
 
 
-        List<Repository> public_repositories = repositories.stream().filter(Repository::isPublic_).collect(toList());
-        List<Repository> private_repositories = repositories.stream().filter(Repository -> !Repository.isPublic_()).collect(toList());
+        List<Repository> publicRepositories = repositories.stream().filter(Repository::isPublic_).collect(toList());
+        List<Repository> privateRepositories = repositories.stream().filter(repository -> !repository.isPublic_()).collect(toList());
         ((DashboardAuthenticationDetails) getAuthentication().getDetails()).setPasswordSet(true);
         ModelAndView mv = new ModelAndView();
         mv.addObject("repoName", map.getOrDefault("repoName", ""));
@@ -154,8 +154,8 @@ public class RepositoryController extends CommonController {
         mv.addObject("type2", map.getOrDefault("type2", ""));
         mv.addObject("reposort", map.getOrDefault("reposort", "lastModified_true"));
         mv.addObject("repositories", repositories);
-        mv.addObject("public_repositories", public_repositories);
-        mv.addObject("private_repositories", private_repositories);
+        mv.addObject("public_repositories", publicRepositories);
+        mv.addObject("private_repositories", privateRepositories);
         mv.addObject("repositoryCnt", repositories.size());
         //mv.addObject("auth", auth);
         mv.addObject("title", "레파지토리목록");
