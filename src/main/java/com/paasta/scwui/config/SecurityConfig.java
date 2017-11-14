@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String ROLE_ADMIN= "ROLE_ADMIN";
 
     @Bean(name = "authenticationManager")
-    public AuthenticationManager authenticationManagerBean() throws Exception {
+    public AuthenticationManager authenticationManagerBean() {
         try {
             return super.authenticationManager();
         }catch(Exception e){
@@ -129,7 +129,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         }
 
         @Override
-        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        protected void configure(AuthenticationManagerBuilder auth) {
             auth.authenticationProvider(dashboardAuthenticationProvider);
         }
 

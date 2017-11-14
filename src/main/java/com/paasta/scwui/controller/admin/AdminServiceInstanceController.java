@@ -29,7 +29,7 @@ public class AdminServiceInstanceController extends CommonController {
 
     // http://localhost:8080/admin/serviceInstantList
     @RequestMapping("/serviceInstantList")
-    public ModelAndView serviceInstantList(HttpServletRequest httpServletRequest) throws Exception {
+    public ModelAndView serviceInstantList(HttpServletRequest httpServletRequest){
         return setPathVariables(httpServletRequest,  "/admin/serviceInstance/serviceInstanceList", new ModelAndView());
     }
 
