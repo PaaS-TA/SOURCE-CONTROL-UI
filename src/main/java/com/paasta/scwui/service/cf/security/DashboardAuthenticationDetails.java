@@ -24,8 +24,8 @@ public class DashboardAuthenticationDetails extends OAuth2AuthenticationDetails 
     private final boolean managingService;
     private final String id;
     private final String instanceId;
-    private String user_desc ="";
-    private String email ="";
+    private String user_desc;
+    private String email;
     private boolean active;
     private boolean admin;
     private final String name;

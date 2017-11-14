@@ -62,9 +62,9 @@ public class DashboardAuthenticationProvider implements AuthenticationProvider {
 
         DashboardAuthenticationDetails dashboardAuthenticationDetails = (DashboardAuthenticationDetails) details;
         //instance manage service false 일경우 권한없음 발생
-        if(!dashboardAuthenticationDetails.isManagingService())
+        if(!dashboardAuthenticationDetails.isManagingService()) {
             throw new InternalAuthenticationServiceException("instance authentication not exist by user based on [" + name + "]");
-
+        }
         try {
             /**사용자와 instanceId에대한 권한은 체크 */
             List instanceUse = instanceUseService.getAll(dashboardAuthenticationDetails.getManagingServicesInstance(), name);
