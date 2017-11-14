@@ -90,4 +90,22 @@ public class DashboardAuthenticationDetails extends OAuth2AuthenticationDetails 
         return serviceInstanceId.equals(this.managingServiceInstance);
 
     }
+
+    @Override
+    public String toString() {
+        return "DashboardAuthenticationDetails{" +
+                "managingServiceInstance='" + managingServiceInstance + '\'' +
+                ", managingService=" + managingService +
+                ", id='" + id + '\'' +
+                ", instanceId='" + instanceId + '\'' +
+                ", userDesc='" + userDesc + '\'' +
+                ", email='" + email + '\'' +
+                ", active=" + active +
+                ", admin=" + admin +
+                ", name='" + name + '\'' +
+                ", permissions=" + permissions +
+                ", isPasswordSet=" + isPasswordSet +
+                ", restTemplate=" + restTemplate +
+                '}';
+    }
 }
