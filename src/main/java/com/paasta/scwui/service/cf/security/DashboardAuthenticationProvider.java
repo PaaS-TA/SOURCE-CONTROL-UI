@@ -53,7 +53,7 @@ public class DashboardAuthenticationProvider implements AuthenticationProvider {
         final String name = authentication.getName();
         final Object details = authentication.getDetails();
         logger.debug("authenticate start ::: name"+name);
-
+        Authentication rtnAuthentication ;
         if (!(details instanceof DashboardAuthenticationDetails)) {
             logger.debug(" authentication details [" + details.getClass().getName()  + "] are not an instance of  start");
             throw new InternalAuthenticationServiceException("The authentication details [" + details
@@ -118,23 +118,23 @@ public class DashboardAuthenticationProvider implements AuthenticationProvider {
 
             Map scUserMap = (Map) map.get("ScUser");
             Map rtnUserAfter = (Map) map.get("rtnUser");
-            String mail_ = (String) scUserMap.getOrDefault("userMail", "");
-            String desc_ = (String) scUserMap.getOrDefault("userDesc", "");
-            boolean admin_ = (boolean) rtnUserAfter.getOrDefault("admin", false);
-            boolean active_ = (boolean) rtnUserAfter.getOrDefault("active", false);
-            boolean password_ = false;
+            String mail = (String) scUserMap.getOrDefault("userMail", "");
+            String desc = (String) scUserMap.getOrDefault("userDesc", "");
+            boolean admin = (boolean) rtnUserAfter.getOrDefault("admin", false);
+            boolean active = (boolean) rtnUserAfter.getOrDefault("active", false);
+            boolean password = false;
             if(rtnUserAfter.getOrDefault("properties", null)!=null){
-                password_ = Boolean.parseBoolean((String)((LinkedHashMap)rtnUserAfter.get("properties")).getOrDefault("PasswordSet","false"));
+                password = Boolean.parseBoolean((String)((LinkedHashMap)rtnUserAfter.get("properties")).getOrDefault("PasswordSet","false"));
             }
             // 로그인한 사람의 권한은 OWNER
-            dashboardAuthenticationDetails.setActive(active_);
-            dashboardAuthenticationDetails.setAdmin(admin_);
-            dashboardAuthenticationDetails.setUser_desc(desc_);
-            dashboardAuthenticationDetails.setEmail(mail_);
-            dashboardAuthenticationDetails.setPasswordSet(password_);
-            authentication = new OAuth2Authentication(((OAuth2Authentication) authentication).getOAuth2Request()
+            dashboardAuthenticationDetails.setActive(active);
+            dashboardAuthenticationDetails.setAdmin(admin);
+            dashboardAuthenticationDetails.setUser_desc(desc);
+            dashboardAuthenticationDetails.setEmail(mail);
+            dashboardAuthenticationDetails.setPasswordSet(password);
+            rtnAuthentication = new OAuth2Authentication(((OAuth2Authentication) authentication).getOAuth2Request()
                     , new UsernamePasswordAuthenticationToken(authentication.getPrincipal(), "N/A", role));
-            ((OAuth2Authentication) authentication).setDetails(dashboardAuthenticationDetails );
+            ((OAuth2Authentication) rtnAuthentication).setDetails(dashboardAuthenticationDetails );
         } catch (Exception e) {
             e.printStackTrace();
             logger.error("Error while creating a user based on ",e);
@@ -142,7 +142,7 @@ public class DashboardAuthenticationProvider implements AuthenticationProvider {
         }
 
         logger.debug("authenticate end");
-        return authentication;
+        return rtnAuthentication;
     }
 
     @Override
