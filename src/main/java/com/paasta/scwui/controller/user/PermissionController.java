@@ -1,5 +1,6 @@
 package com.paasta.scwui.controller.user;
 
+import com.paasta.scwui.common.exception.ScWebUIexceptionException;
 import com.paasta.scwui.common.util.Common;
 import com.paasta.scwui.controller.common.CommonController;
 import com.paasta.scwui.service.cf.security.DashboardAuthenticationDetails;
@@ -40,7 +41,7 @@ public class PermissionController extends CommonController{
      * @throws Exception
      */
     @RequestMapping(value = "/permission/{repoId}", method = RequestMethod.GET)
-    public ModelAndView servicePermissionList(@PathVariable String repoId, HttpServletRequest request){
+    public ModelAndView servicePermissionList(@PathVariable String repoId, HttpServletRequest request) throws ScWebUIexceptionException{
         logger.debug(""+Common.convertMapByRequest(request));
         List<Map> lstPermission = permissionService.getPermissionsByRepoId(Integer.parseInt(repoId));
         ModelAndView modelAndView = new ModelAndView();
@@ -60,7 +61,7 @@ public class PermissionController extends CommonController{
      */
     @RequestMapping(value = "/permission/{repoId}", method = RequestMethod.PUT)
     @ResponseBody
-    public Map invitePermission(@PathVariable("repoId") String repoId,  @RequestBody Map map) {
+    public Map invitePermission(@PathVariable("repoId") String repoId,  @RequestBody Map map) throws ScWebUIexceptionException{
 
         ResponseEntity responseEntity = permissionService.putPermission(repoId, map);
         Map map1 = new HashMap();
@@ -77,7 +78,7 @@ public class PermissionController extends CommonController{
      */
     @RequestMapping(value = "/permission/{no}", method = RequestMethod.DELETE)
     @ResponseBody
-    public ResponseEntity deletePermission(@PathVariable("no") String no){
+    public ResponseEntity deletePermission(@PathVariable("no") String no) throws ScWebUIexceptionException{
 
         ResponseEntity responseEntity = permissionService.deletePermissionsByNo(Integer.parseInt(no));
         return new ResponseEntity("{}",responseEntity.getStatusCode());
@@ -142,7 +143,6 @@ public class PermissionController extends CommonController{
     }
 
     private Map bodyCheck(ResponseEntity responseEntity ){
-        Map rtnMap = new HashMap();
         if (responseEntity.getBody() != null) {
             return (Map) responseEntity.getBody();
         } else {

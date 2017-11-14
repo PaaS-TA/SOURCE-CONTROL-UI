@@ -36,7 +36,7 @@ public class DashboardController extends CommonController {
      * */
     @RequestMapping(value = "/user/{instanceId}", method = RequestMethod.GET)
     //@ResponseBody
-    public ModelAndView repositoryDashboard(@PathVariable("instanceId") String instanceid, HttpServletResponse response, HttpSession session) {
+    public ModelAndView repositoryDashboard(@PathVariable("instanceId") String instanceId, HttpSession session) {
         try {
 
             DashboardAuthenticationDetails user = getDetail();
@@ -44,7 +44,7 @@ public class DashboardController extends CommonController {
             boolean bCreate = getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority(Constants.CHECK_YN_Y));
             boolean bActive = user.isActive();
             boolean bPasswordSet = user.isPasswordSet();
-
+            logger.debug("bCreate:::"+bCreate + "::bActive::"+bActive+":::");
             session.setAttribute("name", rtnUserId);
             if(!bPasswordSet){
                 return new ModelAndView("redirect:/user/userMyModifyPassword");
@@ -55,12 +55,12 @@ public class DashboardController extends CommonController {
 //            ((DashboardAuthenticationDetails) getAuthentication().getDetails()).setPasswordSet(true);
             //OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) ((DashboardAuthenticationDetails) getAuthentication().getDetails()).setPasswordSet(true);
 
-            logger.debug("username :::" + rtnUserId + "::rtnInstanceid:" + user.getInstanceId() + "::instanceid:" + instanceid + "::rtnIsActive:" + user.isActive() + "::rtnCreateYN:" + getAuthentication().getAuthorities());
+            logger.debug("username :::" + rtnUserId + "::rtnInstanceid:" + user.getInstanceId() + "::instanceId:" + instanceId + "::rtnIsActive:" + user.isActive() + "::rtnCreateYN:" + getAuthentication().getAuthorities());
             return new ModelAndView("redirect:/user/repository/");
 
         } catch (Exception e) {
             e.printStackTrace();
-            throw new InternalAuthenticationServiceException("Error while creating repositoryDashboard instanceId on [" + instanceid + "]", e);
+            throw new InternalAuthenticationServiceException("Error while creating repositoryDashboard instanceId on [" + instanceId + "]", e);
         }
 
     }

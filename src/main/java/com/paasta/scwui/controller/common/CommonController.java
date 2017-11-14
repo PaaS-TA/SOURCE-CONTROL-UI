@@ -138,7 +138,7 @@ public class CommonController {
      * @return DashboardAuthenticationDetails
      */
     public DashboardAuthenticationDetails getDetail() {
-        DashboardAuthenticationDetails user = ((DashboardAuthenticationDetails) getAuthentication().getDetails());
+        DashboardAuthenticationDetails user = (DashboardAuthenticationDetails) getAuthentication().getDetails();
         String instanceId = user.getInstanceId();
         /**
          * 도중에 로그아웃이 발생할경우 형상관리에서 로그아웃됨.
