@@ -182,11 +182,17 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>prepare-agent</id>
+                        <id>default-prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
+                    <!--<execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>-->
                     <execution>
                         <id>report</id>
                         <phase>prepare-package</phase>
@@ -200,8 +206,14 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
-                        <configuration>
+                 <!--       <configuration>
                             <dataFile>target/jacoco/jacoco.exec</dataFile>
+                        </configuration>-->
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <dataFile>${project.build.directory}/surefire-reports/jacoco-ut.exec</dataFile>
+                            <!-- Sets the output directory for the code coverage report. -->
+                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
