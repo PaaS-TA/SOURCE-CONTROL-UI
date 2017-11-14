@@ -1,6 +1,7 @@
 package com.paasta.scwui.controller.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.paasta.scwui.common.exception.GlobalExceptionHandler;
 import com.paasta.scwui.common.util.Common;
 import com.paasta.scwui.controller.common.CommonController;
 import com.paasta.scwui.model.Repository;
@@ -65,7 +66,7 @@ public class AdminRepositoryController extends CommonController {
 
     @ResponseBody
     @RequestMapping("/admin/repository/repositoryList")
-    public Map repositoryListForAdminByParam(@RequestParam Map map, HttpServletRequest request, HttpSession session) throws Exception
+    public Map repositoryListForAdminByParam(@RequestParam Map map, HttpServletRequest request, HttpSession session)
     {
         // Source Control Api Server 호출 - repository 목록 조회
         String instanceid = (String)session.getAttribute("instanceId");
