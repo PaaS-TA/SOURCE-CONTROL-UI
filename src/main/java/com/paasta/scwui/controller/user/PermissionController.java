@@ -40,7 +40,7 @@ public class PermissionController extends CommonController{
      * @throws Exception
      */
     @RequestMapping(value = "/permission/{repoId}", method = RequestMethod.GET)
-    public ModelAndView servicePermissionList(@PathVariable String repoId, HttpServletRequest request) throws Exception {
+    public ModelAndView servicePermissionList(@PathVariable String repoId, HttpServletRequest request){
         logger.debug(""+Common.convertMapByRequest(request));
         List<Map> lstPermission = permissionService.getPermissionsByRepoId(Integer.parseInt(repoId));
         ModelAndView modelAndView = new ModelAndView();
@@ -60,7 +60,7 @@ public class PermissionController extends CommonController{
      */
     @RequestMapping(value = "/permission/{repoId}", method = RequestMethod.PUT)
     @ResponseBody
-    public Map invitePermission(@PathVariable("repoId") String repoId,  @RequestBody Map map) throws Exception {
+    public Map invitePermission(@PathVariable("repoId") String repoId,  @RequestBody Map map) {
 
         ResponseEntity responseEntity = permissionService.putPermission(repoId, map);
         Map map1 = new HashMap();
@@ -77,7 +77,7 @@ public class PermissionController extends CommonController{
      */
     @RequestMapping(value = "/permission/{no}", method = RequestMethod.DELETE)
     @ResponseBody
-    public ResponseEntity deletePermission(@PathVariable("no") String no) throws Exception {
+    public ResponseEntity deletePermission(@PathVariable("no") String no){
 
         ResponseEntity responseEntity = permissionService.deletePermissionsByNo(Integer.parseInt(no));
         return new ResponseEntity("{}",responseEntity.getStatusCode());
@@ -102,15 +102,27 @@ public class PermissionController extends CommonController{
     public Map getPermissionByRepositoryIdAndSearchUserId(@RequestParam(value = "searchUserId") String searchUserId
                ,@RequestParam(value = "repositoryId") String repositoryId) {
         try {
-            ResponseEntity responseEntity = null;
-            responseEntity = permissionService.getUserBySearchUserIdAndRepositoryId(searchUserId,repositoryId);
-            if (responseEntity==null || responseEntity.getBody() != null) {
-                return (Map) responseEntity.getBody();
-            } else {
-                Map map = new HashMap();
-                map.put("error", "NoBody");
-                return (Map) new ResponseEntity(map, HttpStatus.EXPECTATION_FAILED);
-            }
+            ResponseEntity responseEntity = permissionService.getUserBySearchUserIdAndRepositoryId(searchUserId,repositoryId);
+            return bodyCheck(responseEntity);
+        }catch(Exception e){
+            e.printStackTrace();
+            Map map = new HashMap();
+            map.put("error", "NoBody");
+            return (Map) new ResponseEntity(map, HttpStatus.EXPECTATION_FAILED);
+        }
+    }
+     /**
+     * instanceId에 대한 사용자와 repository 참여 정보를 가져를 검색하여 가져온다.
+     * @param searchUserId
+     * @return
+     */
+    @GetMapping("/searchInstanceId/{searchUserId}")
+    @ResponseBody
+    public Map getPermissionByInstanceIdAndSearchUserId(@PathVariable("searchUserId") String searchUserId, @RequestParam(value = "repositoryId") String repositoryId){
+        try {
+            String rtnInstanceid = getDetail().getInstanceId();
+            ResponseEntity responseEntity = permissionService.getUserBySearchUserIdAndInstanceId(searchUserId, rtnInstanceid, repositoryId);
+            return bodyCheck(responseEntity);
         }catch(Exception e){
             e.printStackTrace();
             Map map = new HashMap();
@@ -119,7 +131,6 @@ public class PermissionController extends CommonController{
         }
 
     }
-
     @GetMapping("/instanceUser/")
     @ResponseBody
     public ResponseEntity getPermissionByInstanceId(HttpServletRequest request) {
@@ -129,59 +140,15 @@ public class PermissionController extends CommonController{
         ResponseEntity responseEntity = permissionService.getUserByInstanceId(rtnInstanceid, mapByRequest);
         return responseEntity;
     }
-    /**
-     * instanceId에 대한 사용자와 repository 참여 정보를 가져를 검색하여 가져온다.
-     * @param searchUserId
-     * @return
-     */
-    @GetMapping("/searchInstanceId/{searchUserId}")
-    @ResponseBody
-    public Map getPermissionByInstanceIdAndSearchUserId(@PathVariable("searchUserId") String searchUserId, @RequestParam(value = "repositoryId") String repositoryId){
-        try {
-            DashboardAuthenticationDetails user = ((DashboardAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails());
-            String rtnInstanceid = user.getInstanceId();
-            ResponseEntity responseEntity = null;
-            responseEntity = permissionService.getUserBySearchUserIdAndInstanceId(searchUserId, rtnInstanceid, repositoryId);
-            if (responseEntity.getBody() != null) {
-                return (Map) responseEntity.getBody();
-            } else {
-                Map map = new HashMap();
-                map.put("error", "NoBody");
-                return (Map) new ResponseEntity(map, HttpStatus.EXPECTATION_FAILED);
-            }
-        }catch(Exception e){
-            e.printStackTrace();
+
+    private Map bodyCheck(ResponseEntity responseEntity ){
+        Map rtnMap = new HashMap();
+        if (responseEntity.getBody() != null) {
+            return (Map) responseEntity.getBody();
+        } else {
             Map map = new HashMap();
             map.put("error", "NoBody");
             return (Map) new ResponseEntity(map, HttpStatus.EXPECTATION_FAILED);
         }
-
     }
-    /**
-     * instanceId에 대한 사용자와 repository 참여 정보를 가져를 검색하여 가져온다.
-     * @return
-     */
-    /*@GetMapping("/permissions/instanceId/")
-    @ResponseBody
-    public Map getPermissionByInstanceId() {
-        try {
-            DashboardAuthenticationDetails user = ((DashboardAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails());
-            String rtnInstanceid = user.getInstanceId();
-            ResponseEntity responseEntity = null;
-            responseEntity = permissionService.getUserByInstanceId(rtnInstanceid);
-            if (responseEntity.getBody() != null) {
-                return (Map) responseEntity.getBody();
-            } else {
-                Map map = new HashMap();
-                map.put("error", "NoBody");
-                return (Map) new ResponseEntity(map, HttpStatus.EXPECTATION_FAILED);
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-            Map map = new HashMap();
-            map.put("error", "NoBody");
-            return (Map) new ResponseEntity(map, HttpStatus.EXPECTATION_FAILED);
-        }
-
-    }*/
 }
