@@ -15,44 +15,15 @@ import java.util.Locale;
  */
 @Component
 public class DateUtil {
-    private static Logger logger = LoggerFactory.getLogger(Common.class);
-    public static String currentDateTime() {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm", Locale.KOREA);
-        String currentDateTime = sdf.format(new Date());
-
-        return currentDateTime;
-
-    }
-
 
     public static String convertLongToTime(long time) {
         Date date = new Date(time);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
 
         return sdf.format(date);
     }
 
-    public static String convertStringFormat(String sDateTime, String sFormat) {
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-        SimpleDateFormat convertFormatter = new SimpleDateFormat(sFormat);
-
-        try {
-            if(Common.empty(sDateTime)){
-                return sDateTime;
-            }
-            Date date = formatter.parse(sDateTime);
-            return convertFormatter.format(date);
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return sDateTime;
-        }
-    }
-
-
-    public static String rtnFormatString(String strFormat, Date date) {
+    private static String rtnFormatString(String strFormat, Date date) {
 
         SimpleDateFormat sdf = new SimpleDateFormat(strFormat, Locale.KOREA);
         String rtnStr = sdf.format(date);
@@ -73,7 +44,6 @@ public class DateUtil {
             long currentTime = Long.parseLong(strInt);
             rtnDate = DateUtil.rtnFormatString(strFormat, new Date(currentTime));
         }
-
         return rtnDate;
     }
 }
