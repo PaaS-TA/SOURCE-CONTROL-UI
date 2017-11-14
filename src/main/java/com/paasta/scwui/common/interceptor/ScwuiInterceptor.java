@@ -21,7 +21,7 @@ public class ScwuiInterceptor extends HandlerInterceptorAdapter {
 
     //TODO 임시 테스트용 Auth 정보
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)  {
 
         logger.debug("ScwuiInterceptor ::: preHandle");
         //TODO -- 임시 테스트용으로 Auth 정보 session 넣을까 고민중
@@ -33,11 +33,11 @@ public class ScwuiInterceptor extends HandlerInterceptorAdapter {
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
         logger.debug("ScwuiInterceptor ::: postHandle");
     }
 
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object object, Exception arg) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object object, Exception arg)  {
         logger.debug("ScwuiInterceptor ::: afterCompletion");
     }
 

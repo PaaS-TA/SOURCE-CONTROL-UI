@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class UserServiceInstanceService extends CommonService {
 
-    public List getAll(String name) throws Exception {
+    public List getAll(String name) {
 
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
 
