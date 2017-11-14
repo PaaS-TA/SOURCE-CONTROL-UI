@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminServiceInstanceService extends CommonService {
 
-    public ServiceInstanceList getAll(String queryString) throws Exception {
+    public ServiceInstanceList getAll(String queryString) {
 
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
 

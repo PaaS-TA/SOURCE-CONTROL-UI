@@ -23,7 +23,7 @@ public class UserServiceInstanceController extends CommonController{
     }
 
     @RequestMapping("/serviceInstantList")
-    public ModelAndView getServiceInstantList() throws Exception {
+    public ModelAndView getServiceInstantList() {
         DashboardAuthenticationDetails user = getDetail();
         String instanceId = Common.empty(user.getInstanceId())?"":user.getInstanceId();
         logger.debug("instanceId:::"+instanceId);
