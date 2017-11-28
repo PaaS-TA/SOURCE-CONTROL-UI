@@ -51,16 +51,15 @@
     function password_validation_check(confimPassword) {
         var result = true;
 
-        var passwordNotConfirmedAlert = $("#passwordNotConfirmedAlert");
-
-        if (confimPassword === "" || confimPassword === null || confimPassword !== $("#newPasswordInput").val()) {
+        if((6 > confimPassword.length) || (16 < confimPassword.length) ||confimPassword === "" || confimPassword === null || confimPassword !== $("#newPasswordInput").val()){
             result = false;
-            passwordNotConfirmedAlert.show();
-        } else {
-            result = true;
-            passwordNotConfirmedAlert.hide();
         }
-
+        var passwordNotConfirmedAlert = $("#passwordNotConfirmedAlert");
+        if(result){
+            passwordNotConfirmedAlert.hide();
+        } else {
+            passwordNotConfirmedAlert.show();
+        }
         return result;
     }
     $(document).ready(function () {
