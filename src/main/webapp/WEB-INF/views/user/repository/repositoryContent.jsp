@@ -16,42 +16,40 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/xml" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<div class="tema_view"><h5>커밋 :  <span class="r_data"></span></h5>
-    <div class="tema_view_inner">
-        <span id = "contPath" name="contPath"></span>
+<div class="rSearch_group">
+</div>
+<div class="tema_view"><h5>커밋 :<span class="l_data" id = "contPath"></span></h5>
+    <div class="tema_view_inner" id="browserContent" >
     </div>
 </div>
 <!--//설명영역 :e -->
 <!-- 코드 박스 :s -->
-<div class="codebox_area">
-    <div class="tema_view_inner" id="browserContent" name="browserContent">
-    </div>
-</div>
+
     <!--//contents :e -->
 <!-- Top 가기 :s -->
 <div class="follow" title="Scroll Back to Top">
-	<a href="#" title="top"><img src="./resources/images/a_top.gif"></a>
+	<a href="#" title="top"><img src="/resources/images/a_top.gif"></a>
 </div>
 <!--//Top 가기 :e -->
 <!--select 스크립트-->
-<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
 <script>
     var getBrowserContent = function (path, revision) {
-        console.debug("getBrowserContent");
+
         param = "&path="+path
             + "&revision="+revision;
         var url = "/user/repositoryDetail/"+$("#repositoryId").val()+ "/content/?"+param;
         procCallAjax('get', url, param, callbackBrowserContent);
     };
-
     var callbackBrowserContent = function (data) {
         $( "#repositoryBrowseList" ).hide();
         $( "#repositoryBrowseContent" ).show();
-        var bype = data;
-        $("#contPath").text(data.path);
+        $("#btnContentCancel").show();
 
+        var bype = data;
+
+        $("#contPath").text(data.path);
         var varRepositoryHtml =data.data[0];
-        $('#contPath').append(varRepositoryHtml);
+        $('#browserContent').append(varRepositoryHtml);
     };
 </script>
 <!--//select 스크립트-->

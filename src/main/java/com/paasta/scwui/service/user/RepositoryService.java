@@ -221,14 +221,14 @@ public class RepositoryService extends CommonService {
         Object object = restClientUtil.callRestApi(HttpMethod.GET, url, new HttpEntity<>(null, headers), byte[].class).getBody();
 
         byte[] TotalByteMessage= (byte[]) object;
-
-        logger.info(TotalByteMessage.toString());
+        String str = new String(TotalByteMessage);
+        logger.info(str.toString());
 
         String byteToString = new String(TotalByteMessage,0,TotalByteMessage.length);
 
-        System.out.println(byteToString);
+        System.out.println(":::::::::::::str.toString()"+str.toString());
         List list = new ArrayList();
-        list.add("0:"+byteToString);
+        list.add("0:"+str.toString());
 
         return list;
     }
