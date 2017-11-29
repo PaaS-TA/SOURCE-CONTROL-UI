@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.springframework.http.HttpHeaders.ACCEPT;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
 /**
@@ -215,11 +216,9 @@ public class RepositoryService extends CommonService {
         logger.debug("getContent:::url" + url);
         HttpHeaders headers = new HttpHeaders();
         headers.add(CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE);
-
-        HttpEntity<Object> entity = new HttpEntity<>(null, headers);
+        headers.add(ACCEPT, MediaType.APPLICATION_OCTET_STREAM_VALUE);
 
         Object object = restClientUtil.callRestApi(HttpMethod.GET, url, new HttpEntity<>(null, headers), byte[].class).getBody();
-
         byte[] TotalByteMessage= (byte[]) object;
         String str = new String(TotalByteMessage);
         logger.info(str.toString());
