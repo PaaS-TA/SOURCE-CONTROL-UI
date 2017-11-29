@@ -3,7 +3,6 @@ package com.paasta.scwui.controller.admin;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.paasta.scwui.common.util.Common;
 import com.paasta.scwui.controller.common.CommonController;
-import com.paasta.scwui.model.Repository;
 import com.paasta.scwui.service.admin.AdminRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import sonia.scm.repository.Repository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -73,15 +73,8 @@ public class AdminRepositoryController extends CommonController {
 
         Map rtnMap = new HashMap();
         ResponseEntity<Map> response = adminRepositoryService.getAdminRepositories(instanceid, map);
-
-        List<LinkedHashMap> repositoryList = (List<LinkedHashMap>) response.getBody().get("repositories");
         Map pageInfo = (Map)response.getBody().get("pageInfo");
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<Repository> repositories = new ArrayList<>();
-        repositoryList.forEach(e -> repositories.add(objectMapper.convertValue(e, Repository.class)));
-
-        rtnMap.put("repositories", repositories);
+        rtnMap.put("repositories", response.getBody().get("repositories"));
         rtnMap.put("pageInfo", pageInfo.size());
         rtnMap.put("repoName", map.getOrDefault("repoName",""));
         return rtnMap;

@@ -6,13 +6,13 @@
     <!-- location :s -->
     <div class="location">
         <ul>
-            <li><a href="/user/repository/" class="home">홈으로</a></li>
-            <li><a href="/user/repository/" title="레파지토리 목록"> 레파지토리 목록 </a></li>
+            <li><a href="#" onclick="moveHome()" class="home">홈으로</a></li>
+            <li><a href="#" onclick="moveHome()"  title="레파지토리 목록"> 레파지토리 목록 </a></li>
             <!--마지막 경로-->
             <li><a href="#" title="레파지토리 상세보기"> 레파지토리 상세보기 (${repositorydetails.name})</a></li><!--마지막 경로-->
         </ul>
         <div class="fr" style="align-content:inherit">
-            <a href="/user/update/${repositorydetails.id}">
+            <a href="/user/update/${repositorydetails.id}?type=${repositorydetails.type}">
                 <button type="button" class="button btn_default" title="정보보기/수정">정보보기/수정</button>
             </a>
             <a href="/user/createRepository/">
@@ -27,7 +27,7 @@
         <div class="sub_tab">
             <ul>
                 <li class="fst active"><a href="#;" onClick="sub_tab(0);"><span class="file_on"></span>파일(file) <span
-                        class="pl10">${browserResult.files.size()}</span></a></li><!--아이콘 온파일네임 파일명_on 붙이면 됨-->
+                        class="pl10" id="detailBrowserResultCntMain" name="detailBrowserResultCntMain">${browserResult.files.size()}</span></a></li><!--아이콘 온파일네임 파일명_on 붙이면 됨-->
                 <li class=""><a href="#;" onClick="sub_tab(1);"><span class="commint"></span>커밋(Commint) <span
                         class="pl10">${ChangesetPagingResult.size()}</span></a></li>
                 <li class=""><a href="#;" onClick="detail_Sub_tab(2);"><span class="contributor"></span>참여자(Contributor)

@@ -101,7 +101,7 @@
             description : document.getElementById('description').value,
             public: publicValue
         };
-        procCallAjax("put","/user/update/"+ id, reqParam, callbackUpdateRepository());
+        procCallAjax("put","/user/update/"+ id+"?type="+publicValue, reqParam, callbackUpdateRepository());
     };
 
     // CALLBACK

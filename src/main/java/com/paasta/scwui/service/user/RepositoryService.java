@@ -1,20 +1,19 @@
 package com.paasta.scwui.service.user;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.paasta.scwui.common.util.Common;
 import com.paasta.scwui.model.BrowserResult;
-import com.paasta.scwui.model.Repository;
 import com.paasta.scwui.service.common.CommonService;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import sonia.scm.NotSupportedFeatuerException;
 import sonia.scm.repository.Branches;
 import sonia.scm.repository.ChangesetPagingResult;
+import sonia.scm.repository.Repository;
 import sonia.scm.repository.Tags;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +21,6 @@ import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
 /**
  * Created by injeong Lee on 2017-06-27.
- *
  */
 @Service
 public class RepositoryService extends CommonService {
@@ -36,12 +34,7 @@ public class RepositoryService extends CommonService {
         HttpEntity<Object> entity = restClientUtil.restCommonHeaderNotJson(repository);
         String url = propertiesUtil.getApiRepo();
         logger.debug("########## Service Confirm ##########");
-        ResponseEntity<Repository> response = null; // ☜
-        try {
-            response = restClientUtil.callRestApi(HttpMethod.POST, url, entity, Repository.class); // ☜
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ResponseEntity<Repository> response = restClientUtil.callRestApi(HttpMethod.POST, url, entity, Repository.class); // ☜
         return response != null ? response.getBody() : null;
     }
 
@@ -56,34 +49,13 @@ public class RepositoryService extends CommonService {
         return restClientUtil.callRestApi(HttpMethod.PUT, url, entity, String.class);
     }
 
-
-    public List<Repository> getUserRepositories(String instanceid, String userid) {
-
-        // 모든 Repository 조회
-        // GET : /repositories/user/{instanceid}?username={user}
-        String url = propertiesUtil.getApiRepoDashboard().replace("{instanceid}", instanceid);
-        url = url.replace("{user}", userid);
-        HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
-        ResponseEntity<Map> response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, Map.class);
-
-        List<LinkedHashMap> repositoryList = (List<LinkedHashMap>) response.getBody().get("repositories");
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<Repository> repositories = new ArrayList<>();
-
-        repositoryList.forEach(e -> repositories.add(objectMapper.convertValue(e, Repository.class)));
-
-        return repositories;
-
-    }
-
-    public Repository getRepositoryDetail(String repositoryId) {
+    public Repository getRepositoryDetail(String repositoryId, String type) {
 
         // Repository 상세 조회
         // GET : /repositories/{repositoryId}
         String url = propertiesUtil.getApiRepoId().replace("{id}", repositoryId);
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
-        ResponseEntity<Repository> response = restClientUtil.callRestApi(HttpMethod.GET, url, entity, Repository.class);
+        ResponseEntity<Repository> response = restClientUtil.callRestApi(HttpMethod.GET, url + "?type=" + type, entity, Repository.class);
         logger.debug("response.getStatusCode():" + "response.getStatusCode():");
 
         return response.getBody();
@@ -110,7 +82,7 @@ public class RepositoryService extends CommonService {
 
     }
 
-    public List<Repository> getUserRepositories(String instanceid, String userid, Map map) {
+    public Map getUserRepositories(String instanceid, String userid, Map map) {
         // 모든 Repository 조회
         // GET : /repositories/user/{instanceid}?username={user}
         String params = Common.requestParamByMap(map);
@@ -119,15 +91,8 @@ public class RepositoryService extends CommonService {
         HttpEntity<Object> entity = restClientUtil.restCommonHeaders(null);
         logger.debug("url+ params:::" + url + params);
         ResponseEntity<Map> response = restClientUtil.callRestApi(HttpMethod.GET, url + "&" + params, entity, Map.class);
-
-        List<LinkedHashMap> repositoryList = (List<LinkedHashMap>) response.getBody().get("repositories");
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<Repository> repositories = new ArrayList<>();
-
-        repositoryList.forEach(e -> repositories.add(objectMapper.convertValue(e, Repository.class)));
-
-        return repositories;
+        Map repository = Common.notEmpty(response.getBody()) ? (Map) response.getBody().getOrDefault("rtnList", new HashMap()) : new HashMap();
+        return repository;
     }
 
     public Map getPermissionByRepositoryId(String repositoryId, Map mapByRequest) {
@@ -244,21 +209,27 @@ public class RepositoryService extends CommonService {
     }
 
 
-    public ResponseEntity<byte[]> getContent(String id, String revision, String path) throws NotSupportedFeatuerException, IOException {
-
-
+    public List getContent(String id, String revision, String path) throws NotSupportedFeatuerException, IOException {
 
         String url = propertiesUtil.getApiRepositoryIdContentPathRevision().replace("{id}", id).replace("{path}", path).replace("{revision}", revision).replace("{dc}", "");
-        logger.debug("getContent:::url"+url);
+        logger.debug("getContent:::url" + url);
         HttpHeaders headers = new HttpHeaders();
         headers.add(CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE);
 
         HttpEntity<Object> entity = new HttpEntity<>(null, headers);
 
-        //        headers.add(ACCEPT, MediaType.APPLICATION_OCTET_STREAM_VALUE);
-
         Object object = restClientUtil.callRestApi(HttpMethod.GET, url, new HttpEntity<>(null, headers), byte[].class).getBody();
-        return this.restClientUtil.callRestApi(HttpMethod.GET, url, new HttpEntity<>(null, headers), byte[].class);
 
-        }
-        }
+        byte[] TotalByteMessage= (byte[]) object;
+
+        logger.info(TotalByteMessage.toString());
+
+        String byteToString = new String(TotalByteMessage,0,TotalByteMessage.length);
+
+        System.out.println(byteToString);
+        List list = new ArrayList();
+        list.add("0:"+byteToString);
+
+        return list;
+    }
+}

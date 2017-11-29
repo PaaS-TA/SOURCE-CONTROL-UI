@@ -7,8 +7,6 @@
             <li><a href="#" title="">레파지토리 신규생성</a></li><!--마지막 경로일때-->
         </ul>
     </div>
-    <!--//이동경로 :e -->
-
     <!-- contents :s -->
     <div class="contents">
         <!-- Form 테이블 :s -->
@@ -18,14 +16,12 @@
                 <col style="width: 18%"/>
                 <col style="width: *"/>
             </colgroup>
-
             <tbody>
             <tr>
                 <th>레파지토리 명 (<span class="essential">*필수</span>)</th>
                 <td><input type="text" id="RepositoryName" name="RepositoryName" value="" placeholder=""><span class="essential"> *영문만 허용</span>
                     <p class="desc" style="color:#fb5666;display: none" id="createRepositoryNameAlert">* 레파지토리명 형식이 올바르지 않습니다.</p></td>
             </tr>
-
             <tr>
                 <th>유형 (<span class="essential">*필수</span>)</th>
                 <td>
@@ -36,15 +32,6 @@
                     </select>
                 </td>
             </tr>
-
-            <tr style="display: none;">
-                <th>공개여부 (<span class="essential">*필수</span>)</th>
-                <td>
-                    <label><input type="radio" name="public" id="public3" value=true>공개(Public)</label>
-                    <label><input type="radio" name="public" id="public4" value=false  checked="checked">비공개(Private)</label>
-                </td>
-            </tr>
-
             <tr>
                 <th>레파지토리 설명 (<span class="f12">선택</span>)</th>
                 <td><textarea type="text" name="description" id="description"  colos="20" rows="5" style=""></textarea></td>
@@ -56,7 +43,6 @@
         <!--버튼 영역 :s -->
         <div class="btn_Area plr20 fr">
             <jsp:include page="../common/buttonCreateOnclick.jsp"></jsp:include>
-            <%--<button type="button" class="button btn_default" title="생성" id="btnCreate">생성</button>--%>
             <button type="button" class="button btn_default" title="취소" id="btnCancel">취소</button>
         </div>
         <!--버튼 영역-->
@@ -67,9 +53,7 @@
 <form id="form1" method ='get' action ="/user/repository/"></form>
 
 <script type="text/javascript">
-    /* 레파지토리 생성
-     *  public3[공개], private[비공개]4 => header.jsp 똑같은 옵션 public1[공개],private2[비공개]에서 충돌 우려 하여 숫자부여
-     * */
+    /* 레파지토리 생성*/
     // CREATE REPOSITORY
     var createRepository = function () {
         var createRepositoryName = document.getElementById('RepositoryName').value;
@@ -78,19 +62,14 @@
             $('#RepositoryName').focus();
             return;
         }
-        var publicValue;
-        publicValue = document.getElementById('public3').checked;
-
+        var publicValue = false; //항상 private 만생성함.
         var reqParam = {
             name: document.getElementById('RepositoryName').value,
             description: document.getElementById('description').value,
             type: document.getElementById('type').value,
             public: publicValue,
         };
-
-        console.log("::::들어오니? 2탄::::" + JSON.stringify(reqParam));
         procCallAjax("post", "/user/createRepository.do", reqParam, callbackCreateRepository);
-        console.log("::::들어오니? 3탄::::");
     };
 
     // CALLBACK

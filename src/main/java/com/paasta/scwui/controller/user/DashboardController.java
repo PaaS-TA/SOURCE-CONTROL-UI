@@ -36,32 +36,23 @@ public class DashboardController extends CommonController {
     @RequestMapping(value = "/user/{instanceId}", method = RequestMethod.GET)
     //@ResponseBody
     public ModelAndView repositoryDashboard(@PathVariable("instanceId") String instanceId, HttpSession session) {
-        try {
+//        session.invalidate();
+        if(session.getAttribute("name")==null){
 
-            DashboardAuthenticationDetails user = getDetail();
-            String rtnUserId = Common.empty(user.getName()) ? "" : user.getName();
-            boolean bCreate = getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority(Constants.CHECK_YN_Y));
-            boolean bActive = user.isActive();
-            boolean bPasswordSet = user.isPasswordSet();
-            logger.debug("bCreate:::"+bCreate + "::bActive::"+bActive+":::");
-            session.setAttribute("name", rtnUserId);
-            if(!bPasswordSet){
-                return new ModelAndView("redirect:/user/userMyModifyPassword");
-            }
-
-            //최초 들어왔을 경우에는 passwordSet이 null, bCreate = Y, bActive = false임
-            //초대되어 들어올경우 자동으로 사용자를 등록시킬경우이므로 bPasswordSet = false 로 입력할것.
-//            ((DashboardAuthenticationDetails) getAuthentication().getDetails()).setPasswordSet(true);
-            //OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) ((DashboardAuthenticationDetails) getAuthentication().getDetails()).setPasswordSet(true);
-
-            logger.debug("username :::" + rtnUserId + "::rtnInstanceid:" + user.getInstanceId() + "::instanceId:" + instanceId + "::rtnIsActive:" + user.isActive() + "::rtnCreateYN:" + getAuthentication().getAuthorities());
-            return new ModelAndView("redirect:/user/repository/");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new InternalAuthenticationServiceException("Error while creating repositoryDashboard instanceId on [" + instanceId + "]", e);
         }
+        DashboardAuthenticationDetails user = getDetail();
 
+        String rtnUserId = Common.empty(user.getName()) ? "" : user.getName();
+        boolean bCreate = getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority(Constants.CHECK_YN_Y));
+        boolean bActive = user.isActive();
+        boolean bPasswordSet = user.isPasswordSet();
+        logger.debug("bCreate:::"+bCreate + "::bActive::"+bActive+":::");
+        session.setAttribute("name", rtnUserId);
+        if(!bPasswordSet){
+            return new ModelAndView("redirect:/user/userMyModifyPassword");
+        }
+        logger.debug("username :::" + rtnUserId + "::rtnInstanceid:" + user.getInstanceId() + "::instanceId:" + instanceId + "::rtnIsActive:" + user.isActive() + "::rtnCreateYN:" + getAuthentication().getAuthorities());
+        return new ModelAndView("redirect:/user/repository/?page=0&size=10");
     }
 
     /**

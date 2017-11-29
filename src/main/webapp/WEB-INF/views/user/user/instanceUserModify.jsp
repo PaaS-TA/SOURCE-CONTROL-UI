@@ -5,7 +5,7 @@
     <!-- location :s -->
     <div class="location">
         <ul>
-            <li><a href="/user/repository/" class="home">홈으로</a></li>
+            <li><a href=gohome class="home">홈으로</a></li>
             <li><a href="/user/permissionList/" title="사용자 목록">사용자 목록</a></li><!--마지막 경로-->
             <li><a href="#" title="사용자 상세/수정/삭제">사용자 상세/수정/삭제</a></li><!--마지막 경로-->
         </ul>

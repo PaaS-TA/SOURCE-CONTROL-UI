@@ -6,33 +6,33 @@
     <div class="location">
         <div class="fl">
             <ul>
-                <li><a href="/user/repository/" class="home">홈으로</a></li>
-                <li><a href="/user/repository/" title="${title}">${title}</a></li><!--마지막 경로-->
+                <li><a href="#" onclick="moveHome()" class="home">홈으로</a></li>
+                <li><a href="#" onclick="moveHome()" title="${title}">${title}</a></li><!--마지막 경로-->
             </ul>
         </div>
         <div class="fr" style="padding-top: 15px;">
-
             <a href="/user/createRepository">
                 <jsp:include page="../common/buttonCreateAhref.jsp"></jsp:include>
-                <%--<button type="button" id="btn_repoCreate" class="button btn_default" title="신규생성" style="display: block">신규생성</button>--%>
             </a>
         </div>
     </div>
     <!--//location :e -->
     <!-- contents :s -->
     <div class="contents">
+	    <c:set var="repositories" value='${rtnList.content}'/>
+	    <c:set var="page" value='${rtnList.number}'/>
+	    <c:set var="size" value='${rtnList.size}'/>
         <!-- 셀렉트(검색, 보기 선택, 사용자여부 선택, 레파지토리 클론) :s -->
         <div class="rSearch_group">
             <div class="sel_group">
                 <form id="frm_search" method="get" action="/user/repository/">
-                    <input type="hidden" id="requestPage" name="page" value="<c:out value='${page}' default='0' />"/>
-                    <input type="hidden" id="requestSize" name="size" value="<c:out value='${size}' default='0' />"/>
-                    <input type="hidden" id="type1" name="type1" value="<c:out value='${type1}' default='' />"/>
-                    <input type="hidden" id="type2" name="type2" value="<c:out value='${type2}' default='' />"/>
-                    <input type="hidden" id="reposort" name="reposort"
-                           value="<c:out value='${reposort}' default='' />"/>
+                    <input type="hidden" id="page" name="page" style="width:10px" value="<c:out value='${page}' default='0'  />"/>
+                    <input type="hidden" id="size" name="size" style="width:200px" value="<c:out value='${size}' default='0' />"/>
+                    <input type="hidden" id="type1" name="type1" style="width:10px" value="<c:out value='${type1}' default='' />"/>
+                    <input type="hidden" id="type2" name="type2" style="width:200px" value="<c:out value='${type2}' default='' />"/>
+                    <input type="hidden" id="reposort" name="reposort" value="<c:out value='${reposort}' default='' />"/>
                     <div class="keyword_search">
-                        <input type="text" name="repoName" id="repoSearch_keyword" style="-ms-ime-mode: active;" value="<c:out value='${repoName}' default=''/>" placeholder="레파지토리 명 검색" autocomplete="on"/>
+                        <input type="text" name="repoName" id="repoSearch_keyword" style="-ms-ime-mode: active;" autocomplete="on"/>
                         <button type="button" class="btn_search" name="btn_repoSearch" id="btn_repoSearch"/>
                     </div>
                     <div class="selectbox select1 ml5" style="width:135px;">
@@ -41,7 +41,7 @@
                             <c:if test="${type1=='git'}"><strong id="repoListType">Git</strong><span class="bul"></span></c:if>
                             <c:if test="${type1=='svn'}"><strong id="repoListType">SVN</strong><span class="bul"></span></c:if>
                         </div>
-                        <ul class="select-list" onclick="repoSearchList()">
+                        <ul class="select-list">
                             <li>형상관리 전체</li>
                             <li>Git</li>
                             <li>SVN</li>
@@ -49,330 +49,294 @@
                     </div>
                     <div class="selectbox select2 ml5" style="width:135px;">
                         <div>
-                            <c:if test="${type2==''}"><strong id="repoListPermission">전체 레파지토리</strong><span class="bul"></span></c:if>
-                            <c:if test="${type2=='READ_WRITE_OWNER'}"><strong id="repoListPermission">참여 레파지토리</strong><span class="bul"></span></c:if>
+                            <c:if test="${type2==''}"><strong id="repoListPermission">전체 레파지토리</strong><span
+                                    class="bul"></span></c:if>
+                            <c:if test="${type2=='READ_WRITE_OWNER'}"><strong id="repoListPermission" >참여
+                                레파지토리</strong><span class="bul"></span></c:if>
                         </div>
-                        <ul class="select-list" onclick="repoSearchList()">
-                            <li class="selected" value="" id="allRepository" name ="repo_role" class="selectSortType">전체 레파지토리</li>
-                            <li value="READ_WRITE_OWNER" id="read_Repository" name ="repo_role" class="selectSortType">참여 레파지토리</li>
+                        <ul class="select-list">
+                            <li class="selectSortType" value="" id="repo_role" >전체 레파지토리</li>
+                            <li class="selectSortType" value="READ_WRITE_OWNER" id="repo_allrole" >참여 레파지토리</li>
                         </ul>
                     </div>
-                    <div class="selectbox select5 ml5" style="width:135px;">
+                    <div class="selectbox select3 ml5" style="width:135px;">
                         <div>
-                            <c:if test="${reposort=='lastModified_true' || reposort==''}"><strong id="repoListreposort">최신 업데이트 순</strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='lastModified_false'}"><strong id="repoListreposort">오래된 업데이트 순</strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='creationDate_true'}"><strong id="repoListreposort">최신 생성일 순</strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='creationDate_false'}"><strong id="repoListreposort">오래된 생성일 순</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='lastModified_true' || reposort==''}"><strong id="repoListreposort">최신
+                                업데이트 순</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='lastModified_false'}"><strong id="repoListreposort">오래된 업데이트
+                                순</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='creationDate_true'}"><strong id="repoListreposort">최신 생성일
+                                순</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='creationDate_false'}"><strong id="repoListreposort">오래된 생성일
+                                순</strong><span class="bul"></span></c:if>
                         </div>
-                        <ul class="select-list" onclick="repoSearchList()">
+                        <ul class="select-list">
                             <li id="lastModified_desc" class="selectSortType">최신 업데이트 순</li>
                             <li id="lastModified_asc" class="selectSortType">오래된 업데이트 순</li>
                             <li id="created_desc" class="selectSortType">최신 생성일 순</li>
                             <li id="created_asc" class="selectSortType">오래된 생성일 순</li>
                         </ul>
                     </div>
+                    <div class="fr" style="padding-top: 15px;">
+                        <span id="repositoryNumberOfElements">(${rtnList.numberOfElements}/${rtnList.totalElements})</span>
+                    </div>
                 </form>
             </div>
         </div>
         <!--//셀렉트(검색, 보기 선택, 사용자여부 선택, 레파지토리 클론) :e -->
-        <!-- 메인 탭 콘텐츠01 :s -->
-        <div class="main_tab00">
-            <div class="tab_content">
-                <!-- 레파지토리 목록 :s -->
-                <ul class="product_list">
-                    <c:forEach items="${repositories}" var="repositories" varStatus="status">
-                        <c:set var="count" value="0"/>
-                        <li id="repositoryList">
-                            <dl>
-                                <%--#소유자권한--%>
-                                <c:forEach items="${repositories.permissions}" var="permissions" varStatus="sts">
-                                    <c:out value="${userid}"/>
-                                    <%--[1-1] 권한이 있을때 표출--%>
-                                    <c:if test="${permissions.name eq name}">
-                                        <c:set var="count" value="1"/>
-                                    </c:if>
-                                </c:forEach>
-                                    <c:if test="${count > 0}">
-                                        <dt><a href="/user/repositoryDetail/${repositories.id}">${repositories.name}</a></dt>
-                                    </c:if>
-                                    <%--[1-2] 권한이 없을때 표출--%>
-                                    <c:if test="${count ==null || count == 0}">
-                                        <dt>${repositories.name}</dt>
-                                    </c:if>
-                                <%--#소유자권한--%>
+        <%--<div class="main_tab00">
+            <div class="tab_content">--%>
+            <!-- 레파지토리 목록 :s -->
+            <ul class="product_list" id="repositoryList" name="repositoryList">
+                <c:forEach items="${rtnList.content}" var="repositories" varStatus="status">
+                    <c:set var="count" value="0"/>
+                    <%--참여자 권한을 체크하여 소유자인지 체크한다.--%>
+                        <c:set var="permissionType" value="false"/>
+                        <c:forEach items="${repositories.permissions}" var="permissions" varStatus="sts">
+                            <c:if test="${permissions.name eq name && permissions.type != 'READ'}">
+                                <c:set var="permissionType" value="true"/>
+                            </c:if>
+                        </c:forEach>
+                    <li>
+                        <dl>
+                            <c:forEach items="${repositories.permissions}" var="permissions" varStatus="sts">
+                                <c:out value="${userid}"/>
+                                <%--[1-1] 권한이 있을때 표출--%>
+                                <c:if test="${permissions.name eq name}">
+                                    <c:set var="count" value="1"/>
+                                </c:if>
+                            </c:forEach>
+                            <c:if test="${permissionType=='true'}">
+                                <dt>
+                                    <a href="/user/repositoryDetail/${repositories.id}?type=${repositories.type}">${repositories.name}</a>
+                                </dt>
+                            </c:if>
+                            <%--[1-2] 권한이 없을때 표출--%>
+                            <c:if test="${permissionType!='true'}">
+                                <dt>${repositories.name}</dt>
+                            </c:if>
+                            <%--#소유자권한--%>
+                            <dd>
+                                <ul>
+                                    <li class="sbj_txt">${repositories.description}</li>
+                                    <li class="stateArea"><i class="ico_update"></i>마지막 업데이트 : ${repositories.lastModified}<span class="pr10"></span>
+                                        <i class="ico_create"></i>생성일 : ${repositories.creationDate}</li>
+                                </ul>
+                            </dd>
+                            <c:choose>
+                                <c:when test="${repositories.type eq 'git'}">
+                                    <dd class="thmb_img"><img src="/resources/images/img_git.png" alt="GIT 이미지" border="0"></dd>
+                                </c:when>
+                                <c:when test="${repositories.type eq 'svn'}">
+                                    <dd class="thmb_img"><img src="/resources/images/img_svn.png" alt="SVN 이미지" border="0"></dd>
+                                </c:when>
+                            </c:choose>
+                            <dd class="icon_wrap">
+                                <ul class="ico_lst">
+                                    <li class="ico_area">
+                                        <c:if test="${permissionType=='true'}">
+                                            <img src="/resources/images/process_ico_own.png" alt="소유자 이미지" border="0">
+                                            <p class="tit">소유자</p>
+                                        </c:if>
+                                    </li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </li>
+                </c:forEach>
+                <c:if test="${rtnList.totalElements==0}">
+                    <li>
+                        <dl>
+                            <dt>조회된 데이터가 없습니다.</dt>
+                        </dl>
+                    </li>
+                </c:if>
+                <%--<c:if test="${rtnList.last==false}">--%>
+                        <%--<dl>--%>
+                            <%--<button class="btn_more"  id="btn_more" name="btnMore" >more</button>--%>
+                        <%--</dl>--%>
+                 <%--</c:if>--%>
+            <!--//레파지토리 목록 :e -->
 
-                                <dd>
-                                    <ul>
-                                        <li class="sbj_txt">${repositories.description}</li>
-                                        <li class="stateArea"><i class="ico_update"></i>마지막 업데이트
-                                            : ${repositories.lastModified}<span class="pr10"></span> <i
-                                                    class="ico_create"></i>생성일 : ${repositories.creationDate}</li>
-                                    </ul>
-                                </dd>
-                                <c:choose>
-                                    <c:when test="${repositories.type eq 'git'}">
-                                        <dd class="thmb_img"><img src="/resources/images/img_git.png" alt="GIT 이미지" border="0"></dd>
-                                    </c:when>
-                                    <c:when test="${repositories.type eq 'svn'}">
-                                        <dd class="thmb_img"><img src="/resources/images/img_svn.png" alt="SVN 이미지"
-                                                                  border="0"></dd>
-                                    </c:when>
-                                </c:choose>
-                                <dd class="icon_wrap">
-                                    <ul class="ico_lst">
-                                        <li class="ico_area">
-                                            <c:forEach items="${repositories.permissions}" var="permissions"
-                                                       varStatus="sts">
-                                                <c:out value="${userid}"/>
-                                                <c:if test="${permissions.name eq name}">
-                                                    <c:choose>
-                                                        <c:when test="${permissions.type eq 'OWNER'}">
-                                                            <img src="/resources/images/process_ico_own.png"
-                                                                 alt="소유자 이미지" border="0">
-                                                            <p class="tit">소유자</p>
-                                                        </c:when>
-                                                        <c:when test="${permissions.type eq 'WRITE'}">
-                                                            <a href="#"><img
-                                                                    src="/resources/images/process_ico_modify.png"
-                                                                    alt="수정권한 이미지" border="0">
-                                                                <p class="tit">수정권한</p></a>
-                                                        </c:when>
-                                                        <c:when test="${permissions.type eq 'READ'}">
-                                                            <a href="#"><img
-                                                                    src="/resources/images/process_ico_contribute.png"
-                                                                    alt="보기권한 이미지" border="0">
-                                                                <p class="tit">보기권한</p></a>
-                                                        </c:when>
-                                                    </c:choose>
-                                                </c:if>
-                                            </c:forEach>
-                                        </li>
-                                        <%--
-                                        <li class="ico_area">
-                                            <c:choose>
-                                                <c:when test="${repositories.public_}">
-                                                    <img src="/resources/images/process_ico_public.png" alt="공개 이미지" border="0"><p class="tit">공개</p>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <img src="/resources/images/process_ico_private.png" alt="비공개 이미지" border="0"><p class="tit">비공개</p>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </li>
-                                        --%>
-                                    </ul>
-                                </dd>
-                            </dl>
-                        </li>
-                    </c:forEach>
-                    <%--${pageInfo.totalCnt}${repositoryCnt}--%>
-                    <c:if test="${repositoryCnt==0}">
-                        <li id="repositoryList">
-                            <dl>
-                                <dt>조회된 데이터가 없습니다.</dt>
-                            </dl>
-                        </li
-                    </c:if>
-                </ul>
-                <!--//레파지토리 목록 :e -->
-            </div>
-        </div>
-        <!--//메인 탭 콘텐츠01 :e -->
-        <!--//contents :e -->
+    <c:if test="${rtnList.last==false}">
+       <button class="table_more" id="btn_more" name="btn_more">more</button>
+    </c:if>
     </div>
+</div>
+        <!--//contents :e -->
+   <%-- </div>
+</div>--%>
     <!--//contaniner :e -->
     <!-- Top 가기 :s -->
     <div class="follow" title="Scroll Back to Top">
         <a href="#" title="top"><img src="/resources/images/a_top.gif"></a>
     </div>
-    <input type="hidden" id="requestSearchKeyword" name="requestSearchKeyword"
-           value="<c:out value='${name}' default='' />"/>
-
-    <input type="hidden" id="requestSort" name="requestSort" value="<c:out value='${reposort}' default='' />"/>
-    <input type="hidden" id="role" name="role" value="<c:out value='${role}' />"/>
-
     <!--//Top 가기 :e -->
-    <%-- Java Script --%>
-    <script type="text/javascript">
-        var page = 0;
-        var size = 10;
-        var repoSearchList = function () {
-            var param1 = $("#repoListType").text();
+<%-- Java Script --%>
+<script type="text/javascript">
+    var page = 0;
+    var size = 10;
+    var repoSearchList = function () {
+        var param2 = $("#repoListPermission").text();
+        switch (param2) {
+            case "참여 레파지토리" :
+                param2 = "READ_WRITE_OWNER";
+                break;
+            default:
+                param2 = "";
+        }
+        $("#type2").val(param2);
 
-            switch (param1) {
-                case "Git" :
-                    param1 = "git";
-                    break;
-                case "SVN" :
-                    param1 = "svn";
-                    break;
-                default:
-                    param1 = "";
-            }
-            $("#type1").val(param1);
-            var param2 = $("#repoListPermission").text();
-            switch (param2) {
-                case "소유 레파지토리" :
-                    param2 = "OWNER";
-                    break;
-                case "읽기 레파지토리" :
-                    param2 = "READ";
-                    break;
-                case "수정 레파지토리" :
-                    param2 = "WRITE";
-                    break;
-                case "참여 레파지토리" :
-                    param2 = "READ_WRITE_OWNER";
-                    break;
-                default:
-                    param2 = "";
-            }
-            $("#type2").val(param2);
+        var param1 = $("#repoListType").text();
+        switch (param1) {
+            case "Git" :
+                param1 = "git";
+                break;
+            case "SVN" :
+                param1 = "svn";
+                break;
+            default:
+                param1 = "";
+        }
 
-            var param3 = $("#repoListreposort").text();
-            switch (param3) {
-                case "최신 업데이트 순" :
-                    param3 = "lastModified_true";
-                    break;
-                case "오래된 업데이트 순" :
-                    param3 = "lastModified_false";
-                    break;
-                case "최신 생성일 순" :
-                    param3 = "creationDate_true";
-                    break;
-                case "오래된 생성일 순" :
-                    param3 = "creationDate_false";
-                    break;
-                default:
-                    param3 = "";
-            }
-            $("#reposort").val(param3);
-            $("#frm_search").submit();
-        };
+        $("#type1").val(param1);
 
 
-        // CALLBACK
-        function callback(data) {
-            console.log("======================================================================================================================");
-            console.log(":::sendCALLBACK 콘솔 로그:::");
-            console.log("data : " + JSON.stringify(data));
-            console.log("=======================================================================================================================");
-        };
+        var param3 = $("#repoListreposort").text();
+        switch (param3) {
+            case "최신 업데이트 순" :
+                param3 = "lastModified_true";
+                break;
+            case "오래된 업데이트 순" :
+                param3 = "lastModified_false";
+                break;
+            case "최신 생성일 순" :
+                param3 = "creationDate_true";
+                break;
+            case "오래된 생성일 순" :
+                param3 = "creationDate_false";
+                break;
+            default:
+                param3 = "";
+        }
+        $("#reposort").val(param3);
+        $("#frm_search").submit();
+    };
 
-        $(document).ready(function () {
-
-//        procPopupConfirm("승인", "승인메세지", "승인버튼메세지");
-            // BIND :: repoSearch_keyword
-            $("#repoSearch_keyword").keyup(function (event) {
-                if (event.which === 13) {
-                    repoSearchList();
-                }
-            });
-
-            // BIND :: [돋보기] btn_repoSearch
-            $("#btn_repoSearch").click(function () {
-                //procPopupConfirm("승인", "승인메세지", "승인버튼메세지");
-                //repoSearchList();
-                console.log(":::(end)btn_repoSearch || 돋보기 콘솔 로그:::");
-            });
-
-            // BIND :: Select(1) git or svn
-            $("#type").on("click", function () {
-                $("#git").removeClass('selected');
-                $("#svn").attr('class', 'selected');
-            });
-
-            // BIND :: slsect(3) "select-list"
-            $(".selectSortType").on("click", function () {
-                var requestSort = $(this).attr('id');
-
-                $("#requestSort").val($(this).attr('id').replace("_", ","));
+    $(document).ready(function () {
+        $("#btn_more").click(function (event) {
+            repositoryList();
+        });
+        $("#repoSearch_keyword").keyup(function (event) {
+            if (event.which === 13) {
                 repoSearchList();
-            });
+            }
         });
-
-        $("#btn_repoCreate").click(function () {
-            console.log("레파지토리 신규 생성");
+        // BIND :: [돋보기] btn_repoSearch
+        $("#btn_repoSearch").click(function () {
+            repoSearchList();
         });
+    });
 
-        $.fn.selectDesign = function () {
-            var t = $(this);
-            var div = t.children("div");
-            var strong = div.children("strong");
-            var ul = t.children("ul");
-            var li = ul.children("li");
-            var door = false;
+    $.fn.selectDesign = function () {
+        var t = $(this);
+        var div = t.children("div");
+        var strong = div.children("strong");
+        var ul = t.children("ul");
+        var li = ul.children("li");
+        var door = false;
 
-            div.click(function () {
-                if (door) {
-                    ul.hide();
-                } else {
-                    ul.show();
-                }
-                door = !door;
-            });
-            ul.mouseleave(function () {
+        div.click(function () {
+            if (door) {
                 ul.hide();
-                door = false;
-            });
-
-            li.click(function () {
-                var txt = $(this).text();
-                strong.html(txt);
-
-            });
-
-        };
-        $(".select1").selectDesign();
-        $(".select2").selectDesign();
-        $(".select5").selectDesign();
-
-        $('#comboBox').bind('focusout', function () {
-            $('#comboBoxData').hide();
-        });
-
-        //loding bar
-        $(window).scroll(function () {
-            if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
-            }
-        });
-
-        var RepositoryList = function () {
-            var url = "/user/repository/?repoName=" + $("#repoSearch_keyword").val() + "&reposort=" + $("#requestSort").val();
-            var param = {
-                "type": "",
-                "sort": "lastModified",
-                "reposort": "lastModified"
-            };
-            procCallAjax('get', url, param, callbackGetRepositoryList);
-        };
-
-
-        var callbackGetRepositoryList = function (data) {
-
-
-            var listLength = data.repositories.length;
-            console.log("DATA " + data.repositories.length);
-
-//        var page = data.page;
-//        var size = data.size;
-//        var totalPages = data.totalPages;
-            var isLast = data.last;
-
-
-            var htmlString = [];
-
-            if (0 === listLength) {
-                htmlString = "<li><dl><dt>NO SEARCH RESULTS</dt><dd></li>";
             } else {
+                ul.show();
+            }
+            door = !door;
+        });
+        ul.mouseleave(function () {
+            ul.hide();
+            door = false;
+        });
+        li.click(function () {
+            var txt = $(this).text();
+            strong.html(txt);
+            repoSearchList();
+        });
+    };
 
-                for (var i = 0; i < listLength; i++) {
-                    console.log("DATA " + data.repositories[i].id);
-                    //htmlString.push(''<li id ="repositoryList">'
+    $(".select1").selectDesign();
+    $(".select2").selectDesign();
+    $(".select3").selectDesign();
+
+    var repositoryList = function () {
+        page++;
+        var url = "/user/repositoryUserMore/?";
+        var param =
+            "repoName ="+ $("#repoSearch_keyword").val()
+            + "&type1 ="+ $("#type1").val()
+            + "&type2 ="+ $("#type2").val()
+            + "&reposort="+$("#reposort").val()
+            + "&page="+ page++
+            + "&size="+size;
+        url += param;
+        procCallAjax('get', url, param, callbackGetRepositoryList);
+    };
+
+    var callbackGetRepositoryList = function (data) {
+        if(data.last){
+            $("#btn_more").hide();
+        }
+        var repositories = data.content;
+        $("#repositoryNumberOfElements").text('('+eval(data.number*data.size+data.numberOfElements)+'/'+data.totalElements+')');
+       if (0 != repositories.length) {
+            for (var i = 0; i < data.numberOfElements; i++) {
+                var repository = repositories[i];
+                /**
+                 * 소유자 권한 체크
+                 */
+                var permissions = repository.permissions;
+                var permissionType = false;
+                for(var j=0; j < permissions.length; j++) {
+                    if(!permissions.type!='READ'){
+                        permissionType = true;
+                    }
                 }
+                var varRepositoryHtml ="<li>\n" +
+                    "    <dl>\n" +
+                    "        <dt>\n";
+                if(permissionType){
+                    varRepositoryHtml += "            <a href='/user/repositoryDetail/"+repository.id+"&amp;type="+repository.type+"'>"+repository.name+"</a>\n" ;
+                }else{
+                    varRepositoryHtml += "            "+repository.name+" \n" ;
+                }
+                varRepositoryHtml += "        </dt>\n" +
+                    "        <dd>\n" +
+                    "            <ul>\n" +
+                    "                <li class='sbj_txt'>"+repository.description+"</li>\n" +
+                    "                <li class='stateArea'>\n" +
+                    "                    <i class='ico_update'></i>마지막 업데이트: "+repository.lastModified+"<span class='pr10'></span>\n" +
+                    "                    <i class='ico_create'></i>생성일 : "+repository.creationDate+"\n" +
+                    "                </li>\n" +
+                    "            </ul>\n" +
+                    "        </dd>\n" +
+                    "        <dd class='thmb_img'><img src='/resources/images/img_"+repository.type+".png' alt='이미지' border='0'></dd>\n" +
+                    "        <dd class='icon_wrap'>\n" +
+                    "            <ul class='ico_lst'>\n" +
+                    "                <li class='ico_area'>\n" ;
+                if(permissionType){
+                    varRepositoryHtml += "                    <img src='/resources/images/process_ico_own.png' alt='소유자 이미지' border='0'>\n"
+                                        +"                    <p class='tit'>소유자</p>\n";
+                }
+                varRepositoryHtml += "                </li>\n" +
+                    "            </ul>\n" +
+                    "        </dd>\n" +
+                    "    </dl>\n" +
+                    "</li>";
+                $('#repositoryList').append(varRepositoryHtml);
 
             }
-
-        };
-
-    </script>
-    <!--//select 스크립트-->
+        }
+    };
+</script>
+<!--//select 스크립트-->

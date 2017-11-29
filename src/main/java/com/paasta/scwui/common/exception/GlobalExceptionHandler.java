@@ -36,6 +36,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler({HttpClientErrorException.class})
     public ModelAndView handleHttpClientErrorException(HttpServletRequest req, Exception e) {
+        e.printStackTrace();
         return handleError(req, e);
     }
 
@@ -49,6 +50,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler({HttpServerErrorException.class})
     public ModelAndView handleHttpServerErrorException(HttpServletRequest req, Exception e) {
+        e.printStackTrace();
         return handleError(req, e);
     }
 
@@ -62,6 +64,8 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler({RuntimeException.class, ArithmeticException.class})
     public ModelAndView handleRuntimeException(HttpServletRequest req, Exception e) {
+
+        e.printStackTrace();
         return handleError(req, e);
     }
 
@@ -75,6 +79,8 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler({Exception.class})
     public ModelAndView handleAnyException(HttpServletRequest req, Exception e) {
+
+        e.printStackTrace();
         return handleError(req, e);
     }
 

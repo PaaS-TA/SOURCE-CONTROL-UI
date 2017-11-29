@@ -3,11 +3,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div id="repositoryDetailFileList">
     <div class="rSearch_group">
+        <c:out value="${browserResult}"></c:out>
         <div class="sel_group">
+            <c:if test="${type!='svn'}">
             <div class="selectbox branch_select fl" id="fileSelect1">
                 <div>
-                    <strong>브랜치:<c:out
-                            value="${browserResult.branch==null?'':browserResult.branch}"></c:out></strong><span
+                    <strong>브랜치:<c:out value="${browserResult.branch==null?'':browserResult.branch}"></c:out></strong><span
                         class="bul"></span>
                 </div>
                 <ul class="select-list" id="select_branch">
@@ -18,21 +19,21 @@
                     </c:forEach>
                 </ul>
             </div>
+	        </c:if>
+            <c:if test="${type!='svn'}">
             <div class="selectbox tag_select ml5" id="fileSelect2">
                 <div>
-                    <strong>Tag: <c:out
-                            value="${browserResult.tag==null?'':browserResult.tag}"></c:out></strong><span
-                        class="bul"></span>
+                    <strong>Tag: <c:out value="${browserResult.tag==null?'':browserResult.tag}"></c:out></strong>
+                    <span class="bul"></span>
                 </div>
                 <ul class="select-list">
-                    <input type="text" name="tagWord" maxlength="25" value="" title="Tag 검색"
-                           placeholder="Tag 검색">
+                    <input type="text" name="tagWord" maxlength="25" value="" title="Tag 검색" placeholder="Tag 검색">
                     <c:forEach items="${tags.tags}" var="tags" varStatus="status">
                         <li onclick="browse_search('','${tags.revision}')">${tags.name}</li>
                     </c:forEach>
                 </ul>
             </div>
-
+			</c:if>
             <div class="selectbox select3 fr" style="width:300px;" id="fileSelect3">
                 <div>
                     <strong>레파지토리 클론</strong><span class="bul"></span>
@@ -70,7 +71,6 @@
         </tr>
         </thead>
         <tbody id="browserResult" name="browserResult">
-
         </tbody>
     </table>
     <!--//list :e -->

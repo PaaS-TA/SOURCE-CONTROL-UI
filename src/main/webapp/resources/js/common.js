@@ -18,7 +18,11 @@
  *    Type: String
  *    The type of data expected from the server. Default: Intelligent Guess (xml, json, script, text, html).
  */
+var goHome ="/user/repository/?page=0&size=10";
 
+var moveHome = function(){
+    location.href = goHome;
+}
 // GET DASHBOARD URL
 var procGetUrl = function () {
     var currentUrl = location.pathname;
@@ -30,6 +34,7 @@ var procGetUrl = function () {
 
 var getProcCallAjax = function (reqUrl, param, callback) {
     console.log("GET REQUEST: " + reqUrl);
+    var param = JSON.stringify(param);
     var jqxhr = $.get(reqUrl, function (param) {
         // procCallSpinner('START');
         console.log(reqUrl + " : Data Load" + param + " : jqxhr success");
@@ -168,7 +173,7 @@ var procMovePage = function (pageUrl) {
         history.back();
     } else {
         pageUrl = ("/" == pageUrl) ? "" : pageUrl;
-        location.href = procGetUrl() + pageUrl;
+        location.href = location.pathname + pageUrl;
     }
 };
 /**팝업 확인**/
@@ -261,3 +266,13 @@ validUserName = function (validUserName) {
     }
     return rtnVal;
 };
+
+
+function getParamValue(param) {
+    var urlParamString = location.search.split(param + "=");
+    if (urlParamString.length <= 1) return "";
+    else {
+        var tmp = urlParamString[1].split("&");
+        return tmp[0];
+    }
+}

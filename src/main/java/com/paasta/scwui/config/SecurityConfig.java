@@ -1,4 +1,5 @@
 package com.paasta.scwui.config;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -52,23 +53,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public RequestContextListener requestContextListener() {
         return new RequestContextListener();
     }
-    /**
-     * 모든 페이징 권한주기
-     **/
-/*    @Override
-    public void configure(WebSecurity web) throws Exception {
-        //resources 들의 인증권한은 모두 풀어준다.
-        web.ignoring().antMatchers("*//**");
-        web.ignoring().antMatchers("/resources*//**");
-    }*/
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/**").access("hasRole('"+ROLE_OWNER+"')")
-                .antMatchers("/template/*").access("hasRole('"+ROLE_OWNER+"')")
-                .antMatchers("/admin/**").access("hasRole('"+ROLE_ADMIN+"')")//.permitAll()
+                .antMatchers("/user/**").access("hasRole('" + ROLE_OWNER + "')")
+                .antMatchers("/template/*").access("hasRole('" + ROLE_OWNER + "')")
+                .antMatchers("/admin/**").access("hasRole('" + ROLE_ADMIN + "')")//.permitAll()
                 .antMatchers("/c2NtYWRtaW46/").permitAll()
                 .antMatchers("/resource/**").permitAll()
                 .antMatchers("/error/*").permitAll()
@@ -117,13 +110,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                     .anyRequest().access(isManagingApp())
                     .and()
-
                     .addFilterBefore(dashboardClientContextFilter.unwrap(), AbstractPreAuthenticatedProcessingFilter.class)
                     .addFilterBefore(dashboardSocialClientFilter.unwrap(), AbstractPreAuthenticatedProcessingFilter.class)
-
                     .logout()
-//                    .logoutSuccessHandler(dashboardLogoutSuccessHandler)
-//                    .logoutRequestMatcher(dashboardLogoutUrlMatcher)
+                    .logoutSuccessHandler(dashboardLogoutSuccessHandler)
+                    .logoutRequestMatcher(dashboardLogoutUrlMatcher)
                     .and()
                     .exceptionHandling().accessDeniedPage("/error/500");
         }

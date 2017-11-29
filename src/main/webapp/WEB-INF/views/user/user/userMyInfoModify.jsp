@@ -5,7 +5,7 @@
     <!-- location :s -->
     <div class="location">
         <ul>
-            <li><a href="/user/repository/" class="home">홈으로</a></li>
+            <li><a href=gohome class="home">홈으로</a></li>
             <li><a href="#" title="내정보 수정">내정보 수정</a></li><!--마지막 경로-->
         </ul>
     </div>

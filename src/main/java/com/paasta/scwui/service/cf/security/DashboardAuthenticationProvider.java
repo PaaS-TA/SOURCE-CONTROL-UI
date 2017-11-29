@@ -52,7 +52,7 @@ public class DashboardAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         final String name = authentication.getName();
         final Object details = authentication.getDetails();
-        logger.debug("authenticate start ::: name"+name);
+        logger.info("authenticate start ::: name"+name);
         Authentication rtnAuthentication ;
         if (!(details instanceof DashboardAuthenticationDetails)) {
             logger.debug(" authentication details [" + details.getClass().getName()  + "] are not an instance of  start");

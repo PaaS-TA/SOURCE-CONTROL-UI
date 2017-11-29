@@ -12,6 +12,7 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -35,18 +36,12 @@ public class DashboardAuthenticationProcessingFilter extends OAuth2ClientAuthent
     protected boolean requiresAuthentication(HttpServletRequest request, HttpServletResponse response) {
         logger.debug("requiresAuthentication start");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if(authentication==null){
-//            throw new AuthenticationCredentialsNotFoundException("정상적인 접근이 아닙니다.");
-//        }
         String[] path = request.getServletPath().split("/");
         String serviceInstanceId = "";
         if(path.length>0){
             serviceInstanceId=path[path.length-1];
         }
         logger.debug("requiresAuthentication ::: serviceInstanceId ::: " +serviceInstanceId+"::start" );
-//        logger.debug("requiresAuthentication :::" +
-//                "(((DashboardAuthenticationDetails)authentication.getDetails()).isManagedServiceInstance(serviceInstanceId)) ::: " +
-//                (((DashboardAuthenticationDetails)authentication.getDetails()).isManagedServiceInstance(serviceInstanceId)));
         return (authentication == null
                 || !(((DashboardAuthenticationDetails)authentication.getDetails()).isManagedServiceInstance(serviceInstanceId)))
                 && super.requiresAuthentication(request, response);

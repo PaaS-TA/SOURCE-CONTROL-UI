@@ -3,10 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%--<c:out value="${repositorydetails}"></c:out><br>--%>
 <div>
-    <div id="repositoryBrowseList">
+    <div id="repositoryBrowseList" style="display: block;">
         <%@ include file="/WEB-INF/views/user/repository/repositoryBrowse.jsp" %>
     </div>
-    <div id="repositoryBrowseContent">
+    <div id="repositoryBrowseContent" style="display: block;">
         <%@ include file="/WEB-INF/views/user/repository/repositoryContent.jsp" %>
     </div>
 </div>

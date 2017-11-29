@@ -1,6 +1,7 @@
 package com.paasta.scwui.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.paasta.scwui.common.util.Common;
@@ -9,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotEmpty;
+import sonia.scm.repository.Permission;
 
 import java.util.List;
 import java.util.Map;
@@ -16,7 +18,7 @@ import java.util.Map;
 /**
  * Created by lena on 2017-06-16.
  */
-@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
 @ToString
@@ -65,7 +67,7 @@ public class Repository {
     @NotEmpty
     @JsonSerialize
     @JsonProperty("properties")
-    private List<Map<String, String>> properties;
+    private Map<String, String> properties;
 
     @NotEmpty
     @JsonSerialize

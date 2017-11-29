@@ -2,7 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div id="header">
     <div class="head_inner">
-        <h1><a title="PaaS-TA 형상관리" href="/user/repository/"><img alt="PaaS-TA 형상관리" src="/resources/images/logo.png"><span>형상관리</span></a></h1>
+        <h1><a title="PaaS-TA 형상관리" href="" onclick="moveHome()"><img alt="PaaS-TA 형상관리" src="/resources/images/logo.png"><span>형상관리</span></a></h1>
         <ul class="RP_title" style="float: left;display: block;position: relative;">
             <li><span class="RP_num" name="RP_cnt" id="RP_cnt"></span></li>
             <li><a href="#" class="wintoggle"><span class="RP_name">레파지토리 목록<b class="nav_arrow"></b></span></a>
@@ -11,19 +11,10 @@
                     <sec:authorize access="hasRole('ROLE_CREATE_Y')">
                     <li>
                         <h3><i class="glyphicon glyphicon-plus"></i>신규 생성 (New Repository)</h3>
-                        <input id="topMenuRepositoryName" name="topMenuRepositoryName" type="text" placeholder="레파지토리 명(필수)">
-                        <p class="desc" style="color:#fb5666;" id="topMenuRepositoryNameAlert">* 레파지토리명 형식이 올바르지 않습니다.</p>
+                        <input type="text" id="topMenuRepositoryName" name="topMenuRepositoryName" placeholder="레파지토리 명(필수)">
+                        <p class="desc" style="color:#fb5666; display: none" id="topMenuRepositoryNameAlert">* 레파지토리명 형식이 올바르지 않습니다.</p>
                     </li>
                     <!--레파지토리 생성 영역 -->
-                    <!--공개/비공개 영역 :s -->
-                    <li style="display: none;">
-                        <h5>공개여부</h5>
-                        <ul>
-                            <li><input type="radio" name="public" id="public0" value=true >공개(Public)</li>
-                            <li><input type="radio" name="public" id="public00" value=false checked="checked">비공개(Private)</li>
-                        </ul>
-                    </li>
-                    <!--공개/비공개 영역 :s -->
                     <!--옵션 영역 :s -->
                     <li>
                         <h5>유형</h5>
@@ -115,7 +106,7 @@ var repositoryId = "<%=session.getAttribute("repositoryId")%>";
     // CALLBACK
     var callbackCreateTopMenuRepository = function (data) {
         console.debug("callback");
-        location.href="/user/repository/";
+        location.href=goHome;
     };
 
 
