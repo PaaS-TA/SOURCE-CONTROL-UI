@@ -1,6 +1,5 @@
 package com.paasta.scwui.model;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -8,7 +7,6 @@ import com.paasta.scwui.common.util.Common;
 import com.paasta.scwui.common.util.DateUtil;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.validator.constraints.NotEmpty;
 import sonia.scm.repository.Permission;
 
@@ -21,7 +19,6 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-@ToString
 public class Repository {
 
     @NotEmpty
@@ -90,4 +87,21 @@ public class Repository {
         return this.lastModified > 0 ? DateUtil.convertLongToTime(this.lastModified) : "";
     }
 
+    @Override
+    public String toString() {
+        return "Repository{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", public_=" + public_ +
+                ", archived=" + archived +
+                ", contact='" + contact + '\'' +
+                ", permissions=" + permissions +
+                ", properties=" + properties +
+                ", creationDate=" + creationDate +
+                ", lastModified=" + lastModified +
+                '}';
+    }
 }

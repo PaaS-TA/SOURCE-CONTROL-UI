@@ -21,5 +21,6 @@
         $("#repositoryBrowseContent").hide();
         $("#repositoryBrowseList").show();
         $("#btnContentCancel").hide();
+        $('#browserContent').children().remove();
     }
 </script>

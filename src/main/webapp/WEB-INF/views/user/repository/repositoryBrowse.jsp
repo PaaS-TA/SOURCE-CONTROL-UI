@@ -208,7 +208,6 @@
             for (var i = 0; i < listPath.length - 1; i++) {
                 var paramPath = paramPath + listPath[i] + "/";
             }
-            console.debug(listPath.length);
             if (listPath.length > 0 && listPath[0] !== "") {
                 sinnerHTML = sinnerHTML + '<tr onclick="browse_search(\'' + paramPath.substring(0, paramPath - 1) + '\'' + ', \'' + list.revision + '\'' + ')">';
                 sinnerHTML = sinnerHTML + '<td class="alignL" colspan="4"> <span class="ico_folder"></span>';

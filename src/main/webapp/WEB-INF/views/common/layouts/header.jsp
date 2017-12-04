@@ -148,11 +148,13 @@ var repositoryId = "<%=session.getAttribute("repositoryId")%>";
     };
 
     var headerRepoCallBack = function (data) {
-        $("#RP_cnt").text(data.repositories.length);
+
         if(data.repositories==null || data.repositories.length==0){
+            $("#RP_cnt").text(0);
             var varHeadHtml ='<li>조회된 레파지토리가 없습니다.</li>';
             $('#headerRepoList').append(varHeadHtml);
         }else{
+            $("#RP_cnt").text(data.repositories.length);
             var repositories = data.repositories;
             for (var i = 0; i < repositories.length; i++) {
                 var varHeadHtml ='<li><a href="/user/repositoryDetail/'+repositories[i].id+'">'+repositories[i].name+'</a></li>';

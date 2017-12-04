@@ -19,7 +19,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <apachetiles.version>3.0.7</apachetiles.version>
-        <final.fileName>paasta-sourcecontrol-webUi</final.fileName>
+        <final.fileName>sourcecontrol-webui</final.fileName>
         <scm.version>1.54</scm.version>
         <maven.test.skip>true</maven.test.skip>
         <!--<cf.service.suid.file>${project.build.outputDirectory}/serviceInstanceUid.txt</cf.service.suid.file>-->
@@ -113,7 +113,16 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.security.oauth</groupId>
@@ -138,10 +147,20 @@
             <artifactId>scm-client-impl</artifactId>
             <version>${scm.version}</version>
         </dependency>
+        <!-- Web dependencies -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>LATEST</version>
+        </dependency>
     </dependencies>
-
     <build>
-        <finalName>${final.fileName}-${version}</finalName>
+        <finalName>${final.fileName}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

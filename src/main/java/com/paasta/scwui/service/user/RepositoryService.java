@@ -12,9 +12,8 @@ import sonia.scm.repository.Repository;
 import sonia.scm.repository.Tags;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.nio.charset.Charset;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static org.springframework.http.HttpHeaders.ACCEPT;
@@ -210,7 +209,7 @@ public class RepositoryService extends CommonService {
     }
 
 
-    public List getContent(String id, String revision, String path) throws NotSupportedFeatuerException, IOException {
+    public String getContent(String id, String revision, String path) throws NotSupportedFeatuerException, IOException {
 
         String url = propertiesUtil.getApiRepositoryIdContentPathRevision().replace("{id}", id).replace("{path}", path).replace("{revision}", revision).replace("{dc}", "");
         logger.debug("getContent:::url" + url);
@@ -220,15 +219,7 @@ public class RepositoryService extends CommonService {
 
         Object object = restClientUtil.callRestApi(HttpMethod.GET, url, new HttpEntity<>(null, headers), byte[].class).getBody();
         byte[] TotalByteMessage= (byte[]) object;
-        String str = new String(TotalByteMessage);
-        logger.info(str.toString());
-
-        String byteToString = new String(TotalByteMessage,0,TotalByteMessage.length);
-
-        System.out.println(":::::::::::::str.toString()"+str.toString());
-        List list = new ArrayList();
-        list.add("0:"+str.toString());
-
-        return list;
+        String str = new String(TotalByteMessage, Charset.forName("utf-8"));
+        return str;
     }
 }

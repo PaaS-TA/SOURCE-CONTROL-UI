@@ -8,7 +8,6 @@ import com.paasta.scwui.controller.common.CommonController;
 import com.paasta.scwui.model.BrowserResult;
 import com.paasta.scwui.service.cf.security.DashboardAuthenticationDetails;
 import com.paasta.scwui.service.user.RepositoryService;
-import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import sonia.scm.NotSupportedFeatuerException;
-import sonia.scm.Type;
 import sonia.scm.repository.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -68,7 +66,6 @@ public class RepositoryController extends CommonController {
         // TODO 배포후 삭제예정
         repository.setLastModified(new Date().getTime());
         repository.setProperties(propMap1);
-        logger.debug("repository:" + repository.toString());
         Map map1 = repositoryService.getRepositoryDetailByName(repository.getType(), repository.getName());
         if (Common.empty(map1.get("repository"))) {
             Repository rtnRepository = repositoryService.setCreateRepository(repository);
@@ -208,14 +205,11 @@ public class RepositoryController extends CommonController {
 
         //커밋 List
         List<Changeset> changesetPagingResult = repositoryService.getChangesets(repositoryId).getChangesets();
-        List<com.paasta.scwui.model.Changeset> rtnChangeset = new ArrayList<>();
-
-        changesetPagingResult.forEach(changeset -> rtnChangeset.add(new com.paasta.scwui.model.Changeset(changeset)));
 
         modelAndView.addObject("type", type);
         modelAndView.addObject("tags", tags);
         modelAndView.addObject("branches", branches);
-        modelAndView.addObject("ChangesetPagingResult", rtnChangeset);
+        modelAndView.addObject("ChangesetPagingResult", changesetPagingResult);
         modelAndView.addObject("repositorydetails", repository);
         modelAndView.addObject("title", repository.getName());
         modelAndView.setViewName("/user/repository/repositoryDetail");
@@ -256,13 +250,20 @@ public class RepositoryController extends CommonController {
      */
     @GetMapping("/repositoryDetail/{repositoryId}/content/")
     @ResponseBody
-//    @Produces({ MediaType.APPLICATION_OCTET_STREAM })
     public Map getContents(@PathVariable("repositoryId") String id
             , @RequestParam(value = "revision", required = false, defaultValue = "") String revision
             , @RequestParam(value = "path") String path) throws NotSupportedFeatuerException, IOException{
-        List obj = repositoryService.getContent(id, revision, path);
+        String obj = repositoryService.getContent(id, revision, path);
+        String[] lobj = obj.split("\n");
+        List data = new ArrayList();
+        List intData = new ArrayList();
+        for (int i =0 ; i< lobj.length ; i++) {
+            intData.add(Integer.toString(i+1));
+            data.add(lobj[i]);
+        }
         Map map = new HashMap();
-        map.put("data", obj);
+        map.put("data", data);
+        map.put("intData", intData);
         map.put("path", path);
         map.put("revision", revision);
         return map;
@@ -279,7 +280,6 @@ public class RepositoryController extends CommonController {
         }
         try {
             repository = objectMapper.readValue(jsonStr, com.paasta.scwui.model.Repository.class);
-            logger.info(repository.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
