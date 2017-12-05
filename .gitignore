@@ -25,8 +25,8 @@ nbdist/
 .nb-gradle/
 
 ###application.properties
-src/main/resources/
 src/main/resources/application-dev.properties
 src/main/resources/application-local.properties
-src/main/resources/application.properties
+
+META-INF/**
 
