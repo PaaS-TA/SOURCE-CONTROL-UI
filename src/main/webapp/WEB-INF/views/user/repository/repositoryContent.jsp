@@ -44,14 +44,12 @@
         $( "#repositoryBrowseList" ).hide();
         $( "#repositoryBrowseContent" ).show();
         $("#btnContentCancel").show();
+
+        var bype = data;
+
         $("#contPath").text(data.path);
-        var varRepositoryHtml = "<ol>";
-        var bype = data.data;
-        for (var i = 0; i < bype.length; i++) {
-            varRepositoryHtml += "<li style='list-style: decimal'>"+" " +bype[i] +"</li>"+ "\n";
-        }
-        varRepositoryHtml +="</<ol>"
-            $('#browserContent').append(varRepositoryHtml);
+        var varRepositoryHtml =data.data[0];
+        $('#browserContent').append(varRepositoryHtml);
     };
 </script>
 <!--//select 스크립트-->
