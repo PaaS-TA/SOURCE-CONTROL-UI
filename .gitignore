@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 target/
 !.mvn/wrapper/maven-wrapper.jar
 .gitignore
@@ -30,3 +31,6 @@ src/main/resources/application-dev.properties
 src/main/resources/application-local.properties
 src/main/resources/application.properties
 
+=======
+target/!.mvn/wrapper/maven-wrapper.jar.gitignore### STS ###.apt_generated.classpath.factorypath.project.settings.springBeans### IntelliJ IDEA ###.idea*.iws*.iml*.ipr### NetBeans ###nbproject/private/build/nbbuild/dist/nbdist/.nb-gradle/###application.propertiessrc/main/resources/application-dev.propertiessrc/main/resources/application-local.propertiesMETA-INF/**
+>>>>>>> Stashed changes
