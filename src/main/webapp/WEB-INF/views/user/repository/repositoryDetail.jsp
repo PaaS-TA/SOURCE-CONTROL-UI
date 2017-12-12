@@ -28,7 +28,7 @@
             <ul>
                 <li class="fst active"><a href="#;" onClick="sub_tab(0);"><span class="file_on"></span>파일(file) <span
                         class="pl10" id="detailBrowserResultCntMain" name="detailBrowserResultCntMain">${browserResult.files.size()}</span></a></li><!--아이콘 온파일네임 파일명_on 붙이면 됨-->
-                <li class=""><a href="#;" onClick="sub_tab(1);"><span class="commint"></span>커밋(Commint) <span
+                <li class=""><a href="#;" onClick="sub_tab(1);"><span class="commint"></span>커밋(Commit) <span
                         class="pl10">${ChangesetPagingResult.size()}</span></a></li>
                 <li class=""><a href="#;" onClick="detail_Sub_tab(2);"><span class="contributor"></span>참여자(Contributor)
                     <span class="pl10" id="detailPermissionCntMain" name="detailPermissionCntMain">${repositorydetails.permissions.size()}</span></a></li>
