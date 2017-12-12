@@ -28,9 +28,7 @@ public class ScwuiInterceptor extends HandlerInterceptorAdapter {
 //        Auth auth = new Auth(instanceId, userId, orgId);
         logger.info("##################### " + request.getServletPath());
         if (isLoginUrl(request)) {
-            logger.info("########################### 여기 왔다...");
             request.getSession().invalidate();
-
         }
         return true;
     }
