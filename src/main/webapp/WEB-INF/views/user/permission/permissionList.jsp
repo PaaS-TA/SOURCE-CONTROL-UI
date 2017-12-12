@@ -96,7 +96,6 @@
     });
     $("#buttonCreateOnclick").click(function (event) {
         putPermissionInitial();
-        putPermission();
     });
     /**
      * 참여자 정보 탭 javascript 시작
@@ -205,12 +204,8 @@
         $('#permissionUpdate').css('display', 'none');
 
     }
-
-
     function detailPermission(name,permission,no){
         getPermissionDetail(name,permission,no);
     }
-
-
 
 </script>

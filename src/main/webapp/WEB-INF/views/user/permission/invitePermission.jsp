@@ -30,15 +30,13 @@
     </tr>
     <tr>
         <td>
-            <input type="text" id="searchInstRepoUserId" name="searchInstRepoUserId" placeholder="사용자 검색"
-                   style="width:40%;">
+            <input type="text" id="searchInstRepoUserId" name="searchInstRepoUserId" placeholder="사용자 검색"   style="width:40%;">
         </td>
     </tr>
     <tr>
         <td>
             <li style="width:40%;">
-                <a href="#" class="wintoggle" style="width:40%;"><span class="RP_name">사용자 검색 목록 (<span
-                        name="SrchPermissionUser" id="SrchPermissionUser">0</span>)<b class="nav_arrow"></b></span></a>
+                <a href="#" class="wintoggle" style="width:40%;"><span class="RP_name">사용자 검색 목록 (<span  name="SrchPermissionUser" id="SrchPermissionUser">0</span>)<b class="nav_arrow"></b></span></a>
                 <ul class="togglemenu" style="width:320px; top:120px;padding-top:0px; position:inherit;" id="SrchPermissionUserList"
                     name="SrchPermissionUserList"></ul>
             </li>
@@ -207,17 +205,15 @@
     function putPermissionCancel() {
         $('#permissionCreate').css('display', 'none');
         $('#tabPermissionlist').css('display', 'block');
-
         //참여자 추가 검색한 결과 삭제
-        $('#SrchPermissionUserList').children().remove();
-        $('#SrchPermissionUserList').hide();
-        $("#PemissionName").text('');
-
+        initalInvitePermissionForm();
         searchPermissions();
     }
     function deletePermissionCallback(data) {
         popupAlertClick("참여자가 삭제되었습니다.");
+        initalInvitePermissionForm();
         putPermissionCancel();
+
     }
 
     function callBackInitalInvitePermissionForm(){
@@ -228,6 +224,8 @@
 
     function initalInvitePermissionForm(){
         callBackInitalInvitePermissionForm();
+        $("#permissionsList").children().remove();
+        $("#PemissionName").text('');
         $('#SrchPermissionUserList').children().remove();
         $("#SrchPermissionUser").text(0);
     }

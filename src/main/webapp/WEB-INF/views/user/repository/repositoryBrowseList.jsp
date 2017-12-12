@@ -6,7 +6,7 @@
     <div id="repositoryBrowseList" style="display: block;">
         <%@ include file="/WEB-INF/views/user/repository/repositoryBrowse.jsp" %>
     </div>
-    <div id="repositoryBrowseContent" style="display: block;">
+    <div id="repositoryBrowseContent" style="display: none;">
         <%@ include file="/WEB-INF/views/user/repository/repositoryContent.jsp" %>
     </div>
 </div>
