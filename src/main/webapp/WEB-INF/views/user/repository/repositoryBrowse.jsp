@@ -51,7 +51,7 @@
     </div>
     <!--//셀렉트(브랜치, Tag) : e -->
     <!-- list :s -->
-    <table id="broswerTable" summary="폴더/파일명, 최종 변경사항, 최종 변경자, 마지막업데이트 등을 나타낸 Commint 게시판입니다."
+    <table id="broswerTable" summary="폴더/파일명, 최종 변경사항, 최종 변경자, 마지막업데이트 등을 나타낸 Commit 게시판입니다."
            class="basic_tbl w3-hoverable">
         <caption>
             공지사항
