@@ -74,18 +74,8 @@
 </div>
 <!--select 스크립트-->
 <script type="text/javascript">
-    /* UPDATE REPOSITORY
-     * public5[공개], private[비공개]6 => public[공개],private[비공개]에 숫자를 부여함으로써 충돌 피함
-     * @type 라디오버튼 유형  => Git/SVN
-     * 레파지토리 명 [RepositoryName] 수정 불가
-     * 유형 [type] 수정 불가
-     * reqParm 값 시간수정필요
-     * RepositoryName GET ,UPDATE 불가 2017.08.02
-     * */
-
     // UPDATE REPOSITORY
     var updateRepository = function () {
-        console.log(":::::들어오니? 1탄::::");
         var id =document.getElementById('id').value;
         var publicType;
         if (document.getElementsByName("type").checked) {

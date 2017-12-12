@@ -109,7 +109,7 @@ public class RepositoryController extends CommonController {
     @ResponseBody
     public ResponseEntity delleteByRepositoryId(@PathVariable("repositoryId") String repositoryId) {
         repositoryService.deleteByRepositoryId(repositoryId);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(new HashMap<>(),HttpStatus.OK);
     }
 
     /**

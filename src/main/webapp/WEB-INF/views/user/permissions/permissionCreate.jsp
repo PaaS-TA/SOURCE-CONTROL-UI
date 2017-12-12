@@ -115,38 +115,6 @@
             </tr>
             </tbody>
         </table>
-        <!--//Form 테이블 :e -->
-        <!-- 공통 Form 테이블 :s -->
-        <%--<table summary="사용여부, 설명 등의 참여자추가 선택 테이블입니다." class="tbl_form">
-            <caption>
-                사용자 추가 사용여부 선택 테이블
-            </caption>
-            <colgroup>
-                <col style="width: 18%"/>
-                <col style="width: *"/>
-            </colgroup>
-            <tbody>
-            <tr>
-                <th>활성 권한 (<span class="essential">*필수</span>)</th>
-                <td>
-                    <label>
-                        <input type="radio" name="active" value="false" checked="checked">활성
-                        <input type="radio" name="active" value="true">비활성
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th class="last">설명 (선택)</th>
-                <td>
-                    <textarea type="text" name="desc" colos="20" rows="5"></textarea><br>
-                    *사용자 정보에 보여지는 설명
-
-                </td>
-            </tr>
-            </tbody>--%>
-        <%--</table>--%>
-    <!--//공통 Form 테이블 :e -->
-    <!--기본버튼(Right 정렬) :s -->
     <div class="fr">
         <jsp:include page="../common/buttonCreateOnclick.jsp"></jsp:include>
         <%--<button type="button" class="button btn_default" title="생성" onclick='createUserBeforeValid();'>생성</button>--%>
@@ -155,9 +123,6 @@
 </div>
     <form name ="permissionList" id ="permissionList"  action = "/user/permissionList/" method="get"></form>
 <!--//contents :e -->
-<!--permissionCreate :s -->
-
-<!--//permissionCreate :e -->
 </div>
 <!--//contaniner :e -->
 <!-- Top 가기 :s -->
@@ -336,8 +301,7 @@
 
     // BIND
     function createUserCancel() {
-        popupAlertClick("사용자 초대/생성을 취소하시겠습니까?");
-        history.go(-1);
+        searchPermissions();
     }
 </script>
 <!--//select 스크립트-->
