@@ -161,7 +161,7 @@
                     + '</ul>  </dd> <dd class="icon_wrap"> <ul class="ico_lst">'
 
                 if (permissions[i].permission.permission === 'OWNER') {
-                    varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_modify.png" alt="수정 이미지" border="0">'
+                    varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_admin.png" alt="수정 이미지" border="0">'
                         + ' <p class="tit">소유자</p> </li>';
                 }
                 if (permissions[i].permission.permission === 'READ') {
