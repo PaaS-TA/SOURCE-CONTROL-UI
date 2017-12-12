@@ -26,8 +26,11 @@ public class ScwuiInterceptor extends HandlerInterceptorAdapter {
         logger.debug("ScwuiInterceptor ::: preHandle");
         //TODO -- 임시 테스트용으로 Auth 정보 session 넣을까 고민중
 //        Auth auth = new Auth(instanceId, userId, orgId);
-        if(request.getServletPath().contains("/repositories/user")){
+        logger.info("##################### " + request.getServletPath());
+        if (isLoginUrl(request)) {
+            logger.info("########################### 여기 왔다...");
             request.getSession().invalidate();
+
         }
         return true;
     }
@@ -41,5 +44,24 @@ public class ScwuiInterceptor extends HandlerInterceptorAdapter {
         logger.debug("ScwuiInterceptor ::: afterCompletion");
     }
 
+    public boolean isLoginUrl(HttpServletRequest request) {
+        boolean logoutPlay = false;
+        boolean allowedrange = false;
+        String url = request.getRequestURI();
+        logger.info("#######################################################");
+        logger.info("#######################################################");
+        logger.info("REQUEST URL : " + url);
+        logger.info("#######################################################");
+        logger.info("#######################################################");
+        try {
+            String urls[] = url.split("/");
+            if (url.indexOf("/repositories/user/") > -1) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
 
+    }
 }
