@@ -237,7 +237,6 @@
     var initialPermissionList = function(){
         var varPermissionHtml ='<li id="initRepoList" name="initRepoList"> <dl>조회된 데이터가 없습니다.</dl>            </li>';
         $('#permissionsList').append(varPermissionHtml);
-
     }
 
 </script>
