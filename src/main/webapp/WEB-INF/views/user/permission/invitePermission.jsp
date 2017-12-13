@@ -37,8 +37,7 @@
         <td>
             <li style="width:40%;">
                 <a href="#" class="wintoggle" style="width:40%;"><span class="RP_name">사용자 검색 목록 (<span  name="SrchPermissionUser" id="SrchPermissionUser">0</span>)<b class="nav_arrow"></b></span></a>
-                <ul class="togglemenu" style="width:320px; top:120px;padding-top:0px; position:inherit;" id="SrchPermissionUserList"
-                    name="SrchPermissionUserList"></ul>
+                <ul class="togglemenu" style="width:320px; top:120px;padding-top:0px; position:inherit;" id="SrchPermissionUserList" name="SrchPermissionUserList"></ul>
             </li>
         </td>
     </tr>
@@ -135,7 +134,8 @@
         $('#SrchPermissionUserList').children().remove();
         var searchId =$("#searchInstRepoUserId").val();
         if(searchId =="" || searchId ==null){
-            searchId ="";
+            popupAlertClick("사용자 검색어는 한자 이상 입력하세요.");
+            return;
         }
 //        var url = "/user/searchPermissions/?searchUserId=" + searchId + "&repositoryId=" + $("#repositoryId").val();
         var url = "/user/searchInstanceId/"+ searchId+ "?repositoryId=" + $("#repositoryId").val();
@@ -143,6 +143,7 @@
     }
 
     function searchInstRepoUserIdCallBack(data) {
+        var loginName = "<%=session.getAttribute("name")%>";
         $("#SrchPermissionUser").text(data.rtnList.length);
         if (data.rtnList == null || data.rtnList.length == 0) {
             var varHeadHtml = '<li>조회된 사용자가 없습니다.</li>';
@@ -150,8 +151,8 @@
         } else {
             var rtnList = data.rtnList;
             for (var i = 0; i < rtnList.length; i++) {
-                if(rtnList[i].userName!=name) {
-                    var varHeadHtml = '<li style="height: 25px; padding-left: 10px;"><span style="display:block; width: 300px;">' + rtnList[i].userId + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                var varHeadHtml = '<li style="height: 25px; padding-left: 10px;"><span style="display:block; width: 300px;">' + rtnList[i].userId + '&nbsp;&nbsp;&nbsp;&nbsp';
+                if(rtnList[i].userId!=loginName) {
                     if (rtnList[i].userPermissionNo != "") {
                         varHeadHtml = varHeadHtml + '<button  type="button" class="btn btn-default" onclick="deletePermission(\'' + rtnList[i].userPermissionNo + '\')\">'
                             + '<span class="glyphicon glyphicon-minus"></span></button>';
@@ -160,9 +161,11 @@
                             + 'onclick=\"insertPermission(\'' + rtnList[i].userId + '\',\'' + rtnList[i].userName + '\',\'' + rtnList[i].userEmail + '\')\">'
                             + '<span class="glyphicon glyphicon-plus"></span></button>';
                     }
-                    varHeadHtml = varHeadHtml + '</span></li>';
-                    $('#SrchPermissionUserList').append(varHeadHtml);
+                }else{
+
                 }
+                varHeadHtml = varHeadHtml + '</span></li>';
+                $('#SrchPermissionUserList').append(varHeadHtml);
             }
         }
         $("#SrchPermissionUserList").show();
