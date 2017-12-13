@@ -167,7 +167,7 @@
         callBackInitalInvitePermissionForm();
     }
 
-    $("#buttonCreateOnclick3").text("초대");
+    $("#buttonCreateOnclick3").text("추가");
     $("#buttonCreateOnclick3").click(function (event) {
     //function inviteUser() {
         var url = "/user/permission/"+$("#repositoryId").val();
