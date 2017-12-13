@@ -68,7 +68,6 @@ var delProcCallAjax = function (reqUrl, callback) {
         },
         error: function (xhr, status, error) {
             console.log("ERROR :: error ::", error);
-            //alert("삭제에 실패하였습니다.")
             popupAlertClick("삭제에 실패하였습니다.");
         },
         complete: function (data) {

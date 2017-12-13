@@ -146,8 +146,10 @@ public class UserController extends CommonController{
     public Map serviceInstanceDeleteUser(@PathVariable("name") String name) {
         DashboardAuthenticationDetails user = getDetail();
         String instanceid = Common.empty(user.getInstanceId())?"":user.getInstanceId();
-        Map map = (Map) userService.deleteInstanceUser(instanceid, name).getBody();
-        return map;
+        userService.deleteInstanceUser(instanceid, name).getBody();
+        Map rtn = new HashMap<>();
+        rtn.put("status","ok");
+        return rtn;
     }
     @GetMapping(value = "/userMyModifyPassword")
     @ResponseBody

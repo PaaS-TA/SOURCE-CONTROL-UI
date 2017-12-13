@@ -247,11 +247,11 @@
         var user = "";
         var url = "/user/instanceAddUser.do";
         var reqParam =
-            {   "userId": $("#permissionName").val()
+            {   "userId":$("#permissionName").val()
                 ,"repoRole":"owner"
                 ,"createrYn":"N"
-                ,"displayName" : $("#PermissionDisplayName").val()
-                ,"mail": $("#permissionMail").val()
+                ,"displayName" :$("#PermissionDisplayName").val()
+                ,"mail":$("#permissionMail").val()
                 ,"desc":$("#name_desc").val()
                 ,"password":$("#confirmPasswordInput").val()
                 ,"type":"xml"
