@@ -143,8 +143,11 @@
 
     var permissionCallback = function (data) {
 //        $("#detailPermissionCntMain").text(data.rtnList.totalElements);
+        if(data.rtnList.number==0){
+            $("#permissionsList").children().remove();
+        }
         $("#RPPermissionsCnt").text(data.rtnList.numberOfElements + ' / ' + data.rtnList.totalElements + '건');
-        if (data.rtnList === null || data.rtnList.content.length === 0) {
+        if (data.rtnList == null || data.rtnList.content.length == 0) {
             initialPermissionList();
         } else {
             var permissions = data.rtnList.content;

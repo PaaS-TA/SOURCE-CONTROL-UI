@@ -187,7 +187,7 @@
 
     var permissionCallback = function (data) {
         var rtnMap = data.rtnMap;
-        if(rtnMap.number===0){
+        if(rtnMap.number==0){
             $("#permissionsList").children().remove();
         }
         var num = rtnMap.number * rtnMap.size + rtnMap.numberOfElements
