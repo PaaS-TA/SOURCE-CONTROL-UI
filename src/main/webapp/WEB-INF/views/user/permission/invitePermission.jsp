@@ -150,17 +150,19 @@
         } else {
             var rtnList = data.rtnList;
             for (var i = 0; i < rtnList.length; i++) {
-                var varHeadHtml = '<li style="height: 25px; padding-left: 10px;"><span style="display:block; width: 300px;">'+rtnList[i].userId+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                if (rtnList[i].userPermissionNo != "") {
-                    varHeadHtml = varHeadHtml + '<button  type="button" class="btn btn-default" onclick="deletePermission(\''+ rtnList[i].userPermissionNo +'\')\">'
-                        + '<span class="glyphicon glyphicon-minus"></span></button>';
-                } else {
-                    varHeadHtml = varHeadHtml + '<button  type="button" class="btn btn-default" '
-                        + 'onclick=\"insertPermission(\'' + rtnList[i].userId + '\',\'' + rtnList[i].userName + '\',\'' + rtnList[i].userEmail + '\')\">'
-                        + '<span class="glyphicon glyphicon-plus"></span></button>';
+                if(rtnList[i].userName!=name) {
+                    var varHeadHtml = '<li style="height: 25px; padding-left: 10px;"><span style="display:block; width: 300px;">' + rtnList[i].userId + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                    if (rtnList[i].userPermissionNo != "") {
+                        varHeadHtml = varHeadHtml + '<button  type="button" class="btn btn-default" onclick="deletePermission(\'' + rtnList[i].userPermissionNo + '\')\">'
+                            + '<span class="glyphicon glyphicon-minus"></span></button>';
+                    } else {
+                        varHeadHtml = varHeadHtml + '<button  type="button" class="btn btn-default" '
+                            + 'onclick=\"insertPermission(\'' + rtnList[i].userId + '\',\'' + rtnList[i].userName + '\',\'' + rtnList[i].userEmail + '\')\">'
+                            + '<span class="glyphicon glyphicon-plus"></span></button>';
+                    }
+                    varHeadHtml = varHeadHtml + '</span></li>';
+                    $('#SrchPermissionUserList').append(varHeadHtml);
                 }
-                varHeadHtml = varHeadHtml + '</span></li>';
-                $('#SrchPermissionUserList').append(varHeadHtml);
             }
         }
         $("#SrchPermissionUserList").show();

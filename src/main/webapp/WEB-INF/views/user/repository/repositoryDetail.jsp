@@ -6,8 +6,8 @@
     <!-- location :s -->
     <div class="location">
         <ul>
-            <li><a href="#" onclick="moveHome()" class="home">홈으로</a></li>
-            <li><a href="#" onclick="moveHome()"  title="레파지토리 목록"> 레파지토리 목록 </a></li>
+            <li><a href="javascript:moveHome()" class="home">홈으로</a></li>
+            <li><a href="javascript:moveHome()" title="레파지토리 목록"> 레파지토리 목록 </a></li>
             <!--마지막 경로-->
             <li><a href="#" title="레파지토리 상세보기"> 레파지토리 상세보기 (${repositorydetails.name})</a></li><!--마지막 경로-->
         </ul>

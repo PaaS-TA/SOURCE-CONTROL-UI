@@ -2,7 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div id="header">
     <div class="head_inner">
-        <h1><a title="PaaS-TA 형상관리" href="" onclick="moveHome()"><img alt="PaaS-TA 형상관리" src="/resources/images/logo.png"><span>형상관리</span></a></h1>
+        <h1><a href="javascript:moveHome()" title="PaaS-TA 형상관리" ><img alt="PaaS-TA 형상관리" src="/resources/images/logo.png"><span>형상관리</span></a></h1>
         <ul class="RP_title" style="float: left;display: block;position: relative;">
             <li><span class="RP_num" name="RP_cnt" id="RP_cnt"></span></li>
             <li><a href="#" class="wintoggle"><span class="RP_name">레파지토리 목록<b class="nav_arrow"></b></span></a>
