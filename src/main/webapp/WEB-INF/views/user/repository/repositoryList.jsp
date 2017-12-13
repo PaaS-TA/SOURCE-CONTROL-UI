@@ -6,8 +6,8 @@
     <div class="location">
         <div class="fl">
             <ul>
-                <li><a href="#" onclick="moveHome()" class="home">홈으로</a></li>
-                <li><a href="#" onclick="moveHome()" title="${title}">${title}</a></li><!--마지막 경로-->
+                <li><a href="javascript:moveHome()" class="home">홈으로</a></li>
+                <li><a href="javascript:moveHome()" title="${title}">${title}</a></li><!--마지막 경로-->
             </ul>
         </div>
         <div class="fr" style="padding-top: 15px;">
