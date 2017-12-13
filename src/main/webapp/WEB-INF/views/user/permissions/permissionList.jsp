@@ -42,7 +42,7 @@
                 </div>
                 <div class="selectbox select1 ml5" style="width:95px;">
                     <div>
-                        <strong id="permissionSelect1">권한</strong><span class="bul"></span>
+                        <strong id="permissionSelect1">전체</strong><span class="bul"></span>
                     </div>
                     <ul class="select-list" onclick="searchPermissions();">
                         <li>전체</li>
