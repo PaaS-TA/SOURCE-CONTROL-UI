@@ -95,11 +95,11 @@
         if(data.rtnUser.name!=null){
             popupAlertClick("사용자 추가가 완료되었습니다.");
 
-            var name = data.rtnUser.name;
-            console.log("::innerHTML = " + name);
-            $('#UserNameCreateSucess').innerHTML = name;
+            var insertName = data.rtnUser.name;
+            console.log("::innerHTML = " + insertName);
+            $('#UserNameCreateSucess').innerHTML = insertName;
 
-            console.log("data"+name);
+            console.log("data"+insertName);
 
         }else{
             popupAlertClick("사용자 추가가 실패되었습니다.");
