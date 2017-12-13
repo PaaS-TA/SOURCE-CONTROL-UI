@@ -32,7 +32,7 @@
                     <input type="hidden" id="type2" name="type2" style="width:200px" value="<c:out value='${type2}' default='' />"/>
                     <input type="hidden" id="reposort" name="reposort" value="<c:out value='${reposort}' default='' />"/>
                     <div class="keyword_search">
-                        <input type="text" name="repoName" id="repoSearch_keyword" style="-ms-ime-mode: active;" autocomplete="on" placeholder="레파지토리 명"/>
+                        <input type="text" name="repoName" id="repoSearch_keyword" value="<c:out value='${repoName}' default=''/>" style="-ms-ime-mode: active;" autocomplete="on" placeholder="레파지토리 명"/>
                         <button type="button" class="btn_search" name="btn_repoSearch" id="btn_repoSearch"/>
                     </div>
                     <div class="selectbox select1 ml5" style="width:135px;">
@@ -284,6 +284,8 @@
     };
 
     var callbackGetRepositoryList = function (data) {
+
+        $("#repoSearch_keyword").valueOf(data.repoName);
         if(data.last){
             $("#btn_more").hide();
         }
