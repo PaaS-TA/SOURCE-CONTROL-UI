@@ -92,7 +92,7 @@
     $(".select3").selectDesign();
     $(".select4").selectDesign();
     $(document).ready(function () {
-        $("#buttonCreateOnclick").text("참여자 추가");
+        $("#buttonCreateOnclick").text("참여자 추가/삭제");
     });
     $("#buttonCreateOnclick").click(function (event) {
         putPermissionInitial();
