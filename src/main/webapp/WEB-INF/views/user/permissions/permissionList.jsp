@@ -69,7 +69,6 @@
                 <div class="fr"><span id="RPPermissionsCnt"></span></div>
             </div>
         </div>
-        <!--//셀렉트(검색, 보기 선택, 사용자여부 선택, 레파지토리 클론) :e -->
         <!-- 레파지토리 목록(이미지없는) :s -->
         <ul class="product_list2" id="permissionsList" name="permissionsList">
         </ul>

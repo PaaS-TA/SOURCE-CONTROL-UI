@@ -32,7 +32,6 @@
                 </ul>
             </div>
             <!--//main_tab :e -->
-            <!-- 셀렉트(검색, 보기 선택, 사용자여부 선택, 레파지토리 클론) :s -->
             <div class="rSearch_group">
                 <div class="sel_group">
                     <%--<form id="frm_search" method="post" action="">--%>

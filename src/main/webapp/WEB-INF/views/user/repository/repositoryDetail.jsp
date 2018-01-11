@@ -46,14 +46,13 @@
         <!-- sub탭 콘텐츠02 :s -->
         <div class="sub_tab_cont01 mTs" style="display:none;">
             <div class="tab_content">
-                <!-- 셀렉트(브랜치, Tag, 레파지토리 클론) : s -->
                 <div class="rSearch_group">
                     <div class="sel_group">
                         <form name="frm" id="frm" action="" method="post" onsubmit="return false;">
                         </form>
                     </div>
                 </div>
-                <!--//셀렉트(브랜치, Tag, 레파지토리 클론) : e -->
+
                 <!-- 레파지토리 목록(이미지없는) :s -->
                 <ul class="product_list2">
                     <c:if test="${ChangesetPagingResult.size()==0}">
@@ -88,14 +87,12 @@
         <!-- sub탭 콘텐츠03 :s -->
         <div class="sub_tab_cont02 mTs" style="display:none;">
             <div class="tab_subcontent" id="tabPermissionlist" style="display:block">
-                <!-- 셀렉트(검색, 보기 선택, 사용자여부 선택, 레파지토리 클론) :s -->
                 <%@ include file="/WEB-INF/views/user/permission/permissionList.jsp" %>
             </div>
             <div class="tab_subcontent" id="permissionCreate" style="display:none;">
                 <%@ include file="/WEB-INF/views/user/permission/invitePermission.jsp" %>
             </div>
             <div class="tab_subcontent" id="permissionUpdate" style="display:none">
-                <!-- 셀렉트(검색, 보기 선택, 사용자여부 선택, 레파지토리 클론) :s -->
                 <%@ include file="/WEB-INF/views/user/permission/detailPermission.jsp" %>
             </div>
         </div>

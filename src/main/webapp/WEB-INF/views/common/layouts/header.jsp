@@ -89,14 +89,11 @@ var repositoryId = "<%=session.getAttribute("repositoryId")%>";
             $('#topMenuRepositoryName').focus();
             return;
         }
-        var publicValue;
-
-        publicValue = !!document.getElementById('public0').checked;
 
         var reqParam = {
             name: topMenuRepositoryName,
             type: document.getElementById('type_opt').value,
-            public : publicValue
+            public : false
         };
         console.debug("::::들어오니? 2탄::::"+ JSON.stringify(reqParam));
         procCallAjax("post","/user/createRepository.do", reqParam, callbackCreateTopMenuRepository);

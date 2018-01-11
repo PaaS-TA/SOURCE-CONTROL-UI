@@ -22,7 +22,6 @@
 	    <c:set var="repositories" value='${rtnList.content}'/>
 	    <c:set var="page" value='${rtnList.number}'/>
 	    <c:set var="size" value='${rtnList.size}'/>
-        <!-- 셀렉트(검색, 보기 선택, 사용자여부 선택, 레파지토리 클론) :s -->
         <div class="rSearch_group">
             <div class="sel_group">
                 <form id="frm_search" method="get" action="/user/repository/">
@@ -83,7 +82,6 @@
                 </form>
             </div>
         </div>
-        <!--//셀렉트(검색, 보기 선택, 사용자여부 선택, 레파지토리 클론) :e -->
         <%--<div class="main_tab00">
             <div class="tab_content">--%>
             <!-- 레파지토리 목록 :s -->

@@ -62,12 +62,11 @@
             $('#RepositoryName').focus();
             return;
         }
-        var publicValue = false; //항상 private 만생성함.
         var reqParam = {
             name: document.getElementById('RepositoryName').value,
             description: document.getElementById('description').value,
             type: document.getElementById('type').value,
-            public: publicValue,
+            public: false,
         };
         procCallAjax("post", "/user/createRepository.do", reqParam, callbackCreateRepository);
     };

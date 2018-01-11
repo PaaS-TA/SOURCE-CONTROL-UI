@@ -11,7 +11,9 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
 
 /**
  * Created by lena on 2017-06-28.
@@ -37,13 +39,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         configurer.setCheckRefresh(true);
         return configurer;
     }
-//    @Bean
-//    public UrlBasedViewResolver urlBasedViewResolver() {
-//        UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-//        resolver.setViewClass(TilesView.class);
-//        resolver.setOrder(0);
-//        return resolver;
-//    }
+    @Bean
+    public UrlBasedViewResolver urlBasedViewResolver() {
+        UrlBasedViewResolver resolver = new UrlBasedViewResolver();
+        resolver.setViewClass(TilesView.class);
+        resolver.setOrder(0);
+        return resolver;
+    }
 
     /**
      * Error page registrar error page registrar.

@@ -31,7 +31,7 @@ public class RepositoryService extends CommonService {
 
     public Repository setCreateRepository(Repository repository) {
 
-        HttpEntity<Object> entity = restClientUtil.restCommonHeaderNotJson(repository);
+        HttpEntity<Object> entity = restClientUtil.restCommonHeaders(repository);
         String url = propertiesUtil.getApiRepo();
         logger.debug("########## Service Confirm ##########");
         ResponseEntity<Repository> response = restClientUtil.callRestApi(HttpMethod.POST, url, entity, Repository.class); // ☜

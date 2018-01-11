@@ -43,7 +43,7 @@
     </tr>
     </tbody>
 </table>
-<table summary="참여자추가 입력 테이블입니다." class="tbl_form02" id="tbl_form02">
+<table summary="참여자생성 입력 테이블입니다." class="tbl_form02" id="tbl_form02">
     <caption>
         참여자추가
     </caption>

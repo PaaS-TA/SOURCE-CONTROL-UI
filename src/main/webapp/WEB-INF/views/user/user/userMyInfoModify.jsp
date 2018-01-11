@@ -46,7 +46,7 @@
                 <tr>
                     <th>비밀번호 (<span class="essential">*필수</span>)</th>
                     <td><input type="password" name="password1" value="__dummypassword__" placeholder="8자리 ~ 16자리" id="newPasswordInput">
-                        <p class="desc">비밀번호는 8~16자로 입력해 주시기 바랍니다.</p><!--경고 메시지-->
+                        <p class="desc">비밀번호는 6~16자로 입력해 주시기 바랍니다.</p><!--경고 메시지-->
                     </td>
                 </tr>
                 <tr>
