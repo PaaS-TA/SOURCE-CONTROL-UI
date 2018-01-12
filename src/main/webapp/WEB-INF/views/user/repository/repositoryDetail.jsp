@@ -108,7 +108,7 @@
 <div class="follow" title="Scroll Back to Top">
     <a href="#" title="top"><img src="/resources/images/a_top.gif"></a>
 </div>
-<!--//Top 가기 :e -->f
+<!--//Top 가기 :e -->
 <script>
     var detail_Sub_tab = function (num) {
         console.log("detail_Sub_tab ::: num ::: " + num);
