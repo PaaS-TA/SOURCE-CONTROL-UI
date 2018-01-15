@@ -40,8 +40,8 @@
                 </tr>
                 <tr>
                     <th>이메일</th>
-                    <td><input type="text" name="mail" id="mail" value="${ScUser.userMail}" placeholder="(예)paasta@nia.or.kr">
-                    <p class="desc" style="color:#fb5666;" id="emailNotConfirmedAlert">* 이메일 주소 형식이 올바르지 않습니다.</p></td>
+                    <td><input type="text" name="mail" id="mail" value="${ScUser.userMail}"  placeholder="(예)paasta@nia.or.kr">
+                        <p class="desc" style="color:#fb5666;" id="emailNotConfirmedAlert">* 이메일 주소 형식이 올바르지 않습니다.</p></td>
                 </tr>
                 <tr>
                     <th>비밀번호 (<span class="essential">*필수</span>)</th>
@@ -52,7 +52,7 @@
                 <tr>
                     <th>비밀번호 확인 (<span class="essential">*필수</span>)</th>
                     <td><input type="password" name="password2" value="__dummypassword__" placeholder="비밀번호 확인" id="confirmPasswordInput">
-                        <p class="desc" id="passwordNotConfirmedAlert" style="color:#fb5666; ;">* 비밀번호가 일치하지 않습니다.</p>
+                        <p class="desc" id="passwordNotConfirmedAlert" >* 비밀번호가 일치하지 않습니다.</p>
                     </td>
                 </tr>
                 <tr>
@@ -119,10 +119,10 @@
 
     //[1-2]email validation_check
         function validEmail(email) {
-            var r = new RegExp ("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$");
-    //        var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
-            return (email.match(r) === null) ? true : false;
-        }
+        if(email==null || email =="") return false;
+        var r = new RegExp ("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$");
+            return (email.match(r) == null) ? true : false;
+         }
 
         function checkEmail(email){
             var emailNotConfirmedAlert = $("#emailNotConfirmedAlert");
