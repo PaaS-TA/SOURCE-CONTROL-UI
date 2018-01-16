@@ -19,8 +19,9 @@
             <tbody>
             <tr>
                 <th>레파지토리 명 (<span class="essential">*필수</span>)</th>
-                <td><input type="text" id="RepositoryName" name="RepositoryName" value="" placeholder=""><span class="essential"> *영문만 허용</span>
-                    <p class="desc" style="color:#fb5666;display: none" id="createRepositoryNameAlert">* 레파지토리명 형식이 올바르지 않습니다.</p></td>
+                <td><input type="text" id="RepositoryName" name="RepositoryName" value="" placeholder="레파지토리 명은 영문·숫자를 지원합니다.">
+                    <p class="desc" style="color:#fb5666;display: none" id="createRepositoryNameAlert">* 레파지토리명 형식이 올바르지 않습니다.</p>
+                </td>
             </tr>
             <tr>
                 <th>유형 (<span class="essential">*필수</span>)</th>
@@ -98,8 +99,9 @@
 
         $("#buttonCreateOnclick").text("생성");
         $("#buttonCreateOnclick").click(function (event) {
-            var validation_LanguageCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-            if (document.getElementById('RepositoryName').value === null || validation_LanguageCheck.test(document.getElementById('RepositoryName').value)) {
+            var validation_LanguageCheck = /[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣-+]/
+            var validation_LanguageCheck2 =/[~!@\#$%<>^&*\()\-=+_\’]/gi
+            if (document.getElementById('RepositoryName').value === null || validation_LanguageCheck.test(document.getElementById('RepositoryName').value) ||validation_LanguageCheck2.test(document.getElementById('RepositoryName').value)) {
                 popupAlertClick("올바른 레파지토리 명 형식이 아닙니다.");
                 document.getElementById('RepositoryName').value = "";
                 return;
