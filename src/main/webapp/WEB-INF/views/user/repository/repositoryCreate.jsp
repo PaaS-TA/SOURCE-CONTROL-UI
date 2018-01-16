@@ -99,7 +99,7 @@
 
         $("#buttonCreateOnclick").text("생성");
         $("#buttonCreateOnclick").click(function (event) {
-            var validation_LanguageCheck = /[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣-+]/
+            var validation_LanguageCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣-+]/
             var validation_LanguageCheck2 =/[~!@\#$%<>^&*\()\-=+_\’]/gi
             if (document.getElementById('RepositoryName').value === null || validation_LanguageCheck.test(document.getElementById('RepositoryName').value) ||validation_LanguageCheck2.test(document.getElementById('RepositoryName').value)) {
                 popupAlertClick("올바른 레파지토리 명 형식이 아닙니다.");
