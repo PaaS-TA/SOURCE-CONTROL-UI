@@ -118,7 +118,7 @@
     <div class="fr">
         <jsp:include page="../common/buttonCreateOnclick.jsp"></jsp:include>
         <%--<button type="button" class="button btn_default" title="생성" onclick='createUserBeforeValid();'>생성</button>--%>
-        <button type="button" class="button btn_cancel" title="취소" onclick="createUserCancel();">취소</button>
+        <button type="button" class="button btn_cancel" title="취소" onclick="procMovePage(-1)">취소</button>
     </div>
 </div>
     <form name ="permissionList" id ="permissionList"  action = "/user/permissionList/" method="get"></form>
@@ -299,9 +299,5 @@
         instanceCreateUser();
     });
 
-    // BIND
-    function createUserCancel() {
-        searchPermissions();
-    }
 </script>
 <!--//select 스크립트-->
