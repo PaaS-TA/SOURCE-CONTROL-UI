@@ -74,7 +74,7 @@
                                     </ul>
                                 </dd>
                                 <dd class="btn_wrap">
-                                    <button type="button" class="button tbl_in_btn_lg" title="소스보기" onclick="browse_search('','${changesets.id}');">소스보기</button>
+                                    <button type="button" class="button tbl_in_btn_lg" title="소스보기" onclick="viewsource()">소스보기</button>
                                 </dd>
                             </dl>
                         </li>
@@ -140,10 +140,15 @@
         new Date(date);
         return rtnDate
     }
+
     function repoInfo() {
         $("#form_info").submit();
     }
 
+    var viewsource = function (data) {
+        location.reload();
+        browse_search('','${changesets.id}');
+    };
 
 </script>
 
