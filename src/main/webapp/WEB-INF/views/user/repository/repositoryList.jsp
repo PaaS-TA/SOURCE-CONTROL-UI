@@ -77,7 +77,7 @@
                         </ul>
                     </div>
                     <div class="fr" style="padding-top: 15px;">
-                        <span id="repositoryNumberOfElements">(${rtnList.numberOfElements}/${rtnList.totalElements})</span>
+                        <span id="repositoryNumberOfElements">총 ${rtnList.totalElements} 건</span>
                     </div>
                 </form>
             </div>

@@ -145,7 +145,7 @@
         if(data.rtnList.number==0){
             $("#permissionsList").children().remove();
         }
-        $("#RPPermissionsCnt").text(data.rtnList.numberOfElements + ' / ' + data.rtnList.totalElements + '건');
+        $("#RPPermissionsCnt").text(data.rtnList.totalElements + '건');
         if (data.rtnList == null || data.rtnList.content.length == 0) {
             initialPermissionList();
         } else {

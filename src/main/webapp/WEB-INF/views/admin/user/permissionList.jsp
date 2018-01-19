@@ -146,7 +146,7 @@
      };
     var callback = function() {
 
-    };
+    };RPPermissionsCnt
     $(document).ready(function () {
     });
 

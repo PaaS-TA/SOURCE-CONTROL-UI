@@ -190,7 +190,7 @@
             $("#permissionsList").children().remove();
         }
         var num = rtnMap.number * rtnMap.size + rtnMap.numberOfElements
-        $("#RPPermissionsCnt").text(num + ' / ' + rtnMap.totalElements + '건');
+        $("#RPPermissionsCnt").text(rtnMap.totalElements + '건');
         if (rtnMap === null || rtnMap.content.length === 0) {
             initialPermissionList();
         } else {
