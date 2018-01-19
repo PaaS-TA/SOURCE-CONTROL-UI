@@ -143,6 +143,7 @@ public class UserController extends CommonController{
      * @throws Exception
      */
     @DeleteMapping("/instanceUserDelete.do/{name}")
+    @ResponseBody
     public Map serviceInstanceDeleteUser(@PathVariable("name") String name) {
         DashboardAuthenticationDetails user = getDetail();
         String instanceid = Common.empty(user.getInstanceId())?"":user.getInstanceId();
