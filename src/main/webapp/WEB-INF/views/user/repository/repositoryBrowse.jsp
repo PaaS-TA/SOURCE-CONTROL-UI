@@ -4,17 +4,17 @@
 <div id="repositoryDetailFileList">
     <div class="rSearch_group">
         <c:out value="${browserResult}"></c:out>
-        <div class="sel_group" >
+        <div class="sel_group">
             <c:if test="${type!='svn'}">
-            <div class="selectbox branch_select fl" >
+            <div class="selectbox branch_select fl" id="fileSelect1">
                 <div>
-                    <strong id="branch_str">브랜치:<c:out value="${browserResult.branch==null?'':browserResult.branch}"></c:out></strong><span
-                        class="bul"></span>
+                    <strong id="branch_str">브랜치:<c:out value="${browserResult.branch==null?'':browserResult.branch}"></c:out></strong>
+                    <span class="bul"></span>
                 </div>
-                <ul class="select-list" id="select_branch1" >
+                <ul class="select-list" id="select_branch">
                     <input type="text" name="branchWord" id="branchWord" maxlength="25" value="" title="브랜치 명 검색" placeholder="브랜치 명 검색" autocomplete="on">
                     <c:forEach items="${branches.branches}" var="branch" varStatus="status">
-                        <li onclick="browse_search('branches','','${branch.revision}');" class="branch">${branch.name} </li>
+                        <li onclick="browse_search('','','${branch.revision}');" class="branch">${branch.name} </li>
                     </c:forEach>
                 </ul>
             </div>
@@ -28,7 +28,7 @@
                 <ul class="select-list">
                     <input type="text" name="tagWord" id="tagWord" maxlength="25" value="" title="Tag 검색" placeholder="Tag 검색" autocomplete="on" >
                     <c:forEach items="${tags.tags}" var="tags" varStatus="status">
-                        <li onclick="browse_search('tags','','${tags.revision}')" class="tag">${tags.name}</li>
+                        <li onclick="browse_search('','','${tags.revision}')" class="tag">${tags.name}</li>
                     </c:forEach>
                 </ul>
             </div>
@@ -193,9 +193,9 @@
         if (event.which === 13) {
             var searchString = $('#branchWord').val(),
                 foundLi = $('li:contains("' + searchString + '")');
-
+            //css적용
             foundLi.addClass('found');
-            $('#select_branch').animate({ scrollTop: foundLi.offset().top});
+            $('#select_tag').animate({ scrollTop: foundLi.offset().top});
         }
     });
 
@@ -224,7 +224,7 @@
     };
 
 
-    var browse_search = function (type ,path, revision) {
+    var browse_search = function (path, revision) {
         $('#broswerTable > tbody').empty();
         param = "disableLastCommit=" + false
             + "&disableSubRepositoryDetection=" + false
