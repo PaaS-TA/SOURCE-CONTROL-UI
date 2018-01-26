@@ -4,18 +4,17 @@
 <div id="repositoryDetailFileList">
     <div class="rSearch_group">
         <c:out value="${browserResult}"></c:out>
-        <div class="sel_group">
+        <div class="sel_group" >
             <c:if test="${type!='svn'}">
-            <div class="selectbox branch_select fl" id="fileSelect1">
+            <div class="selectbox branch_select fl" >
                 <div>
-                    <strong>브랜치:<c:out value="${browserResult.branch==null?'':browserResult.branch}"></c:out></strong><span
+                    <strong id="branch_str">브랜치:<c:out value="${browserResult.branch==null?'':browserResult.branch}"></c:out></strong><span
                         class="bul"></span>
                 </div>
-                <ul class="select-list" id="select_branch">
-                    <input type="text" name="branchWord" maxlength="25" value="" title="브랜치 명 검색"
-                           placeholder="브랜치 명 검색">
+                <ul class="select-list" id="select_branch1" >
+                    <input type="text" name="branchWord" id="branchWord" maxlength="25" value="" title="브랜치 명 검색" placeholder="브랜치 명 검색" autocomplete="on">
                     <c:forEach items="${branches.branches}" var="branch" varStatus="status">
-                        <li onclick="browse_search('','${branch.revision}');">${branch.name}</li>
+                        <li onclick="browse_search('branches','','${branch.revision}');" class="branch">${branch.name} </li>
                     </c:forEach>
                 </ul>
             </div>
@@ -23,13 +22,13 @@
             <c:if test="${type!='svn'}">
             <div class="selectbox tag_select ml5" id="fileSelect2">
                 <div>
-                    <strong>Tag: <c:out value="${browserResult.tag==null?'':browserResult.tag}"></c:out></strong>
+                    <strong  id="tag_str">Tag:<c:out value="${browserResult.tag==null?'':browserResult.tag}"></c:out></strong>
                     <span class="bul"></span>
                 </div>
                 <ul class="select-list">
-                    <input type="text" name="tagWord" maxlength="25" value="" title="Tag 검색" placeholder="Tag 검색">
+                    <input type="text" name="tagWord" id="tagWord" maxlength="25" value="" title="Tag 검색" placeholder="Tag 검색" autocomplete="on" >
                     <c:forEach items="${tags.tags}" var="tags" varStatus="status">
-                        <li onclick="browse_search('','${tags.revision}')">${tags.name}</li>
+                        <li onclick="browse_search('tags','','${tags.revision}')" class="tag">${tags.name}</li>
                     </c:forEach>
                 </ul>
             </div>
@@ -135,6 +134,18 @@
             var txt = $(this).text();
             strong.text(txt);
             ul.hide();
+
+            var class_by_name = $(this).attr('class');
+            if(class_by_name == 'tag') {
+                if ($("#branch_str").text() != "브랜치:") {
+                    $("#branch_str").text("");
+                }
+            }
+            if(class_by_name == 'branch'){
+                if ($("#tag_str").text() != "Tag:") {
+                    $("#tag_str").text("");
+                }
+            }
         });
     };
     $(".branch_select").selectDesign();
@@ -149,7 +160,7 @@
     $("#copyUrl").val(repositoryUrl);
 
     $(document).ready(function () {
-        browse_search('', '');
+        browse_search('','', '');
         $("#branchWord").keyup(function (event) {
             if (event.key = 13) {
                 return;
@@ -163,8 +174,40 @@
                 }
             }
         });
+        $("#tagWord").keyup(function (event) {
+            if (event.key = 13) {
+                return;
+                console.log("$(#tagWord).value:" + $("#tagWord").value);
+                var nodeList = $("#select_tag").childNodes;
+                for (var i = 0; i < nodeList.size; i++) {
+                    if ($("#select_tag").children('li').val().contains($("#tagWord").value)) {
+                        console.log("$(#select_tag).children('li').value" + $("#select_tag").children('li').val());
+                        console.log("$(#tagWord).value" + $("#tagWord").val());
+                    }
+                }
+            }
+        });
     });
 
+    $("#branchWord").keyup(function (event) {
+        if (event.which === 13) {
+            var searchString = $('#branchWord').val(),
+                foundLi = $('li:contains("' + searchString + '")');
+
+            foundLi.addClass('found');
+            $('#select_branch').animate({ scrollTop: foundLi.offset().top});
+        }
+    });
+
+    $("#tagWord").keyup(function (event) {
+        if (event.which === 13) {
+            var searchString = $('#tagWord').val(),
+                foundLi = $('li:contains("' + searchString + '")');
+            //css적용
+            foundLi.addClass('found');
+            $('#select_tag').animate({ scrollTop: foundLi.offset().top});
+        }
+    });
 
     //데이터 안보이게
     var copycloneUrl = function () {
@@ -179,13 +222,10 @@
             alert('이 브라우저는 지원하지 않습니다.')
         }
     };
-    $("#branchWord").keyup(function (event) {
-    });
 
 
-    var browse_search = function (path, revision) {
+    var browse_search = function (type ,path, revision) {
         $('#broswerTable > tbody').empty();
-        console.debug("browse_search");
         param = "disableLastCommit=" + false
             + "&disableSubRepositoryDetection=" + false
             + "&path=" + path
@@ -239,13 +279,11 @@
     }
 
     var browserContent = function (path, revision) {
-
-
         getBrowserContent(path, revision);
         console.debug("browserContent");
 
     };
 
 </script>
-
+<style> .found{background-color:gainsboro;}  #test{height:80px;  overflow:scroll;}</style>
 <!--//select 스크립트-->

@@ -146,7 +146,7 @@
     }
 
     var viewsource = function (data) {
-        location.reload();
+        window.location.reload(true);
         browse_search('','${changesets.id}');
     };
 
