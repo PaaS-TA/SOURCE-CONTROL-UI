@@ -160,7 +160,7 @@
     $("#copyUrl").val(repositoryUrl);
 
     $(document).ready(function () {
-        browse_search('','', '');
+        browse_search('', '');
         $("#branchWord").keyup(function (event) {
             if (event.key = 13) {
                 return;
@@ -195,7 +195,7 @@
                 foundLi = $('li:contains("' + searchString + '")');
             //css적용
             foundLi.addClass('found');
-            $('#select_tag').animate({ scrollTop: foundLi.offset().top});
+            $('#branchWord').animate({ scrollTop: foundLi.offset().top});
         }
     });
 
