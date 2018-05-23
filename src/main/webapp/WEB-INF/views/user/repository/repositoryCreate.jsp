@@ -101,8 +101,8 @@
         $("#buttonCreateOnclick").click(function (event) {
             var validation_LanguageCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣-+]/
             var validation_LanguageCheck2 =/[~!@\#$%<>^&*\()\-=+_\’]/gi
-            var validation_LanguageCheck3 = /["^[\S+.(?i)([ㄱ-ㅎ|ㅏ-ㅣ|가-힣-+|~!@\#$%<>^&*\()\-=+_\’)$]/
-//            var validation_LanguageCheck3 = /[?=.*[!@#$%^*+=-]]/;
+//            var validation_LanguageCheck3 = /["^[\S+.(?i)([ㄱ-ㅎ|ㅏ-ㅣ|가-힣-+|~!@\#$%<>^&*\()\-=+_\’)$]/
+            var validation_LanguageCheck3 = /[?=.*[!@#$%^*+=-]]/;
 
             if (document.getElementById('RepositoryName').value === null
                 || validation_LanguageCheck.test(document.getElementById('RepositoryName').value)
