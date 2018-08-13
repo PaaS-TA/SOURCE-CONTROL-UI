@@ -82,7 +82,7 @@ var repositoryId = "<%=session.getAttribute("repositoryId")%>";
 
     // CREATE REPOSITORY
     var createTopMenuRepository= function () {
-        console.debug(":::::들어오니? 1탄::::");
+
         var topMenuRepositoryName = document.getElementById('topMenuRepositoryName').value;
         if(!validRepositoryName(topMenuRepositoryName)){
             $("#topMenuRepositoryNameAlert").show();
@@ -95,9 +95,7 @@ var repositoryId = "<%=session.getAttribute("repositoryId")%>";
             type: document.getElementById('type_opt').value,
             public : false
         };
-        console.debug("::::들어오니? 2탄::::"+ JSON.stringify(reqParam));
         procCallAjax("post","/user/createRepository.do", reqParam, callbackCreateTopMenuRepository);
-        console.debug("::::들어오니? 3탄::::");
     };
 
     // CALLBACK
