@@ -45,13 +45,14 @@
         $( "#repositoryBrowseContent" ).show();
         $("#btnContentCancel").show();
         $("#contPath").text(data.path);
-        var varRepositoryHtml = "<ol>";
         var bype = data.data;
+
+        var varRepositoryHtml = "<ol>";
         for (var i = 0; i < bype.length; i++) {
-            varRepositoryHtml += "<li style='list-style: decimal'>"+" " +bype[i] +"</li>"+ "\n";
+            varRepositoryHtml += "<li style='list-style: decimal'>"+"&nbsp;&nbsp;&nbsp;" +bype[i].replace("<","&lt;").replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;').replace(" ","&nbsp;&nbsp;") +"</li>"+ "\n";
         }
         varRepositoryHtml +="</<ol>"
-            $('#browserContent').append(varRepositoryHtml);
+        $('#browserContent').append(varRepositoryHtml);
     };
 </script>
 <!--//select 스크립트-->
