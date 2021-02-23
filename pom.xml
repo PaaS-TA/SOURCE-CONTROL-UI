@@ -23,6 +23,7 @@
         <scm.version>1.54</scm.version>
         <maven.test.skip>true</maven.test.skip>
         <!--<cf.service.suid.file>${project.build.outputDirectory}/serviceInstanceUid.txt</cf.service.suid.file>-->
+        <tomcat.version>8.5.63</tomcat.version>
     </properties>
     <repositories>
         <repository>
