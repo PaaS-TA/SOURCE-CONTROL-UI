@@ -2,6 +2,14 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 .gitignore
 
+# Package Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
 ### STS ###
 .apt_generated
 .classpath
