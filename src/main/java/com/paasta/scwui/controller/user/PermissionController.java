@@ -46,7 +46,7 @@ public class PermissionController extends CommonController{
         List<Map> lstPermission = permissionService.getPermissionsByRepoId(Integer.parseInt(repoId));
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("lstPermission", lstPermission);
-        modelAndView.addObject("title", "사용자 목록");
+        modelAndView.addObject("title", "user list");
         modelAndView.setViewName("/user/permission/permissionList");
 
         return modelAndView;

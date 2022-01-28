@@ -6,7 +6,7 @@
     <div class="location">
         <div class="fl">
             <ul>
-                <li><a href="javascript:moveHome()" class="home">홈으로</a></li>
+                <li><a href="javascript:moveHome()" class="home">Home</a></li>
                 <li><a href="javascript:moveHome()" title="${title}">${title}</a></li><!--마지막 경로-->
             </ul>
         </div>
@@ -31,53 +31,53 @@
                     <input type="hidden" id="type2" name="type2" style="width:200px" value="<c:out value='${type2}' default='' />"/>
                     <input type="hidden" id="reposort" name="reposort" value="<c:out value='${reposort}' default='' />"/>
                     <div class="keyword_search">
-                        <input type="text" name="repoName" id="repoSearch_keyword" value="<c:out value='${repoName}' default=''/>" style="-ms-ime-mode: active;" autocomplete="on" placeholder="레파지토리 명"/>
+                        <input type="text" name="repoName" id="repoSearch_keyword" value="<c:out value='${repoName}' default=''/>" style="-ms-ime-mode: active;" autocomplete="on" placeholder="Repository name"/>
                         <button type="button" class="btn_search" name="btn_repoSearch" id="btn_repoSearch"/>
                     </div>
                     <div class="selectbox select1 ml5" style="width:135px;">
                         <div>
-                            <c:if test="${type1==''}"><strong id="repoListType">형상관리 전체</strong><span class="bul"></span></c:if>
+                            <c:if test="${type1==''}"><strong id="repoListType">All configuration management</strong><span class="bul"></span></c:if>
                             <c:if test="${type1=='git'}"><strong id="repoListType">Git</strong><span class="bul"></span></c:if>
                             <c:if test="${type1=='svn'}"><strong id="repoListType">SVN</strong><span class="bul"></span></c:if>
                         </div>
                         <ul class="select-list">
-                            <li>형상관리 전체</li>
+                            <li>All configuration management</li>
                             <li>Git</li>
                             <li>SVN</li>
                         </ul>
                     </div>
                     <div class="selectbox select2 ml5" style="width:135px;">
                         <div>
-                            <c:if test="${type2==''}"><strong id="repoListPermission">전체 레파지토리</strong><span
+                            <c:if test="${type2==''}"><strong id="repoListPermission">full repository</strong><span
                                     class="bul"></span></c:if>
-                            <c:if test="${type2=='READ_WRITE_OWNER'}"><strong id="repoListPermission" >참여
-                                레파지토리</strong><span class="bul"></span></c:if>
+                            <c:if test="${type2=='READ_WRITE_OWNER'}"><strong id="repoListPermission" >Participation
+                                repository</strong><span class="bul"></span></c:if>
                         </div>
                         <ul class="select-list">
-                            <li class="selectSortType" value="" id="repo_role" >전체 레파지토리</li>
-                            <li class="selectSortType" value="READ_WRITE_OWNER" id="repo_allrole" >참여 레파지토리</li>
+                            <li class="selectSortType" value="" id="repo_role" >full repository</li>
+                            <li class="selectSortType" value="READ_WRITE_OWNER" id="repo_allrole" >Participating Repositories</li>
                         </ul>
                     </div>
                     <div class="selectbox select3 ml5" style="width:135px;">
                         <div>
-                            <c:if test="${reposort=='lastModified_true' || reposort==''}"><strong id="repoListreposort">최신
-                                업데이트 순</strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='lastModified_false'}"><strong id="repoListreposort">오래된 업데이트
-                                순</strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='creationDate_true'}"><strong id="repoListreposort">최신 생성일
-                                순</strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='creationDate_false'}"><strong id="repoListreposort">오래된 생성일
-                                순</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='lastModified_true' || reposort==''}"><strong id="repoListreposort">recent
+                                update order</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='lastModified_false'}"><strong id="repoListreposort">old update
+                                net</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='creationDate_true'}"><strong id="repoListreposort">latest creation date
+                                net</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='creationDate_false'}"><strong id="repoListreposort">old creation date
+                                net</strong><span class="bul"></span></c:if>
                         </div>
                         <ul class="select-list">
-                            <li id="lastModified_desc" class="selectSortType">최신 업데이트 순</li>
-                            <li id="lastModified_asc" class="selectSortType">오래된 업데이트 순</li>
-                            <li id="created_desc" class="selectSortType">최신 생성일 순</li>
-                            <li id="created_asc" class="selectSortType">오래된 생성일 순</li>
+                            <li id="lastModified_desc" class="selectSortType">latest update order</li>
+                            <li id="lastModified_asc" class="selectSortType">Oldest update order</li>
+                            <li id="created_desc" class="selectSortType">Newest creation date</li>
+                            <li id="created_asc" class="selectSortType">oldest creation date</li>
                         </ul>
                     </div>
                     <div class="fr" style="padding-top: 15px;">
-                        <span id="repositoryNumberOfElements">총 ${rtnList.totalElements} 건</span>
+                        <span id="repositoryNumberOfElements">Total ${rtnList.totalElements}</span>
                     </div>
                 </form>
             </div>
@@ -117,24 +117,24 @@
                             <dd>
                                 <ul>
                                     <li class="sbj_txt">${repositories.description}</li>
-                                    <li class="stateArea"><i class="ico_update"></i>마지막 업데이트 : ${repositories.lastModified}<span class="pr10"></span>
-                                        <i class="ico_create"></i>생성일 : ${repositories.creationDate}</li>
+                                    <li class="stateArea"><i class="ico_update"></i>last update : ${repositories.lastModified}<span class="pr10"></span>
+                                        <i class="ico_create"></i>creation date : ${repositories.creationDate}</li>
                                 </ul>
                             </dd>
                             <c:choose>
                                 <c:when test="${repositories.type eq 'git'}">
-                                    <dd class="thmb_img"><img src="/resources/images/img_git.png" alt="GIT 이미지" border="0"></dd>
+                                    <dd class="thmb_img"><img src="/resources/images/img_git.png" alt="GIT images" border="0"></dd>
                                 </c:when>
                                 <c:when test="${repositories.type eq 'svn'}">
-                                    <dd class="thmb_img"><img src="/resources/images/img_svn.png" alt="SVN 이미지" border="0"></dd>
+                                    <dd class="thmb_img"><img src="/resources/images/img_svn.png" alt="SVN image" border="0"></dd>
                                 </c:when>
                             </c:choose>
                             <dd class="icon_wrap">
                                 <ul class="ico_lst">
                                     <li class="ico_area">
                                         <c:if test="${permissionType=='true'}">
-                                            <img src="/resources/images/process_ico_own.png" alt="소유자 이미지" border="0">
-                                            <p class="tit">소유자</p>
+                                            <img src="/resources/images/process_ico_own.png" alt="owner image" border="0">
+                                            <p class="tit">owner</p>
                                         </c:if>
                                     </li>
                                 </ul>
@@ -145,7 +145,7 @@
                 <c:if test="${rtnList.totalElements==0}">
                     <li>
                         <dl>
-                            <dt>조회된 데이터가 없습니다.</dt>
+                            <dt>No data was retrieved.</dt>
                         </dl>
                     </li>
                 </c:if>
@@ -177,7 +177,7 @@
     var repoSearchList = function () {
         var param2 = $("#repoListPermission").text();
         switch (param2) {
-            case "참여 레파지토리" :
+            case "Participating Repositories" :
                 param2 = "READ_WRITE_OWNER";
                 break;
             default:
@@ -202,16 +202,16 @@
 
         var param3 = $("#repoListreposort").text();
         switch (param3) {
-            case "최신 업데이트 순" :
+            case "latest update order" :
                 param3 = "lastModified_true";
                 break;
-            case "오래된 업데이트 순" :
+            case "Oldest update order" :
                 param3 = "lastModified_false";
                 break;
-            case "최신 생성일 순" :
+            case "Newest creation date" :
                 param3 = "creationDate_true";
                 break;
-            case "오래된 생성일 순" :
+            case "oldest creation date" :
                 param3 = "creationDate_false";
                 break;
             default:
@@ -315,18 +315,18 @@
                     "            <ul>\n" +
                     "                <li class='sbj_txt'>"+repository.description+"</li>\n" +
                     "                <li class='stateArea'>\n" +
-                    "                    <i class='ico_update'></i>마지막 업데이트: "+repository.lastModified+"<span class='pr10'></span>\n" +
-                    "                    <i class='ico_create'></i>생성일 : "+repository.creationDate+"\n" +
+                    "                    <i class='ico_update'></i>last update: "+repository.lastModified+"<span class='pr10'></span>\n" +
+                    "                    <i class='ico_create'></i>creation date : "+repository.creationDate+"\n" +
                     "                </li>\n" +
                     "            </ul>\n" +
                     "        </dd>\n" +
-                    "        <dd class='thmb_img'><img src='/resources/images/img_"+repository.type+".png' alt='이미지' border='0'></dd>\n" +
+                    "        <dd class='thmb_img'><img src='/resources/images/img_"+repository.type+".png' alt='image' border='0'></dd>\n" +
                     "        <dd class='icon_wrap'>\n" +
                     "            <ul class='ico_lst'>\n" +
                     "                <li class='ico_area'>\n" ;
                 if(permissionType){
-                    varRepositoryHtml += "                    <img src='/resources/images/process_ico_own.png' alt='소유자 이미지' border='0'>\n"
-                                        +"                    <p class='tit'>소유자</p>\n";
+                    varRepositoryHtml += "                    <img src='/resources/images/process_ico_own.png' alt='owner image' border='0'>\n"
+                                        +"                    <p class='tit'>owner</p>\n";
                 }
                 varRepositoryHtml += "                </li>\n" +
                     "            </ul>\n" +

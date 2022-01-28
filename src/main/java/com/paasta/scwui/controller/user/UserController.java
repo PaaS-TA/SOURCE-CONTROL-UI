@@ -70,7 +70,7 @@ public class UserController extends CommonController{
         Map searhExsistUser = (Map) userService.getUser(createUserId).getBody();
         if(Common.notEmpty(searhExsistUser.get("rtnUser"))||Common.notEmpty(searhExsistUser.get("ScUser"))){
             Map rtnMap = new HashMap();
-            rtnMap.put("message", "이미 존재하는 사용자 입니다.");
+            rtnMap.put("message", "The user already exists.");
             return new ResponseEntity(rtnMap, HttpStatus.OK);
         }
         ResponseEntity rtnResponseEntity = userService.createInstanceUser(map);

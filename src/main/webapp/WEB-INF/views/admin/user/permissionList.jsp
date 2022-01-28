@@ -19,9 +19,9 @@
     <!-- location :s -->
     <div class="location">
         <ul>
-            <li><a href="/admin/serviceInstantList" title="형상관리신청목록" class="home">홈으로</a></li>
-            <li><a href="/admin/serviceInstantList" title="형상관리신청목록">형상관리 신청목록</a></li>
-            <li><a href="#" title="사용자 목록">사용자 목록</a></li>
+            <li><a href="/admin/serviceInstantList" title="형상관리신청목록" class="home">home</a></li>
+            <li><a href="/admin/serviceInstantList" title="형상관리신청목록">Configuration management application list</a></li>
+            <li><a href="#" title="user list">사용자 목록</a></li>
         </ul>
     </div>
     <!--//location :e -->
@@ -37,8 +37,8 @@
                 <%--<div class="fl"><span id="RP_cnt"> <c:out value="${data.number*data.size+data.numberOfElements}"></c:out> / ${data.totalElements} 건</span></div>--%>
                     <div class="keyword_search fr">
                         <%--<input id="search_keyword" type="text" name="search_keyword" style="-ms-ime-mode: active;" value="<%=request.getParameter("search_keyword")%>"placeholder="아이디 또는 사용자 명 검색" autocomplete="on"/>--%>
-                            <input id="search_keyword" type="text" name="search_keyword" style="-ms-ime-mode: active;" value=""placeholder="아이디 또는 사용자 명 검색" autocomplete="on"/>
-                            <input type="button" class="btn_search" id="btn_search"  title="아이디 또는 사용자 명 검색"/>
+                            <input id="search_keyword" type="text" name="search_keyword" style="-ms-ime-mode: active;" value=""placeholder="Search by ID or user name" autocomplete="on"/>
+                            <input type="button" class="btn_search" id="btn_search"  title="Search by ID or user name"/>
                     </div>
                 </div>
             </form>
@@ -60,9 +60,9 @@
                             <li class="stateArea">
                                     <jsp:setProperty name="dateObject1" property="time" value="${user[status.index].creationDate}"/>
                                     <jsp:setProperty name="dateObject2" property="time" value="${user[status.index].lastModified}"/>
-                                <i class="ico_create"></i>추가일
+                                <i class="ico_create"></i>additional day
                                 : ${dateObject1}/ <%--<fmt:parseDate value="${user.creationDate}" pattern="yyyy MM dd"></fmt:parseDate>--%>
-                                <span class="pr8"></span> <i class="ico_modify"></i>수정일
+                                <span class="pr8"></span> <i class="ico_modify"></i>date of modification
                                 : ${dateObject2}<%--<fmt:formatDate value="${dateObject2}" pattern="yyyy MM dd HH:mm"></fmt:formatDate></li>--%>
                         </ul>
                     </dd>
@@ -71,24 +71,24 @@
                             <li class="ico_area">
                                 <c:choose>
                                     <c:when test="${permissions.type eq 'OWNER'}">
-                                        <img src="/resources/images/process_ico_own.png" alt="소유자 이미지" border="0">
-                                        <p class="tit">소유자</p>
+                                        <img src="/resources/images/process_ico_own.png" alt="owner image" border="0">
+                                        <p class="tit">owner</p>
                                     </c:when>
                                     <c:otherwise>
-                                        <img src="/resources/images/process_ico_normal.png" alt="일반 이미지" border="0">
-                                        <p class="tit">일반</p>
+                                        <img src="/resources/images/process_ico_normal.png" alt="general image" border="0">
+                                        <p class="tit">Normal</p>
                                     </c:otherwise>
                                 </c:choose>
                             </li>
                             <li class="ico_area">
                                 <c:choose>
                                     <c:when test="${user[status.index].active eq 'true'}">
-                                        <img src="/resources/images/process_ico_ownership.png" alt="사용 이미지" border="0">
-                                        <p class="tit">사용</p>
+                                        <img src="/resources/images/process_ico_ownership.png" alt="use image" border="0">
+                                        <p class="tit">use</p>
                                     </c:when>
                                     <c:otherwise>
-                                        <img src="/resources/images/process_ico_stop.png" alt="정지 이미지" border="0">
-                                        <p class="tit">정지</p>
+                                        <img src="/resources/images/process_ico_stop.png" alt="still image" border="0">
+                                        <p class="tit">stop</p>
                                     </c:otherwise>
                                 </c:choose>
                             </li>
@@ -99,7 +99,7 @@
             </c:forEach>
             </c:forEach>
             <c:if test="${data.totalElements==0}">
-                <li id="initRepoList" name="initRepoList"> 해당 데이터가 없습니다.</li></li>
+                <li id="initRepoList" name="initRepoList">There is no such data.</li></li>
             </c:if>
         </ul>
         <c:if test="${data.last eq 'false'}">
@@ -163,7 +163,7 @@
         if (data.last){
             $("#moreListButtonArea").hide();
         }
-        $("#RP_cnt").text('총 ' + (data.number * data.size + data.numberOfElements)+' / ' + data.totalElements + ' 건');
+        $("#RP_cnt").text('Total ' + (data.number * data.size + data.numberOfElements)+' / ' + data.totalElements + '  ');
         if (data.totalElements === 0) {
             initialList();
         }
@@ -180,7 +180,7 @@
         if (data.totalElements === 0) {
             initialList();
         }else{
-            $("#RP_cnt").text('총 ' + (data.number * data.size + data.numberOfElements)+' / ' + data.totalElements + ' 건');
+            $("#RP_cnt").text('Total ' + (data.number * data.size + data.numberOfElements)+' / ' + data.totalElements + '  ');
             initData(data);
         }
     };
@@ -203,21 +203,21 @@
                     +'  <dd>                    <ul>                    <li class="sbj_txt">                        </li>'
                     + '<li class="stateArea">'
 
-                    + '<i class="ico_create"></i>추가일 : ' + user[j].creationDate + '/'
-                    + '<span class="pr8"></span> <i class="ico_modify"></i>수정일 :' + new Date(user[j].lastModified)<%--<fmt:formatDate value="${dateObject2}" pattern="yyyy MM dd HH:mm"></fmt:formatDate></li>--%>
+                    + '<i class="ico_create"></i>additional day : ' + user[j].creationDate + '/'
+                    + '<span class="pr8"></span> <i class="ico_modify"></i>date of modification :' + new Date(user[j].lastModified)<%--<fmt:formatDate value="${dateObject2}" pattern="yyyy MM dd HH:mm"></fmt:formatDate></li>--%>
                     + '</ul>        </dd>       <dd class="icon_wrap">       <ul class="ico_lst">    <li class="ico_area">';
                 if (permissions[j].type === 'OWNER') {
-                    varHtml = varHtml + '<img src="/resources/images/process_ico_own.png" alt="소유자 이미지" border="0">'
-                        + '<p class="tit">소유자</p>';
+                    varHtml = varHtml + '<img src="/resources/images/process_ico_own.png" alt="owner image" border="0">'
+                        + '<p class="tit">owner</p>';
                 } else {
-                    varHtml = varHtml + '<img src="/resources/images/process_ico_normal.png" alt="일반 이미지" border="0">'
-                        + '<p class="tit">일반</p>';
+                    varHtml = varHtml + '<img src="/resources/images/process_ico_normal.png" alt="general image" border="0">'
+                        + '<p class="tit">Normal</p>';
                 }
                 varHtml = varHtml + '</li>  <li class="ico_area">';
                 if (user[j].active === 'true') {
-                    varHtml = varHtml + '<img src="/resources/images/process_ico_ownership.png" alt="사용 이미지" border="0">                        <p class="tit">사용</p>';
+                    varHtml = varHtml + '<img src="/resources/images/process_ico_ownership.png" alt="use image" border="0">                        <p class="tit">Use</p>';
                 } else {
-                    varHtml = varHtml +'<img src="/resources/images/process_ico_stop.png" alt="정지 이미지" border="0">                            <p class="tit">정지</p>';
+                    varHtml = varHtml +'<img src="/resources/images/process_ico_stop.png" alt="still image" border="0">                            <p class="tit">Stop</p>';
                 }
                 varHtml = varHtml +'</li>                        </ul>                        </dd>                        </dl>                        </li>';
                 $('#permissionList').append(varHtml);

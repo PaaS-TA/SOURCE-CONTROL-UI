@@ -128,7 +128,7 @@ public class CommonController {
      */
     public Authentication getAuthentication(){
         if(SecurityContextHolder.getContext()==null){
-            throw new InternalAuthenticationServiceException("세션이 존재하지 않습니다." , new Exception("세션에러"));
+            throw new InternalAuthenticationServiceException("Session does not exist." , new Exception("세션에러"));
         }
         return SecurityContextHolder.getContext().getAuthentication();
     }
@@ -150,7 +150,7 @@ public class CommonController {
          */
         List instanceUse = instanceUseService.getAll(instanceId, user.getName());
         if(instanceUse.size()==0){
-            throw new InternalAuthenticationServiceException("인스턴스 사용에 대한 권한이 만료하였습니다." , new Exception("권한에러"));
+            throw new InternalAuthenticationServiceException("Your permission to use the instance has expired." , new Exception("권한에러"));
         }
         return user;
     }

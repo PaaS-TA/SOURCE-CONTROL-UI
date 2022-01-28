@@ -30,11 +30,11 @@ public class ErrorController extends CommonController {
             expireLogout(httpServletRequest, httpServletResponse, session);
 
         }
-        modelAndView.addObject("error", "서버에러");
+        modelAndView.addObject("error", "server error");
         modelAndView.addObject("status", status);
         modelAndView.addObject("url", httpServletRequest.getRequestURL());
-        modelAndView.addObject("exception.message", "서버에러");
-        modelAndView.addObject("title", "로그인");
+        modelAndView.addObject("exception.message", "server error");
+        modelAndView.addObject("title", "login");
         modelAndView.setViewName("/error/error");
         return modelAndView;
     }

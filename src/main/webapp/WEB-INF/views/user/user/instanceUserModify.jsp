@@ -5,9 +5,9 @@
     <!-- location :s -->
     <div class="location">
         <ul>
-            <li><a href="javascript:moveHome()" class="home">홈으로</a></li>
-            <li><a href="/user/permissionList/" title="사용자 목록">사용자 목록</a></li><!--마지막 경로-->
-            <li><a href="#" title="사용자 상세/수정/삭제">사용자 상세/수정/삭제</a></li><!--마지막 경로-->
+            <li><a href="javascript:moveHome()" class="home">Home</a></li>
+            <li><a href="/user/permissionList/" title="user list">user list</a></li><!--마지막 경로-->
+            <li><a href="#" title="User Details/Edit/Delete">사용자 상세/수정/삭제</a></li><!--마지막 경로-->
         </ul>
     </div>
     <!--//location :e -->
@@ -19,9 +19,9 @@
         <input type="hidden" id="admin" value="${rtnUser.admin}">
         <input type="hidden" id="type" value="${rtnUser.type}">
         <!-- Form 테이블 :s -->
-        <table summary="아이디, 이름, 이메일, 비밀번호, 비밀번호 확인 등의 사용자 상세/수정 테이블입니다." class="tbl_form02">
+        <table summary="This is a user detail/edit table for ID, name, email, password, and password confirmation." class="tbl_form02">
             <caption>
-                사용자 상세/수정 테이블
+                User detail/edit table
             </caption>
             <colgroup>
                 <col style="width: 18%" />
@@ -29,41 +29,41 @@
             </colgroup>
             <tbody>
                 <tr>
-                    <th>아이디</th>
+                    <th>ID</th>
                     <td>${ScUser.userId}</td>
                 </tr>
                 <tr>
-                    <th>이름</th>
-                    <td><input type="text" id="modifyDisplayName" name="modifyDisplayName" value="${ScUser.userName}" placeholder="2자리 이상">
-                        <p class="desc"id="NameAlertCheck">이름은 2자 이상으로 입력해 주시기 바랍니다.</p><!--경고 메시지-->
+                    <th>name</th>
+                    <td><input type="text" id="modifyDisplayName" name="modifyDisplayName" value="${ScUser.userName}" placeholder="2 or more characters">
+                        <p class="desc"id="NameAlertCheck">Please enter your name with at least 2 characters.</p><!--경고 메시지-->
                     </td>
                 </tr>
                 <tr>
-                    <th>이메일</th>
-                    <td><input type="text" name="mail" id="mail" value="${ScUser.userMail}"  placeholder="(예)paasta@nia.or.kr">
-                    <p class="desc" style="color:#fb5666;" id="emailNotConfirmedAlert">* 이메일 주소 형식이 올바르지 않습니다.</p></td>
+                    <th>e-mail</th>
+                    <td><input type="text" name="mail" id="mail" value="${ScUser.userMail}"  placeholder="(Example)paasta@nia.or.kr">
+                    <p class="desc" style="color:#fb5666;" id="emailNotConfirmedAlert">* Email address format is incorrect.</p></td>
                 </tr>
                 <tr>
-                    <th>비밀번호 (<span class="essential">*필수</span>)</th>
-                    <td><input type="password" name="password1" value="__dummypassword__" placeholder="6자리 ~ 16자리" id="newPasswordInput">
-                        <p class="desc">비밀번호는 6~16자로 입력해 주시기 바랍니다.</p><!--경고 메시지-->
+                    <th>Password (<span class="essential">*Required</span>)</th>
+                    <td><input type="password" name="password1" value="__dummypassword__" placeholder="6 to 16 characters" id="newPasswordInput">
+                        <p class="desc">Please enter a password of 6 to 16 characters.</p><!--경고 메시지-->
                     </td>
                 </tr>
                 <tr>
-                    <th>비밀번호 확인 (<span class="essential">*필수</span>)</th>
-                    <td><input type="password" name="password2" value="__dummypassword__" placeholder="비밀번호 확인" id="confirmPasswordInput">
-                        <p class="desc" id="passwordNotConfirmedAlert" style="color:#fb5666; ;">* 비밀번호가 일치하지 않습니다.</p>
+                    <th>Confirm password (<span class="essential">*Required</span>)</th>
+                    <td><input type="password" name="password2" value="__dummypassword__" placeholder="Confirm password" id="confirmPasswordInput">
+                        <p class="desc" id="passwordNotConfirmedAlert" style="color:#fb5666; ;">* Passwords do not match.</p>
                     </td>
                 </tr>
                 <tr>
-                    <th colspan="2"><span class="point01">※ 비밀번호는 비밀번호를 변경하는 경우에만 입력하시기 바랍니다.</span></th>
+                    <th colspan="2"><span class="point01">※ Please enter the password only when changing the password.</span></th>
                 </tr>
             </tbody>
         </table>
         <!--//Form 테이블 :e -->
-        <table summary="사용여부, 설명 등의 사용자추가 선택 테이블입니다." class="tbl_form">
+        <table summary="This is an optional user-added table including user status and description." class="tbl_form">
             <caption>
-                사용자 추가 사용여부 선택 테이블
+                Selection table on whether to use additional user
             </caption>
             <colgroup>
                 <col style="width: 18%" />
@@ -71,17 +71,17 @@
             </colgroup>
             <tbody>
             <tr>
-                <th>사용여부 (<span class="essential">*필수</span>)</th>
+                <th>User status (<span class="essential">*Required</span>)</th>
                 <td>
-                    <label><input type="radio" name="active" value="true" <c:if test="${rtnUser.active==true}">checked="checked"</c:if>>사용</label>
-                    <label><input type="radio" name="active" value="false" <c:if test="${rtnUser.active==false}">checked="checked"</c:if>>정지</label>
+                    <label><input type="radio" name="active" value="true" <c:if test="${rtnUser.active==true}">checked="checked"</c:if>>use</label>
+                    <label><input type="radio" name="active" value="false" <c:if test="${rtnUser.active==false}">checked="checked"</c:if>>stop</label>
                 </td>
             </tr>
             <tr>
-                <th class="last">설명 (<span class="f12">선택</span>)</th>
+                <th class="last">Description (<span class="f12">Optional</span>)</th>
                 <td>
                     <%--<textarea type="text" name ="description"   colos="20" rows="5" onfocus="resize(this);">${ScUser.userDesc}</textarea>--%>
-                    <textarea type="text" name="description" id="description" colos="20" rows="5"  placeholder="입력한 사용자 설명">${ScUser.userDesc}</textarea>
+                    <textarea type="text" name="description" id="description" colos="20" rows="5"  placeholder="User description entered">${ScUser.userDesc}</textarea>
                 </td>
             </tr>
             </tbody>
@@ -92,7 +92,7 @@
         </div>
         <div class="fr">
             <jsp:include page="../common/buttonCreateOnclick2.jsp"></jsp:include>
-            <button type="button" class="button btn_cancel" title="취소"  onclick=" history.go(-1);">취소</button>
+            <button type="button" class="button btn_cancel" title="cancel"  onclick=" history.go(-1);">cancel</button>
         </div>
         <!--//기본버튼 :e -->
     </div>
@@ -137,14 +137,14 @@
         });
 
         // BIND
-        $("#buttonCreateOnclick").text("사용자 삭제");
+        $("#buttonCreateOnclick").text("delete user");
         $("#buttonCreateOnclick").click(function (event) {
             //$("#btnMDelete").on("click", function() {
-            popupConfirmClick("사용자 삭제","사용자를 삭제 하시겠습니까?", 'deleteInstanceUserModify()',"사용자 삭제");
+            popupConfirmClick("delete user","Are you sure you want to delete the user?", 'deleteInstanceUserModify()',"delete user");
         });
-        $("#buttonCreateOnclick2").text("사용자 수정");
+        $("#buttonCreateOnclick2").text("edit user ");
         $("#buttonCreateOnclick2").click(function (event) {
-            popupConfirmClick("사용자 수정","사용자 정보를 수정 하시겠습니까?", 'modify()',"사용자 수정");
+            popupConfirmClick("edit user ","Would you like to edit user information?", 'modify()',"edit user ");
         });
     });
 
@@ -183,11 +183,11 @@
     var modify = function () {
 
         if(checkEmail($("#mail"))){
-            popupAlertClick("이메일 주소 형식이 올바르지 않습니다.");
+            popupAlertClick("Email address format is incorrect.");
             return;
         }
         if(!password_validation_check($("#confirmPasswordInput").val())){
-            popupAlertClick("패스워드를 확인하세요.");
+            popupAlertClick("Please check your password.");
             return;
         }
 
@@ -210,7 +210,7 @@
 
 
     function modifyCallback(data){
-      procPopupAlert("사용자 수정이 완료되었습니다.",'$("#permissionList").submit()','return;');
+      procPopupAlert("User editing is complete.",'$("#permissionList").submit()','return;');
     }
 
     // DELETE
@@ -221,7 +221,7 @@
 
     // CALLBACK
     var callbackDeleteInstanceUserModify = function(data) {
-        procPopupAlert("사용자 삭제가 완료되었습니다.",'$("#permissionList").submit()','return;');
+        procPopupAlert("User deletion complete.",'$("#permissionList").submit()','return;');
     };
 
 

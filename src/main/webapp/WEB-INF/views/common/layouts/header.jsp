@@ -2,22 +2,22 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div id="header">
     <div class="head_inner">
-        <h1><a href="javascript:moveHome()" title="PaaS-TA 형상관리" ><img alt="PaaS-TA 형상관리" src="/resources/images/logo.png"><span>형상관리</span></a></h1>
+        <h1><a href="javascript:moveHome()" title="PaaS-TA configuration management" ><img alt="PaaS-TA 형상관리" src="/resources/images/logo.png"><span>형상관리</span></a></h1>
         <ul class="RP_title" style="float: left;display: block;position: relative;">
             <li><span class="RP_num" name="RP_cnt" id="RP_cnt"></span></li>
-            <li><a href="#" class="wintoggle"><span class="RP_name">레파지토리 목록<b class="nav_arrow"></b></span></a>
+            <li><a href="#" class="wintoggle"><span class="RP_name">Repository List<b class="nav_arrow"></b></span></a>
                 <ul id="ulToggleMenu" class="togglemenu" style="width:320px;">
                     <!--레파지토리 생성 영역 :s -->
                     <sec:authorize access="hasRole('ROLE_CREATE_Y')">
                     <li>
-                        <h3><i class="glyphicon glyphicon-plus"></i>신규 생성 (New Repository)</h3>
-                        <input type="text" id="topMenuRepositoryName" name="topMenuRepositoryName" placeholder="레파지토리 명(필수)">
-                        <p class="desc" style="color:#fb5666; display: none" id="topMenuRepositoryNameAlert">* 레파지토리명 형식이 올바르지 않습니다.</p>
+                        <h3><i class="glyphicon glyphicon-plus"></i>New Repository</h3>
+                        <input type="text" id="topMenuRepositoryName" name="topMenuRepositoryName" placeholder="Repository name (required)(Required)">
+                        <p class="desc" style="color:#fb5666; display: none" id="topMenuRepositoryNameAlert">* The format of the repository name is incorrect.</p>
                     </li>
                     <!--레파지토리 생성 영역 -->
                     <!--옵션 영역 :s -->
                     <li>
-                        <h5>유형</h5>
+                        <h5>type</h5>
                         <select id="type_opt" name="type_opt">
                             <option value="git">Git</option>
                             <option value="svn">SVN</option>
@@ -27,14 +27,14 @@
                     <!--버튼 영역 :s -->
                     <li class="alignC">
                         <sec:authorize access="hasRole('ROLE_CREATE_Y')">
-                        <button type="button" class="button btn_regist" title="등록" id="btnTopMenuCreate">등록</button>
+                        <button type="button" class="button btn_regist" title="Enrollment" id="btnTopMenuCreate">등록</button>
                         </sec:authorize>
-                        <button type="button" class="button btn_regist" title="취소" id="btnTopMenuCancel">취소</button>
+                        <button type="button" class="button btn_regist" title="cancellation" id="btnTopMenuCancel">취소</button>
                     </li>
                     <!--버튼 영역-->
 
                     <li class="toggl_message" id="topMenuCreateResultArea" style="display: none;">
-                        <span class="point01 bold" id="topMenuCreateResultName">‘레파지토리 명’</span> 레파지토리를 생성했습니다.</li>
+                        <span class="point01 bold" id="topMenuCreateResultName">'Repository name’</span> You have created a repository.</li>
                     </sec:authorize>
                     <li>
                         <h3><i class="glyphicon glyphicon-plus"></i>나의 레파지토리 (My Repository)</h3>
@@ -146,7 +146,7 @@ var repositoryId = "<%=session.getAttribute("repositoryId")%>";
 
         if(data.repositories==null || data.repositories.length==0){
             $("#RP_cnt").text(0);
-            var varHeadHtml ='<li>조회된 레파지토리가 없습니다.</li>';
+            var varHeadHtml ='<li>No repositories were retrieved.</li>';
             $('#headerRepoList').append(varHeadHtml);
         }else{
             $("#RP_cnt").text(data.repositories.length);

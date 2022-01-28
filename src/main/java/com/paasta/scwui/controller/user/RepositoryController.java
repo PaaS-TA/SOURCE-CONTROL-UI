@@ -72,7 +72,7 @@ public class RepositoryController extends CommonController {
             map.put("repository", rtnRepository);
             return new ResponseEntity(map, HttpStatus.OK);
         } else {
-            map.put("error", "이미 사용된 레파지토리 명 입니다.");
+            map.put("error", "Repository name that has already been used.");
             return new ResponseEntity(map, HttpStatus.OK);
         }
 
@@ -130,7 +130,7 @@ public class RepositoryController extends CommonController {
         mv.addObject("type2", map.getOrDefault("type2", ""));
         mv.addObject("reposort", map.getOrDefault("reposort", "lastModified_true"));
         mv.addObject("rtnList", modelRepository);
-        mv.addObject("title", "레파지토리목록");
+        mv.addObject("title", "Repository List");
         mv.setViewName("/user/repository/repositoryList");
         return mv;
     }

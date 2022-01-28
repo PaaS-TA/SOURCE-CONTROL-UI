@@ -17,50 +17,50 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/xml" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!-- Form 테이블 :s -->
-<table summary="사용자초대 검색 테이블입니다." class="tbl_form02">
+<table summary="This is a user invitation search table." class="tbl_form02">
     <caption>
-        사용자초대 검색
+        User Invitation Search
     </caption>
     <colgroup>
         <col style="width: *"/>
     </colgroup>
     <tbody>
     <tr>
-        <th class="f_title">소스컨트롤러 사용자 검색</th>
+        <th class="f_title">Source controller user search</th>
     </tr>
     <tr>
         <td>
-            <input type="text" id="searchInstRepoUserId" name="searchInstRepoUserId" placeholder="사용자 검색"   style="width:40%;">
+            <input type="text" id="searchInstRepoUserId" name="searchInstRepoUserId" placeholder="User Search"   style="width:40%;">
         </td>
     </tr>
     <tr>
         <td>
             <li style="width:40%;">
-                <a href="#" class="wintoggle" style="width:40%;"><span class="RP_name">사용자 검색 목록 (<span  name="SrchPermissionUser" id="SrchPermissionUser">0</span>)<b class="nav_arrow"></b></span></a>
+                <a href="#" class="wintoggle" style="width:40%;"><span class="RP_name">User Search List (<span  name="SrchPermissionUser" id="SrchPermissionUser">0</span>)<b class="nav_arrow"></b></span></a>
                 <ul class="togglemenu" style="width:320px; top:120px;padding-top:0px; position:inherit;" id="SrchPermissionUserList" name="SrchPermissionUserList"></ul>
             </li>
         </td>
     </tr>
     </tbody>
 </table>
-<table summary="참여자생성 입력 테이블입니다." class="tbl_form02" id="tbl_form02">
+<table summary="This is a participant-created input table." class="tbl_form02" id="tbl_form02">
     <caption>
-        참여자추가
+        Add participant
     </caption>
     <colgroup>
         <col style="width: *"/>
     </colgroup>
     <tbody>
     <tr>
-        <th class="f_title">참여자 초대</th>
+        <th class="f_title">Invite participants</th>
     </tr>
     <tr class=""><!--사용자검색 상세내용-->
         <td class="controlbox">
             <dl>
-                <dt>추가된 사용자</dt>
-                <dd><span class="sm_tit">아이디 :</span><span id="insertId"></span><br></dd>
-                <dd><span class="sm_tit">이름 :</span><span id="insertName"></span><br></dd>
-                <dd><span class="sm_tit">이메일 :</span><span id="insertEmail"></span><br></dd>
+                <dt>added user</dt>
+                <dd><span class="sm_tit">ID :</span><span id="insertId"></span><br></dd>
+                <dd><span class="sm_tit">name :</span><span id="insertName"></span><br></dd>
+                <dd><span class="sm_tit">e-mail :</span><span id="insertEmail"></span><br></dd>
             </dl>
         </td>
     </tr>
@@ -68,9 +68,9 @@
 </table>
 <!--//Form 테이블 :e -->
 <!-- 공통 Form 테이블 :s -->
-<table summary="사용여부, 설명 등의 참여자추가 선택 테이블입니다." class="tbl_form" id="tbl_form03">
+<table summary="This is a selection table for adding participants such as usage and description." class="tbl_form" id="tbl_form03">
     <caption>
-        참여자 추가 사용여부 선택 테이블
+        Select whether to use additional participants or not
     </caption>
     <colgroup>
         <col style="width: 18%"/>
@@ -78,19 +78,19 @@
     </colgroup>
     <tbody>
     <tr>
-        <th>권한 (<span class="essential">*필수</span>)</th>
+        <th>Permissions (<span class="essential">*required (<span class="essential">*Required</span>)</th>
         <td>
             <label>
-                <input type="radio" name="type" value="WRITE" checked="checked">쓰기권한
-                <input type="radio" name="type" value="READ">보기권한
+                <input type="radio" name="type" value="WRITE" checked="checked">write permission
+                <input type="radio" name="type" value="READ">view right
             </label>
         </td>
     </tr>
     <tr>
-        <th class="last">설명 (선택)</th>
+        <th class="last">Description (optional)</th>
         <td>
             <textarea type="text" colos="20" rows="5" id = "PemissionName" name = "PemissionName" placeholder=""></textarea>
-            <p class="desc" style="color:#fb5666;display: none" id="createPemissionNameAlert">사용자 정보에 보여지는 설명은 영문만 허용됩니다.</p>
+            <p class="desc" style="color:#fb5666;display: none" id="createPemissionNameAlert">Only English is allowed for descriptions shown in user information.</p>
         </td>
     </tr>
     </tbody>
@@ -134,7 +134,7 @@
         $('#SrchPermissionUserList').children().remove();
         var searchId =$("#searchInstRepoUserId").val();
         if(searchId =="" || searchId ==null){
-            popupAlertClick("사용자 검색어는 한자 이상 입력하세요.");
+            popupAlertClick("Enter more than one Chinese character for the user search term.");
             return;
         }
 //        var url = "/user/searchPermissions/?searchUserId=" + searchId + "&repositoryId=" + $("#repositoryId").val();
@@ -146,7 +146,7 @@
         var loginName = "<%=session.getAttribute("name")%>";
         $("#SrchPermissionUser").text(data.rtnList.length);
         if (data.rtnList == null || data.rtnList.length == 0) {
-            var varHeadHtml = '<li>조회된 사용자가 없습니다.</li>';
+            var varHeadHtml = '<li>No users were viewed.</li>';
             $('#SrchPermissionUserList').append(varHeadHtml);
         } else {
             var rtnList = data.rtnList;
@@ -172,7 +172,7 @@
         callBackInitalInvitePermissionForm();
     }
 
-    $("#buttonCreateOnclick3").text("추가");
+    $("#buttonCreateOnclick3").text("addition");
     $("#buttonCreateOnclick3").click(function (event) {
     //function inviteUser() {
         var url = "/user/permission/"+$("#repositoryId").val();
@@ -186,7 +186,7 @@
 
     function invitePermissionCallback(data) {
         if(data.status==200){
-            procPopupAlert($("#insertId").text()+" 참여자가 추가되었습니다.",'putPermissionCancel()','return');
+            procPopupAlert($("#insertId").text()+" A participant has been added.",'putPermissionCancel()','return');
          }
     }
 
@@ -215,7 +215,7 @@
         searchPermissions();
     }
     function deletePermissionCallback(data) {
-        popupAlertClick("참여자가 삭제되었습니다.");
+        popupAlertClick("A participant has been deleted.");
         initalInvitePermissionForm();
         putPermissionCancel();
 

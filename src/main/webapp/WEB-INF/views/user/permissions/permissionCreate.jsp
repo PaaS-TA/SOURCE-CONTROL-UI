@@ -20,14 +20,14 @@
 <!-- location :s -->
 <div class="location">
     <ul>
-        <li><a href="/user/repository/" class="home">홈으로</a></li>
-        <li><a href="/user/permissionList/" title="사용자 목록"> 사용자관리/사용자 목록</a></li>
+        <li><a href="/user/repository/" class="home">Home</a></li>
+        <li><a href="/user/permissionList/" title="User List"> User Management/User List</a></li>
         <!--마지막 경로-->
-        <li><a href="/user/create/" title="사용자 생성">사용자 생성</a></li><!--마지막 경로-->
+        <li><a href="/user/create/" title="create user">사용자 생성</a></li><!--마지막 경로-->
     </ul>
 <%--    <div class="fr"  style="padding-top:15px;">
         <a href="/user/create/">
-            <button type="button" class="button btn_default" title="사용자 생성">사용자 생성</button>
+            <button type="button" class="button btn_default" title="create user">사용자 생성</button>
         </a>
     </div>--%>
 </div>
@@ -63,9 +63,9 @@
         <%--</tr>--%>
         <%--</tbody>--%>
     </table>
-        <table summary="사용자 생성 입력 테이블입니다." class="tbl_form02">
+        <table summary="This is a user-generated input table." class="tbl_form02">
             <caption>
-                참여자추가
+                Add participant
             </caption>
             <colgroup>
                 <col style="width: 18%"/>
@@ -73,44 +73,44 @@
             </colgroup>
             <tbody>
             <tr>
-                <th colspan="2" class="f_title">사용자 생성</th>
+                <th colspan="2" class="f_title">create user</th>
             </tr>
             <tr>
-                <th>아이디 (<span class="essential">*필수</span>)</th>
+                <th>ID (<span class="essential">*Required</span>)</th>
                 <td>
-                    <input type="text" id="permissionName" name="permissionName" value="" placeholder="영문소문자, 숫자, 2자리이상" pattern="^[a-zA-Z0-9-]*$">
-                    <p class="desc" id="nameNotConfirmedAlert" style="color:#fb5666; ;">* 영문소문자, 숫자 2~12자로 입력해주시기 바랍니다.</p>
+                    <input type="text" id="permissionName" name="permissionName" value="" placeholder="Lowercase English letters, numbers, at least 2 characters" pattern="^[a-zA-Z0-9-]*$">
+                    <p class="desc" id="nameNotConfirmedAlert" style="color:#fb5666; ;">* Lowercase English letters, numbers, at least 2 characters</p>
                 </td>
             </tr>
             <tr>
-                <th>이름<%-- (<span class="essential">*필수</span>)--%></th>
+                <th>name<%-- (<span class="essential">*Required</span>)--%></th>
                 <td>
-                    <input type="text" id="PermissionDisplayName" name="PermissionDisplayName" value="" placeholder="이름은 2자 이상으로 입력해 주시기 바랍니다">
+                    <input type="text" id="PermissionDisplayName" name="PermissionDisplayName" value="" placeholder="Please enter name with at least 2 characters">
                     <%--<p class="desc">* 이름은 2자 이상으로 입력해 주시기 바랍니다.</p>--%>
                 </td>
             </tr>
             <tr>
             <tr>
-                <th>이메일</th>
+                <th>e-mail</th>
                 <td>
                     <input type="text"  name="permissionMail" id="permissionMail"  value="" placeholder="paasta@nia.or.kr"
                     required="required"
                     pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
-                    <p class="desc" style="color:#fb5666;" id="emailNotConfirmedAlert">* 이메일 주소 형식이 올바르지 않습니다.</p>
+                    <p class="desc" style="color:#fb5666;" id="emailNotConfirmedAlert">* Email address format is incorrect.</p>
                 </td>
             </tr>
             <tr>
-                <th>비밀번호 (<span class="essential">*필수</span>)</th>
+                <th>Password (<span class="essential">*Required</span>)</th>
                 <td>
-                    <input type="password" name="password" value="" placeholder="6자리 ~ 16자리" id="newPasswordInput">
-                    <p class="desc" style="color:#fb5666;">* 비밀번호는 6~16자로 입력해 주시기 바랍니다.</p>
+                    <input type="password" name="password" value="" placeholder="6 to 16 characters" id="newPasswordInput">
+                    <p class="desc" style="color:#fb5666;">* Please enter a password of 6 to 16 characters.</p>
                 </td>
             </tr>
             <tr>
-                <th>비밀번호 확인 (<span class="essential">*필수</span>)</th>
+                <th>Confirm password (<span class="essential">*Required</span>)</th>
                 <td>
-                    <input type="password" name="password" value="" placeholder="비밀번호 다시 입력"  id="confirmPasswordInput">
-                    <p class="desc" id="passwordNotConfirmedAlert" style="color:#fb5666; ;">* 비밀번호가 일치하지 않습니다.</p>
+                    <input type="password" name="password" value="" placeholder="Re-enter password"  id="confirmPasswordInput">
+                    <p class="desc" id="passwordNotConfirmedAlert" style="color:#fb5666; ;">* Passwords do not match.</p>
                 </td>
             </tr>
             </tbody>
@@ -118,7 +118,7 @@
     <div class="fr">
         <jsp:include page="../common/buttonCreateOnclick.jsp"></jsp:include>
         <%--<button type="button" class="button btn_default" title="생성" onclick='createUserBeforeValid();'>생성</button>--%>
-        <button type="button" class="button btn_cancel" title="취소" onclick="procMovePage(-1)">취소</button>
+        <button type="button" class="button btn_cancel" title="cancel" onclick="procMovePage(-1)">취소</button>
     </div>
 </div>
     <form name ="permissionList" id ="permissionList"  action = "/user/permissionList/" method="get"></form>
@@ -210,7 +210,7 @@
         $('#SrchPermissionUserList').children().remove();
         var searchId =$("#searchInstRepoUserId").val();
         if(searchId ==="" || searchId ===null){
-            popupAlertClick("검색어는 한자이상 입력하세요.");
+            popupAlertClick("Please enter a search term with at least one character.");
             return;
         }
         var url = "/user/permission/search/instanceId/" + $("#searchInstRepoUserId").val();
@@ -222,7 +222,7 @@
     function searchInstRepoUserIdCallBack(data) {
         $("#SrchPermissionUser").text(data.rtnList.length);
         if (data.rtnList === null || data.rtnList.length === 0) {
-            var varHeadHtml = '<li>조회된 사용자가 없습니다.</li>';
+            var varHeadHtml = '<li>No users were retrieved.</li>';
             $('#SrchPermissionUserList').append(varHeadHtml);
         } else {
             var rtnList = data.rtnList;
@@ -268,32 +268,32 @@
             return;
         }
         if(data.error !=null){
-            popupAlertClick("사용자 추가가 실패되었습니다.");
+            popupAlertClick("Failed to add user.");
             return;
         }
         console.log("::[2]Callback inviteUser ::");
 
         if(data.rtnUser.name!=null){
             var name = data.rtnUser.name;
-            procPopupAlert("["+name+"]사용자 생성이 완료되었습니다.",'$("#permissionList").submit()','return;');
+            procPopupAlert("["+name+"]User creation is complete.",'$("#permissionList").submit()','return;');
         }
     };
 
-    $("#buttonCreateOnclick").text("생성");
+    $("#buttonCreateOnclick").text("Create");
     $("#buttonCreateOnclick").click(function (event) {
     //function createUserBeforeValid() {
         var nameNotConfirmedAlert = $("#nameNotConfirmedAlert");
         var name = $("#permissionName").val();
         if (!name_validation_check()) {
-            popupAlertClick("형식에 맞는 아이디를 사용하세요.");
+            popupAlertClick("Please use an ID that matches the required format.");
             return;
         }
         if (!password_validation_check($("#confirmPasswordInput").val())) {
-            popupAlertClick("패스워드를 확인하세요.");
+            popupAlertClick("Please check your password.");
             return;
         }
         if (!checkEmail($("#permissionMail"))) {
-            popupAlertClick("형식에 맞는 이메일을 사용하세요.");
+            popupAlertClick("Please use an email that matches the required format.");
             return;
         }
         instanceCreateUser();

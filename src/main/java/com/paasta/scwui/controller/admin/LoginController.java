@@ -42,7 +42,7 @@ public class LoginController extends CommonController {
     public ModelAndView repositoryListForAdmin() {
 
         ModelAndView mv = new ModelAndView();
-        mv.addObject("title", "로그인");
+        mv.addObject("title", "login");
         mv.setViewName("/admin/repositories/{instanceId}");
         return mv;
     }
@@ -68,14 +68,14 @@ public class LoginController extends CommonController {
         ModelAndView model = new ModelAndView();
         if(Common.empty(request.getParameter("username")) || Common.empty(request.getParameter("password"))) {
             model.setViewName("login");
-            model.addObject("error", "아이디 또는 비밀번호가 입력되지 않았습니다.");
+            model.addObject("error", "No ID or password entered.");
             return  model;
         }
         String username = (String) Common.NotNullrtnByobj(request.getParameter("username"), "");
         String password = (String) Common.NotNullrtnByobj(request.getParameter("password"), "");
         if(!"scmadmin".equals(username)){
             model.setViewName("login");
-            model.addObject("error", "로그인 할수 없습니다.");
+            model.addObject("error", "Can't log in.");
             return  model;
         }
 

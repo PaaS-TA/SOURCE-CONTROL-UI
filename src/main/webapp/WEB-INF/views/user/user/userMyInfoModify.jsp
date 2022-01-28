@@ -5,8 +5,8 @@
     <!-- location :s -->
     <div class="location">
         <ul>
-            <li><a href="javascript:moveHome()" class="home">홈으로</a></li>
-            <li><a href="javascript:moveHome()" title="내정보 수정">내정보 수정</a></li><!--마지막 경로-->
+            <li><a href="javascript:moveHome()" class="home">Home</a></li>
+            <li><a href="javascript:moveHome()" title="Edit My Information">내정보 수정</a></li><!--마지막 경로-->
         </ul>
     </div>
     <!--//location :e -->
@@ -19,9 +19,9 @@
         <input type="hidden" id="active" value="${rtnUser.active}">
         <input type="hidden" id="type" value="${rtnUser.type}">
         <!-- Form 테이블 :s -->
-        <table summary="아이디, 이름, 이메일, 비밀번호, 비밀번호 확인 등의 내정보 수정 테이블입니다." class="tbl_form02">
+        <table summary="This is a table for editing my information such as ID, name, email, password, and password confirmation." class="tbl_form02">
             <caption>
-			내정보 수정
+			Edit My Information
             </caption>
             <colgroup>
                 <col style="width: 18%" />
@@ -29,34 +29,34 @@
             </colgroup>
             <tbody>
                 <tr>
-                    <th>아이디</th>
+                    <th>ID</th>
                     <td>${ScUser.userId}</td>
                 </tr>
                 <tr>
-                    <th>이름</th>
-                    <td><input type="text" id="modifyDisplayName" name="modifyDisplayName" value="${ScUser.userName}" placeholder="2자리 이상">
-                        <p class="desc"id="NameAlertCheck">이름은 2자 이상으로 입력해 주시기 바랍니다.</p><!--경고 메시지-->
+                    <th>name</th>
+                    <td><input type="text" id="modifyDisplayName" name="modifyDisplayName" value="${ScUser.userName}" placeholder="2 or more characters">
+                        <p class="desc"id="NameAlertCheck">Please enter your name with at least 2 characters.</p><!--경고 메시지-->
                     </td>
                 </tr>
                 <tr>
-                    <th>이메일</th>
-                    <td><input type="text" name="mail" id="mail" value="${ScUser.userMail}"  placeholder="(예)paasta@nia.or.kr">
-                        <p class="desc" style="color:#fb5666;" id="emailNotConfirmedAlert">* 이메일 주소 형식이 올바르지 않습니다.</p></td>
+                    <th>e-mail</th>
+                    <td><input type="text" name="mail" id="mail" value="${ScUser.userMail}"  placeholder="(Example)paasta@nia.or.kr">
+                        <p class="desc" style="color:#fb5666;" id="emailNotConfirmedAlert">* Email address format is incorrect.</p></td>
                 </tr>
                 <tr>
-                    <th>비밀번호 (<span class="essential">*필수</span>)</th>
-                    <td><input type="password" name="password1" value="__dummypassword__" placeholder="8자리 ~ 16자리" id="newPasswordInput">
-                        <p class="desc">비밀번호는 6~16자로 입력해 주시기 바랍니다.</p><!--경고 메시지-->
+                    <th>Password (<span class="essential">*Required</span>)</th>
+                    <td><input type="password" name="password1" value="__dummypassword__" placeholder="8 to 16 characters" id="newPasswordInput">
+                        <p class="desc">Please enter a password of 6 to 16 characters.</p><!--경고 메시지-->
                     </td>
                 </tr>
                 <tr>
-                    <th>비밀번호 확인 (<span class="essential">*필수</span>)</th>
-                    <td><input type="password" name="password2" value="__dummypassword__" placeholder="비밀번호 확인" id="confirmPasswordInput">
-                        <p class="desc" id="passwordNotConfirmedAlert" >* 비밀번호가 일치하지 않습니다.</p>
+                    <th>Confirm password (<span class="essential">*Required</span>)</th>
+                    <td><input type="password" name="password2" value="__dummypassword__" placeholder="Confirm password" id="confirmPasswordInput">
+                        <p class="desc" id="passwordNotConfirmedAlert" >* Passwords do not match.</p>
                     </td>
                 </tr>
                 <tr>
-                    <th colspan="2"><span class="point01">※ 비밀번호는 비밀번호를 변경하는 경우에만 입력하시기 바랍니다.</span></th>
+                    <th colspan="2"><span class="point01">※ Please enter the password only when changing the password.</span></th>
                 </tr>
             </tbody>
         </table>
@@ -64,14 +64,14 @@
         <!--기본버튼 :s -->
         <div class="fr">
             <jsp:include page="../common/buttonCreateOnclick.jsp"></jsp:include>
-            <button type="button" class="button btn_cancel" title="취소" onclick="history.go(-1)">취소</button>
+            <button type="button" class="button btn_cancel" title="cancel" onclick="history.go(-1)">취소</button>
         </div>
         <!--//기본버튼 :e -->
     </div>
     <!--//contents :e -->
     <%--</c:if>--%>
 </div>
-<input type="hidden" name="description" id="description" colos="20" rows="5"  placeholder="입력한 사용자 설명" value =${ScUser.userDesc}></input>
+<input type="hidden" name="description" id="description" colos="20" rows="5"  placeholder="User description entered" value =${ScUser.userDesc}></input>
 <script>
     //validation_check
     $(document).ready(function () {
@@ -103,17 +103,17 @@
         });
 
         // BIND
-        $("#buttonCreateOnclick").text("수정");
+        $("#buttonCreateOnclick").text("edit");
         $("#buttonCreateOnclick").click(function (event) {
             if(checkEmail($("#mail"))) {
-                popupAlertClick("이메일 주소 형식이 올바르지 않습니다.");
+                popupAlertClick("Email address format is incorrect.");
                 return;
             }
             if(!password_validation_check($("#confirmPasswordInput").val())){
-                popupAlertClick("패스워드를 확인하세요.");
+                popupAlertClick("Please check your password.");
                 return;
             }
-            popupConfirmClick("사용자 정보수정", name +" 정보를 수정하시겠습니까?",'modify()',"수정");
+            popupConfirmClick("Edit user information", "Are you sure you want to edit " + name +" 's information?",'modify()',"수정");
         });
     });
 
@@ -164,7 +164,7 @@
     };
 
     function modifyCallback(data){
-       popupAlertClick("수정이 완료되었습니다.");
+       popupAlertClick("Editing is complete.");
        history.go(-1);
     }
 

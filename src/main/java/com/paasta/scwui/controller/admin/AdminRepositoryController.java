@@ -57,7 +57,7 @@ public class AdminRepositoryController extends CommonController {
         ModelAndView modelAndView = new ModelAndView();
 //        modelAndView.addObject("repositories", repositories);
         modelAndView.addObject("userid", username);
-        modelAndView.addObject("title", "레파지토리목록");
+        modelAndView.addObject("title", "Repository List");
         modelAndView.setViewName("/admin/repository/repositoryList");
         return modelAndView;
     }

@@ -5,8 +5,8 @@
     <!-- location :s -->
     <div class="location">
         <ul>
-            <li><a href="/user/repository/${instanceId}?username=${name}" class="home">홈으로</a></li>
-            <li><a href="#" title="내정보 수정">비밀번호 입력후 정보</a></li><!--마지막 경로-->
+            <li><a href="/user/repository/${instanceId}?username=${name}" class="home">Home</a></li>
+            <li><a href="#" title="Edit My Information">Information after entering password</a></li><!--마지막 경로-->
         </ul>
     </div>
     <!--//location :e -->
@@ -19,9 +19,9 @@
         <input type="hidden" id="active" value="${rtnUser.active}">
         <input type="hidden" id="type" value="${rtnUser.type}">
         <!-- Form 테이블 :s -->
-        <table summary="아이디, 이름, 이메일, 비밀번호, 비밀번호 확인 등의 내정보 수정 테이블입니다." class="user_infobox">
+        <table summary="This is a table for editing my information such as ID, name, email, password, and password confirmation." class="user_infobox">
             <caption>
-			내정보 수정
+			Edit My Information
             </caption>
             <colgroup>
                 <col style="width: 18%" />
@@ -29,19 +29,19 @@
             </colgroup>
             <tbody>
                 <tr>
-                    <th>아이디</th>
+                    <th>ID</th>
                     <td>${ScUser.userId}</td>
                 </tr>
                 <tr>
-                    <th>이름</th>
+                    <th>name</th>
                     <td><input type="text" id="modifyDisplayName" name="modifyDisplayName" value="${ScUser.userName}">
-                    	<p class="desc">이름은 2자 이상으로 입력해 주시기 바랍니다.</p><!--경고 메시지-->
+                    	<p class="desc">Please enter your name with at least 2 characters.</p><!--경고 메시지-->
                     </td>
                 </tr>
                 <tr>
-                    <th>이메일</th>
+                    <th>e-mail</th>
                     <td><input type="text" name="mail" id="mail" value="${ScUser.userMail}">
-                    <p class="desc" style="color:#fb5666;" id="emailNotConfirmedAlert">* 이메일 주소 형식이 올바르지 않습니다.</p></td>
+                    <p class="desc" style="color:#fb5666;" id="emailNotConfirmedAlert">* Email address format is incorrect.</p></td>
                 </tr>
                 <%--<tr>--%>
                     <%--<th>비밀번호</th>--%>
@@ -53,27 +53,27 @@
                     <%--</td>--%>
                 <%--</tr>--%>
                 <tr>
-                    <th>비밀번호 (<span class="essential">*필수</span>)</th>
-                    <td><input type="password" name="password" value="__dummypassword__" placeholder="6자리 ~ 16자리" id="newPasswordInput">
-                        <p class="desc" style="color:#fb5666;">* 비밀번호는 6~16자로 입력해 주시기 바랍니다.</p>
+                    <th>Password (<span class="essential">*Required</span>)</th>
+                    <td><input type="password" name="password" value="__dummypassword__" placeholder="6 to 16 characters" id="newPasswordInput">
+                        <p class="desc" style="color:#fb5666;">* Please enter a password of 6 to 16 characters.</p>
                     </td>
                 </tr>
                 <tr>
-                    <th>비밀번호 확인 (<span class="essential">*필수</span>)</th>
-                    <td><input type="password" name="password" value="__dummypassword__" placeholder="비밀번호 다시 입력" id="confirmPasswordInput">
-                        <p class="desc" id="passwordNotConfirmedAlert" style="color:#fb5666; ;">* 비밀번호가 일치하지 않습니다.</p>
+                    <th>Confirm password (<span class="essential">*Required</span>)</th>
+                    <td><input type="password" name="password" value="__dummypassword__" placeholder="Re-enter password" id="confirmPasswordInput">
+                        <p class="desc" id="passwordNotConfirmedAlert" style="color:#fb5666; ;">* Passwords do not match.</p>
                     </td>
                 </tr>
                 <tr>
-                    <th colspan="2"><span class="point01">※ 비밀번호는 비밀번호를 변경하는 경우에만 입력하시기 바랍니다.</span></th>
+                    <th colspan="2"><span class="point01">※ Please enter the password only when changing the password.</span></th>
                 </tr>
             </tbody>
         </table>
         <!--//Form 테이블 :e -->
         <!--기본버튼 :s -->
         <div class="fr">
-            <button type="button" class="button btn_default" title="수정" onclick="modify()">수정</button>
-            <button type="button" class="button btn_cancel" title="취소" onclick="history.go(-1)">취소</button>
+            <button type="button" class="button btn_default" title="edit" onclick="modify()">edit</button>
+            <button type="button" class="button btn_cancel" title="cancel" onclick="history.go(-1)">cancel</button>
         </div>
         <!--//기본버튼 :e -->
     </div>
@@ -183,15 +183,15 @@ $(".select3").selectDesign();
     }
 
     var modify = function () {
-        if(!confirm("수정하시겠습니까?"))
+        if(!confirm("Are you sure you want to edit?"))
             return;
         if(checkEmail($("#mail"))){
-            popupAlertClick("이메일 주소 형식이 올바르지 않습니다.");
+            popupAlertClick("Email address format is incorrect.");
             return;
 
         if(!password_validation_check($("#confirmPasswordInput").val())){
             //alert("패스워드를 확인하세요.");
-            popupAlertClick("패스워드를 확인하세요.");
+            popupAlertClick("Please check your password.");
             return;
         }
      }
@@ -212,7 +212,7 @@ $(".select3").selectDesign();
 
 
     function modifyCallback(data){
-        popupAlertClick("수정이 완료되었습니다.");
+        popupAlertClick("Editing is complete.");
         history.go(-1);
     }
 </script>

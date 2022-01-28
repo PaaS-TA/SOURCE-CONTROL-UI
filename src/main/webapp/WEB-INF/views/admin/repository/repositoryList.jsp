@@ -20,8 +20,8 @@
     <!-- location :s -->
     <div class="location">
         <ul>
-            <li><a href="/admin/serviceInstantList" class="home">홈으로</a></li>
-            <li><a href="/admin/serviceInstantList" title="">형상관리 신청 목록</a></li>
+            <li><a href="/admin/serviceInstantList" class="home">home</a></li>
+            <li><a href="/admin/serviceInstantList" title="">Configuration management application list</a></li>
             <li><a href="/admin/repository/${instanceId}" title="${title}">${title}</a></li>
         </ul>
     </div>
@@ -34,8 +34,8 @@
                 <%--<div class="fl">총 <span id="RP_cnt"></span></div>--%>
                 <div class="keyword_search fr">
                     <input id="search_keyword" type="text" style="-ms-ime-mode: active;" value=""
-                           placeholder="레파지토리 명 검색" autocomplete="on" name="search_keyword" />
-                    <input type="button" class="btn_search" id="btn_search" name="btn_search" title="검색">
+                           placeholder="Repository name search" autocomplete="on" name="search_keyword" />
+                    <input type="button" class="btn_search" id="btn_search" name="btn_search" title="Search">
                 </div>
             </div>
         </div>
@@ -141,7 +141,7 @@
 
     var callbackSearch = function(data) {
 
-        $("#RP_cnt").text(data.pageInfo.endCnt+' / '+ data.pageInfo.totalCnt + '건');
+        $("#RP_cnt").text(data.pageInfo.endCnt+' / '+ data.pageInfo.totalCnt + 'total');
         if(data.repositories===null || data.repositories.length===0){
             initialList();
         }else{
@@ -171,7 +171,7 @@
                 }
                 varHtml = varHtml + '</li>'
                 + '       <li class="stateArea">'
-                + '           <i class="ico_update"></i>마지막 업데이트: ';
+                + '           <i class="ico_update"></i>last update: ';
                 if(repositories[i].lastModified===0){
                     varHtml = varHtml+"";
                 }else{
@@ -179,24 +179,24 @@
                 }varHtml = varHtml + '<span class="pr10"></span>'
 //                    + new Date(repositories[i].lastModified)
 //                    + '<span class="pr10"></span>'
-                + '           <i class="ico_create"></i>생성일 : ' +  new Date(repositories[i].creationDate) + '</li>'
+                + '           <i class="ico_create"></i>creation date : ' +  new Date(repositories[i].creationDate) + '</li>'
                 + '   </ul>'
                 + '</dd>';
                 if (repositories[i].type === 'git') {
-                    varHtml += '<dd class="thmb_img"><img src="/resources/images/img_git.png" alt="GIT 이미지" border="0"></dd>';
+                    varHtml += '<dd class="thmb_img"><img src="/resources/images/img_git.png" alt="GIT images" border="0"></dd>';
                 }
                 if (repositories[i].type === 'svn') {
-                    varHtml += '<dd class="thmb_img"><img src="/resources/images/img_svn.png" alt="SVN 이미지" border="0"></dd>';
+                    varHtml += '<dd class="thmb_img"><img src="/resources/images/img_svn.png" alt="SVN image" border="0"></dd>';
                 }
                 varHtml += '<dd class="icon_wrap">'
                 + '<ul class="ico_lst">'
                 + '<li class="ico_area">';
                 if (repositories[i].public) {
-                    varHtml += '<img src="/resources/images/process_ico_public.png" alt="공개 이미지" border="0">'
-                                + '<p class="tit">공개</p>';
+                    varHtml += '<img src="/resources/images/process_ico_public.png" alt="public image" border="0">'
+                                + '<p class="tit">open</p>';
                 } else {
-                    varHtml += '<img src="/resources/images/process_ico_private.png" alt="비공개 이미지" border="0">'
-                            + '<p class="tit">비공개</p>';
+                    varHtml += '<img src="/resources/images/process_ico_private.png" alt="private images" border="0">'
+                            + '<p class="tit">Private</p>';
                 }
                 varHtml += '</li>'
                 + '    </ul>'
@@ -215,7 +215,7 @@
 
     var initialList = function(){
         $("#RP_cnt").text(0);
-        var varHtml ='<li id="initRepoList" name="initRepoList"> <dl>조회된 데이터가 없습니다.</dl>            </li>';
+        var varHtml ='<li id="initRepoList" name="initRepoList"> <dl>No data was retrieved.</dl>            </li>';
 
     };
     var removeRepositoryList = function(){

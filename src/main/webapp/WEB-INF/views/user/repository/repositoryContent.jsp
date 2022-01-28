@@ -18,7 +18,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div class="rSearch_group">
 </div>
-<div class="tema_view"><h5>커밋 :<span class="l_data" id = "contPath"></span></h5>
+<div class="tema_view"><h5>commit :<span class="l_data" id = "contPath"></span></h5>
     <div class="tema_view_inner" id="browserContent" >
     </div>
 </div>

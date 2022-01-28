@@ -19,27 +19,27 @@
     <div class="sel_group">
         <div class="keyword_search">
             <input id="search_keyword2" type="text" name="search_keyword2" style="-ms-ime-mode: active;"
-                   value="" placeholder="참여자 아이디 또는 이름 검색" autocomplete="on"></input>
-            <button type="button" class="btn_search" title="참여자 아이디 또는 이름 검색" onclick="searchPermissions();"></button>
+                   value="" placeholder="Search by participant ID or name" autocomplete="on"></input>
+            <button type="button" class="btn_search" title="Search by participant ID or name" onclick="searchPermissions();"></button>
         </div>
         <div class="selectbox select3 ml5" style="width:95px;">
             <div>
-                <strong id="permissionSelect1">전체</strong><span class="bul"></span>
+                <strong id="permissionSelect1">all</strong><span class="bul"></span>
             </div>
             <ul class="select-list" onclick="searchPermissions();">
-                <li>전체</li>
-                <li>보기</li>
-                <li>수정</li>
+                <li>all</li>
+                <li>look</li>
+                <li>correction</li>
             </ul>
         </div>
         <div class="selectbox select4 ml5" style="width:115px;">
             <div>
-                <strong id="permissionSelect2">전체</strong><span class="bul"></span>
+                <strong id="permissionSelect2">all</strong><span class="bul"></span>
             </div>
             <ul class="select-list" onclick="searchPermissions();">
-                <li>전체</li>
-                <li>사용</li>
-                <li>정지</li>
+                <li>all</li>
+                <li>use</li>
+                <li>stop</li>
             </ul>
         </div>
         <jsp:include page="../common/buttonCreateOnclick.jsp"></jsp:include>
@@ -91,7 +91,7 @@
     $(".select3").selectDesign();
     $(".select4").selectDesign();
     $(document).ready(function () {
-        $("#buttonCreateOnclick").text("참여자 추가/삭제");
+        $("#buttonCreateOnclick").text("Add/Remove Participant");
     });
     $("#buttonCreateOnclick").click(function (event) {
         putPermissionInitial();
@@ -113,23 +113,23 @@
         var param1 = $("#permissionSelect1").text();
         var param2 = $("#permissionSelect2").text();
         switch (param1) {
-            case "보기" :
+            case "look" :
                 param1 = "READ";
                 break;
-            case "수정" :
+            case "correction" :
                 param1 = "WRITE";
                 break;
-            case "소유자" :
+            case "owner" :
                 param1 = "OWNER";
                 break;
             default:
                 param1 = "";
         }
         switch (param2) {
-            case "사용" :
+            case "use" :
                 param2 = "true";
                 break;
-            case "정지" :
+            case "stop" :
                 param2 = "false";
                 break;
             default:
@@ -145,7 +145,7 @@
         if(data.rtnList.number==0){
             $("#permissionsList").children().remove();
         }
-        $("#RPPermissionsCnt").text("총 "+ data.rtnList.totalElements + ' 건');
+        $("#RPPermissionsCnt").text("Total "+ data.rtnList.totalElements + '  ');
         if (data.rtnList == null || data.rtnList.content.length == 0) {
             initialPermissionList();
         } else {
@@ -157,28 +157,28 @@
                     + permissions[i].permission.no+'\')" ><a href="#"><dl> <dt>' + permissions[i].name + '<dd> <ul>'
                     + '<li class="sbj_txt">' + permissions[i].displayName + '</li>'
                     + '<li class="hidden" onclick="(\''+permissions[i].permission.no+'\')">' + permissions[i].permission.no + '</li>'
-                    + '<li class="stateArea"><i class="ico_create"></i>생성일 :' + permissions[i].creationDate + '<span class="pr10"></span>'
-                    + '<i class="ico_modify"></i>수정일 : ' + permissions[i].lastModified + '</li>'
+                    + '<li class="stateArea"><i class="ico_create"></i>creation date :' + permissions[i].creationDate + '<span class="pr10"></span>'
+                    + '<i class="ico_modify"></i>date of modification : ' + permissions[i].lastModified + '</li>'
                     + '</ul>  </dd> <dd class="icon_wrap"> <ul class="ico_lst">'
 
                 if (permissions[i].permission.permission === 'OWNER') {
-                    varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_admin.png" alt="수정 이미지" border="0">'
-                        + ' <p class="tit">소유자</p> </li>';
+                    varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_admin.png" alt="crystal image" border="0">'
+                        + ' <p class="tit">owner</p> </li>';
                 }
                 if (permissions[i].permission.permission === 'READ') {
-                    varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_contribute.png" alt="읽기 이미지" border="0">'
-                        + ' <p class="tit">보기</p> </li>';
+                    varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_contribute.png" alt="read image" border="0">'
+                        + ' <p class="tit">look</p> </li>';
                 }
                 if (permissions[i].permission.permission === 'WRITE') {
-                    varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_modify.png" alt="쓰기 이미지" border="0">'
-                        + ' <p class="tit">쓰기</p> </li>';
+                    varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_modify.png" alt="write image" border="0">'
+                        + ' <p class="tit">writing</p> </li>';
                 }
                 if (permissions[i].active) {
-                    varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_ownership.png" alt="사용 이미지" border="0">'
-                        + '<p class="tit">사용</p>   </li>';
+                    varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_ownership.png" alt="use image" border="0">'
+                        + '<p class="tit">use</p>   </li>';
                 } else {
-                    varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_stop.png" alt="정지 이미지" border="0">'
-                        + '<p class="tit">정지</p>   </li>';
+                    varPermissionHtml = varPermissionHtml + ' <li class="ico_area"> <img src="/resources/images/process_ico_stop.png" alt="still image" border="0">'
+                        + '<p class="tit">stop</p>   </li>';
                 }
 
                 varPermissionHtml = varPermissionHtml + '  </ul> </dd> </dl></a> </li>';
@@ -193,7 +193,7 @@
     };
 
     var initialPermissionList = function(){
-        var varPermissionHtml ='<li id="initRepoList" name="initRepoList"><dl>조회된 데이터가 없습니다.</dl></li>';
+        var varPermissionHtml ='<li id="initRepoList" name="initRepoList"><dl>No data was retrieved.</dl></li>';
         $('#permissionsList').append(varPermissionHtml);
         $('#morePermissionsListButtonArea').css('display', 'none');
     };

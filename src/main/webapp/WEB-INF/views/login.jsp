@@ -14,18 +14,18 @@
             </div>
             <div class="input_wrap clear_fix">
                 <div class="input_inner">
-                    <p><label for="username" class="hidden">아이디입력</label><input type="text" name="username" id="username" class="txt_id" value="${username}"  placeholder="아이디"></p>
-                    <p><label for="password" class="hidden">비밀번호입력</label><input type="password" name="password" id="password" class="txt_pw" value="${password}" placeholder="비밀번호"></p>
+                    <p><label for="username" class="hidden">ID input</label><input type="text" name="username" id="username" class="txt_id" value="${username}"  placeholder="아이디"></p>
+                    <p><label for="password" class="hidden">Enter Password</label><input type="password" name="password" id="password" class="txt_pw" value="${password}" placeholder="비밀번호"></p>
                 </div>
                 <p class="login_inner">
                     <span class="save_id">
                         <input type="checkbox" name="remember_id" id="remember_id" value="" onclick="confirmSave(this)">
-                        <label for="remember_id">아이디 저장하기</label>
+                        <label for="remember_id">Save ID</label>
                     </span>
                 </p>
-                <button type="submit" class="btn_login">로그인</button>
+                <button type="submit" class="btn_login">login</button>
                 <c:if test="${not empty error}">
-                    <div><span class="alert-danger">로그인에 실패하였습니다(${error})</span></div>
+                    <div><span class="alert-danger">Login failed(${error})</span></div>
                 </c:if>
                 <c:if test="${empty error}">
                     <div>&nbsp;</div>
@@ -46,7 +46,7 @@
     });
     var confirmSave=function(checkbox){
         if(checkbox.checked) {
-            isRemember = confirm("이 PC에 아이디 정보를 저장하시겠습니까? ");
+            isRemember = confirm("Do you want to save your ID information on this PC? ");
             if(!isRemember)
                 checkbox.checked = false;
         }

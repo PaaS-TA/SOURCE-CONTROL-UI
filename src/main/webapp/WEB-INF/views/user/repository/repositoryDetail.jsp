@@ -6,14 +6,14 @@
     <!-- location :s -->
     <div class="location">
         <ul>
-            <li><a href="javascript:moveHome()" class="home">홈으로</a></li>
-            <li><a href="javascript:moveHome()" title="레파지토리 목록"> 레파지토리 목록 </a></li>
+            <li><a href="javascript:moveHome()" class="home">home</a></li>
+            <li><a href="javascript:moveHome()" title="레파지토리 목록">Repository List</a></li>
             <!--마지막 경로-->
-            <li><a href="#" title="레파지토리 상세보기"> 레파지토리 상세보기 (${repositorydetails.name})</a></li><!--마지막 경로-->
+            <li><a href="#" title="레파지토리 상세보기">Repository View Details (${repositorydetails.name})</a></li><!--마지막 경로-->
         </ul>
         <div class="fr" style="align-content:inherit">
             <a href="/user/update/${repositorydetails.id}?type=${repositorydetails.type}">
-                <button type="button" class="button btn_default" title="정보보기/수정">정보보기/수정</button>
+                <button type="button" class="button btn_default" title="View/Edit Information">View/Edit Information</button>
             </a>
             <a href="/user/createRepository/">
                 <jsp:include page="/WEB-INF/views/user/common/buttonCreateAhref.jsp"></jsp:include>
@@ -26,11 +26,11 @@
         <!-- sub_tab :s -->
         <div class="sub_tab">
             <ul>
-                <li class="fst active"><a href="#;" onClick="sub_tab(0);"><span class="file_on"></span>파일(file) <span
+                <li class="fst active"><a href="#;" onClick="sub_tab(0);"><span class="file_on"></span>file <span
                         class="pl10" id="detailBrowserResultCntMain" name="detailBrowserResultCntMain">${browserResult.files.size()}</span></a></li><!--아이콘 온파일네임 파일명_on 붙이면 됨-->
-                <li class=""><a href="#;" onClick="sub_tab(1);"><span class="commint"></span>커밋(Commit) <span
+                <li class=""><a href="#;" onClick="sub_tab(1);"><span class="commint"></span>Commit <span
                         class="pl10">${ChangesetPagingResult.size()}</span></a></li>
-                <li class=""><a href="#;" onClick="detail_Sub_tab(2);"><span class="contributor"></span>참여자(Contributor)
+                <li class=""><a href="#;" onClick="detail_Sub_tab(2);"><span class="contributor"></span>Contributor
                     <span class="pl10" id="detailPermissionCntMain" name="detailPermissionCntMain">${repositorydetails.permissions.size()}</span></a></li>
                 <input type="hidden" id="repositoryId" name="repositoryId" value="${repositorydetails.id}"/>
             </ul>
@@ -58,7 +58,7 @@
                     <c:if test="${ChangesetPagingResult.size()==0}">
                         <li >
                             <dl>
-                                <dt>조회된 데이터가 없습니다.</dt>
+                                <dt>No data was retrieved.</dt>
                             </dl>
                         </li>
                     </c:if>
@@ -69,12 +69,12 @@
                                 <dd>
                                     <ul>
                                         <li class="sbj_txt">${changesets.description}</li>
-                                        <li class="stateArea"><i class="ico_create"></i>커밋
+                                        <li class="stateArea"><i class="ico_create"></i>commit
                                             : ${changesets.author.name}<${changesets.author.mail}></li>
                                     </ul>
                                 </dd>
                                 <dd class="btn_wrap">
-                                    <button type="button" class="button tbl_in_btn_lg" title="소스보기" onclick="viewsource()">소스보기</button>
+                                    <button type="button" class="button tbl_in_btn_lg" title="view source" onclick="viewsource()">view source</button>
                                 </dd>
                             </dl>
                         </li>

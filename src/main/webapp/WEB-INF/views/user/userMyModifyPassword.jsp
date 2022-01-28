@@ -22,23 +22,23 @@
     <!-- login :s -->
     <div id="loginWrap" class="loginbox" style="margin-top: 10%;">
         <div class="header">
-            <h2>비밀번호 입력<p>형상관리서비스를 위해 최초 비밀번호를 입력해 주시기 바랍니다.</p></h2>
+            <h2>Enter Password<p>Please enter the initial password for configuration management service.</p></h2>
         </div>
         <div class="input_wrap clear_fix">
             <div class="input_inner">
                 <div>
-                    <input type="password" name="password1" value="" placeholder="6자리 ~ 16자리" id="newPasswordInput">
-                    <p class="desc" style="margin-left:20px;text-align:left;color:#fb5666;">* 비밀번호는 6~16자로 입력해 주시기 바랍니다.</p>
+                    <input type="password" name="password1" value="" placeholder="6 to 16 characters" id="newPasswordInput">
+                    <p class="desc" style="margin-left:20px;text-align:left;color:#fb5666;">* Please enter a password of 6 to 16 characters.</p>
                 </div>
                 <br>
                 <div>
-                    <input type="password" name="password2" value="" placeholder="비밀번호 다시 입력" id="confirmPasswordInput">
-                    <p class="desc" id="passwordNotConfirmedAlert" style="margin-left:20px;text-align:left;color:#fb5666;">* 비밀번호가 일치하지 않습니다.</p>
+                    <input type="password" name="password2" value="" placeholder="Re-enter password" id="confirmPasswordInput">
+                    <p class="desc" id="passwordNotConfirmedAlert" style="margin-left:20px;text-align:left;color:#fb5666;">* Passwords do not match.</p>
                 </div>
             </div>
-            <button type="submit" class="btn_login" id="btn_login">확인</button>
+            <button type="submit" class="btn_login" id="btn_login">Confirm</button>
             <c:if test="${not empty error}">
-                <span class="alert-danger"> 비밀번호가 일치하지 않습니다.</span>
+                <span class="alert-danger"> Passwords do not match.</span>
             </c:if>
         </div>
     </div>
@@ -72,7 +72,7 @@
         });
         $("#confirmPasswordInput").keyup(function (event) {
             if (event.which === 13) {
-                popupConfirmClick("비밀번호 최초등록","비밀번호를 등록하시겠습니까?",'modify()',"등록");
+                popupConfirmClick("First time password registration","Would you like to register a password?",'modify()',"등록");
             }
         });
 
@@ -84,7 +84,7 @@
         $("#btn_login").click(function () {
 
             if(password_validation_check($("#confirmPasswordInput").val())){
-                popupConfirmClick("비밀번호 최초등록","비밀번호를 등록하시겠습니까?",'modify()',"등록");
+                popupConfirmClick("First time password registration","Would you like to register a password?",'modify()',"등록");
             }
         });
     });
@@ -106,7 +106,7 @@
     };
 
     var modifyCallback = function () {
-        popupAlertClick("수정이 완료되었습니다.");
+        popupAlertClick("Editing is complete.");
         $("#repoList").submit();
     }
 </script>

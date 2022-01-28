@@ -12,8 +12,8 @@
     <!-- location :s -->
     <div class="location">
         <ul>
-            <li><a href="javascript:void(0);" onclick="procMovePage('/');" class="home">홈으로</a></li>
-            <li><a href="javascript:void(0);" onclick="procMovePage('/');" title="">형상관리 신청 목록</a></li>
+            <li><a href="javascript:void(0);" onclick="procMovePage('/');" class="home">home</a></li>
+            <li><a href="javascript:void(0);" onclick="procMovePage('/');" title="">Configuration management application list</a></li>
         </ul>
     </div>
     <!--//location :e -->
@@ -24,8 +24,8 @@
             <div class="sel_group">
                 <%--<form id="frm_search" method="get" action="serviceInstanceList.jsp">--%>
                     <div class="keyword_search fr">
-                        <input id="search_keyword" type="text" name="search_keyword" value="" style="-ms-ime-mode: active;" placeholder="조직 명 검색"  value="${listRequest.organizationName}"/>
-                        <input type="button" class="btn_search" title="검색" id="btnSearch">
+                        <input id="search_keyword" type="text" name="search_keyword" value="" style="-ms-ime-mode: active;" placeholder="Organization name search"  value="${listRequest.organizationName}"/>
+                        <input type="button" class="btn_search" title="Search" id="btnSearch">
                     </div>
                 <%--</form>--%>
             </div>
@@ -142,9 +142,9 @@
                     + "<onclick='moveDetailPage(\"" + data.serviceInstances[i].organizationName +  "\");'> "
                     + serviceInstances[i].organizationName + '/' + serviceInstances[i].instanceId + '</dt><dd><ul>' +
                     '<li class="sbj_txt"><span id="instanceId">' + serviceInstances[i].createUserId + '</li>' +
-                    '<li class="stateArea"><i class="ico_app"></i>신청일시 : <a href="#">' + serviceInstances[i].createdTime + '</a></li></ul></dd><dd class="btn_wrap">' +
-                    '<a href=\"/admin/repository/'+serviceInstances[i].instanceId+'\"><button type="button" class="button tbl_in_btn_lg" title="레파지토리보기">레파지토리 보기</button></a>' +
-                    '<a href=\"/admin/user/'+serviceInstances[i].instanceId+'\">&nbsp;<button type="button" class="button tbl_in_btn_lg" title="사용자보기">사용자 보기</button></a></dd></dl></li>');
+                    '<li class="stateArea"><i class="ico_app"></i>Application Date : <a href="#">' + serviceInstances[i].createdTime + '</a></li></ul></dd><dd class="btn_wrap">' +
+                    '<a href=\"/admin/repository/'+serviceInstances[i].instanceId+'\"><button type="button" class="button tbl_in_btn_lg" title="Repository view">Repository View </button></a>' +
+                    '<a href=\"/admin/user/'+serviceInstances[i].instanceId+'\">&nbsp;<button type="button" class="button tbl_in_btn_lg" title="user view">User view</button></a></dd></dl></li>');
             }
 
             // 더보기 기능 : moreListButtonArea

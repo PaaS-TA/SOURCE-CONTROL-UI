@@ -68,7 +68,7 @@ var delProcCallAjax = function (reqUrl, callback) {
         },
         error: function (xhr, status, error) {
             console.log("ERROR :: error ::", error);
-            popupAlertClick("삭제에 실패하였습니다.");
+            popupAlertClick("Deletion failed.");
         },
         complete: function (data) {
             console.log("COMPLETE :: data :: ", data);
@@ -238,7 +238,7 @@ var validRepositoryName = function (repositoryName) {
         return false;
     }
 
-    var r1 = new RegExp("[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]");
+    var r1 = new RegExp("[[A-Za-z]-ㅎ|ㅏ-ㅣ|가-힣]");
     if (repositoryName.match(r1) == null) {
         var r2 = new RegExp("[!@#$%&'*+/=?<>{|}\'\\\",;:]");
         (repositoryName.match(r2) == null) ? rtnVal = true : rtnVal = false;

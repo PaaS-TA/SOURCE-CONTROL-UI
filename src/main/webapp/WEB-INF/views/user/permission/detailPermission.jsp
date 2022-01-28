@@ -16,24 +16,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- Form 테이블 :s -->
-<table summary="아이디, 이름, 이메일 등의 참여자정보 상세내용 테이블입니다." class="tbl_form02">
+<table summary="This is a table of details of participant information such as ID, name, and email." class="tbl_form02">
     <caption>
-        참여자관리 참여자 상세/수정
+        Participant Management Participant Details/Modification
     </caption>
     <colgroup>
         <col style="width: 18%">
     </colgroup>
     <tbody>
     <tr>
-        <th class="f_title">참여자 정보</th>
+        <th class="f_title">Participant information</th>
     </tr>
     <tr class=""><!--사용자검색 상세내용-->
         <td class="controlbox">
             <dl>
                 <input type="hidden" id="viewUser">
-                <dd><span class="sm_tit">아이디 :</span><span id="viewId" name="viewId"></span><br></dd>
-                <dd><span class="sm_tit">이름 :</span><span id="viewName" name="viewName"></span><br></dd>
-                <dd><span class="sm_tit">이메일 :</span><span id="viewEmail" name="viewEmail"></span><br></dd>
+                <dd><span class="sm_tit">ID :</span><span id="viewId" name="viewId"></span><br></dd>
+                <dd><span class="sm_tit">name :</span><span id="viewName" name="viewName"></span><br></dd>
+                <dd><span class="sm_tit">e-mail :</span><span id="viewEmail" name="viewEmail"></span><br></dd>
             </dl>
         </td>
     </tr>
@@ -41,9 +41,9 @@
 </table>
 <!--//Form 테이블 :e -->
 <!-- 공통 Form 테이블 :s -->
-<table summary="권한(필수), 사용여부(필수), 설명 등의 참여자 상세/수정 테이블입니다." class="tbl_form">
+<table summary="This is the participant detail/modification table such as permission (required), use status (required), and description." class="tbl_form">
     <caption>
-        참여자관리 참여자 상세/수정
+        Participant Management Participant Details/Modification
     </caption>
     <colgroup>
         <col style="width: 18%">
@@ -51,20 +51,20 @@
     </colgroup>
     <tbody>
     <tr>
-        <th>권한 (<span class="essential">*필수</span>)</th>
+        <th>Permissions (<span class="essential">*required (<span class="essential">*Required</span>)</th>
         <td>
             <label>
-                <input type="radio" name="viewAuthority" value="WRITE">쓰기권한
-                <input type="radio" name="viewAuthority" value="READ">보기권한
-                <input type="radio" name="viewAuthority" value="OWNER">소유자권한
+                <input type="radio" name="viewAuthority" value="WRITE">write permission
+                <input type="radio" name="viewAuthority" value="READ">view right
+                <input type="radio" name="viewAuthority" value="OWNER">Owner Rights
             </label>
         </td>
     </tr>
     <tr>
     <tr>
-        <th class="last">설명 (선택)</th>
+        <th class="last">Description (optional)</th>
         <td>
-            <textarea type="text" name="viewDescription" id="viewDescription" colos="20" rows="5"  placeholder="입력한 사용자 설명">${ScUser.userDesc}</textarea>
+            <textarea type="text" name="viewDescription" id="viewDescription" colos="20" rows="5"  placeholder="User description entered">${ScUser.userDesc}</textarea>
         </td>
     </tr>
     </tbody>
@@ -77,7 +77,7 @@
 </div>
 <div class="fr">
     <jsp:include page="../common/buttonCreateOnclick2.jsp"></jsp:include>
-    <button type="button" class="button btn_cancel" title="취소"  onclick="detailPermissionCancel()">취소</button>
+    <button type="button" class="button btn_cancel" title="cancellation"  onclick="detailPermissionCancel()">취소</button>
 </div>
 <!--//기본버튼(Right 정렬) :e -->
 <script type="text/javascript">
@@ -91,7 +91,7 @@
 
     //BIND :: buttonCreateOnclick[DELETE]
     $("#btnDPDelete").on("click", function() {
-        popupConfirmClick("삭제","참여자 정보를 삭제 하시겠습니까?", "userDetailUpdateDelete()","삭제");
+        popupConfirmClick("delete","Are you sure you want to delete participant information?", "userDetailUpdateDelete()","삭제");
     });
 
 
@@ -113,14 +113,14 @@
         searchPermissions();
     }
     function userDetailUpdateDeleteCallback() {
-       procPopupAlert("참여자 삭제가 완료되었습니다.",'detailPermissionCancel()','return;');
+       procPopupAlert("Participant deletion is complete.",'detailPermissionCancel()','return;');
     };
 
 
     //BIND :: buttonCreateOnclick[UPDATAE]
-    $("#buttonCreateOnclick2").text("수정");
+    $("#buttonCreateOnclick2").text("correction");
     $("#buttonCreateOnclick2").click(function (event) {
-        popupConfirmClick("수정","참여자 정보를 수정 하시겠습니까?", 'userDetailBeforeUpdateDelete()',"수정");
+        popupConfirmClick("correction","Would you like to edit participant information?", 'userDetailBeforeUpdateDelete()',"수정");
     });
 
     //수정전 삭제,
@@ -144,7 +144,7 @@
 
     function userDetailUpdateCallback(data) {
 //        alert(JSON.stringify(data));
-        procPopupAlert("사용자 수정이 완료되었습니다.",'detailPermissionCancel()','return;');
+        procPopupAlert("User modification is complete.",'detailPermissionCancel()','return;');
         console.debug("[delete]->[update] procCallAjax Log4");
     };
 
@@ -159,9 +159,9 @@
         $('#viewAuthority').attr('checked', 'checked'); // from id
         procCallAjax('get','/user/getInstanceUser/'+name+'.json',null,detailInformation);
 
-        $("#buttonDeleteOnclick").text("참여자삭제");
+        $("#buttonDeleteOnclick").text("Delete participant");
         $("#buttonDeleteOnclick").click(function (event) {
-            popupConfirmClick("삭제","참여자 정보를 삭제 하시겠습니까?", "userDetailUpdateDelete()","삭제");
+            popupConfirmClick("delete","Are you sure you want to delete participant information?", "userDetailUpdateDelete()","삭제");
         });
         if(permission=="OWNER"){
             $("#buttonDeleteOnclick").hide();

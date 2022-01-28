@@ -3,29 +3,29 @@
     <!-- 이동경로 :s -->
     <div class="location">
         <ul>
-            <li><a href="/user/repository/" class="home">홈으로</a></li>
-            <li><a href="#" title="">레파지토리 신규생성</a></li><!--마지막 경로일때-->
+            <li><a href="/user/repository/" class="home">home</a></li>
+            <li><a href="#" title="">Create a new repository</a></li><!--마지막 경로일때-->
         </ul>
     </div>
     <!-- contents :s -->
     <div class="contents">
         <!-- Form 테이블 :s -->
-        <table summary="사용자생성 입력 테이블입니다." class="tbl_form02">
-            <caption> 사용자생성</caption>
+        <table summary="This is a user-created input table." class="tbl_form02">
+            <caption> create user</caption>
             <colgroup>
                 <col style="width: 18%"/>
                 <col style="width: *"/>
             </colgroup>
             <tbody>
             <tr>
-                <th>레파지토리 명 (<span class="essential">*필수</span>)</th>
-                <td><input type="text" id="RepositoryName" name="RepositoryName" value="" placeholder=""><span class="essential"> *영문만 허용</span>
-                    <p class="desc" style="color:#fb5666;display: none" id="createRepositoryNameAlert">* 레파지토리명 형식이 올바르지 않습니다.</p></td>
+                <th>레파지토리 명 (<span class="essential">*Required</span>)</th>
+                <td><input type="text" id="RepositoryName" name="RepositoryName" value="" placeholder=""><span class="essential"> *English only</span>
+                    <p class="desc" style="color:#fb5666;display: none" id="createRepositoryNameAlert">* The format of the repository name is incorrect.</p></td>
             </tr>
             <tr>
-                <th>유형 (<span class="essential">*필수</span>)</th>
+                <th>type (<span class="essential">*required (<span class="essential">*Required</span>)</th>
                 <td>
-                    <select id="type" name="type" class="type" title="유형을 선택합니다." style="width:51%;">
+                    <select id="type" name="type" class="type" title="Select a type." style="width:51%;">
                         <option value="git">Git</option>
                         <option value="svn">SVN</option>
                         </optgroup>
@@ -33,7 +33,7 @@
                 </td>
             </tr>
             <tr>
-                <th>레파지토리 설명 (<span class="f12">선택</span>)</th>
+                <th>Repository description (<span class="f12">select</span>)</th>
                 <td><textarea type="text" name="description" id="description"  colos="20" rows="5" style=""></textarea></td>
             </tr>
             </tbody>
@@ -43,7 +43,7 @@
         <!--버튼 영역 :s -->
         <div class="btn_Area plr20 fr">
             <jsp:include page="../common/buttonCreateOnclick.jsp"></jsp:include>
-            <button type="button" class="button btn_default" title="취소" id="btnCancel">취소</button>
+            <button type="button" class="button btn_default" title="cancellation" id="btnCancel">취소</button>
         </div>
         <!--버튼 영역-->
     </div>
@@ -78,7 +78,7 @@
             popupAlertClick(data.error);
             return;
         }
-        procPopupAlert("레파지토리가 신규 생성 되었습니다.",'$("#form1").submit()', 'return');
+        procPopupAlert("A new repository has been created.",'$("#form1").submit()', 'return');
     };
 
     // BIND
@@ -97,11 +97,11 @@
             }
         });
 
-        $("#buttonCreateOnclick").text("생성");
+        $("#buttonCreateOnclick").text("produce");
         $("#buttonCreateOnclick").click(function (event) {
             var validation_LanguageCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
             if (document.getElementById('RepositoryName').value === null || validation_LanguageCheck.test(document.getElementById('RepositoryName').value)) {
-                popupAlertClick("올바른 레파지토리 명 형식이 아닙니다.");
+                popupAlertClick("This is not a valid repository name format.");
                 document.getElementById('RepositoryName').value = "";
                 return;
             }

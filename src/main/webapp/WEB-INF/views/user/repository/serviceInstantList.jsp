@@ -12,8 +12,8 @@
         <!-- location :s -->
         <div class="location">
             <ul>
-                <li><a href="/user/serviceInstantList"  class="home">홈으로</a></li>
-                <li><a href="#" title="">형상관리 신청 목록</a></li>
+                <li><a href="/user/serviceInstantList"  class="home">home</a></li>
+                <li><a href="#" title="">Configuration management application list</a></li>
             </ul>
         </div>
         <!--//location :e -->

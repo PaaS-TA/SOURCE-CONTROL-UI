@@ -16,11 +16,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div id="header">
     <div class="head_inner">
-        <h1><a title="PaaS-TA 형상관리" href="/admin/serviceInstantList"><img alt="PaaS-TA 형상관리" src="/resources/images/logo.png"><span>형상관리</span></a></h1>
+        <h1><a title="PaaS-TA configuration management" href="/admin/serviceInstantList"><img alt="PaaS-TA 형상관리" src="/resources/images/logo.png"><span>형상관리</span></a></h1>
             <ul class="nav_ibtn">
-                <li><a href="#" class="wintoggle">${name}님<b class="nav_arrow"></b></a>
+                <li><a href="#" class="wintoggle">${name}<b class="nav_arrow"></b></a>
                     <ul class="togglemenu" style="width:125px;">
-                        <li><a href="/logout">로그아웃</a></li>
+                        <li><a href="/logout">Log out</a></li>
                     </ul>
                 </li>
             </ul>

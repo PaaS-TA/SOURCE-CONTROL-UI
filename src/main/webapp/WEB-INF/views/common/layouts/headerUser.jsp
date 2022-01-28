@@ -3,9 +3,9 @@
 <ul class="nav_ibtn">
     <li><a href="#" class="wintoggle"><%=session.getAttribute("name")%><b class="nav_arrow"></b></a>
         <ul class="togglemenu" style="width:125px;">
-            <li><a href="/user/userMyInfoModify">내정보 관리</a></li>
+            <li><a href="/user/userMyInfoModify">My information management</a></li>
             <sec:authorize access="hasRole('ROLE_CREATE_Y')">
-            <li><a href="/user/permissionList/">사용자 관리</a></li>
+            <li><a href="/user/permissionList/">User Management</a></li>
             </sec:authorize>
         </ul>
     </li>
@@ -93,7 +93,7 @@
         console.log("::[2]Callback addUser::");
 
         if(data.rtnUser.name!=null){
-            popupAlertClick("사용자 추가가 완료되었습니다.");
+            popupAlertClick("User addition is complete.");
 
             var insertName = data.rtnUser.name;
             console.log("::innerHTML = " + insertName);
@@ -102,7 +102,7 @@
             console.log("data"+insertName);
 
         }else{
-            popupAlertClick("사용자 추가가 실패되었습니다.");
+            popupAlertClick("Failed to add user.");
         }
     };
 
@@ -111,13 +111,13 @@
     $("#btnUCreate").on("click", function () {
         var validation_pw = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
         if (document.getElementById('user_pw').value == null || validation_pw.test(document.getElementById('user_pw').value)) {
-            popupAlertClick("비밀번호가 일치하지 않습니다.");
+            popupAlertClick("Passwords do not match.");
             document.getElementById('user_pw').value = "";
             return;
         }
         else{
             addUser();
-            popupAlertClick("사용자 생성이 완료되었습니다.");
+            popupAlertClick("User creation is complete.");
             $("#Insert_User_togglemenu").hide();
             //history.go(-1);
         }
@@ -126,7 +126,7 @@
     });
     // BIND
     $("#btnUCancel").on("click", function () {
-        if(confirm("사용자 생성을 취소하시겠습니까?")){
+        if(confirm("Are you sure you want to cancel user creation?")){
             $("#Insert_User_togglemenu").hide();
         }else{
             return;
