@@ -72,7 +72,7 @@
         });
         $("#confirmPasswordInput").keyup(function (event) {
             if (event.which === 13) {
-                popupConfirmClick("First time password registration","Would you like to register a password?",'modify()',"등록");
+                popupConfirmClick("First time password registration","Would you like to register a password?",'modify()',"Save");
             }
         });
 
@@ -84,7 +84,7 @@
         $("#btn_login").click(function () {
 
             if(password_validation_check($("#confirmPasswordInput").val())){
-                popupConfirmClick("First time password registration","Would you like to register a password?",'modify()',"등록");
+                popupConfirmClick("First time password registration","Would you like to register a password?",'modify()',"Save");
             }
         });
     });

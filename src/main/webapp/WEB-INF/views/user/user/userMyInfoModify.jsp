@@ -6,7 +6,7 @@
     <div class="location">
         <ul>
             <li><a href="javascript:moveHome()" class="home">Home</a></li>
-            <li><a href="javascript:moveHome()" title="Edit My Information">내정보 수정</a></li><!--마지막 경로-->
+            <li><a href="javascript:moveHome()" title="Edit My Information">Edit my information</a></li><!--마지막 경로-->
         </ul>
     </div>
     <!--//location :e -->
@@ -33,13 +33,13 @@
                     <td>${ScUser.userId}</td>
                 </tr>
                 <tr>
-                    <th>name</th>
+                    <th>Name</th>
                     <td><input type="text" id="modifyDisplayName" name="modifyDisplayName" value="${ScUser.userName}" placeholder="2 or more characters">
                         <p class="desc"id="NameAlertCheck">Please enter your name with at least 2 characters.</p><!--경고 메시지-->
                     </td>
                 </tr>
                 <tr>
-                    <th>e-mail</th>
+                    <th>Email</th>
                     <td><input type="text" name="mail" id="mail" value="${ScUser.userMail}"  placeholder="(Example)paasta@nia.or.kr">
                         <p class="desc" style="color:#fb5666;" id="emailNotConfirmedAlert">* Email address format is incorrect.</p></td>
                 </tr>
@@ -64,7 +64,7 @@
         <!--기본버튼 :s -->
         <div class="fr">
             <jsp:include page="../common/buttonCreateOnclick.jsp"></jsp:include>
-            <button type="button" class="button btn_cancel" title="cancel" onclick="history.go(-1)">취소</button>
+            <button type="button" class="button btn_cancel" title="cancel" onclick="history.go(-1)">Cancel</button>
         </div>
         <!--//기본버튼 :e -->
     </div>

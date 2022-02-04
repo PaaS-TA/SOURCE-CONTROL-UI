@@ -36,44 +36,44 @@
                     </div>
                     <div class="selectbox select1 ml5" style="width:135px;">
                         <div>
-                            <c:if test="${type1==''}"><strong id="repoListType">All configuration management</strong><span class="bul"></span></c:if>
+                            <c:if test="${type1==''}"><strong id="repoListType">All Source</strong><span class="bul"></span></c:if>
                             <c:if test="${type1=='git'}"><strong id="repoListType">Git</strong><span class="bul"></span></c:if>
                             <c:if test="${type1=='svn'}"><strong id="repoListType">SVN</strong><span class="bul"></span></c:if>
                         </div>
                         <ul class="select-list">
-                            <li>All configuration management</li>
+                            <li>All Source</li>
                             <li>Git</li>
                             <li>SVN</li>
                         </ul>
                     </div>
                     <div class="selectbox select2 ml5" style="width:135px;">
                         <div>
-                            <c:if test="${type2==''}"><strong id="repoListPermission">full repository</strong><span
+                            <c:if test="${type2==''}"><strong id="repoListPermission">Full repository</strong><span
                                     class="bul"></span></c:if>
-                            <c:if test="${type2=='READ_WRITE_OWNER'}"><strong id="repoListPermission" >Participation
-                                repository</strong><span class="bul"></span></c:if>
+                            <c:if test="${type2=='READ_WRITE_OWNER'}"><strong id="repoListPermission" >Participating
+                               </strong><span class="bul"></span></c:if>
                         </div>
                         <ul class="select-list">
-                            <li class="selectSortType" value="" id="repo_role" >full repository</li>
-                            <li class="selectSortType" value="READ_WRITE_OWNER" id="repo_allrole" >Participating Repositories</li>
+                            <li class="selectSortType" value="" id="repo_role" >Full repository</li>
+                            <li class="selectSortType" value="READ_WRITE_OWNER" id="repo_allrole" >Participating</li>
                         </ul>
                     </div>
                     <div class="selectbox select3 ml5" style="width:135px;">
                         <div>
                             <c:if test="${reposort=='lastModified_true' || reposort==''}"><strong id="repoListreposort">recent
-                                update order</strong><span class="bul"></span></c:if>
+                                update</strong><span class="bul"></span></c:if>
                             <c:if test="${reposort=='lastModified_false'}"><strong id="repoListreposort">old update
-                                net</strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='creationDate_true'}"><strong id="repoListreposort">latest creation date
-                                net</strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='creationDate_false'}"><strong id="repoListreposort">old creation date
-                                net</strong><span class="bul"></span></c:if>
+                                </strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='creationDate_true'}"><strong id="repoListreposort">latest create
+                                </strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='creationDate_false'}"><strong id="repoListreposort">old create
+                                </strong><span class="bul"></span></c:if>
                         </div>
                         <ul class="select-list">
-                            <li id="lastModified_desc" class="selectSortType">latest update order</li>
-                            <li id="lastModified_asc" class="selectSortType">Oldest update order</li>
-                            <li id="created_desc" class="selectSortType">Newest creation date</li>
-                            <li id="created_asc" class="selectSortType">oldest creation date</li>
+                            <li id="lastModified_desc" class="selectSortType">latest update</li>
+                            <li id="lastModified_asc" class="selectSortType">Oldest update</li>
+                            <li id="created_desc" class="selectSortType">Newest create</li>
+                            <li id="created_asc" class="selectSortType">oldest create</li>
                         </ul>
                     </div>
                     <div class="fr" style="padding-top: 15px;">

@@ -22,7 +22,7 @@
         <div class="fl">
             <ul>
                 <li><a href="/user/repository/" class="home">Home</a></li>
-                <li><a href="/user/permissionList/" title="user list">사용자 목록</a></li>
+                <li><a href="/user/permissionList/" title="user list">User List</a></li>
                 <!--마지막 경로-->
             </ul>
         </div>

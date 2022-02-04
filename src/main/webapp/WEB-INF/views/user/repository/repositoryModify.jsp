@@ -44,7 +44,7 @@
                 </td>
             </tr>
             <tr>
-                <th>레파지토리 설명 (<span class="f12">select</span>)</th>
+                <th>Repository desc (<span class="f12">optional</span>)</th>
                 <td><textarea type="text" name="description" id="description" colos="20" rows="5" onfocus="resize(this)" placeholder="Reveal the repositories you entered">${repositoryMpdify.description}</textarea>
                 </td>
             </tr>
@@ -59,7 +59,7 @@
         <div class="fr">
             <jsp:include page="../common/buttonCreateOnclick2.jsp"></jsp:include>
             <%--<button type="button" class="button btn_default" title="수정" id="btnUpdate">저장</button>--%>
-            <button type="button" class="button btn_cancel" title="cancel" id="btnRMCancel"  onclick="procMovePage(-1)">취소</button>
+            <button type="button" class="button btn_cancel" title="cancel" id="btnRMCancel"  onclick="procMovePage(-1)">Cancel</button>
         </div>
         <!--//기본버튼 :e -->
     </div>

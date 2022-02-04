@@ -99,7 +99,7 @@
 <!--기본버튼(Right 정렬) :s -->
 <div class="fr">
     <jsp:include page="../common/buttonCreateOnclick3.jsp"></jsp:include>
-    <button type="button" class="button btn_cancel" title="취소" onclick="putPermissionCancel();">취소</button>
+    <button type="button" class="button btn_cancel" title="Cancel" onclick="putPermissionCancel();">Cancel</button>
 </div>
 
 <!--//기본버튼(Right 정렬) :e -->

@@ -2,7 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div id="header">
     <div class="head_inner">
-        <h1><a href="javascript:moveHome()" title="PaaS-TA configuration management" ><img alt="PaaS-TA 형상관리" src="/resources/images/logo.png"><span>형상관리</span></a></h1>
+        <h1><a href="javascript:moveHome()" title="PaaS-TA Source Control" ><img alt="PaaS-TA Source Control" src="/resources/images/logo.png"><span>SCM</span></a></h1>
         <ul class="RP_title" style="float: left;display: block;position: relative;">
             <li><span class="RP_num" name="RP_cnt" id="RP_cnt"></span></li>
             <li><a href="#" class="wintoggle"><span class="RP_name">Repository List<b class="nav_arrow"></b></span></a>
@@ -11,7 +11,7 @@
                     <sec:authorize access="hasRole('ROLE_CREATE_Y')">
                     <li>
                         <h3><i class="glyphicon glyphicon-plus"></i>New Repository</h3>
-                        <input type="text" id="topMenuRepositoryName" name="topMenuRepositoryName" placeholder="Repository name (required)(Required)">
+                        <input type="text" id="topMenuRepositoryName" name="topMenuRepositoryName" placeholder="Repository name (required)">
                         <p class="desc" style="color:#fb5666; display: none" id="topMenuRepositoryNameAlert">* The format of the repository name is incorrect.</p>
                     </li>
                     <!--레파지토리 생성 영역 -->
@@ -27,9 +27,9 @@
                     <!--버튼 영역 :s -->
                     <li class="alignC">
                         <sec:authorize access="hasRole('ROLE_CREATE_Y')">
-                        <button type="button" class="button btn_regist" title="Enrollment" id="btnTopMenuCreate">등록</button>
+                        <button type="button" class="button btn_regist" title="Enrollment" id="btnTopMenuCreate">Add</button>
                         </sec:authorize>
-                        <button type="button" class="button btn_regist" title="cancellation" id="btnTopMenuCancel">취소</button>
+                        <button type="button" class="button btn_regist" title="cancellation" id="btnTopMenuCancel">Cancel</button>
                     </li>
                     <!--버튼 영역-->
 
@@ -37,7 +37,7 @@
                         <span class="point01 bold" id="topMenuCreateResultName">'Repository name’</span> You have created a repository.</li>
                     </sec:authorize>
                     <li>
-                        <h3><i class="glyphicon glyphicon-plus"></i>나의 레파지토리 (My Repository)</h3>
+                        <h3><i class="glyphicon glyphicon-plus"></i>My Repository</h3>
                         <ul class="h6_ul" id="headerRepoList" name ="headerRepoList">
                         </ul>
                     </li>

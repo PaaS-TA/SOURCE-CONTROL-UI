@@ -32,8 +32,8 @@
             <dl>
                 <input type="hidden" id="viewUser">
                 <dd><span class="sm_tit">ID :</span><span id="viewId" name="viewId"></span><br></dd>
-                <dd><span class="sm_tit">name :</span><span id="viewName" name="viewName"></span><br></dd>
-                <dd><span class="sm_tit">e-mail :</span><span id="viewEmail" name="viewEmail"></span><br></dd>
+                <dd><span class="sm_tit">Name :</span><span id="viewName" name="viewName"></span><br></dd>
+                <dd><span class="sm_tit">Email :</span><span id="viewEmail" name="viewEmail"></span><br></dd>
             </dl>
         </td>
     </tr>
@@ -51,12 +51,12 @@
     </colgroup>
     <tbody>
     <tr>
-        <th>Permissions (<span class="essential">*required (<span class="essential">*Required</span>)</th>
+        <th>Permissions (<span class="essential">*required)</th>
         <td>
             <label>
                 <input type="radio" name="viewAuthority" value="WRITE">write permission
                 <input type="radio" name="viewAuthority" value="READ">view right
-                <input type="radio" name="viewAuthority" value="OWNER">Owner Rights
+                <input type="radio" name="viewAuthority" value="OWNER">owner right
             </label>
         </td>
     </tr>
@@ -77,7 +77,7 @@
 </div>
 <div class="fr">
     <jsp:include page="../common/buttonCreateOnclick2.jsp"></jsp:include>
-    <button type="button" class="button btn_cancel" title="cancellation"  onclick="detailPermissionCancel()">취소</button>
+    <button type="button" class="button btn_cancel" title="cancellation"  onclick="detailPermissionCancel()">Cancel</button>
 </div>
 <!--//기본버튼(Right 정렬) :e -->
 <script type="text/javascript">

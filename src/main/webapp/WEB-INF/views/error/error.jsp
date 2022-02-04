@@ -4,7 +4,7 @@
     <!-- login :s -->
     <div id="loginWrap" class="loginbox">
         <div class="header" >
-            <h1 style="line-height: 100px;"><img alt="PaaS-TA configuration management" src="/resources/images/logo.png"><span class>  형상관리</span>ERROR</h1>
+            <h1 style="line-height: 100px;"><img alt="PaaS-TA Source Control" src="/resources/images/logo.png"><span class>  Source Control</span>ERROR</h1>
         </div>
         <div class="input_wrap clear_fix">
             <div class="input_inner">

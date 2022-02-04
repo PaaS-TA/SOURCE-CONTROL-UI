@@ -13,7 +13,7 @@
         <div class="location">
             <ul>
                 <li><a href="/user/serviceInstantList"  class="home">home</a></li>
-                <li><a href="#" title="">Configuration management application list</a></li>
+                <li><a href="#" title="">Source Control application list</a></li>
             </ul>
         </div>
         <!--//location :e -->

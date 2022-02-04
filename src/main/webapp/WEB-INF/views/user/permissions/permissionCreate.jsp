@@ -23,7 +23,7 @@
         <li><a href="/user/repository/" class="home">Home</a></li>
         <li><a href="/user/permissionList/" title="User List"> User Management/User List</a></li>
         <!--마지막 경로-->
-        <li><a href="/user/create/" title="create user">사용자 생성</a></li><!--마지막 경로-->
+        <li><a href="/user/create/" title="create user">Create user</a></li><!--마지막 경로-->
     </ul>
 <%--    <div class="fr"  style="padding-top:15px;">
         <a href="/user/create/">
@@ -83,7 +83,7 @@
                 </td>
             </tr>
             <tr>
-                <th>name<%-- (<span class="essential">*Required</span>)--%></th>
+                <th>Name<%-- (<span class="essential">*Required</span>)--%></th>
                 <td>
                     <input type="text" id="PermissionDisplayName" name="PermissionDisplayName" value="" placeholder="Please enter name with at least 2 characters">
                     <%--<p class="desc">* 이름은 2자 이상으로 입력해 주시기 바랍니다.</p>--%>
@@ -91,7 +91,7 @@
             </tr>
             <tr>
             <tr>
-                <th>e-mail</th>
+                <th>Email</th>
                 <td>
                     <input type="text"  name="permissionMail" id="permissionMail"  value="" placeholder="paasta@nia.or.kr"
                     required="required"
@@ -118,7 +118,7 @@
     <div class="fr">
         <jsp:include page="../common/buttonCreateOnclick.jsp"></jsp:include>
         <%--<button type="button" class="button btn_default" title="생성" onclick='createUserBeforeValid();'>생성</button>--%>
-        <button type="button" class="button btn_cancel" title="cancel" onclick="procMovePage(-1)">취소</button>
+        <button type="button" class="button btn_cancel" title="cancel" onclick="procMovePage(-1)">Cancel</button>
     </div>
 </div>
     <form name ="permissionList" id ="permissionList"  action = "/user/permissionList/" method="get"></form>

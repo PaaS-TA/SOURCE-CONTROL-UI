@@ -13,7 +13,7 @@
     <div class="location">
         <ul>
             <li><a href="javascript:void(0);" onclick="procMovePage('/');" class="home">home</a></li>
-            <li><a href="javascript:void(0);" onclick="procMovePage('/');" title="">Configuration management application list</a></li>
+            <li><a href="javascript:void(0);" onclick="procMovePage('/');" title="">Source Control application list</a></li>
         </ul>
     </div>
     <!--//location :e -->

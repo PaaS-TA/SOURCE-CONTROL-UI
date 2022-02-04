@@ -21,7 +21,7 @@
     <div class="location">
         <ul>
             <li><a href="/admin/serviceInstantList" class="home">home</a></li>
-            <li><a href="/admin/serviceInstantList" title="">Configuration management application list</a></li>
+            <li><a href="/admin/serviceInstantList" title="">Source Control application list</a></li>
             <li><a href="/admin/repository/${instanceId}" title="${title}">${title}</a></li>
         </ul>
     </div>

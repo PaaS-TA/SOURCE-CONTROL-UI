@@ -17,7 +17,7 @@
                 <li><a href="#" title="${title}">${title}</a></li><!--마지막 경로-->
             </ul>
             <div class="fr">
-                <button type="button" id="btn_repoCreate" class="button btn_default" title="create new">신규생성</button>
+                <button type="button" id="btn_repoCreate" class="button btn_default" title="create new">Create new</button>
             </div>
         </div>
         <!--//location :e -->

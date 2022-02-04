@@ -20,8 +20,8 @@
     <div class="location">
         <ul>
             <li><a href="/admin/serviceInstantList" title="형상관리신청목록" class="home">home</a></li>
-            <li><a href="/admin/serviceInstantList" title="형상관리신청목록">Configuration management application list</a></li>
-            <li><a href="#" title="user list">사용자 목록</a></li>
+            <li><a href="/admin/serviceInstantList" title="형상관리신청목록">Source Control application list</a></li>
+            <li><a href="#" title="user list">User List</a></li>
         </ul>
     </div>
     <!--//location :e -->

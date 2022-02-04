@@ -10,7 +10,7 @@
         <%@ include file="/WEB-INF/views/user/repository/repositoryContent.jsp" %>
     </div>
 </div>
-<button type="button" class="button btn_default" title="cancellation" id="btnContentCancel" onclick="contentViewCancel()">취소</button>
+<button type="button" class="button btn_default" title="cancellation" id="btnContentCancel" onclick="contentViewCancel()">Cancel</button>
 
 <script>
     $(document).ready(function () {

@@ -33,13 +33,13 @@
                     <td>${ScUser.userId}</td>
                 </tr>
                 <tr>
-                    <th>name</th>
+                    <th>Name</th>
                     <td><input type="text" id="modifyDisplayName" name="modifyDisplayName" value="${ScUser.userName}" placeholder="2 or more characters">
                         <p class="desc"id="NameAlertCheck">Please enter your name with at least 2 characters.</p><!--경고 메시지-->
                     </td>
                 </tr>
                 <tr>
-                    <th>e-mail</th>
+                    <th>Email</th>
                     <td><input type="text" name="mail" id="mail" value="${ScUser.userMail}"  placeholder="(Example)paasta@nia.or.kr">
                     <p class="desc" style="color:#fb5666;" id="emailNotConfirmedAlert">* Email address format is incorrect.</p></td>
                 </tr>

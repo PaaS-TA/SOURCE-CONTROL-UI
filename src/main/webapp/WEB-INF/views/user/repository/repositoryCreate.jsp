@@ -18,12 +18,12 @@
             </colgroup>
             <tbody>
             <tr>
-                <th>레파지토리 명 (<span class="essential">*Required</span>)</th>
+                <th>Respository name (<span class="essential">*required</span>)</th>
                 <td><input type="text" id="RepositoryName" name="RepositoryName" value="" placeholder=""><span class="essential"> *English only</span>
                     <p class="desc" style="color:#fb5666;display: none" id="createRepositoryNameAlert">* The format of the repository name is incorrect.</p></td>
             </tr>
             <tr>
-                <th>type (<span class="essential">*required (<span class="essential">*Required</span>)</th>
+                <th>Type (<span class="essential">*required</span>)</th>
                 <td>
                     <select id="type" name="type" class="type" title="Select a type." style="width:51%;">
                         <option value="git">Git</option>
@@ -33,7 +33,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Repository description (<span class="f12">select</span>)</th>
+                <th>Repository desc (<span class="f12">optional</span>)</th>
                 <td><textarea type="text" name="description" id="description"  colos="20" rows="5" style=""></textarea></td>
             </tr>
             </tbody>
@@ -43,7 +43,7 @@
         <!--버튼 영역 :s -->
         <div class="btn_Area plr20 fr">
             <jsp:include page="../common/buttonCreateOnclick.jsp"></jsp:include>
-            <button type="button" class="button btn_default" title="cancellation" id="btnCancel">취소</button>
+            <button type="button" class="button btn_default" title="cancellation" id="btnCancel">Cancel</button>
         </div>
         <!--버튼 영역-->
     </div>
