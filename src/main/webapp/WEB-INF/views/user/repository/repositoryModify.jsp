@@ -116,7 +116,7 @@
         $("#buttonCreateOnclick").text("Delete Repository");
 
         $("#buttonCreateOnclick").click(function (event) {
-            if(popupConfirmClick("Confirm Repository Deletion", "Are you sure you want to delete the repository?", 'deleteRepository()','삭제'));
+            if(popupConfirmClick("Confirm Repository Deletion", "Are you sure you want to delete the repository?", 'deleteRepository()','Ok'));
         });
 
         // BIND

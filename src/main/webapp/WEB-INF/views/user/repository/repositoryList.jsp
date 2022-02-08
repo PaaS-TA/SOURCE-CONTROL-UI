@@ -19,9 +19,9 @@
     <!--//location :e -->
     <!-- contents :s -->
     <div class="contents">
-	    <c:set var="repositories" value='${rtnList.content}'/>
-	    <c:set var="page" value='${rtnList.number}'/>
-	    <c:set var="size" value='${rtnList.size}'/>
+            <c:set var="repositories" value='${rtnList.content}'/>
+            <c:set var="page" value='${rtnList.number}'/>
+            <c:set var="size" value='${rtnList.size}'/>
         <div class="rSearch_group">
             <div class="sel_group">
                 <form id="frm_search" method="get" action="/user/repository/">
@@ -60,20 +60,16 @@
                     </div>
                     <div class="selectbox select3 ml5" style="width:135px;">
                         <div>
-                            <c:if test="${reposort=='lastModified_true' || reposort==''}"><strong id="repoListreposort">recent
-                                update</strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='lastModified_false'}"><strong id="repoListreposort">old update
-                                </strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='creationDate_true'}"><strong id="repoListreposort">latest create
-                                </strong><span class="bul"></span></c:if>
-                            <c:if test="${reposort=='creationDate_false'}"><strong id="repoListreposort">old create
-                                </strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='lastModified_true' || reposort==''}"><strong id="repoListreposort">Latest update</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='lastModified_false'}"><strong id="repoListreposort">Oldest update</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='creationDate_true'}"><strong id="repoListreposort">Newest creation</strong><span class="bul"></span></c:if>
+                            <c:if test="${reposort=='creationDate_false'}"><strong id="repoListreposort">Oldest creation</strong><span class="bul"></span></c:if>
                         </div>
                         <ul class="select-list">
-                            <li id="lastModified_desc" class="selectSortType">latest update</li>
+                            <li id="lastModified_desc" class="selectSortType">Latest update</li>
                             <li id="lastModified_asc" class="selectSortType">Oldest update</li>
-                            <li id="created_desc" class="selectSortType">Newest create</li>
-                            <li id="created_asc" class="selectSortType">oldest create</li>
+                            <li id="created_desc" class="selectSortType">Newest creation</li>
+                            <li id="created_asc" class="selectSortType">Oldest creation</li>
                         </ul>
                     </div>
                     <div class="fr" style="padding-top: 15px;">
@@ -202,16 +198,16 @@
 
         var param3 = $("#repoListreposort").text();
         switch (param3) {
-            case "latest update order" :
+            case "Latest update" :
                 param3 = "lastModified_true";
                 break;
-            case "Oldest update order" :
+            case "Oldest update" :
                 param3 = "lastModified_false";
                 break;
-            case "Newest creation date" :
+            case "Newest creation" :
                 param3 = "creationDate_true";
                 break;
-            case "oldest creation date" :
+            case "Oldest creation" :
                 param3 = "creationDate_false";
                 break;
             default:
@@ -340,3 +336,5 @@
     };
 </script>
 <!--//select 스크립트-->
+
+

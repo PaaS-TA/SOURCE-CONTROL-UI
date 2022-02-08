@@ -14,7 +14,7 @@
             <div class="modal-footer">
                 <div class="fr">
                     <button type="button" class="button btn_pop" id="commonPopupConfirmButtonText" data-dismiss="modal">Confirm</button>
-                    <button type="button" class="button btn_pop" data-dismiss="modal">cancellation</button>
+                    <button type="button" class="button btn_pop" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>

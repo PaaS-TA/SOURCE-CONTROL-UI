@@ -97,7 +97,7 @@
             }
         });
 
-        $("#buttonCreateOnclick").text("produce");
+        $("#buttonCreateOnclick").text("Ok");
         $("#buttonCreateOnclick").click(function (event) {
             var validation_LanguageCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
             if (document.getElementById('RepositoryName').value === null || validation_LanguageCheck.test(document.getElementById('RepositoryName').value)) {

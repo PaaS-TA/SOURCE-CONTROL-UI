@@ -12,13 +12,13 @@
                     <span class="bul"></span>
                 </div>
                 <ul class="select-list" id="select_branch">
-                    <input type="text" name="branchWord" id="branchWord" maxlength="25" value="" title="branch name search" placeholder="브랜치 명 검색" autocomplete="on">
+                    <input type="text" name="branchWord" id="branchWord" maxlength="25" value="" title="Find a branch" placeholder="Find a branch" autocomplete="on">
                     <c:forEach items="${branches.branches}" var="branch" varStatus="status">
                         <li onclick="browse_search('','','${branch.revision}');" class="branch">${branch.name} </li>
                     </c:forEach>
                 </ul>
             </div>
-	        </c:if>
+                </c:if>
             <c:if test="${type!='svn'}">
             <div class="selectbox tag_select ml5" id="fileSelect2">
                 <div>
@@ -26,13 +26,13 @@
                     <span class="bul"></span>
                 </div>
                 <ul class="select-list">
-                    <input type="text" name="tagWord" id="tagWord" maxlength="25" value="" title="Tag search" placeholder="Tag 검색" autocomplete="on" >
+                    <input type="text" name="tagWord" id="tagWord" maxlength="25" value="" title="Find a tag" placeholder="Find a tag" autocomplete="on" >
                     <c:forEach items="${tags.tags}" var="tags" varStatus="status">
                         <li onclick="browse_search('','','${tags.revision}')" class="tag">${tags.name}</li>
                     </c:forEach>
                 </ul>
             </div>
-			</c:if>
+                        </c:if>
             <!--//셀렉트(브랜치, Tag, 레파지토리 클론) : e -->
             <div class="selectbox select3 fr" style="width:300px;" id="fileSelect3">
                 <div>
@@ -287,3 +287,4 @@
 </script>
 <style> .found{background-color:gainsboro;}  #test{height:80px;  overflow:scroll;}</style>
 <!--//select 스크립트-->
+
