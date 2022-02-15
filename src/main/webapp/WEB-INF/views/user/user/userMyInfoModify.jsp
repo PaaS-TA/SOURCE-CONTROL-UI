@@ -113,7 +113,7 @@
                 popupAlertClick("Please check your password.");
                 return;
             }
-            popupConfirmClick("Edit user information", "Are you sure you want to edit " + name +" 's information?",'modify()',"수정");
+            popupConfirmClick("Edit user information", "Are you sure you want to edit " + name +" 's information?",'modify()',"Change");
         });
     });
 

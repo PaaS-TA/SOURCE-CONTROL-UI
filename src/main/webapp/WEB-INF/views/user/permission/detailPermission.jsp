@@ -120,7 +120,7 @@
     //BIND :: buttonCreateOnclick[UPDATAE]
     $("#buttonCreateOnclick2").text("correction");
     $("#buttonCreateOnclick2").click(function (event) {
-        popupConfirmClick("correction","Would you like to edit participant information?", 'userDetailBeforeUpdateDelete()',"수정");
+        popupConfirmClick("correction","Would you like to edit participant information?", 'userDetailBeforeUpdateDelete()',"Change");
     });
 
     //수정전 삭제,

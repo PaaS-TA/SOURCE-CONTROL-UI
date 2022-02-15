@@ -7,7 +7,7 @@
         <ul>
             <li><a href="javascript:moveHome()" class="home">Home</a></li>
             <li><a href="/user/permissionList/" title="user list">user list</a></li><!--마지막 경로-->
-            <li><a href="#" title="User Details/Edit/Delete">사용자 상세/수정/삭제</a></li><!--마지막 경로-->
+            <li><a href="#" title="User Details/Edit/Delete">User Details/Edit/Delete</a></li><!--마지막 경로-->
         </ul>
     </div>
     <!--//location :e -->
